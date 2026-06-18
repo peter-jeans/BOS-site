@@ -411,6 +411,23 @@
       color: #4a3c2d;
     }
 
+    .metric {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 880;
+      color: var(--accent);
+      margin: 4px 0 12px;
+    }
+
+    .metric small {
+      display: block;
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--muted);
+      font-weight: 650;
+      margin-top: 8px;
+    }
+
     .danger-note {
       background: #fff3f0;
       border-left-color: var(--danger);
@@ -455,7 +472,8 @@
       </a>
       <nav aria-label="Page sections">
         <a href="#capabilities">Capabilities</a>
-        <a href="#workflows">How it works</a>
+        <a href="#value">Value</a>
+        <a href="how-it-works.html">How it works</a>
         <a href="#tiers">Tiers</a>
         <a href="#beta">Beta</a>
         <a href="#onboarding">Onboarding</a>
@@ -473,7 +491,7 @@
           <p class="lede">BOS gives Base44 and AI coding builders a memory, scan, prompt, and verification layer. It helps the AI know the app, choose the right next action, and prove what changed.</p>
           <div class="actions">
             <a class="btn primary" href="mailto:peterjeans@gmail.com?subject=BOS%20Beta%20Access">Request beta access</a>
-            <a class="btn" href="#workflows">See how it connects</a>
+            <a class="btn" href="#value">See likely savings</a>
           </div>
         </div>
 
@@ -536,51 +554,67 @@
       </div>
     </section>
 
-    <section id="workflows" class="band">
+    <section id="value" class="band">
       <div class="wrap">
-        <h2>How BOS connects</h2>
-        <p class="section-lede">BOS supports two main workflows. Direct builders get lightweight Cloud BOS guidance inside the app project. Code workflows use GitHub and a local agent such as Codex to keep source, receipts, and Cloud BOS advice aligned.</p>
+        <h2>What BOS is trying to save</h2>
+        <p class="section-lede">Early internal work across Build Companion/BC+, Drywise, Walkies, and Assessment Engine suggests BOS is most valuable when an app would otherwise bounce through broad AI repair loops. The beta goal is fewer repeat prompts, less troubleshooting time, and fewer careless code paths.</p>
 
-        <div class="diagram">
-          <div class="flow">
-            <h3>Base44 direct workflow</h3>
-            <div class="flow-row short" aria-label="Base44 to Cloud BOS workflow">
-              <div class="node">
-                <strong>Base44 app</strong>
-                <small>Project files, AICONTROL, app spec, receipts, local governance pack.</small>
-              </div>
-              <div class="arrow">&lt;--&gt;</div>
-              <div class="node cloud">
-                <strong>Cloud BOS</strong>
-                <small>Current rules, onboarding packs, scans, platform advisories, capability checks.</small>
-              </div>
-            </div>
-          </div>
+        <div class="grid">
+          <article class="card">
+            <div class="kicker">Repeat prompts</div>
+            <div class="metric">2-6 fewer</div>
+            <p>For a meaningful feature or bug fix, BOS aims to avoid repeated explain/retry prompts by preserving app context, routing the next scan, and naming the exact acceptance evidence.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Troubleshooting time</div>
+            <div class="metric">30-120 min</div>
+            <p>Issues involving persistence, auth, mobile layout, sensors, build errors, or runtime failures often become faster when the AI starts from a targeted diagnostic path.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Build credits</div>
+            <div class="metric">1.3-14+ <small>avoidable broad-build credits per issue, depending on platform cost and complexity</small></div>
+            <p>Better prompts can reduce expensive broad build attempts and keep more work in cheaper discussion, scan, and verification loops.</p>
+          </article>
+        </div>
 
-          <div class="flow">
-            <h3>Code and GitHub workflow</h3>
-            <div class="flow-row" aria-label="AI coding engines to GitHub to Codex to Cloud BOS workflow">
-              <div class="node">
-                <strong>Base44 or AI builder</strong>
-                <small>Builds, prompts, app changes, surfaced errors.</small>
-              </div>
-              <div class="arrow">&lt;--&gt;</div>
-              <div class="node">
-                <strong>GitHub</strong>
-                <small>Source of truth, branches, commits, deployment evidence.</small>
-              </div>
-              <div class="arrow">&lt;--&gt;</div>
-              <div class="node agent">
-                <strong>Codex / localBOS</strong>
-                <small>Reads repo, applies patches, runs tests, writes receipts.</small>
-              </div>
-              <div class="arrow">&lt;--&gt;</div>
-              <div class="node cloud">
-                <strong>Cloud BOS</strong>
-                <small>Canonical rules, updates, advisories, capability metadata.</small>
-              </div>
-            </div>
+        <table class="tier-table" style="margin-top: 18px;">
+          <thead>
+            <tr>
+              <th>App complexity</th>
+              <th>Likely BOS leverage</th>
+              <th>Working beta estimate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Simple page or small UI feature</td>
+              <td>Prompt structure, UI rules, quick verification</td>
+              <td>1-3 prompts, 15-45 minutes, 1-5 build credits avoided when a loop is prevented</td>
+            </tr>
+            <tr>
+              <td>Multi-page app with auth, data, or persistence</td>
+              <td>Project memory, backend authority checks, scan/fix receipts</td>
+              <td>3-8 prompts, 1-3 hours, 4-18 credits avoided on messy fixes</td>
+            </tr>
+            <tr>
+              <td>Device, payment, map, or platform integration</td>
+              <td>Platform advisories, risk routing, unhappy-path checks</td>
+              <td>5-12 prompts, 2-6 hours, 8-30+ credits avoided when the first approach would be wrong</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="grid two" style="margin-top: 18px;">
+          <div class="note">
+            These are beta estimates, not guaranteed ROI. BOS needs measured pilot evidence from each platform: prompt count, build-credit usage, elapsed time, repeated fix attempts, runtime/build errors, and receipt outcomes.
           </div>
+          <div class="note">
+            BOS also pressures the AI away from risky shortcuts: UI-only authority, missing error handling, no rate limiting, N+1 database loops, godcode files, browser-only persistence, and platform-specific sensor mistakes.
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="how-it-works.html">See how BOS connects</a>
         </div>
       </div>
     </section>
@@ -603,7 +637,7 @@
             <div class="kicker">Solo builders</div>
             <h3>Beta Builder</h3>
             <div class="price">$39/mo</div>
-            <p>Govern one active app with project memory, guided scans, receipts, and Base44 hardening advice.</p>
+            <p>Govern one active app with project memory, guided scans, receipts, and release-readiness guidance.</p>
             <span class="pill">1 active app</span>
             <span class="pill">scan/fix prompts</span>
             <span class="pill">platform advisories</span>
@@ -654,10 +688,10 @@
               <td>Cross-app pattern tracking</td>
             </tr>
             <tr>
-              <td>Launch hardening</td>
+              <td>Release-readiness checks</td>
               <td>Checklist</td>
-              <td>Basic hardening report</td>
-              <td>Hardening reports across apps</td>
+              <td>Basic risk summary</td>
+              <td>Cross-app readiness summaries</td>
             </tr>
           </tbody>
         </table>
@@ -717,7 +751,7 @@
           </div>
           <div class="step">
             <div>
-              <h3>Run the first scan or hardening check</h3>
+              <h3>Run the first scan or readiness check</h3>
               <p>BOS recommends the right diagnostic route and records what evidence is needed before the app is treated as improved.</p>
             </div>
           </div>

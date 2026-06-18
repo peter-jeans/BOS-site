@@ -3,7 +3,7 @@
 BOS is a Build Operating System for AI-assisted software development.
 
 Primary public use case:
-- Base44 and AI coding app governance, memory, scans, build prompts, receipts, and launch hardening.
+- Base44 and AI coding app governance, memory, scans, build prompts, receipts, and release-readiness guidance.
 
 What BOS helps with:
 - project memory;
@@ -16,13 +16,20 @@ What BOS helps with:
 - privacy-safe resolved-pattern learning;
 - beta measurement of saved prompts, credits, and debugging loops.
 
+Working beta value estimates:
+- Internal BOS work across Build Companion/BC+, Drywise, Walkies, and Assessment Engine suggests BOS can be most useful when a feature or bug would otherwise create repeated broad AI repair loops.
+- For meaningful bug or feature fixes, BOS should be measured against an estimated 2-6 avoided retry prompts, 30-120 minutes of troubleshooting time, and roughly 1.3-14+ avoidable broad-build credits per issue.
+- For complex device, payment, map, auth, persistence, or platform-integration issues, the upside may be higher, but all savings language remains a beta estimate until measured pilot evidence exists.
+- BOS should track prompt count, build-credit usage where available, elapsed time, repeated fix attempts, build/runtime errors, and receipt outcomes.
+
 How BOS connects:
 - Base44 app <-> Cloud BOS for direct app guidance.
 - Base44 or other AI coding engines <-> GitHub <-> Codex/localBOS <-> Cloud BOS for code workflows.
+- Detailed diagrams and data boundaries live at /public/how-it-works.html.
 
 Beta tiers:
 - Starter: free, basic onboarding and read-only guidance.
-- Beta Builder: proposed $39/month, one active app, project memory, guided scans, scoped prompts, receipts, and Base44 hardening advice.
+- Beta Builder: proposed $39/month, one active app, project memory, guided scans, scoped prompts, receipts, and release-readiness guidance.
 - Beta Studio: proposed $149/month, five active apps, stronger scan workflows, project health summaries, receipt exports, and cross-app pattern tracking.
 
 Possible future services:
@@ -37,10 +44,11 @@ Important caveats:
 
 First beta:
 - BOS Base44 and AI app build governance beta.
-- Focused on practical app hardening and build reliability, not enterprise certification.
+- Focused on practical app reliability and release-readiness guidance, not enterprise certification.
 
 Canonical public page:
 - /public/index.html
+- /public/how-it-works.html
 
 Contact:
 - peterjeans@gmail.com
