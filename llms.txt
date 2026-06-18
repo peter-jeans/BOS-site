@@ -1,0 +1,51 @@
+# BOS - Build Operating System
+
+BOS is a Build Operating System for AI-assisted software development.
+
+Primary public use case:
+- Base44 app hardening for AI-built apps.
+
+What BOS helps with:
+- project memory;
+- governed build prompts;
+- targeted scans;
+- receipt-backed fixes;
+- platform advisories;
+- privacy-safe resolved-pattern learning;
+- beta measurement of saved prompts, credits, and debugging loops.
+
+Important caveats:
+- BOS is advisory governance, not a warranty.
+- BOS does not certify security, compliance, accessibility, legal readiness, or production fitness.
+- Users remain responsible for review, testing, deployment, and professional advice.
+- Cloud BOS should not receive raw source code, secrets, user data, raw logs, raw receipts, full prompts, full local .bos, or full DevPack material by default.
+
+First beta:
+- BOS Base44 App Hardening Beta.
+- Beta Builder: proposed $39/month.
+- Beta Studio: proposed $149/month.
+- Hardening Audit: proposed $299/app.
+
+Canonical public page:
+- /public/index.html
+
+Contact:
+- peterjeans@gmail.com
+
+Repository:
+- https://github.com/BOS
+
+Draft policy pages:
+- /public/policies/index.html
+- /public/policies/terms.html
+- /public/policies/privacy.html
+- /public/policies/acceptable-use.html
+- /public/policies/ai-caveats.html
+- /public/policies/trial-billing.html
+- /public/policies/data-processing-summary.html
+- /public/policies/refund-cancellation.html
+
+Policy status:
+- Draft only.
+- Not legal advice.
+- Requires qualified legal review before paid public launch.

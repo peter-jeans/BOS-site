@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BOS Trial and Billing Draft</title>
+  <meta name="description" content="Draft BOS trial and billing policy for beta review.">
+  <link rel="stylesheet" href="policy.css">
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">BOS</a>
+      <nav><a href="index.html">Policies</a><a href="../index.html">Home</a><a href="mailto:peterjeans@gmail.com">Contact</a></nav>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <p class="status">DRAFT - Not legal advice - Legal review required</p>
+      <h1>Trial and Billing</h1>
+      <p>Last updated: 18 June 2026.</p>
+      <h2>Beta pricing hypothesis</h2>
+      <ul>
+        <li>Beta Builder: proposed $39/month.</li>
+        <li>Beta Studio: proposed $149/month.</li>
+        <li>Hardening Audit: proposed $299/app.</li>
+      </ul>
+      <h2>Trial posture</h2>
+      <p>BOS may offer a limited trial or onboarding review before paid access. Any trial should clearly state duration, included capabilities, conversion rules, and cancellation process before checkout.</p>
+      <h2>Billing implementation</h2>
+      <ul>
+        <li>Payment processing should be handled by a payment provider such as Stripe.</li>
+        <li>Cloud BOS should decide entitlement from verified backend events, not from browser state or client claims.</li>
+        <li>Base44 apps should never receive payment-provider secrets or Cloudflare admin tokens.</li>
+      </ul>
+      <h2>Plan limits</h2>
+      <p>Capabilities may be limited by plan, app count, scan count, support level, rate limits, advisory catalogue access, or beta availability.</p>
+    </div>
+  </main>
+  <footer><div class="wrap"><a href="index.html">Back to policy index</a></div></footer>
+</body>
+</html>

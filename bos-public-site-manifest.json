@@ -1,0 +1,17 @@
+{
+  "schema": "BOS_PUBLIC_SITE_EXPORT_V1",
+  "managed_by": "masterBOS",
+  "source_folder": "public",
+  "source_commit": "cc0f21d",
+  "exported_at": "2026-06-18T10:06:56Z",
+  "privacy_boundary": [
+    "public static pages only",
+    "no .bos",
+    "no DevPack",
+    "no secrets",
+    "no private BOS internals",
+    "no raw receipts",
+    "no source code beyond public site assets",
+    "no user/project data"
+  ]
+}
