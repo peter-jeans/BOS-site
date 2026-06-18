@@ -3,16 +3,29 @@
 BOS is a Build Operating System for AI-assisted software development.
 
 Primary public use case:
-- Base44 app hardening for AI-built apps.
+- Base44 and AI coding app governance, memory, scans, build prompts, receipts, and launch hardening.
 
 What BOS helps with:
 - project memory;
-- governed build prompts;
+- guided diagnostics and scans;
+- governed build and fix prompts;
 - targeted scans;
 - receipt-backed fixes;
 - platform advisories;
+- launch-readiness checks;
 - privacy-safe resolved-pattern learning;
 - beta measurement of saved prompts, credits, and debugging loops.
+
+How BOS connects:
+- Base44 app <-> Cloud BOS for direct app guidance.
+- Base44 or other AI coding engines <-> GitHub <-> Codex/localBOS <-> Cloud BOS for code workflows.
+
+Beta tiers:
+- Starter: free, basic onboarding and read-only guidance.
+- Beta Builder: proposed $39/month, one active app, project memory, guided scans, scoped prompts, receipts, and Base44 hardening advice.
+- Beta Studio: proposed $149/month, five active apps, stronger scan workflows, project health summaries, receipt exports, and cross-app pattern tracking.
+- Hardening Audit: proposed $299/app.
+- Guided Repair Session: proposed $199.
 
 Important caveats:
 - BOS is advisory governance, not a warranty.
@@ -21,10 +34,8 @@ Important caveats:
 - Cloud BOS should not receive raw source code, secrets, user data, raw logs, raw receipts, full prompts, full local .bos, or full DevPack material by default.
 
 First beta:
-- BOS Base44 App Hardening Beta.
-- Beta Builder: proposed $39/month.
-- Beta Studio: proposed $149/month.
-- Hardening Audit: proposed $299/app.
+- BOS Base44 and AI app build governance beta.
+- Focused on practical app hardening and build reliability, not enterprise certification.
 
 Canonical public page:
 - /public/index.html
@@ -33,7 +44,7 @@ Contact:
 - peterjeans@gmail.com
 
 Repository:
-- https://github.com/BOS
+- https://github.com/peter-jeans/BOS-site
 
 Draft policy pages:
 - /public/policies/index.html

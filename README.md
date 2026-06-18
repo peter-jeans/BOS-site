@@ -1,6 +1,6 @@
 # BOS Public Page
 
-This folder contains a GitHub Pages-ready public marketing and onboarding draft for BOS.
+This folder contains the GitHub Pages-ready public marketing and onboarding draft for BOS.
 
 Files:
 
@@ -14,3 +14,4 @@ Before public launch:
 - Remove or revise any pricing before Stripe products are finalized.
 - Keep savings language as beta estimates until measured pilot data exists.
 - Keep the public pages aligned with the Cloud BOS agreement-acceptance versions once D1-backed policy storage exists.
+- Keep the homepage focused on customer-visible capability, not internal BOS implementation detail.

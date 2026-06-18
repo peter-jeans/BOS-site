@@ -4,20 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BOS - Build Operating System for AI-built apps</title>
-  <meta name="description" content="BOS helps Base44 builders harden AI-built apps with governance, project memory, scans, receipts, and safer build guidance.">
+  <meta name="description" content="BOS helps Base44 and AI coding builders keep app builds structured, remembered, scanned, verified, and safer to ship.">
   <style>
     :root {
-      --ink: #17211d;
-      --muted: #5d6962;
-      --line: #d9ded8;
-      --paper: #fbfbf7;
-      --band: #eef4ef;
-      --soft: #f6f1e7;
-      --accent: #126e5a;
-      --accent-2: #9a5b1d;
-      --danger: #9f3535;
+      --ink: #18231f;
+      --muted: #5c6863;
+      --line: #d8dfdc;
+      --paper: #fbfcf8;
+      --band: #edf5f1;
+      --soft: #f7f1e5;
+      --accent: #0f745e;
+      --accent-2: #a85e20;
+      --danger: #9b3434;
+      --blue: #2f5f8f;
       --white: #ffffff;
-      --shadow: 0 18px 55px rgba(23, 33, 29, 0.12);
+      --shadow: 0 18px 55px rgba(24, 35, 31, 0.11);
       color-scheme: light;
     }
 
@@ -49,7 +50,7 @@
 
     header {
       border-bottom: 1px solid var(--line);
-      background: rgba(251, 251, 247, 0.95);
+      background: rgba(251, 252, 248, 0.94);
       position: sticky;
       top: 0;
       z-index: 5;
@@ -68,7 +69,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 800;
+      font-weight: 850;
+      color: var(--ink);
     }
 
     .mark {
@@ -90,18 +92,18 @@
     }
 
     .hero {
-      padding: 76px 0 44px;
-      background:
-        linear-gradient(140deg, rgba(238, 244, 239, 0.96), rgba(246, 241, 231, 0.92)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='640' viewBox='0 0 1200 640'%3E%3Crect width='1200' height='640' fill='%23eef4ef'/%3E%3Cg fill='none' stroke='%2317211d' stroke-opacity='.13' stroke-width='2'%3E%3Cpath d='M120 140h220v120H120zM390 140h300v120H390zM740 140h300v120H740zM120 318h300v120H120zM470 318h220v120H470zM740 318h300v120H740z'/%3E%3Cpath d='M230 260v58M540 260v58M890 260v58M420 378h50M690 378h50'/%3E%3C/g%3E%3Cg fill='%23126e5a' fill-opacity='.18'%3E%3Crect x='154' y='173' width='152' height='18' rx='4'/%3E%3Crect x='424' y='173' width='212' height='18' rx='4'/%3E%3Crect x='774' y='173' width='164' height='18' rx='4'/%3E%3Crect x='154' y='352' width='198' height='18' rx='4'/%3E%3Crect x='504' y='352' width='128' height='18' rx='4'/%3E%3Crect x='774' y='352' width='202' height='18' rx='4'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: cover;
+      padding: 74px 0 50px;
       border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(237, 245, 241, 0.94), rgba(247, 241, 229, 0.9)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='660' viewBox='0 0 1200 660'%3E%3Crect width='1200' height='660' fill='%23edf5f1'/%3E%3Cg fill='none' stroke='%2318231f' stroke-opacity='.12' stroke-width='2'%3E%3Crect x='100' y='115' width='245' height='112' rx='10'/%3E%3Crect x='478' y='115' width='245' height='112' rx='10'/%3E%3Crect x='855' y='115' width='245' height='112' rx='10'/%3E%3Cpath d='M345 171h133M723 171h132M600 227v82M222 310h756'/%3E%3Crect x='100' y='360' width='300' height='126' rx='10'/%3E%3Crect x='450' y='360' width='300' height='126' rx='10'/%3E%3Crect x='800' y='360' width='300' height='126' rx='10'/%3E%3C/g%3E%3Cg fill='%230f745e' fill-opacity='.18'%3E%3Crect x='130' y='148' width='116' height='16' rx='4'/%3E%3Crect x='508' y='148' width='122' height='16' rx='4'/%3E%3Crect x='885' y='148' width='112' height='16' rx='4'/%3E%3Crect x='130' y='398' width='160' height='16' rx='4'/%3E%3Crect x='480' y='398' width='165' height='16' rx='4'/%3E%3Crect x='830' y='398' width='170' height='16' rx='4'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-      gap: 38px;
+      gap: 40px;
       align-items: center;
     }
 
@@ -110,8 +112,8 @@
       align-items: center;
       gap: 8px;
       padding: 6px 10px;
-      border: 1px solid rgba(23, 33, 29, 0.2);
-      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(24, 35, 31, 0.2);
+      background: rgba(255, 255, 255, 0.74);
       border-radius: 6px;
       font-size: 13px;
       color: var(--muted);
@@ -119,16 +121,16 @@
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 0.94;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.96;
       margin: 0 0 22px;
       letter-spacing: 0;
-      max-width: 760px;
+      max-width: 780px;
     }
 
     .lede {
       font-size: 20px;
-      color: #314039;
+      color: #30413a;
       max-width: 680px;
       margin: 0 0 28px;
     }
@@ -144,7 +146,7 @@
       border: 1px solid var(--ink);
       border-radius: 6px;
       padding: 12px 16px;
-      font-weight: 750;
+      font-weight: 780;
       background: var(--white);
       color: var(--ink);
       display: inline-flex;
@@ -158,44 +160,37 @@
       color: var(--white);
     }
 
-    .panel {
-      background: rgba(255, 255, 255, 0.86);
-      border: 1px solid rgba(23, 33, 29, 0.18);
+    .hero-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(24, 35, 31, 0.16);
       border-radius: 8px;
       box-shadow: var(--shadow);
-      overflow: hidden;
+      padding: 22px;
     }
 
-    .panel-head {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .signal-list {
+      display: grid;
       gap: 14px;
-      font-size: 13px;
-      color: var(--muted);
+      margin: 18px 0 0;
     }
 
-    .terminal {
-      padding: 18px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 13px;
-      background: #17211d;
-      color: #e7eee9;
-      min-height: 330px;
+    .signal {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
     }
 
-    .terminal p {
-      margin: 0 0 12px;
-    }
-
-    .ok {
-      color: #8ee2c6;
-    }
-
-    .warn {
-      color: #ffd28f;
+    .signal span {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: var(--band);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-weight: 850;
+      color: var(--accent);
     }
 
     section {
@@ -208,7 +203,7 @@
     }
 
     h2 {
-      font-size: clamp(28px, 4vw, 46px);
+      font-size: clamp(28px, 4vw, 44px);
       line-height: 1.05;
       margin: 0 0 16px;
       letter-spacing: 0;
@@ -217,6 +212,10 @@
     h3 {
       font-size: 19px;
       margin: 0 0 10px;
+    }
+
+    p {
+      margin-top: 0;
     }
 
     .section-lede {
@@ -248,17 +247,126 @@
       color: var(--muted);
     }
 
-    .card p:last-child {
+    .card p:last-child,
+    .card ul:last-child {
       margin-bottom: 0;
     }
 
     .kicker {
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 850;
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 8px;
+    }
+
+    .diagram {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .flow {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    .flow-row {
+      min-width: 760px;
+      display: grid;
+      grid-template-columns: 1fr 82px 1fr 82px 1fr 82px 1fr;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .flow-row.short {
+      grid-template-columns: 1fr 100px 1fr;
+      min-width: 520px;
+    }
+
+    .node {
+      min-height: 84px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfcf8;
+    }
+
+    .node strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .node small {
+      display: block;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .cloud {
+      border-color: rgba(15, 116, 94, 0.35);
+      background: #eef8f4;
+    }
+
+    .agent {
+      border-color: rgba(47, 95, 143, 0.3);
+      background: #eef4fa;
+    }
+
+    .arrow {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .tier-table th,
+    .tier-table td {
+      text-align: left;
+      padding: 15px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .tier-table th {
+      background: #f1f5f2;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tier-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: 850;
+      color: var(--ink);
+      margin: 8px 0 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--paper);
+      margin: 0 6px 6px 0;
     }
 
     .steps {
@@ -287,62 +395,12 @@
       color: var(--white);
       display: grid;
       place-items: center;
-      font-weight: 800;
+      font-weight: 850;
     }
 
     .step p {
       color: var(--muted);
       margin: 4px 0 0;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      display: table;
-    }
-
-    th,
-    td {
-      text-align: left;
-      padding: 14px;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-    }
-
-    th {
-      background: #f1f4ef;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    td {
-      color: #2c3832;
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .price {
-      font-size: 32px;
-      font-weight: 850;
-      color: var(--ink);
-      margin: 8px 0 12px;
-    }
-
-    .pill {
-      display: inline-flex;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 4px 9px;
-      font-size: 12px;
-      color: var(--muted);
-      background: var(--paper);
-      margin: 0 6px 6px 0;
     }
 
     .note {
@@ -365,7 +423,7 @@
       font-size: 14px;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       nav {
         display: none;
       }
@@ -380,11 +438,7 @@
         grid-template-columns: 1fr;
       }
 
-      .terminal {
-        min-height: 260px;
-      }
-
-      table {
+      .tier-table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
@@ -400,10 +454,10 @@
         <span>Build Operating System</span>
       </a>
       <nav aria-label="Page sections">
-        <a href="#problem">Problem</a>
-        <a href="#how">How it works</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#workflows">How it works</a>
+        <a href="#tiers">Tiers</a>
         <a href="#beta">Beta</a>
-        <a href="#pricing">Pricing</a>
         <a href="#onboarding">Onboarding</a>
         <a href="#policies">Policies</a>
       </nav>
@@ -414,184 +468,205 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow">Public beta scope: Base44 app hardening</div>
-          <h1>BOS helps AI-built apps stop drifting.</h1>
-          <p class="lede">BOS is a governance and hardening layer for AI-assisted app development. It gives builders project memory, safer build prompts, issue scans, platform advisories, and receipts that show what changed.</p>
+          <div class="eyebrow">Public beta: AI app build governance</div>
+          <h1>Keep AI-built apps from losing the plot.</h1>
+          <p class="lede">BOS gives Base44 and AI coding builders a memory, scan, prompt, and verification layer. It helps the AI know the app, choose the right next action, and prove what changed.</p>
           <div class="actions">
-            <a class="btn primary" href="#onboarding">Join the beta</a>
-            <a class="btn" href="#evidence">See the evidence model</a>
+            <a class="btn primary" href="mailto:peterjeans@gmail.com?subject=BOS%20Beta%20Access">Request beta access</a>
+            <a class="btn" href="#workflows">See how it connects</a>
           </div>
         </div>
 
-        <aside class="panel" aria-label="BOS runtime example">
-          <div class="panel-head">
-            <strong>Governed build loop</strong>
-            <span>BOS1.6</span>
-          </div>
-          <div class="terminal">
-            <p><span class="ok">BOS1.6&gt;</span> Route before mutation.</p>
-            <p>Target: Base44 app<br>Intent: fix runtime issue<br>Risk: persistence + UI surface</p>
-            <p><span class="warn">Scan first:</span> location persistence, backend restore, map centering, mobile viewport.</p>
-            <p><span class="ok">Codex&gt;</span> BuildAI receives a scoped prompt with stop conditions and receipt requirements.</p>
-            <p>Outcome: fewer broad repair loops, clearer verification, reusable advisory if resolved.</p>
+        <aside class="hero-card" aria-label="BOS summary">
+          <div class="kicker">What changes with BOS</div>
+          <div class="signal-list">
+            <div class="signal">
+              <span>1</span>
+              <div><strong>The project has memory.</strong><br><small>Specs, decisions, receipts, blockers, and platform lessons survive the next chat.</small></div>
+            </div>
+            <div class="signal">
+              <span>2</span>
+              <div><strong>The AI gets a safer route.</strong><br><small>Scan, fix, build, verify, block, or ask. No more defaulting every problem to broad rewrites.</small></div>
+            </div>
+            <div class="signal">
+              <span>3</span>
+              <div><strong>Fixes become reusable knowledge.</strong><br><small>Resolved app patterns become privacy-safe advisories for future builds.</small></div>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section id="problem">
+    <section id="capabilities">
       <div class="wrap">
-        <h2>AI app builders are fast. The hard part is keeping the app coherent.</h2>
-        <p class="section-lede">Prompt-driven builds can forget prior decisions, retry the same issue, break persistence, miss platform constraints, or claim a fix without durable evidence. BOS focuses on the space between prompt and production confidence.</p>
+        <h2>What BOS helps you do</h2>
+        <p class="section-lede">BOS is not a replacement for Base44, Codex, Claude, or GitHub. It is the operating layer that tells those tools what context matters, what rules apply, and what evidence is needed.</p>
         <div class="grid">
           <article class="card">
-            <div class="kicker">Memory</div>
-            <h3>Project decisions get lost</h3>
-            <p>New chats and long build sessions often lose the app contract, architecture choices, and prior repair decisions. BOS keeps lightweight project memory and receipts.</p>
+            <div class="kicker">Project memory</div>
+            <h3>Keep the app contract alive</h3>
+            <p>Store the app spec, build intentions, architecture decisions, known issues, platform constraints, and what has already been tried.</p>
           </article>
           <article class="card">
-            <div class="kicker">Scope</div>
-            <h3>Fix prompts get too broad</h3>
-            <p>Unstructured requests can trigger wide rewrites, repeated analysis, and expensive build loops. BOS routes the work into scan, fix, verify, or block paths.</p>
+            <div class="kicker">Guided scans</div>
+            <h3>Ask the right diagnostic question</h3>
+            <p>Route blank pages, data not saving, auth problems, mobile layout issues, GPS/sensor failures, build errors, and runtime bugs into focused checks.</p>
           </article>
           <article class="card">
-            <div class="kicker">Evidence</div>
-            <h3>Done does not always mean verified</h3>
-            <p>BOS expects receipts, readback, and build/runtime evidence before a governed change is treated as complete.</p>
+            <div class="kicker">Build prompts</div>
+            <h3>Give the AI a narrower job</h3>
+            <p>Generate prompts that name the app, page, files, risk, constraints, stop conditions, and verification plan.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Receipts</div>
+            <h3>Know what actually happened</h3>
+            <p>Record what changed, what was inspected, what passed, what failed, and what is still provisional.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Platform intelligence</div>
+            <h3>Reuse hard-won fixes</h3>
+            <p>Capture patterns such as mobile viewport clipping, backend persistence drift, Android GPS cold starts, and iOS compass/PWA constraints.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Launch readiness</div>
+            <h3>Harden before public users</h3>
+            <p>Check auth, user data boundaries, error paths, rate limits, payments, webhooks, rollback, and support posture before calling a beta ready.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="how" class="band">
+    <section id="workflows" class="band">
       <div class="wrap">
-        <h2>What BOS does</h2>
-        <p class="section-lede">BOS is not another coding agent. It is a build governance layer that helps the builder and AI decide what should happen next, under what authority, with what proof.</p>
-        <div class="grid two">
-          <article class="card">
-            <h3>Guided scans and fixes</h3>
-            <p>BOS can route issues into targeted checks for build errors, runtime errors, blank pages, data persistence, auth, routing, UI layout, mobile viewport, GPS/location, and platform-specific problems.</p>
-          </article>
-          <article class="card">
-            <h3>Structured prompts</h3>
-            <p>BOS prompts name the target app, target page, scope, risk, stop condition, and verification requirement. Less ambiguity means less wasted analysis.</p>
-          </article>
-          <article class="card">
-            <h3>Receipts and readback</h3>
-            <p>For governed work, BOS expects evidence of what changed, what was verified, what remains provisional, and what should happen next.</p>
-          </article>
-          <article class="card">
-            <h3>Platform intelligence</h3>
-            <p>Resolved issues become reusable advisories. Recent examples include mobile viewport clipping, location persistence, Android GPS cold-start behaviour, and iOS/Android compass handling.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+        <h2>How BOS connects</h2>
+        <p class="section-lede">BOS supports two main workflows. Direct builders get lightweight Cloud BOS guidance inside the app project. Code workflows use GitHub and a local agent such as Codex to keep source, receipts, and Cloud BOS advice aligned.</p>
 
-    <section id="efficiency">
-      <div class="wrap">
-        <h2>BOS is being tested as a credit-efficiency layer.</h2>
-        <p class="section-lede">The beta thesis is that governed apps need fewer retry prompts and lower average build-prompt analysis cost because the AI receives clearer structure, architecture, and verification context.</p>
-        <div class="grid two">
-          <div class="card">
-            <h3>Two savings channels</h3>
-            <p><strong>Fewer prompts:</strong> less repeated explaining, fewer broad fix loops, fewer accidental rewrites.</p>
-            <p><strong>Lower prompt cost:</strong> better-scoped build prompts may require less AI rediscovery and analysis.</p>
+        <div class="diagram">
+          <div class="flow">
+            <h3>Base44 direct workflow</h3>
+            <div class="flow-row short" aria-label="Base44 to Cloud BOS workflow">
+              <div class="node">
+                <strong>Base44 app</strong>
+                <small>Project files, AICONTROL, app spec, receipts, local governance pack.</small>
+              </div>
+              <div class="arrow">&lt;--&gt;</div>
+              <div class="node cloud">
+                <strong>Cloud BOS</strong>
+                <small>Current rules, onboarding packs, scans, platform advisories, capability checks.</small>
+              </div>
+            </div>
           </div>
-          <div class="card">
-            <h3>Observed beta hypothesis</h3>
-            <p>Discussion prompts may cost around 0.3 credits. Unstructured build prompts may cost around 1.3 to 3.6+ credits. Governed build prompts are being measured against a target around 1.2 credits when scope and architecture are clear.</p>
+
+          <div class="flow">
+            <h3>Code and GitHub workflow</h3>
+            <div class="flow-row" aria-label="AI coding engines to GitHub to Codex to Cloud BOS workflow">
+              <div class="node">
+                <strong>Base44 or AI builder</strong>
+                <small>Builds, prompts, app changes, surfaced errors.</small>
+              </div>
+              <div class="arrow">&lt;--&gt;</div>
+              <div class="node">
+                <strong>GitHub</strong>
+                <small>Source of truth, branches, commits, deployment evidence.</small>
+              </div>
+              <div class="arrow">&lt;--&gt;</div>
+              <div class="node agent">
+                <strong>Codex / localBOS</strong>
+                <small>Reads repo, applies patches, runs tests, writes receipts.</small>
+              </div>
+              <div class="arrow">&lt;--&gt;</div>
+              <div class="node cloud">
+                <strong>Cloud BOS</strong>
+                <small>Canonical rules, updates, advisories, capability metadata.</small>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="note" style="margin-top: 18px;">
-          These are beta measurement assumptions, not guaranteed savings. BOS measures actual savings through before/after usage snapshots, prompt counts, retry loops, elapsed time, and verified receipts where the platform makes that data available.
-        </div>
       </div>
     </section>
 
-    <section id="evidence" class="band">
+    <section id="tiers">
       <div class="wrap">
-        <h2>Evidence model</h2>
-        <p class="section-lede">BOS separates public-safe evidence from private project material. The goal is to prove useful outcomes without uploading source code, secrets, app data, raw receipts, or private business content.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Evidence level</th>
-              <th>Meaning</th>
-              <th>Public use</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Measured</td>
-              <td>Before/after usage, prompt counts, elapsed time, and receipts are available.</td>
-              <td>Use for quantified claims.</td>
-            </tr>
-            <tr>
-              <td>Observed</td>
-              <td>Receipts or chat history show issue loops and BOS intervention, but exact credits may be estimated.</td>
-              <td>Use for beta case studies with ranges.</td>
-            </tr>
-            <tr>
-              <td>Inferred</td>
-              <td>Artifacts show app complexity and likely intervention value, but source evidence is incomplete.</td>
-              <td>Use internally, not for hard ROI claims.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="beta">
-      <div class="wrap">
-        <h2>Base44 App Hardening Beta</h2>
-        <p class="section-lede">The first BOS beta is for Base44 builders and agencies shipping real apps. It focuses on hardening, not broad enterprise compliance.</p>
-        <div class="grid">
-          <article class="card">
-            <h3>Good fit</h3>
-            <p>Apps with auth, persistence, payments, integrations, maps, mobile UI, device features, or more than a few pages.</p>
-          </article>
-          <article class="card">
-            <h3>Beta workflow</h3>
-            <p>Onboard the app, confirm backup, run targeted scans, guide fixes, verify readback, and capture reusable resolved patterns.</p>
-          </article>
-          <article class="card">
-            <h3>Not included</h3>
-            <p>No security certification, legal compliance certification, raw source upload, enterprise SSO, or full project capsule sync in the first beta.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="band">
-      <div class="wrap">
-        <h2>Beta pricing</h2>
-        <p class="section-lede">Pricing is designed for early Base44 users while the evidence model is measured. Final prices may change after beta.</p>
+        <h2>Beta tiers and capabilities</h2>
+        <p class="section-lede">The beta is priced for learning and early value. The main difference between tiers is how many apps BOS can actively govern and how much hardening evidence you need.</p>
         <div class="grid">
           <article class="card">
             <div class="kicker">Starter</div>
             <h3>Free</h3>
             <div class="price">$0</div>
-            <p>One app, basic onboarding, currentness check, limited read-only scan guidance.</p>
+            <p>Learn the BOS workflow and run a lightweight project readiness check.</p>
+            <span class="pill">1 app profile</span>
+            <span class="pill">basic onboarding</span>
+            <span class="pill">read-only guidance</span>
           </article>
           <article class="card">
             <div class="kicker">Solo builders</div>
             <h3>Beta Builder</h3>
             <div class="price">$39/mo</div>
-            <p>One active Base44 app, guided scans, currentness, receipts, and a basic hardening report.</p>
+            <p>Govern one active app with project memory, guided scans, receipts, and Base44 hardening advice.</p>
+            <span class="pill">1 active app</span>
+            <span class="pill">scan/fix prompts</span>
+            <span class="pill">platform advisories</span>
           </article>
           <article class="card">
             <div class="kicker">Agencies</div>
             <h3>Beta Studio</h3>
             <div class="price">$149/mo</div>
-            <p>Five active apps, stronger scan/fix guidance, project health summaries, and receipt exports.</p>
+            <p>Manage several active apps with stronger scan workflows, summaries, and launch-readiness evidence.</p>
+            <span class="pill">5 active apps</span>
+            <span class="pill">health summaries</span>
+            <span class="pill">receipt exports</span>
           </article>
         </div>
+
+        <table class="tier-table" style="margin-top: 18px;">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Starter</th>
+              <th>Beta Builder</th>
+              <th>Beta Studio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>App onboarding and project memory</td>
+              <td>Basic profile</td>
+              <td>Full app profile</td>
+              <td>Multiple app profiles</td>
+            </tr>
+            <tr>
+              <td>Guided scans</td>
+              <td>Limited read-only</td>
+              <td>Targeted app scans</td>
+              <td>Scan batches and summaries</td>
+            </tr>
+            <tr>
+              <td>Fix/build prompt structure</td>
+              <td>Examples</td>
+              <td>Scoped prompts with receipts</td>
+              <td>Scoped prompts plus review workflow</td>
+            </tr>
+            <tr>
+              <td>Platform intelligence</td>
+              <td>Public advisories</td>
+              <td>Base44 and mobile web advisories</td>
+              <td>Cross-app pattern tracking</td>
+            </tr>
+            <tr>
+              <td>Launch hardening</td>
+              <td>Checklist</td>
+              <td>Basic hardening report</td>
+              <td>Hardening reports across apps</td>
+            </tr>
+          </tbody>
+        </table>
+
         <div class="grid two" style="margin-top: 16px;">
           <article class="card">
             <h3>Hardening Audit</h3>
             <div class="price">$299/app</div>
-            <p>Fixed-scope review of one Base44 app: project setup, persistence/auth/UI risk, platform constraints, and receipt-backed repair plan.</p>
+            <p>Fixed-scope review of one app: project setup, persistence/auth/UI risk, platform constraints, and a receipt-backed repair plan.</p>
           </article>
           <article class="card">
             <h3>Guided Repair Session</h3>
@@ -602,73 +677,82 @@
       </div>
     </section>
 
+    <section id="beta" class="band">
+      <div class="wrap">
+        <h2>What the beta is proving</h2>
+        <p class="section-lede">BOS is being tested as a quality and efficiency layer. The working thesis is simple: better structure should mean fewer retry loops, clearer fixes, and lower wasted build credits.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>Fewer failed loops</h3>
+            <p>BOS should reduce repeated “try again” cycles by remembering the app, choosing a narrower scan, and checking readback before accepting a fix.</p>
+          </article>
+          <article class="card">
+            <h3>Better build prompts</h3>
+            <p>Build prompts should carry enough context that the AI spends less effort rediscovering app structure and more effort making the right change.</p>
+          </article>
+          <article class="card">
+            <h3>Reusable app knowledge</h3>
+            <p>Resolved issues become compact, privacy-safe advisories for future apps instead of disappearing into chat history.</p>
+          </article>
+        </div>
+        <div class="note" style="margin-top: 18px;">
+          Savings and credit-efficiency claims are beta hypotheses until measured across enough apps. BOS records evidence where platforms make it available.
+        </div>
+      </div>
+    </section>
+
     <section id="onboarding">
       <div class="wrap">
-        <h2>Onboarding path</h2>
-        <p class="section-lede">The beta flow is intentionally gated. BOS should not mutate an app before backup, consent, app identity, entitlement, and transport checks are clear.</p>
+        <h2>Beta onboarding</h2>
+        <p class="section-lede">The first useful BOS experience is intentionally small: connect the app, record the project truth, run the right first scan, and produce a clear next action.</p>
         <div class="steps">
           <div class="step">
             <div>
-              <h3>Request beta access</h3>
-              <p>Send the app type, app stage, main issue, and whether the app is a new build, clone, or existing production app.</p>
+              <h3>Tell BOS what you are building</h3>
+              <p>App type, target users, current stage, main issue, and whether it is a new app, clone, or existing production app.</p>
             </div>
           </div>
           <div class="step">
             <div>
-              <h3>Create a recoverable backup</h3>
-              <p>Use a Base44 clone, Git branch, export, or other rollback path before BOS-guided mutation.</p>
+              <h3>Confirm a backup or rollback path</h3>
+              <p>Use a Base44 clone, Git branch, export, or another recoverable state before BOS-guided mutation.</p>
             </div>
           </div>
           <div class="step">
             <div>
-              <h3>Install lightweight AICONTROL</h3>
-              <p>The app receives compact governance pointers and onboarding rules, not private BOS internals.</p>
+              <h3>Install the lightweight app guidance</h3>
+              <p>Base44 apps get compact AICONTROL and governance pointers. They do not receive private BOS internals.</p>
             </div>
           </div>
           <div class="step">
             <div>
-              <h3>Run the first hardening scan</h3>
-              <p>BOS identifies the right scan/fix route and asks for receipts before accepting completion.</p>
+              <h3>Run the first scan or hardening check</h3>
+              <p>BOS recommends the right diagnostic route and records what evidence is needed before the app is treated as improved.</p>
             </div>
           </div>
         </div>
         <div class="actions">
-          <a class="btn primary" href="mailto:peterjeans@gmail.com?subject=BOS%20Base44%20Beta%20Access">Request access</a>
-          <a class="btn" href="https://github.com/BOS">View GitHub</a>
+          <a class="btn primary" href="mailto:peterjeans@gmail.com?subject=BOS%20Beta%20Access">Request beta access</a>
+          <a class="btn" href="https://github.com/peter-jeans/BOS-site">View public GitHub page repo</a>
         </div>
       </div>
     </section>
 
     <section id="policies">
       <div class="wrap">
-        <h2>Privacy and beta caveats</h2>
+        <h2>Privacy and beta boundaries</h2>
+        <p class="section-lede">BOS is designed to share compact governance metadata, not private project material. The policy pages are draft beta documents and need formal review before paid public launch.</p>
         <div class="grid two">
           <div class="note">
-            BOS is designed to keep raw source code, secrets, user data, raw logs, raw receipts, full prompts, and private project material out of Cloud BOS by default.
+            Cloud BOS should not receive raw source code, secrets, user data, raw logs, raw receipts, full prompts, full local `.bos`, or full DevPack material by default.
           </div>
           <div class="note danger-note">
-            BOS guidance is advisory. It does not guarantee bug-free, secure, compliant, or commercially successful software. Users remain responsible for testing, review, deployment, and legal/security decisions.
+            BOS is advisory governance. It does not guarantee bug-free, secure, compliant, accessible, or commercially successful software.
           </div>
         </div>
-        <div class="grid" style="margin-top: 18px;">
-          <article class="card">
-            <div class="kicker">Draft policy</div>
-            <h3>Terms and privacy</h3>
-            <p>Public beta policy drafts define the advisory boundary, privacy posture, and required legal review before paid launch.</p>
-            <a href="policies/index.html">Open policy drafts</a>
-          </article>
-          <article class="card">
-            <div class="kicker">Data boundary</div>
-            <h3>Compact metadata only</h3>
-            <p>BOS should collect compact, consent-backed governance metadata rather than raw app code, secrets, database exports, or private user content.</p>
-            <a href="policies/data-processing-summary.html">Read data summary</a>
-          </article>
-          <article class="card">
-            <div class="kicker">Billing boundary</div>
-            <h3>Draft trial terms</h3>
-            <p>Beta pricing, refund, cancellation, and entitlement language remains draft until payment and legal review are complete.</p>
-            <a href="policies/trial-billing.html">Read trial and billing</a>
-          </article>
+        <div class="actions">
+          <a class="btn" href="policies/index.html">Read draft policies</a>
+          <a class="btn" href="policies/data-processing-summary.html">Read data boundary</a>
         </div>
       </div>
     </section>
@@ -677,7 +761,7 @@
   <footer class="footer">
     <div class="wrap">
       <p><strong>BOS - Build Operating System</strong></p>
-      <p>Public beta page draft. Policy pages are draft, not legal advice, and require qualified review before paid public launch. Contact <a href="mailto:peterjeans@gmail.com">peterjeans@gmail.com</a>. GitHub: <a href="https://github.com/BOS">https://github.com/BOS</a>. Copyright 2026.</p>
+      <p>Public beta page draft. Policy pages are draft, not legal advice, and require qualified review before paid public launch. Contact <a href="mailto:peterjeans@gmail.com">peterjeans@gmail.com</a>. Public site repo: <a href="https://github.com/peter-jeans/BOS-site">https://github.com/peter-jeans/BOS-site</a>. Copyright 2026.</p>
     </div>
   </footer>
 </body>
