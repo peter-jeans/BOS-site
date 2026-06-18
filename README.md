@@ -15,3 +15,5 @@ Before public launch:
 - Keep savings language as beta estimates until measured pilot data exists.
 - Keep the public pages aligned with the Cloud BOS agreement-acceptance versions once D1-backed policy storage exists.
 - Keep the homepage focused on customer-visible capability, not internal BOS implementation detail.
+- Keep subpages narrow. Policy/reference pages should not repeat the homepage hero, tier table, workflow diagrams, or sales copy.
+- Do not list guided repair sessions, hardening audits, or other service products as current paid offers until they are scoped, tested, priced, and managed through BOS Console.

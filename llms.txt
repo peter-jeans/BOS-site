@@ -24,8 +24,10 @@ Beta tiers:
 - Starter: free, basic onboarding and read-only guidance.
 - Beta Builder: proposed $39/month, one active app, project memory, guided scans, scoped prompts, receipts, and Base44 hardening advice.
 - Beta Studio: proposed $149/month, five active apps, stronger scan workflows, project health summaries, receipt exports, and cross-app pattern tracking.
-- Hardening Audit: proposed $299/app.
-- Guided Repair Session: proposed $199.
+
+Possible future services:
+- Guided repair sessions and formal hardening audits are not part of the current beta offer.
+- If added later, they should be managed through BOS Console as separately scoped service requests with owner approval, deliverables, receipts, and separate pricing.
 
 Important caveats:
 - BOS is advisory governance, not a warranty.
