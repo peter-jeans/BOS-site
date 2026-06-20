@@ -3,16 +3,16 @@
 BOS is a Build Operating System for AI-assisted software development.
 
 Primary public use case:
-- Base44 and AI coding app governance, memory, scans, build prompts, receipts, and release-readiness guidance.
+- Helping Base44 and AI coding builders make fewer broken app changes with project memory, focused checks, safer prompts, verified fixes, and publish-readiness guidance.
 
 What BOS helps with:
 - project memory;
-- guided diagnostics and scans;
-- governed build and fix prompts;
+- focused diagnostics and scans;
+- safer build and fix prompts;
 - targeted scans;
 - receipt-backed fixes;
 - platform advisories;
-- launch-readiness checks;
+- publish-readiness checks;
 - privacy-safe resolved-pattern learning;
 - beta measurement of saved prompts, credits, and debugging loops.
 
@@ -27,24 +27,25 @@ How BOS connects:
 - Base44 or other AI coding engines <-> GitHub <-> Codex/localBOS <-> Cloud BOS for code workflows.
 - Detailed diagrams and data boundaries live at /public/how-it-works.html.
 
-Beta tiers:
-- Starter: free, basic onboarding and read-only guidance.
-- Beta Builder: proposed $39/month, one active app, project memory, guided scans, scoped prompts, receipts, and release-readiness guidance.
-- Beta Studio: proposed $149/month, five active apps, stronger scan workflows, project health summaries, receipt exports, and cross-app pattern tracking.
+Beta access and premium-capable features:
+- Commercial packaging is not final.
+- Public guidance explains the workflow and basic checks.
+- Private beta tests connected app onboarding, project memory, focused scans, safer prompts, receipts, and platform advisories.
+- Premium-capable features such as deeper market guidance, design checks, Base44 hardening, Cloud BOS API access, onboarding support, and multi-project workflows are being proven and are not final tier names.
 
 Possible future services:
 - Guided repair sessions and formal hardening audits are not part of the current beta offer.
-- If added later, they should be managed through BOS Console as separately scoped service requests with owner approval, deliverables, receipts, and separate pricing.
+- If added later, they should be managed through an approved BOS service path as separately scoped service requests with owner approval, deliverables, receipts, and separate pricing.
 
 Important caveats:
-- BOS is advisory governance, not a warranty.
+- BOS is a governance OS for safer AI-assisted development, not a warranty.
 - BOS does not certify security, compliance, accessibility, legal readiness, or production fitness.
 - Users remain responsible for review, testing, deployment, and professional advice.
-- Cloud BOS should not receive raw source code, secrets, user data, raw logs, raw receipts, full prompts, full local .bos, or full DevPack material by default.
+- Cloud BOS should not receive raw source code, secrets, user data, raw logs, raw receipts, full prompts, full local project memory, or private development-pack material by default.
 
 First beta:
-- BOS Base44 and AI app build governance beta.
-- Focused on practical app reliability and release-readiness guidance, not enterprise certification.
+- BOS Base44 and AI app build safety beta.
+- Focused on practical app reliability and publish-readiness guidance, not enterprise certification.
 
 Canonical public page:
 - /public/index.html
