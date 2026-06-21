@@ -195,6 +195,11 @@
       min-width: 520px;
     }
 
+    .flow-row.code-loop {
+      grid-template-columns: 1fr 82px 1.15fr 82px 1fr;
+      min-width: 760px;
+    }
+
     .node {
       min-height: 84px;
       border: 1px solid var(--line);
@@ -286,45 +291,51 @@
     <section>
       <div class="wrap">
         <h2>The two beta workflows</h2>
-        <p class="section-lede">Direct app builders use Cloud BOS as a lightweight advisory layer. Code workflows add GitHub and localBOS/Codex so source changes, verification, and receipts can be handled in the repo.</p>
+        <p class="section-lede">Direct app builders use a local BOS Governance Pack first, with Cloud BOS available for current templates, capability checks, and advisory fallback. Code workflows put localBOS/Codex in the governing seat, with GitHub used for source sync, branches, commits, and deployment evidence.</p>
 
         <div class="diagram">
           <div class="flow">
             <h3>Base44 direct workflow</h3>
-            <div class="flow-row short" aria-label="Base44 to Cloud BOS workflow">
+            <div class="flow-row short" aria-label="Base44 local Governance Pack to Cloud BOS fallback workflow">
               <div class="node">
-                <strong>Base44 app</strong>
-                <small>AICONTROL, app spec, project receipts, local governance pointers, surfaced build/runtime issues.</small>
+                <strong>Base44 app + local BOS pack</strong>
+                <small>AICONTROL, app spec, capability manifest, receipts, language layer, surfaced build/runtime issues.</small>
               </div>
               <div class="arrow">&lt;--&gt;</div>
               <div class="node cloud">
                 <strong>Cloud BOS</strong>
-                <small>Current rules, onboarding packs, scans, platform advisories, capability checks, upgrade metadata.</small>
+                <small>Current templates, capability checks, upgrade metadata, platform advisories, fallback recovery structures.</small>
               </div>
             </div>
           </div>
 
           <div class="flow">
             <h3>Code and GitHub workflow</h3>
-            <div class="flow-row" aria-label="AI coding engines to GitHub to Codex to Cloud BOS workflow">
+            <div class="flow-row code-loop" aria-label="AI builder to Codex localBOS to GitHub workflow">
               <div class="node">
-                <strong>Base44 or AI builder</strong>
-                <small>Builds, prompts, app changes, surfaced errors.</small>
-              </div>
-              <div class="arrow">&lt;--&gt;</div>
-              <div class="node">
-                <strong>GitHub</strong>
-                <small>Source of truth, branches, commits, deployment evidence.</small>
+                <strong>Builder or app surface</strong>
+                <small>Prompts, app changes, surfaced errors, user goals, runtime evidence.</small>
               </div>
               <div class="arrow">&lt;--&gt;</div>
               <div class="node agent">
                 <strong>Codex / localBOS</strong>
-                <small>Reads repo, applies patches, runs tests, writes receipts, protects local project truth.</small>
+                <small>Reads local truth, routes work, applies patches, runs checks, writes receipts, protects project authority.</small>
+              </div>
+              <div class="arrow">&lt;--&gt;</div>
+              <div class="node">
+                <strong>GitHub</strong>
+                <small>Source sync, branches, commits, pull requests, deployment evidence.</small>
+              </div>
+            </div>
+            <div class="flow-row short" aria-label="Codex localBOS to Cloud BOS support workflow" style="margin-top: 14px;">
+              <div class="node agent">
+                <strong>Codex / localBOS</strong>
+                <small>Uses installed local capability authority first.</small>
               </div>
               <div class="arrow">&lt;--&gt;</div>
               <div class="node cloud">
                 <strong>Cloud BOS</strong>
-                <small>Canonical rules, updates, advisories, capability metadata, compact resolved-pattern intake.</small>
+                <small>Remote currentness, templates, advisories, capability metadata, compact resolved-pattern intake.</small>
               </div>
             </div>
           </div>
