@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BOS - Private beta for safer AI-built apps</title>
-  <meta name="description" content="BOS helps AI-built apps keep project memory, route safer fixes, run focused checks, and record verification receipts. Private beta pricing is TBA.">
+  <title>BOS - Build AI apps without losing control</title>
+  <meta name="description" content="BOS helps developers guide AI-built apps from idea to private beta with project memory, safer fixes, focused scans, governance, and release-readiness evidence.">
   <style>
     :root {
       --ink: #101816;
@@ -459,6 +459,33 @@
       gap: 16px;
     }
 
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .journey-step {
+      min-height: 145px;
+      padding: 15px;
+      border: 1px solid rgba(16, 24, 22, 0.14);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .journey-step strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+
+    .journey-step small {
+      display: block;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
     .compare-col {
       padding: 24px;
       border-radius: 8px;
@@ -575,6 +602,7 @@
       .audience-shell,
       .panel-grid,
       .pipeline,
+      .journey,
       .compare {
         grid-template-columns: 1fr;
       }
@@ -613,8 +641,8 @@
       </a>
       <nav aria-label="Page sections">
         <a href="#audiences">Audiences</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#capabilities">Capabilities</a>
+        <a href="#journey">Journey</a>
+        <a href="capabilities.html">Capabilities</a>
         <a href="#beta">Private beta</a>
         <a href="how-it-works.html">How it works</a>
         <a class="nav-cta" href="mailto:peterjeans@gmail.com?subject=BOS%20Private%20Beta%20Access">Request access</a>
@@ -627,31 +655,75 @@
       <div class="wrap hero-inner">
         <div class="hero-copy">
           <div class="eyebrow">Private beta - pricing TBA</div>
-          <h1>Fewer broken AI builds. Safer fixes with receipts.</h1>
-          <p class="lede">BOS helps AI-built apps remember what they are, route the next change, verify the repair, and keep evidence when a fix is still only provisional.</p>
+          <h1>Build AI apps without losing control.</h1>
+          <p class="lede">BOS helps developers guide an AI-built app from idea to private beta with project memory, safer fixes, focused scans, governance, and release-readiness evidence.</p>
           <div class="actions">
             <a class="btn primary" href="mailto:peterjeans@gmail.com?subject=BOS%20Private%20Beta%20Access">Request private beta access</a>
-            <a class="btn" href="#audiences">Choose your use case</a>
+            <a class="btn" href="#journey">See the build journey</a>
           </div>
         </div>
 
         <div class="hero-dock" aria-label="BOS outcome summary">
           <div class="dock-item">
-            <strong>Project memory</strong>
-            <small>Keep purpose, decisions, known risks, and previous fixes visible across AI sessions.</small>
+            <strong>Define the app</strong>
+            <small>Clarify purpose, audience, stage, risks, and the next build intention.</small>
           </div>
           <div class="dock-item">
-            <strong>Focused scans</strong>
-            <small>Turn vague failures into targeted checks before broad rebuild attempts.</small>
+            <strong>Guide the build</strong>
+            <small>Keep AI sessions aligned with project truth instead of restarting from chat memory.</small>
           </div>
           <div class="dock-item">
-            <strong>Scoped fixes</strong>
-            <small>Give the AI a narrower job with stop conditions and acceptance evidence.</small>
+            <strong>Recover control</strong>
+            <small>Scan, fix, govern, and record evidence when the app starts drifting.</small>
           </div>
           <div class="dock-item">
-            <strong>Receipts</strong>
-            <small>Record what changed, what passed, what failed, and what remains unproven.</small>
+            <strong>Prepare to release</strong>
+            <small>Surface private beta and launch-readiness gaps before public claims get ahead of proof.</small>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">The BOS app journey</div>
+            <h2>From first idea to a release-ready product path.</h2>
+            <p class="section-lede">AI builders can create fast, but speed creates drift. BOS adds the operating layer around the build: memory, routing, scans, fixes, governance, evidence, and readiness checks.</p>
+          </div>
+          <div class="mini-note">This is the public website story: BOS helps guide the whole app lifecycle. The pain-point campaign remains the hook for builders already feeling drift.</div>
+        </div>
+
+        <div class="journey" aria-label="BOS app development journey">
+          <article class="journey-step">
+            <strong>Define</strong>
+            <small>Turn the idea into app purpose, audience, stage, constraints, and success criteria.</small>
+          </article>
+          <article class="journey-step">
+            <strong>Build</strong>
+            <small>Guide AI builders with project memory, scoped prompts, and clear next actions.</small>
+          </article>
+          <article class="journey-step">
+            <strong>Scan</strong>
+            <small>Find drift across pages, data, auth, mobile behaviour, integrations, and evidence.</small>
+          </article>
+          <article class="journey-step">
+            <strong>Fix</strong>
+            <small>Route vague breakage into narrower repair paths with stop conditions.</small>
+          </article>
+          <article class="journey-step">
+            <strong>Govern</strong>
+            <small>Keep decisions, receipts, currentness, recovery files, and project truth visible.</small>
+          </article>
+          <article class="journey-step">
+            <strong>Verify</strong>
+            <small>Record what passed, what failed, and what remains provisional before moving on.</small>
+          </article>
+          <article class="journey-step">
+            <strong>Prepare</strong>
+            <small>Assess private beta, support, rollback, privacy, and release-readiness gaps.</small>
+          </article>
         </div>
       </div>
     </section>
@@ -774,13 +846,13 @@
       </div>
     </section>
 
-    <section id="workflow" class="band">
+    <section id="workflow">
       <div class="wrap">
         <div class="section-head">
           <div>
-            <div class="kicker">The beta loop</div>
-            <h2>From vague AI failure to recorded next action.</h2>
-            <p class="section-lede">BOS is most valuable when it prevents the default pattern: explain again, rebuild broadly, hope the fix worked, then lose the lesson.</p>
+            <div class="kicker">The working loop</div>
+            <h2>Every stage gets a safer next action.</h2>
+            <p class="section-lede">Whether the app is still an idea, already broken, or approaching private beta, BOS keeps the next move bounded by context, evidence, and maturity.</p>
           </div>
         </div>
 
@@ -788,17 +860,17 @@
           <article class="stage">
             <div class="stage-number">1</div>
             <h3>Bind context</h3>
-            <p>Capture app type, current stage, target user, known risk, and the specific failure being handled.</p>
+            <p>Capture app type, current stage, target user, known risk, and the decision being made.</p>
           </article>
           <article class="stage">
             <div class="stage-number">2</div>
             <h3>Classify route</h3>
-            <p>Decide whether this is a scan, fix, build, verify, publish-readiness, or blocked-authority problem.</p>
+            <p>Decide whether this is planning, build, scan, fix, verify, recovery, or release-readiness work.</p>
           </article>
           <article class="stage">
             <div class="stage-number">3</div>
             <h3>Run focused checks</h3>
-            <p>Use the likely failure class instead of asking the AI for a broad rebuild.</p>
+            <p>Use the likely risk class instead of asking the AI for a broad rebuild.</p>
           </article>
           <article class="stage">
             <div class="stage-number">4</div>
@@ -808,7 +880,7 @@
           <article class="stage">
             <div class="stage-number">5</div>
             <h3>Verify and receipt</h3>
-            <p>Record the outcome, drift, blocker, or next required step before treating the repair as real.</p>
+            <p>Record the outcome, drift, blocker, or next required step before treating progress as real.</p>
           </article>
         </div>
       </div>
@@ -819,9 +891,10 @@
         <div class="section-head">
           <div>
             <div class="kicker">Capability surface</div>
-            <h2>What the public beta GUI needs to make obvious.</h2>
-            <p class="section-lede">The user should quickly understand that BOS is not another coding assistant. It is the memory, routing, verification, and evidence layer around AI-assisted development.</p>
+            <h2>What BOS can help your app do.</h2>
+            <p class="section-lede">The detailed capability page is generated from public-safe product metadata, so it can evolve as BOS develops without exposing private internals.</p>
           </div>
+          <div class="mini-note">The public capability page should explain outcomes, not internal mechanics. It updates from filtered metadata on `/push` and public-site publish.</div>
         </div>
 
         <div class="grid">
@@ -855,6 +928,9 @@
             <h3>Reusable reliability lessons</h3>
             <p>Resolved issue patterns can become privacy-safe advisories without exposing raw source or private project memory by default.</p>
           </article>
+        </div>
+        <div class="actions">
+          <a class="btn" href="capabilities.html">Explore BOS capabilities</a>
         </div>
       </div>
     </section>

@@ -1,0 +1,173 @@
+{
+  "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
+  "generated_at": "2026-06-21T11:43:54Z",
+  "source_summary": {
+    "total_capabilities": 87,
+    "public_boundary": "Public-safe aggregate only. No .bos internals, DevPack, raw receipts, prompt libraries, source internals, tokens, or customer/project data."
+  },
+  "capability_groups": [
+    {
+      "name": "Plan",
+      "audience": "Founders, product owners, AI app builders",
+      "plain_language_outcome": "Turn an idea into a clear app direction, target audience, stage, risks, and next build intention.",
+      "public_availability": "Available in private beta",
+      "proof_level": "7 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "App direction",
+        "Audience fit",
+        "Build intentions",
+        "Product-stage guidance"
+      ],
+      "discovery_prompts": [
+        "I have an app idea",
+        "who is this app for",
+        "what should I build first",
+        "what stage is this project",
+        "ask the committee"
+      ],
+      "suggested_route": "/bos advice"
+    },
+    {
+      "name": "Build",
+      "audience": "Base44 builders, Codex / VS Code developers",
+      "plain_language_outcome": "Give AI builders narrower jobs, clearer context, safer prompts, and better stop conditions.",
+      "public_availability": "Available in private beta",
+      "proof_level": "6 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Scoped AI prompts",
+        "Safer build handoffs",
+        "Code-ownership guidance",
+        "Stop conditions"
+      ],
+      "discovery_prompts": [
+        "build this feature",
+        "write a prompt for BuildAI",
+        "stop the AI making a mess",
+        "split this safely",
+        "what should the builder do"
+      ],
+      "suggested_route": "/bos advice"
+    },
+    {
+      "name": "Scan",
+      "audience": "Developers fixing drift, broken pages, and unclear failures",
+      "plain_language_outcome": "Inspect pages, flows, authority, lifecycle, evidence, platform constraints, and maturity before broad rebuilds.",
+      "public_availability": "Available in private beta",
+      "proof_level": "14 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Page checks",
+        "Flow checks",
+        "Evidence checks",
+        "Platform-fit checks"
+      ],
+      "discovery_prompts": [
+        "scan my app",
+        "what is broken",
+        "health check",
+        "is this beta ready",
+        "check the page",
+        "show maturity"
+      ],
+      "suggested_route": "/scan"
+    },
+    {
+      "name": "Fix",
+      "audience": "Builders with a broken app or recurring AI-build failures",
+      "plain_language_outcome": "Route issues into scoped repair paths instead of repeating broad prompts and unverified fixes.",
+      "public_availability": "Available in private beta",
+      "proof_level": "6 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Broken-app triage",
+        "Scoped repair prompts",
+        "Recovery paths",
+        "Readback expectations"
+      ],
+      "discovery_prompts": [
+        "fix this bug",
+        "repair the app",
+        "the UI broke",
+        "data is not saving",
+        "recover this",
+        "execute latest scan"
+      ],
+      "suggested_route": "/scanfix"
+    },
+    {
+      "name": "Govern",
+      "audience": "Teams that need continuity, handoff, and safer development loops",
+      "plain_language_outcome": "Keep project memory, decisions, routes, receipts, and evidence visible across sessions and tools.",
+      "public_availability": "Available in private beta",
+      "proof_level": "59 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Project memory",
+        "Decision trail",
+        "Verification records",
+        "Session continuity"
+      ],
+      "discovery_prompts": [
+        "remember this decision",
+        "why did we do that",
+        "show receipts",
+        "is BOS active",
+        "what can BOS do",
+        "always use BOS for this"
+      ],
+      "suggested_route": "/help"
+    },
+    {
+      "name": "Recover",
+      "audience": "Target-app owners and teams managing fragile builder-generated files",
+      "plain_language_outcome": "Detect missing or corrupt local BOS governance files, recover from backup where possible, and warn when Cloud templates are only provisional.",
+      "public_availability": "Available in private beta",
+      "proof_level": "5 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Local file checks",
+        "Backup-first recovery",
+        "Template fallback warnings",
+        "Recovery receipts"
+      ],
+      "discovery_prompts": [
+        "BOS files are missing",
+        "BuildAI deleted files",
+        "recover governance",
+        "restore BOS",
+        "is this app backed up"
+      ],
+      "suggested_route": "/update"
+    },
+    {
+      "name": "Prepare",
+      "audience": "Founders, agencies, technical evaluators",
+      "plain_language_outcome": "Assess private beta, launch, support, rollback, privacy, billing, and release-readiness gates without overclaiming readiness.",
+      "public_availability": "Available in private beta",
+      "proof_level": "7 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Private-beta checks",
+        "Support and rollback posture",
+        "Public-claim boundaries",
+        "Launch-readiness gaps"
+      ],
+      "discovery_prompts": [
+        "can I launch",
+        "private beta",
+        "public release",
+        "pricing",
+        "subscription",
+        "customer data",
+        "go live"
+      ],
+      "suggested_route": "/analyze maturity"
+    }
+  ],
+  "discovery_policy": {
+    "rule": "Surface at most one relevant BOS feature suggestion when a user prompt clearly matches a capability group. Keep it playful and useful, not spammy.",
+    "less_obvious_rule": "If the match is plausible but uncertain, ask whether the user wants BOS to handle it once or remember the phrasing for this project.",
+    "privacy_boundary": "Use category-level prompt patterns only. Do not store raw prompts, customer records, secrets, source code, logs, screenshots, or private project data."
+  },
+  "status_labels": [
+    "Available in private beta",
+    "In active testing",
+    "Planned",
+    "Not publicly available"
+  ]
+}
