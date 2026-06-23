@@ -51,8 +51,8 @@ Canonical public page:
 - /public/index.html
 - /public/how-it-works.html
 - /public/install
-- /public/downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.zip
-- /public/downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.manifest.json
+- /public/downloads/cloudbos-public-connector-0.1.0+codex.20260623141316.zip
+- /public/downloads/cloudbos-public-connector-0.1.0+codex.20260623141316.manifest.json
 
 Contact:
 - peterjeans@gmail.com

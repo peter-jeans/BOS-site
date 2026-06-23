@@ -1,0 +1,31 @@
+{
+  "boundaries": [
+    "no Cloud BOS token included",
+    "no .bos included",
+    "no DevPack included",
+    "no private masterBOS internals included",
+    "no raw logs or receipts included",
+    "no target app source or customer data included"
+  ],
+  "distribution_channel": "PUBLIC_BETA_PREPARED",
+  "file_count": 9,
+  "files": [
+    ".codex-plugin/plugin.json",
+    "README.md",
+    "SHARE.md",
+    "distribution/README.md",
+    "distribution/marketplace.personal.template.json",
+    "scripts/cloudbos_status.py",
+    "scripts/package_plugin.py",
+    "skills/README.md",
+    "skills/cloudbos-connection/SKILL.md"
+  ],
+  "generated_at": "2026-06-23T14:13:55+00:00",
+  "name": "cloudbos-public-connector",
+  "schema": "CLOUDBOS_CONNECTOR_PACKAGE_MANIFEST_V1",
+  "source_plugin_name": "cloudbos-connector",
+  "status": "FUTURE_READY_DISTRIBUTION_PACKAGE",
+  "version": "0.1.0+codex.20260623141316",
+  "zip": "cloudbos-public-connector-0.1.0+codex.20260623141316.zip",
+  "zip_sha256": "8abc062637f1a3c04d53a9904f909e998a2c58110f042393ca1eee522820c2c1"
+}

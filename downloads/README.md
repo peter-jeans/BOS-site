@@ -5,8 +5,8 @@ site.
 
 ## Current Files
 
-- `cloudbos-public-connector-0.1.0+codex.20260623115937.zip`
-- `cloudbos-public-connector-0.1.0+codex.20260623115937.manifest.json`
+- `cloudbos-public-connector-0.1.0+codex.20260623141316.zip`
+- `cloudbos-public-connector-0.1.0+codex.20260623141316.manifest.json`
 
 ## Boundary
 
@@ -16,6 +16,9 @@ raw receipts, target app source, customer data, or local machine paths.
 
 The public connector package does not grant Cloud BOS access by itself. Beta
 users still need their own token or entitlement setup.
+
+Current package requires speaker mode even for scoped-only and status-only
+connector responses.
 
 ## Install Surfaces
 
