@@ -1,6 +1,6 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-06-23T13:04:17Z",
+  "generated_at": "2026-06-23T13:11:32Z",
   "source_summary": {
     "total_capabilities": 88,
     "public_boundary": "Public-safe aggregate only. No .bos internals, DevPack, raw receipts, prompt libraries, source internals, tokens, or customer/project data."
