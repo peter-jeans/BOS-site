@@ -332,10 +332,37 @@
         <div class="pill-row">
           <span class="pill">Base44</span>
           <span class="pill">BC+ derivatives</span>
+          <span class="pill">Codex plugin</span>
           <span class="pill">Replit</span>
           <span class="pill">Lovable</span>
-          <span class="pill">GitHub + Codex</span>
+          <span class="pill">GitHub + localBOS</span>
+          <span class="pill">VS Code-ready path</span>
           <span class="pill">Live-app rescue</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Choose the right connector surface</h2>
+        <p class="section-lede">Cloud BOS is the API. Each development environment needs a small local connector or proxy that calls Cloud BOS without exposing secrets or copying private BOS internals.</p>
+        <div class="grid">
+          <article class="card">
+            <div class="kicker">Codex users</div>
+            <h3>Install the public connector plugin</h3>
+            <p>Use the downloadable <code>cloudbos-public-connector</code> package. It installs into the user's local Codex plugin environment and calls Cloud BOS with that user's local token.</p>
+            <p><a href="downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.zip">Download Codex connector</a></p>
+          </article>
+          <article class="card">
+            <div class="kicker">App builders</div>
+            <h3>Install a server-side app proxy</h3>
+            <p>Base44, Replit, Lovable, and similar app builders should call Cloud BOS through a backend function or server route. Browser code should not hold Cloud BOS credentials.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Repo workflows</div>
+            <h3>Use localBOS or a thin CLI wrapper</h3>
+            <p>GitHub, VS Code, and terminal workflows should keep project truth in repo-local governance files and use Codex/localBOS or a future thin CLI wrapper for Cloud BOS checks.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -399,6 +426,18 @@
         <h2>Install route by app type</h2>
         <div class="grid two">
           <article class="card">
+            <div class="kicker">Codex plugin</div>
+            <h3>Install locally, then add a user token</h3>
+            <ul>
+              <li>Download <code>cloudbos-public-connector</code> from this page.</li>
+              <li>Install it into the user's local Codex plugin source or future private marketplace path.</li>
+              <li>Store the user's Cloud BOS token in their local environment, not in the plugin package.</li>
+              <li>Open a new Codex thread and ask: <code>Check Cloud BOS connection status.</code></li>
+              <li>Expected no-token state is <code>BLOCKED_NO_TOKEN</code>; expected token display is <code>REDACTED</code>.</li>
+            </ul>
+          </article>
+
+          <article class="card">
             <div class="kicker">Base44 direct</div>
             <h3>Use BuildAI plus a server-side function</h3>
             <ul>
@@ -461,6 +500,17 @@
               <li>Prefer clone, backup, and read-only scans before direct mutation.</li>
               <li>Record what data exists, where it lives, and which system is the source of truth.</li>
               <li>Only send sanitized category-level status to Cloud BOS unless an approved data-processing path exists.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="kicker">VS Code / local terminal</div>
+            <h3>Use the same thin-client contract</h3>
+            <ul>
+              <li>For now, use Codex/localBOS where available for governed repo work.</li>
+              <li>Do not point VS Code extensions or terminal scripts at masterBOS internals.</li>
+              <li>Future VS Code support should reuse the same Cloud BOS endpoint contract and no-secrets transport rules.</li>
+              <li>Store tokens in the developer's local secret mechanism, never in committed workspace files.</li>
             </ul>
           </article>
         </div>
@@ -536,6 +586,7 @@
             <p><a href="downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.manifest.json">View package manifest</a></p>
           </article>
         </div>
+        <code class="command">Plugin package: public downloadable zip. Cloud BOS access: separate token/entitlement. Runtime: user's local Codex environment.</code>
       </div>
     </section>
   </main>
