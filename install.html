@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install Cloud BOS - App setup without exposing secrets</title>
+  <meta name="description" content="Public-safe Cloud BOS install process for Base44, BC+ derivatives, Replit, Lovable, GitHub/Codex workflows, and live app rescue without publishing tokens or private app data.">
+  <style>
+    :root {
+      --ink: #18231f;
+      --muted: #5c6863;
+      --line: #d8dfdc;
+      --paper: #fbfcf8;
+      --band: #edf5f1;
+      --soft: #f7f1e5;
+      --accent: #0f745e;
+      --red: #9b3434;
+      --white: #ffffff;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 252, 248, 0.94);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      color: var(--ink);
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border: 2px solid var(--ink);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      border-radius: 6px;
+      background: var(--white);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 58px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--band) 0%, var(--paper) 62%, #eef4fa 100%);
+      padding: 70px 0 54px;
+    }
+
+    .eyebrow,
+    .kicker {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 880;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      border: 1px solid rgba(24, 35, 31, 0.2);
+      background: rgba(255, 255, 255, 0.74);
+      border-radius: 6px;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0;
+      line-height: 1.04;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      margin: 0 0 20px;
+      max-width: 880px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      margin: 0 0 16px;
+      max-width: 820px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin: 0 0 10px;
+    }
+
+    p { margin-top: 0; }
+
+    .lede,
+    .section-lede {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 820px;
+    }
+
+    .lede {
+      color: #30413a;
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .card,
+    .step,
+    .flow,
+    .note {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .card,
+    .step,
+    .note { padding: 20px; }
+
+    .card p,
+    .card li,
+    .step p,
+    .step li { color: var(--muted); }
+
+    .step { min-height: 170px; }
+
+    .number {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 840;
+    }
+
+    .flow {
+      padding: 20px;
+      margin-top: 22px;
+      overflow-x: auto;
+    }
+
+    .flow-row {
+      min-width: 760px;
+      display: grid;
+      grid-template-columns: 1fr 78px 1fr 78px 1fr 78px 1fr;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .node {
+      min-height: 96px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfcf8;
+    }
+
+    .node strong,
+    .node small { display: block; }
+
+    .node small {
+      color: var(--muted);
+      line-height: 1.4;
+      margin-top: 5px;
+    }
+
+    .cloud {
+      border-color: rgba(15, 116, 94, 0.35);
+      background: #eef8f4;
+    }
+
+    .secret {
+      border-color: rgba(155, 52, 52, 0.35);
+      background: #fff4f1;
+    }
+
+    .arrow {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    code {
+      padding: 2px 5px;
+      border: 1px solid rgba(24, 35, 31, 0.14);
+      border-radius: 5px;
+      background: rgba(24, 35, 31, 0.05);
+      color: #23312d;
+      font-size: 0.92em;
+    }
+
+    .command {
+      display: block;
+      margin: 12px 0 0;
+      padding: 12px;
+      overflow-x: auto;
+      border: 1px solid rgba(24, 35, 31, 0.14);
+      border-radius: 7px;
+      background: #18231f;
+      color: #f7fbf8;
+      font-size: 14px;
+    }
+
+    .note {
+      background: var(--soft);
+      border-left: 4px solid #a85e20;
+      color: #4a3c2d;
+    }
+
+    .danger {
+      background: #fff4f1;
+      border-left-color: var(--red);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 6px 10px;
+      border: 1px solid rgba(24, 35, 31, 0.16);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.78);
+      color: #374640;
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .footer {
+      padding: 34px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .grid,
+      .grid.two,
+      .install-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="BOS home">
+        <span class="mark">BOS</span>
+        <span>Build Operating System</span>
+      </a>
+      <nav aria-label="Site pages">
+        <a href="index.html#value">Value</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="capabilities.html">Capabilities</a>
+        <a href="policies/index.html">Policies</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Cloud BOS install process</div>
+        <h1>Connect an app to Cloud BOS without publishing its secrets.</h1>
+        <p class="lede">Cloud BOS should be installed as a governed advisory and update layer. The app keeps its own identity, project memory, and local governance files; Cloud BOS supplies current rules, upgrade plans, scan guidance, and compact capability metadata.</p>
+        <div class="pill-row">
+          <span class="pill">Base44</span>
+          <span class="pill">BC+ derivatives</span>
+          <span class="pill">Replit</span>
+          <span class="pill">Lovable</span>
+          <span class="pill">GitHub + Codex</span>
+          <span class="pill">Live-app rescue</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>The safe install pattern</h2>
+        <p class="section-lede">Every app type uses the same boundary: keep secrets in the app platform's server-side secret store, install only lightweight local governance files, then verify that local BOS is consulted before Cloud BOS fallback.</p>
+
+        <div class="install-grid">
+          <article class="step">
+            <span class="number">1</span>
+            <h3>Establish app identity</h3>
+            <p>Record app name, platform, app id where available, owner, environment, lineage, and whether this is a new app, clone, derivative, migration, or live rescue.</p>
+          </article>
+          <article class="step">
+            <span class="number">2</span>
+            <h3>Install local governance</h3>
+            <p>Add the app's scoped BOS files: app spec, AICONTROL or equivalent instruction file, governance pack, receipts, and capability manifest.</p>
+          </article>
+          <article class="step">
+            <span class="number">3</span>
+            <h3>Create server-side proxy</h3>
+            <p>The app calls Cloud BOS through a backend function or server route. Browser code should not hold Cloud BOS tokens.</p>
+          </article>
+          <article class="step">
+            <span class="number">4</span>
+            <h3>Verify local-first routing</h3>
+            <p>Commands such as <code>/update</code>, <code>/upgrade</code>, <code>/scan</code>, and <code>ask BOS</code> should report whether local BOS and Cloud BOS were consulted.</p>
+          </article>
+        </div>
+
+        <div class="flow" aria-label="Cloud BOS install boundary">
+          <div class="flow-row">
+            <div class="node">
+              <strong>Target app</strong>
+              <small>App UI, owner/admin actions, app spec, local governance, receipts.</small>
+            </div>
+            <div class="arrow">--&gt;</div>
+            <div class="node secret">
+              <strong>Server secret store</strong>
+              <small>Cloud BOS token or signing secret. Never embed in browser code or public files.</small>
+            </div>
+            <div class="arrow">--&gt;</div>
+            <div class="node">
+              <strong>App proxy</strong>
+              <small>Allowlisted Cloud BOS routes, request shaping, local file-presence report.</small>
+            </div>
+            <div class="arrow">--&gt;</div>
+            <div class="node cloud">
+              <strong>Cloud BOS</strong>
+              <small>Current rules, upgrade plans, scan profiles, capability metadata, safe templates.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Install route by app type</h2>
+        <div class="grid two">
+          <article class="card">
+            <div class="kicker">Base44 direct</div>
+            <h3>Use BuildAI plus a server-side function</h3>
+            <ul>
+              <li>Install <code>documents/AICONTROL.md</code> or the platform equivalent.</li>
+              <li>Create a backend <code>cloudBosAdvice</code> style proxy with the token stored as a Base44 secret.</li>
+              <li>Install <code>governance/CAPABILITY_MANIFEST.json</code>, <code>governance/BOS_VERSION.json</code>, <code>governance/BOS_STATE.json</code>, and receipts.</li>
+              <li>Run <code>/update</code> and confirm the response reports local BOS first, then Cloud BOS if needed.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="kicker">BC+ and derivatives</div>
+            <h3>Preserve lineage and scoped project truth</h3>
+            <ul>
+              <li>Classify the app as parent, clone, derivative, migration target, or rescue target.</li>
+              <li>Keep each app's BOS memory inside that app, not only in masterBOS.</li>
+              <li>Update identity fields when app name, owner, platform id, or environment changes.</li>
+              <li>Use Cloud BOS for upgrade guidance, not as the only holder of app state.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="kicker">Replit</div>
+            <h3>Use repo files plus environment secrets</h3>
+            <ul>
+              <li>Install local <code>.bos</code> or <code>bos/</code> project memory with app spec, manifest, receipts, and routing rules.</li>
+              <li>Store Cloud BOS credentials in Replit Secrets, not in source.</li>
+              <li>Add a server route that forwards only compact metadata and requested Cloud BOS routes.</li>
+              <li>Verify the app can report its environment, app identity, deployment target, and BOS currentness.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="kicker">Lovable or similar builders</div>
+            <h3>Start with prompt-governance and export checks</h3>
+            <ul>
+              <li>Install a lightweight instruction layer that names BOS routing, app identity, and no-secrets boundaries.</li>
+              <li>When backend code is available, add the same server-side Cloud BOS proxy pattern.</li>
+              <li>When backend code is not available, use copy-ready BOS prompts and require readback receipts.</li>
+              <li>Before migration or export, trigger the Migration Agent path and record the target runtime.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="kicker">GitHub + Codex/local repo</div>
+            <h3>Use localBOS as the executor guard</h3>
+            <ul>
+              <li>Keep source truth in GitHub and local project truth in the repo's scoped BOS files.</li>
+              <li>Use Codex/localBOS for patches, tests, receipts, and verification.</li>
+              <li>Use Cloud BOS for current guidance, upgrades, capability metadata, and safe templates.</li>
+              <li>Never publish <code>.bos</code>, DevPack, private receipts, secrets, or raw logs to the public site.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="kicker">Live-app rescue</div>
+            <h3>Classify before touching production</h3>
+            <ul>
+              <li>Identify whether the app has live users, customer records, payments, uploads, or regulated data.</li>
+              <li>Prefer clone, backup, and read-only scans before direct mutation.</li>
+              <li>Record what data exists, where it lives, and which system is the source of truth.</li>
+              <li>Only send sanitized category-level status to Cloud BOS unless an approved data-processing path exists.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>What to configure without exposing it</h2>
+        <div class="grid two">
+          <div class="note">
+            <strong>Use placeholders in public docs and prompts:</strong>
+            <code>&lt;CLOUD_BOS_ENDPOINT&gt;</code>, <code>&lt;SERVER_SECRET_NAME&gt;</code>, <code>&lt;APP_ID&gt;</code>, <code>&lt;OWNER_EMAIL&gt;</code>, <code>&lt;ENVIRONMENT&gt;</code>.
+          </div>
+          <div class="note danger">
+            <strong>Do not paste into public pages or browser code:</strong>
+            API tokens, signing secrets, database credentials, customer data, source dumps, raw logs, raw receipts, screenshots with private data, or full private BOS internals.
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top: 16px;">
+          <article class="card">
+            <h3>Allowed install evidence</h3>
+            <p>Installed version, capability ids, file-presence status, app classification, safe route names, and whether local BOS / Cloud BOS were consulted.</p>
+          </article>
+          <article class="card">
+            <h3>Allowed Cloud BOS payload</h3>
+            <p>Compact project metadata, capability requests, currentness checks, sanitized issue category, route id, and consented resolved-pattern summary.</p>
+          </article>
+          <article class="card">
+            <h3>Blocked by default</h3>
+            <p>Source code, app data, user data, secrets, raw prompts, raw logs, raw receipts, private business material, and unredacted customer records.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Smoke test after install</h2>
+        <p class="section-lede">The app should prove connection and routing with safe readback, not by exposing secret values.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>Currentness</h3>
+            <p>Run <code>/update</code> or <code>/upgrade</code>. Expected output names installed local version, Cloud BOS route, pending steps, and next action.</p>
+          </article>
+          <article class="card">
+            <h3>Plain language</h3>
+            <p>Ask <code>ask BOS how to improve this page</code>. Expected output says whether local BOS and Cloud BOS were consulted.</p>
+          </article>
+          <article class="card">
+            <h3>No-secret proof</h3>
+            <p>Confirm logs and UI show secret names or statuses only, never token values or private payloads.</p>
+          </article>
+        </div>
+        <code class="command">Expected readback: LOCAL_BOS_CONSULTED: YES | CLOUD_BOS_CONSULTED: YES/NO | BOS_ROUTE: local-first outcome | CAPABILITY_SPEAKER: BOS-&lt;capability&gt;&gt;</code>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Future public connector package</h2>
+        <p class="section-lede">The public/beta package is separate from the local developer plugin. It is named <code>cloudbos-public-connector</code> so beta users do not confuse it with the local masterBOS development connector.</p>
+        <div class="grid two">
+          <article class="card">
+            <h3>Download package</h3>
+            <p>The package contains the thin Codex connector only. It does not include a Cloud BOS API key and does not grant access by itself.</p>
+            <p><a href="downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.zip">Download cloudbos-public-connector</a></p>
+          </article>
+          <article class="card">
+            <h3>Verify manifest</h3>
+            <p>The manifest lists the package contents, hash, and privacy boundaries for the downloadable zip.</p>
+            <p><a href="downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.manifest.json">View package manifest</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong>BOS - Build Operating System</strong></p>
+      <p>Public install guidance draft. Do not use this page to store, display, or transmit secrets. Contact <a href="mailto:peterjeans@gmail.com">peterjeans@gmail.com</a>. Public site repo: <a href="https://github.com/peter-jeans/BOS-site">https://github.com/peter-jeans/BOS-site</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

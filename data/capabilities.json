@@ -1,8 +1,8 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-06-21T11:43:54Z",
+  "generated_at": "2026-06-23T13:04:17Z",
   "source_summary": {
-    "total_capabilities": 87,
+    "total_capabilities": 88,
     "public_boundary": "Public-safe aggregate only. No .bos internals, DevPack, raw receipts, prompt libraries, source internals, tokens, or customer/project data."
   },
   "capability_groups": [
@@ -11,7 +11,7 @@
       "audience": "Founders, product owners, AI app builders",
       "plain_language_outcome": "Turn an idea into a clear app direction, target audience, stage, risks, and next build intention.",
       "public_availability": "Available in private beta",
-      "proof_level": "7 product maturity signals mapped to a public-safe summary",
+      "proof_level": "8 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "App direction",
         "Audience fit",
@@ -134,6 +134,29 @@
         "is this app backed up"
       ],
       "suggested_route": "/update"
+    },
+    {
+      "name": "Move",
+      "audience": "Builders who want portability, self-hosting, or movement between Base44, Replit, Lovable, GitHub, and other runtimes",
+      "plain_language_outcome": "Form a Migration Agent committee to inspect app evidence, map platform dependencies, and create staged migration prompts and user instructions.",
+      "public_availability": "Available in private beta",
+      "proof_level": "7 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Migration planning",
+        "Platform dependency mapping",
+        "Portable-core boundaries",
+        "Shotgun migration prompts"
+      ],
+      "discovery_prompts": [
+        "migrate this app",
+        "move from Base44",
+        "move to Replit",
+        "move to Lovable",
+        "avoid lock-in",
+        "make this portable",
+        "self-host this app"
+      ],
+      "suggested_route": "/bos advice"
     },
     {
       "name": "Prepare",

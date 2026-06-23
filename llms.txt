@@ -23,9 +23,8 @@ Working beta value estimates:
 - BOS should track prompt count, build-credit usage where available, elapsed time, repeated fix attempts, build/runtime errors, and receipt outcomes.
 
 How BOS connects:
-- Base44 app + local BOS Governance Pack <-> Cloud BOS for current templates, upgrade checks, and advisory fallback.
-- Builder or app surface <-> Codex/localBOS <-> GitHub for code workflows.
-- Codex/localBOS <-> Cloud BOS only for remote currentness, templates, advisories, capability metadata, and compact resolved-pattern intake.
+- Base44 app <-> Cloud BOS for direct app guidance.
+- Base44 or other AI coding engines <-> GitHub <-> Codex/localBOS <-> Cloud BOS for code workflows.
 - Detailed diagrams and data boundaries live at /public/how-it-works.html.
 
 Beta access and premium-capable features:
@@ -51,6 +50,9 @@ First beta:
 Canonical public page:
 - /public/index.html
 - /public/how-it-works.html
+- /public/install.html
+- /public/downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.zip
+- /public/downloads/cloudbos-public-connector-0.1.0+codex.20260623115937.manifest.json
 
 Contact:
 - peterjeans@gmail.com
