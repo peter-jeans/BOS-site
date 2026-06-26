@@ -1,8 +1,8 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-06-23T14:23:09Z",
+  "generated_at": "2026-06-26T04:21:17Z",
   "source_summary": {
-    "total_capabilities": 88,
+    "total_capabilities": 89,
     "public_boundary": "Public-safe aggregate only. No .bos internals, DevPack, raw receipts, prompt libraries, source internals, tokens, or customer/project data."
   },
   "capability_groups": [
@@ -134,6 +134,31 @@
         "is this app backed up"
       ],
       "suggested_route": "/update"
+    },
+    {
+      "name": "Harden",
+      "audience": "Builders preparing apps for users, public surfaces, AI/API calls, or production-like traffic",
+      "plain_language_outcome": "Make threat modelling, security baseline, abuse-surface mapping, rate-limit planning, proxy safety, payload limits, and launch hardening visible before the app is exposed.",
+      "public_availability": "Available in private beta",
+      "proof_level": "11 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "Threat-model conversation",
+        "Security baseline",
+        "Abuse-surface mapping",
+        "Rate-limit planning",
+        "Proxy and secret boundaries"
+      ],
+      "discovery_prompts": [
+        "threat model this",
+        "protect this app",
+        "rate limit this",
+        "stop abuse",
+        "hacker protection",
+        "is this safe for users",
+        "secure this endpoint",
+        "public beta hardening"
+      ],
+      "suggested_route": "/scan"
     },
     {
       "name": "Move",

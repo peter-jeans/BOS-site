@@ -265,11 +265,11 @@
         <span>Build Operating System</span>
       </a>
       <nav aria-label="Site pages">
-        <a href="index.html#value">Value</a>
+        <a href="index.html#architecture">Architecture</a>
         <a href="index.html#beta">Beta access</a>
-        <a href="index.html#audiences">Audiences</a>
+        <a href="index.html#problems">Problems</a>
         <a href="capabilities.html">Capabilities</a>
-        <a href="install">Install</a>
+        <a href="install.html">Install</a>
         <a href="policies/index.html">Policies</a>
       </nav>
     </div>
@@ -278,15 +278,37 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <div class="eyebrow">BOS connection model</div>
-        <h1>How BOS gives AI builders memory without taking over the app.</h1>
-        <p class="lede">BOS sits beside Base44, GitHub, Codex, and other AI coding tools. It supplies current governance, app memory, scans, prompts, and receipts while keeping private source code and secrets out of Cloud BOS by default.</p>
+        <div class="eyebrow">How BOS works</div>
+        <h1>The operating loop that keeps AI work grounded.</h1>
+        <p class="lede">The app keeps its own memory. Cloud BOS supplies current guidance. The AI builder still does the work, but BOS helps decide what to ask, what to check, and what evidence is needed before accepting the result.</p>
       </div>
     </section>
 
     <section>
       <div class="wrap">
-        <h2>The two beta workflows</h2>
+        <h2>The loop in plain English</h2>
+        <p class="section-lede">BOS is easiest to understand as a repeatable sequence. It does not magically build the app. It helps the builder avoid vague prompts, hidden drift, overbroad edits, and unverified claims.</p>
+
+        <div class="grid">
+          <article class="card">
+            <h3>1. Establish reality</h3>
+            <p>Identify the app, stage, platform, current issue, known constraints, and the source of truth before asking AI to change anything.</p>
+          </article>
+          <article class="card">
+            <h3>2. Choose the route</h3>
+            <p>Decide whether the next move is planning, scanning, fixing, updating, verifying, recovering, migrating, or stopping for missing authority.</p>
+          </article>
+          <article class="card">
+            <h3>3. Act narrowly</h3>
+            <p>Give the AI a scoped task with a target surface, expected evidence, and stop conditions instead of asking for a broad rebuild.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>The two beta connection patterns</h2>
         <p class="section-lede">Direct app builders use Cloud BOS as a lightweight advisory layer. Code workflows add GitHub and localBOS/Codex so source changes, verification, and receipts can be handled in the repo.</p>
 
         <div class="diagram">
@@ -306,11 +328,11 @@
           </div>
 
           <div class="flow">
-            <h3>Code and GitHub workflow</h3>
+            <h3>Code workflow</h3>
             <div class="flow-row" aria-label="AI coding engines to GitHub to Codex to Cloud BOS workflow">
               <div class="node">
-                <strong>Base44 or AI builder</strong>
-                <small>Builds, prompts, app changes, surfaced errors.</small>
+                <strong>AI app surface</strong>
+                <small>Prompts, app changes, surfaced errors, preview behaviour.</small>
               </div>
               <div class="arrow">&lt;--&gt;</div>
               <div class="node">
@@ -325,7 +347,7 @@
               <div class="arrow">&lt;--&gt;</div>
               <div class="node cloud">
                 <strong>Cloud BOS</strong>
-                <small>Canonical rules, updates, advisories, capability metadata, compact resolved-pattern intake.</small>
+                <small>Current rules, updates, advisories, capability metadata, compact resolved-pattern intake.</small>
               </div>
             </div>
           </div>
@@ -347,7 +369,7 @@
           </article>
           <article class="card">
             <h3>AI builder execution</h3>
-            <p>Base44, Codex, and other AI tools still do the building. BOS improves the prompt, route, evidence standard, and follow-up scan so the AI has a narrower and better-governed job.</p>
+            <p>Base44, Codex, and other AI tools still do the building. BOS improves the prompt, route, evidence standard, and follow-up scan so the AI has a narrower, better-grounded job.</p>
           </article>
           <article class="card">
             <h3>Receipts and learning</h3>

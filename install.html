@@ -315,7 +315,7 @@
         <span>Build Operating System</span>
       </a>
       <nav aria-label="Site pages">
-        <a href="index.html#value">Value</a>
+        <a href="index.html#architecture">Architecture</a>
         <a href="how-it-works.html">How it works</a>
         <a href="capabilities.html">Capabilities</a>
         <a href="policies/index.html">Policies</a>
@@ -326,9 +326,9 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <div class="eyebrow">Cloud BOS install process</div>
-        <h1>Connect an app to Cloud BOS without publishing its secrets.</h1>
-        <p class="lede">Cloud BOS should be installed as a governed advisory and update layer. The app keeps its own identity, project memory, and local governance files; Cloud BOS supplies current rules, upgrade plans, scan guidance, and compact capability metadata.</p>
+        <div class="eyebrow">Cloud BOS onboarding</div>
+        <h1>Install BOS in the app, keep secrets on the server.</h1>
+        <p class="lede">The target app keeps its own identity, project memory, governance files, and receipts. Cloud BOS supplies current guidance through a thin connector or server-side proxy.</p>
         <div class="pill-row">
           <span class="pill">Base44</span>
           <span class="pill">BC+ derivatives</span>
@@ -344,24 +344,29 @@
 
     <section>
       <div class="wrap">
-        <h2>Choose the right connector surface</h2>
-        <p class="section-lede">Cloud BOS is the API. Each development environment needs a small local connector or proxy that calls Cloud BOS without exposing secrets or copying private BOS internals.</p>
-        <div class="grid">
-          <article class="card">
-            <div class="kicker">Codex users</div>
-            <h3>Install the public connector plugin</h3>
-            <p>Use the downloadable <code>cloudbos-public-connector</code> package. It installs into the user's local Codex plugin environment and calls Cloud BOS with that user's local token.</p>
-            <p><a href="downloads/cloudbos-public-connector-0.1.0+codex.20260623141316.zip">Download Codex connector</a></p>
+        <h2>Start here</h2>
+        <p class="section-lede">Use this sequence before choosing platform-specific details. It is the same whether the app is new, cloned, already broken, or being prepared for beta.</p>
+
+        <div class="install-grid">
+          <article class="step">
+            <span class="number">1</span>
+            <h3>Classify the app</h3>
+            <p>Name the app, owner, platform, environment, lineage, stage, and whether this is a new build, clone, derivative, migration, or live rescue.</p>
           </article>
-          <article class="card">
-            <div class="kicker">App builders</div>
-            <h3>Install a server-side app proxy</h3>
-            <p>Base44, Replit, Lovable, and similar app builders should call Cloud BOS through a backend function or server route. Browser code should not hold Cloud BOS credentials.</p>
+          <article class="step">
+            <span class="number">2</span>
+            <h3>Install local BOS files</h3>
+            <p>Add the app-scoped AICONTROL or equivalent, spec, governance pack, capability manifest, receipts, and local-first routing rules.</p>
           </article>
-          <article class="card">
-            <div class="kicker">Repo workflows</div>
-            <h3>Use localBOS or a thin CLI wrapper</h3>
-            <p>GitHub, VS Code, and terminal workflows should keep project truth in repo-local governance files and use Codex/localBOS or a future thin CLI wrapper for Cloud BOS checks.</p>
+          <article class="step">
+            <span class="number">3</span>
+            <h3>Add the safe connection</h3>
+            <p>Use a Codex connector, backend function, or server route. Store tokens in the local or server secret store, never in browser code.</p>
+          </article>
+          <article class="step">
+            <span class="number">4</span>
+            <h3>Run the smoke test</h3>
+            <p>Run <code>/update</code> and <code>ask BOS</code>. The response should say whether local BOS and Cloud BOS were consulted.</p>
           </article>
         </div>
       </div>
@@ -369,31 +374,8 @@
 
     <section>
       <div class="wrap">
-        <h2>The safe install pattern</h2>
-        <p class="section-lede">Every app type uses the same boundary: keep secrets in the app platform's server-side secret store, install only lightweight local governance files, then verify that local BOS is consulted before Cloud BOS fallback.</p>
-
-        <div class="install-grid">
-          <article class="step">
-            <span class="number">1</span>
-            <h3>Establish app identity</h3>
-            <p>Record app name, platform, app id where available, owner, environment, lineage, and whether this is a new app, clone, derivative, migration, or live rescue.</p>
-          </article>
-          <article class="step">
-            <span class="number">2</span>
-            <h3>Install local governance</h3>
-            <p>Add the app's scoped BOS files: app spec, AICONTROL or equivalent instruction file, governance pack, receipts, and capability manifest.</p>
-          </article>
-          <article class="step">
-            <span class="number">3</span>
-            <h3>Create server-side proxy</h3>
-            <p>The app calls Cloud BOS through a backend function or server route. Browser code should not hold Cloud BOS tokens.</p>
-          </article>
-          <article class="step">
-            <span class="number">4</span>
-            <h3>Verify local-first routing</h3>
-            <p>Commands such as <code>/update</code>, <code>/upgrade</code>, <code>/scan</code>, and <code>ask BOS</code> should report whether local BOS and Cloud BOS were consulted.</p>
-          </article>
-        </div>
+        <h2>The no-secrets connection boundary</h2>
+        <p class="section-lede">Cloud BOS is the guidance source. The app or developer environment owns the connector and the secret. Public docs, browser code, and downloadable packages must not contain tokens.</p>
 
         <div class="flow" aria-label="Cloud BOS install boundary">
           <div class="flow-row">
@@ -423,7 +405,8 @@
 
     <section>
       <div class="wrap">
-        <h2>Install route by app type</h2>
+        <h2>Choose the connector for your environment</h2>
+        <p class="section-lede">Most users only need one of these routes. The detail is here so beta testers can install without exposing private app data or confusing the public connector with masterBOS internals.</p>
         <div class="grid two">
           <article class="card">
             <div class="kicker">Codex plugin</div>
