@@ -89,6 +89,12 @@
       align-items: center;
       gap: 18px;
       font-size: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      white-space: nowrap;
     }
 
     .nav-cta,
@@ -108,6 +114,11 @@
     .btn.primary {
       background: var(--ink);
       color: var(--white);
+    }
+
+    .nav-current {
+      color: var(--ink);
+      font-weight: 780;
     }
 
     .hero {
@@ -330,8 +341,18 @@
     }
 
     @media (max-width: 980px) {
+      .nav {
+        align-items: flex-start;
+        padding: 12px 0;
+      }
+
       nav {
-        display: none;
+        gap: 10px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        width: 100%;
       }
 
       .section-head,
@@ -351,10 +372,11 @@
         <span>Build Operating System</span>
       </a>
       <nav aria-label="Site pages">
-        <a href="index.html#architecture">Architecture</a>
-        <a href="index.html#problems">Problems</a>
+        <a href="index.html">Home</a>
+        <a class="nav-current" href="capabilities.html">Capabilities</a>
         <a href="how-it-works.html">How it works</a>
         <a href="install.html">Install</a>
+        <a href="policies/index.html">Policies</a>
         <a class="nav-cta" href="mailto:peterjeans@gmail.com?subject=BOS%20Private%20Beta%20Access">Request access</a>
       </nav>
     </div>
@@ -368,7 +390,7 @@
         <p class="lede">A public-safe view of BOS outcomes: reduce drift, keep app memory visible, route work, scan focused risks, scope prompts, verify progress, support migration, hardening, and release readiness.</p>
         <div class="actions">
           <a class="btn primary" href="mailto:peterjeans@gmail.com?subject=BOS%20Private%20Beta%20Access">Apply for private beta</a>
-          <a class="btn" href="#capability-data">See current capability areas</a>
+          <a class="btn" href="#capability-data">Browse capability areas</a>
           <a class="btn" href="install.html">Install / onboard</a>
         </div>
       </div>
@@ -379,10 +401,9 @@
         <div class="section-head">
           <div>
             <div class="kicker">How to read this page</div>
-            <h2>Capabilities are grouped by developer pain.</h2>
-            <p class="section-lede">This is the proof map behind the landing page: what BOS can currently help with, stated in plain public-safe language and updated as the product develops.</p>
+            <h2>Capabilities are grouped by builder outcome.</h2>
+            <p class="section-lede">Use this page as a quick public overview of where BOS can help: planning, build control, scans, recovery, migration, hardening, and release preparation.</p>
           </div>
-          <div class="note">Claim boundary: BOS helps, guides, checks, records, and prepares. It does not guarantee bug-free software, security, compliance, accessibility, production readiness, market success, or legal readiness.</div>
         </div>
 
         <div class="grid">
@@ -406,11 +427,10 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <div class="kicker">Auto-updated capability areas</div>
+            <div class="kicker">Capability areas</div>
             <h2>Current capability areas.</h2>
-            <p class="section-lede">These summaries are generated from internal maturity metadata and reduced to plain-language public descriptions. They update during `/push` or public-site publish.</p>
+            <p class="section-lede">These summaries stay broad on purpose. They explain what a user can ask BOS to help with without exposing internal methods or project-private data.</p>
           </div>
-          <div class="note">Public labels are intentionally broad. Internal capability IDs, `.bos` paths, DevPack materials, raw receipts, prompt libraries, source internals, tokens, and customer data are excluded.</div>
         </div>
 
         <div id="capability-grid" class="capability-grid" aria-live="polite">

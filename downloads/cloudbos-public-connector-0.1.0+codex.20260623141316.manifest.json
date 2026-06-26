@@ -1,10 +1,10 @@
 {
   "boundaries": [
     "no Cloud BOS token included",
-    "no .bos included",
-    "no DevPack included",
-    "no private masterBOS internals included",
-    "no raw logs or receipts included",
+    "no private project memory included",
+    "no development packs included",
+    "no private BOS internals included",
+    "no raw logs or evidence records included",
     "no target app source or customer data included"
   ],
   "distribution_channel": "PUBLIC_BETA_PREPARED",

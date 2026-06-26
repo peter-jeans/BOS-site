@@ -41,7 +41,7 @@ Important caveats:
 - BOS is a governance OS for safer AI-assisted development, not a warranty.
 - BOS does not certify security, compliance, accessibility, legal readiness, or production fitness.
 - Users remain responsible for review, testing, deployment, and professional advice.
-- Cloud BOS should not receive raw source code, secrets, user data, raw logs, raw receipts, full prompts, full local project memory, or private development-pack material by default.
+- Cloud BOS should not receive raw source code, secrets, user data, raw logs, raw evidence records, full prompts, full local project memory, or private development material by default.
 
 First beta:
 - BOS Base44 and AI app build safety beta.

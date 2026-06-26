@@ -96,6 +96,12 @@
       align-items: center;
       gap: 18px;
       font-size: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      white-space: nowrap;
     }
 
     .nav-cta {
@@ -105,6 +111,11 @@
       color: var(--ink);
       font-weight: 760;
       background: var(--white);
+    }
+
+    .nav-current {
+      color: var(--ink);
+      font-weight: 780;
     }
 
     .hero {
@@ -441,8 +452,18 @@
     }
 
     @media (max-width: 980px) {
+      .nav {
+        align-items: flex-start;
+        padding: 12px 0;
+      }
+
       nav {
-        display: none;
+        gap: 10px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        width: 100%;
       }
 
       .hero {
@@ -501,17 +522,16 @@
 <body>
   <header class="topbar">
     <div class="wrap nav">
-      <a class="brand" href="#top" aria-label="BOS home">
+      <a class="brand nav-current" href="index.html" aria-label="BOS home">
         <span class="mark">BOS</span>
         <span>Build Operating System</span>
       </a>
-      <nav aria-label="Page sections">
-        <a href="#problems">Problems</a>
-        <a href="#architecture">Architecture</a>
+      <nav aria-label="Site pages">
+        <a class="nav-current" href="index.html">Home</a>
         <a href="capabilities.html">Capabilities</a>
-        <a href="install.html">Install</a>
-        <a href="#beta">Private beta</a>
         <a href="how-it-works.html">How it works</a>
+        <a href="install.html">Install</a>
+        <a href="policies/index.html">Policies</a>
         <a class="nav-cta" href="mailto:peterjeans@gmail.com?subject=BOS%20Private%20Beta%20Access">Request access</a>
       </nav>
     </div>
@@ -645,10 +665,10 @@
               <li>Teams preparing for beta, support, migration, or release-readiness checks.</li>
             </ul>
           </div>
-          <div class="card warning">
-            <div class="kicker">Claim boundary</div>
-            <h3>What this page must not claim</h3>
-            <p>BOS does not guarantee bug-free software, security, accessibility, compliance, production readiness, lower cost, faster delivery, market success, or legal readiness.</p>
+          <div class="card">
+            <div class="kicker">Responsible use</div>
+            <h3>Guidance, not certification</h3>
+            <p>BOS helps structure AI-assisted development. Owners still need normal review, testing, security, legal, accessibility, and release checks before relying on an app in production.</p>
           </div>
         </div>
 

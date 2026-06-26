@@ -10,15 +10,16 @@ site.
 
 ## Boundary
 
-Downloads must not include Cloud BOS token values, `.bos`, DevPack, private
-masterBOS internals, private prompt libraries, private scan engines, raw logs,
-raw receipts, target app source, customer data, or local machine paths.
+Downloads must not include Cloud BOS token values, private project memory,
+development packs, private BOS internals, private prompt libraries, private
+scan engines, raw logs, raw evidence records, target app source, customer data,
+or local machine paths.
 
 The public connector package does not grant Cloud BOS access by itself. Beta
 users still need their own token or entitlement setup.
 
-Current package requires speaker mode even for scoped-only and status-only
-connector responses.
+Connector responses should make the consulted guidance source visible without
+exposing internal prompts or private implementation details.
 
 ## Install Surfaces
 
@@ -28,4 +29,4 @@ connector responses.
   proxy and store Cloud BOS credentials in the platform secret store.
 - GitHub, VS Code, and terminal workflows: use localBOS/Codex today, and a
   future thin CLI or VS Code wrapper that follows the same no-secrets endpoint
-  contract.
+  boundary.
