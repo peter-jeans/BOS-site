@@ -18,6 +18,7 @@ Before public launch:
 - Keep the public pages aligned with the Cloud BOS agreement-acceptance versions once D1-backed policy storage exists.
 - Keep the homepage focused on customer-visible capability, not internal BOS implementation detail.
 - Keep `capabilities.html` public-safe: outcome language only, no private project memory, development packs, raw evidence records, source internals, prompt libraries, secrets, or customer/project data.
+- Generate the in-app capability-pack catalogue from `OS/INSTALLERS/IN_APP_CAPABILITY_PACK_REGISTRY.json`; publish only pack id, owner label, public outcome/availability, supported target categories, mode labels, and `/install` command. Never publish authority paths, readiness/risk/approval internals, credentials, source, raw prompts, raw receipts, DevPacks, or `.bos` state.
 - Keep the homepage value-first. Detailed workflow diagrams and architecture boundaries belong in `how-it-works.html`.
 - Keep subpages narrow. Policy/reference pages should not repeat the homepage hero, tier table, workflow diagrams, or sales copy.
 - Do not list guided repair sessions, hardening audits, or other service products as current paid offers until they are scoped, tested, priced, supported, and managed through an approved BOS service path.

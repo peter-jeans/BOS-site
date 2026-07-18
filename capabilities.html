@@ -244,7 +244,8 @@
     }
 
     .card,
-    .capability-card {
+    .capability-card,
+    .pack-card {
       padding: 22px;
     }
 
@@ -258,6 +259,17 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
+    }
+
+    .pack-command {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
     }
 
     .status-row {
@@ -442,6 +454,21 @@
         </div>
       </div>
     </section>
+
+    <section id="capability-packs" class="band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">In-app capability packs</div>
+            <h2>Add a focused capability with one request.</h2>
+            <p class="section-lede">Type the shown command in a BOS-enabled app. BOS checks readiness and risk, asks the owner to approve the exact scope, then installs and verifies one bounded step at a time.</p>
+          </div>
+        </div>
+        <div id="capability-pack-grid" class="capability-grid" aria-live="polite">
+          <article class="capability-card"><div class="kicker">Loading</div><h3>Capability packs are loading.</h3></article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -460,6 +487,12 @@
       ["Govern", "Keep project memory, decisions, and evidence visible."],
       ["Recover", "Detect missing or corrupt governance files and warn when recovery is provisional."],
       ["Prepare", "Surface private beta and release-readiness gaps."]
+    ];
+
+    const fallbackPacks = [
+      {pack_id: "notifications", name: "Notifications", public_availability: "Available in private beta", install_command: "/install notifications", modes: [{label: "Local notifications"}, {label: "Backend-triggered remote push"}, {label: "AppCoreHub APNs/FCM broker"}]},
+      {pack_id: "portability", name: "Portability", public_availability: "Planned", install_command: "/install portability", modes: [{label: "Assess"}, {label: "Protect future work"}, {label: "Portable core"}]},
+      {pack_id: "governed-multi-agent", name: "Governed Multi-Agent Development", public_availability: "In active testing", install_command: "/install multi-agent", modes: [{label: "Discovery and read-only planning"}, {label: "Attended project development"}]}
     ];
 
     function statusClass(label) {
@@ -499,12 +532,33 @@
       }
     }
 
+    function renderPacks(packs) {
+      const grid = document.getElementById("capability-pack-grid");
+      grid.innerHTML = "";
+      packs.forEach((pack) => {
+        const card = document.createElement("article");
+        card.className = "capability-card pack-card";
+        const modes = (pack.modes || []).map((mode) => `<li>${mode.label}</li>`).join("");
+        card.innerHTML = `
+          <div class="kicker">${pack.public_availability || "In active testing"}</div>
+          <h3>${pack.name}</h3>
+          <p>${pack.plain_language_outcome || "Install this capability through BOS readiness, approval, staged build, and verification."}</p>
+          <code class="pack-command">${pack.install_command}</code>
+          <ul class="mini-list">${modes}</ul>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
     fetch("data/capabilities.json")
       .then((response) => {
         if (!response.ok) throw new Error("Capability data unavailable");
         return response.json();
       })
-      .then((data) => renderGroups(data.capability_groups || [], data.generated_at))
+      .then((data) => {
+        renderGroups(data.capability_groups || [], data.generated_at);
+        renderPacks(data.capability_packs || fallbackPacks);
+      })
       .catch(() => {
         renderGroups(fallbackGroups.map(([name, outcome]) => ({
           name,
@@ -513,6 +567,7 @@
           public_availability: "In active testing",
           proof_level: "Static fallback summary"
         })));
+        renderPacks(fallbackPacks);
       });
   </script>
 </body>

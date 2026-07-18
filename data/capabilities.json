@@ -1,8 +1,8 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-06-28T22:37:10Z",
+  "generated_at": "2026-07-18T11:03:54Z",
   "source_summary": {
-    "total_capabilities": 90,
+    "total_capabilities": 92,
     "public_boundary": "Public-safe aggregate only. No private project memory, development packs, raw evidence records, prompt libraries, source internals, tokens, or customer/project data."
   },
   "capability_groups": [
@@ -11,7 +11,7 @@
       "audience": "Founders, product owners, AI app builders",
       "plain_language_outcome": "Turn an idea into a clear app direction, target audience, stage, risks, and next build intention.",
       "public_availability": "Available in private beta",
-      "proof_level": "8 product maturity signals mapped to a public-safe summary",
+      "proof_level": "10 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "App direction",
         "Audience fit",
@@ -45,6 +45,29 @@
         "stop the AI making a mess",
         "split this safely",
         "what should the builder do"
+      ],
+      "suggested_route": "/bos advice"
+    },
+    {
+      "name": "Design",
+      "audience": "App owners, Base44 builders, Codex / VS Code developers",
+      "plain_language_outcome": "Trigger DGS before GUI, UI, UX, UIX, layout, navigation, accessibility, and workflow changes so design risk is checked before build mutation.",
+      "public_availability": "Available in private beta",
+      "proof_level": "3 product maturity signals mapped to a public-safe summary",
+      "public_features": [
+        "DGS strong advisory checks",
+        "Page and workflow clarity",
+        "Navigation and layout guidance",
+        "Mobile and accessibility basics"
+      ],
+      "discovery_prompts": [
+        "improve the UI",
+        "fix the UX",
+        "redesign this screen",
+        "change the GUI",
+        "make this easier to use",
+        "simplify the layout",
+        "improve navigation"
       ],
       "suggested_route": "/bos advice"
     },
@@ -97,7 +120,7 @@
       "audience": "Teams that need continuity, handoff, and safer development loops",
       "plain_language_outcome": "Keep project memory, decisions, routes, receipts, and evidence visible across sessions and tools.",
       "public_availability": "Available in private beta",
-      "proof_level": "59 product maturity signals mapped to a public-safe summary",
+      "proof_level": "61 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Project memory",
         "Decision trail",
@@ -140,7 +163,7 @@
       "audience": "Builders preparing apps for users, public surfaces, AI/API calls, or production-like traffic",
       "plain_language_outcome": "Make threat modelling, security baseline, abuse-surface mapping, rate-limit planning, proxy safety, payload limits, and launch hardening visible before the app is exposed.",
       "public_availability": "Available in private beta",
-      "proof_level": "11 product maturity signals mapped to a public-safe summary",
+      "proof_level": "15 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Threat-model conversation",
         "Security baseline",
@@ -188,7 +211,7 @@
       "audience": "Founders, agencies, technical evaluators",
       "plain_language_outcome": "Assess private beta, launch, support, rollback, privacy, billing, and release-readiness gates without overclaiming readiness.",
       "public_availability": "Available in private beta",
-      "proof_level": "7 product maturity signals mapped to a public-safe summary",
+      "proof_level": "8 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Private-beta checks",
         "Support and rollback posture",
@@ -207,10 +230,169 @@
       "suggested_route": "/analyze maturity"
     }
   ],
+  "capability_packs": [
+    {
+      "pack_id": "governed-multi-agent",
+      "name": "Governed Multi-Agent Development",
+      "plain_language_outcome": "Assess and add governed multi-agent development to a supported app through an owner-approved, staged installation with verification after each step.",
+      "public_availability": "In active testing",
+      "install_command": "/install multi-agent",
+      "supported_targets": [
+        "codex_local_app",
+        "base44_direct_app",
+        "connected_app"
+      ],
+      "modes": [
+        {
+          "id": "discovery_read_only",
+          "label": "Discovery and read-only planning"
+        },
+        {
+          "id": "pdc_read_only",
+          "label": "PDC read-only deliberation"
+        },
+        {
+          "id": "auto_code_attended",
+          "label": "Attended project development"
+        },
+        {
+          "id": "auto_code_unattended",
+          "label": "Unattended fixed project development"
+        }
+      ]
+    },
+    {
+      "pack_id": "notifications",
+      "name": "Notifications",
+      "plain_language_outcome": "Assess and add notifications to a supported app through an owner-approved, staged installation with verification after each step.",
+      "public_availability": "Available in private beta",
+      "install_command": "/install notifications",
+      "supported_targets": [
+        "connected_app",
+        "base44_direct_app",
+        "codex_local_app",
+        "multi_app_codex_plan"
+      ],
+      "modes": [
+        {
+          "id": "level_1",
+          "label": "Local notifications"
+        },
+        {
+          "id": "level_2",
+          "label": "Backend-triggered remote push"
+        },
+        {
+          "id": "level_3",
+          "label": "AppCoreHub APNs/FCM broker"
+        }
+      ]
+    },
+    {
+      "pack_id": "portability",
+      "name": "Portability",
+      "plain_language_outcome": "Assess and add portability to a supported app through an owner-approved, staged installation with verification after each step.",
+      "public_availability": "Planned",
+      "install_command": "/install portability",
+      "supported_targets": [
+        "codex_local_app",
+        "base44_direct_app",
+        "connected_app"
+      ],
+      "modes": [
+        {
+          "id": "p0_assess",
+          "label": "Assess"
+        },
+        {
+          "id": "p1_protect_future_work",
+          "label": "Protect future work"
+        },
+        {
+          "id": "p2_portable_core",
+          "label": "Portable core"
+        },
+        {
+          "id": "p3_runtime_candidate",
+          "label": "Runtime candidate"
+        },
+        {
+          "id": "p4_runtime_migration",
+          "label": "Runtime migration"
+        }
+      ]
+    }
+  ],
   "discovery_policy": {
     "rule": "Surface at most one relevant BOS feature suggestion when a user prompt clearly matches a capability group. Keep it playful and useful, not spammy.",
     "less_obvious_rule": "If the match is plausible but uncertain, ask whether the user wants BOS to handle it once or remember the phrasing for this project.",
+    "ambiguity_guard_rule": "Before mutation, detect likely synonym drift and underspecified build intentions such as 'BOS central', 'update the button', 'fix the page', or 'improve the scan'. Proceed with a stated assumption only when recent context clearly identifies the target; otherwise ask one focused clarification question.",
     "privacy_boundary": "Use category-level prompt patterns only. Do not store raw prompts, customer records, secrets, source code, logs, screenshots, or private project data."
+  },
+  "dgs_plain_language_activation": {
+    "status": "ACTIVE",
+    "capability_id": "DESIGN_GOVERNANCE_SPINE",
+    "activation_strength": "STRONG_ADVISORY",
+    "trigger_rule": "Activate before mutation for GUI/UI/UX/UIX/interface/page/screen/layout/navigation/workflow/visual/copy/form/button/dashboard/app-shell/onboarding/mobile/accessibility/simplification/cognitive-load language.",
+    "phrase_families": [
+      "GUI/UI/UX/UIX",
+      "page/screen/layout/navigation",
+      "workflow/form/button/dashboard",
+      "visual/copy/mobile/accessibility",
+      "simplify/reduce clutter/make easier"
+    ],
+    "boundary": "Advisory by default; hard-block only when higher authority or severe DGS risk blocks.",
+    "expected_response": "Name surface + user goal, apply smallest DGS/Q-DGS check, then proceed safely or ask one focused clarification."
+  },
+  "ambiguity_guard": {
+    "status": "ACTIVE",
+    "high_confidence_rule": "Proceed with a short stated assumption when recent context clearly identifies the target.",
+    "clarification_rule": "Ask one focused question before mutation when a phrase may refer to more than one BOS surface, feature, page, button, flow, scan, or build intention.",
+    "synonym_examples": [
+      {
+        "phrase_pattern": "BOS central | central BOS | main BOS",
+        "possible_matches": [
+          "masterBOS",
+          "Cloud BOS",
+          "target-app local BOS / Governance Pack"
+        ],
+        "preferred_question": "When you say BOS central, do you mean masterBOS, Cloud BOS, or this app's local BOS files?"
+      },
+      {
+        "phrase_pattern": ".bis",
+        "canonical_term": ".BOS",
+        "possible_matches": [
+          ".bos app-local governance layer"
+        ],
+        "preferred_question": "I am treating .bis as a typo for .BOS/.bos. Is that what you mean?",
+        "typo_status": "KNOWN_TYPO",
+        "correction_rule": "Never create or route to a .bis layer. Use canonical .BOS in owner-facing language and .bos for filesystem paths."
+      }
+    ],
+    "keyboard_proximity_typo_guard": {
+      "status": "ACTIVE",
+      "keyboard_layout": "qwerty",
+      "scope": "dot-prefixed BOS-like governance terms and owner-facing BOS surface names",
+      "canonical_terms": [
+        {
+          "owner_facing_term": ".BOS",
+          "filesystem_term": ".bos",
+          "known_typos": [
+            ".bis"
+          ]
+        }
+      ],
+      "rule": "When an unrecognized short letter sequence differs from a canonical BOS term by one or two adjacent keyboard keys, treat it as a likely typo, not a new surface.",
+      "mutation_rule": "Before mutation, correct the term or ask one focused question; never create a new file, layer, route, capability, or memory entry from the typo."
+    },
+    "ambiguous_build_intention_examples": [
+      "update the button",
+      "fix the page",
+      "change the dashboard",
+      "improve the scan",
+      "make the flow better",
+      "change the copy"
+    ]
   },
   "status_labels": [
     "Available in private beta",
