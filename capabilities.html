@@ -603,6 +603,7 @@
           <h3>${pack.name}</h3>
           <p>${pack.plain_language_outcome || "Install this capability through BOS readiness, approval, staged build, and verification."}</p>
           <div class="status-row"><span class="pill ${statusClass(pack.public_availability)}">${pack.public_lifecycle || "Being packaged"}</span></div>
+          <p><strong>Status:</strong> ${pack.status || pack.public_lifecycle || "Being packaged"}<br><strong>Evidence:</strong> ${pack.evidence_status || "Not yet evidenced"}</p>
           <code class="pack-command">${escapeHtml(command)}</code>
           <ul class="mini-list">${[...features, ...modes].join("")}</ul>
           <p>${pack.public_next_action || "Ask BOS to assess whether this capability fits your app."}</p>
