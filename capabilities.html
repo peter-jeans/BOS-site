@@ -455,6 +455,21 @@
       </div>
     </section>
 
+    <section id="experimental-capabilities" class="band soft-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">BOS Labs</div>
+            <h2>Experimental capabilities.</h2>
+            <p class="section-lede">Selected Building Zone capabilities can be offered as controlled runtime pilots before they become fully supported. They are clearly labelled, require consent, include rollback and expiry controls, and may change or be withdrawn.</p>
+          </div>
+        </div>
+        <div id="experimental-policy" class="capability-grid" aria-live="polite">
+          <article class="capability-card"><div class="kicker">Loading</div><h3>Experimental access policy is loading.</h3></article>
+        </div>
+      </div>
+    </section>
+
     <section id="capability-packs" class="band">
       <div class="wrap">
         <div class="section-head">
@@ -495,10 +510,52 @@
       {pack_id: "governed-multi-agent", name: "Governed Multi-Agent Development", public_availability: "In active testing", install_command: "/install multi-agent", modes: [{label: "Discovery and read-only planning"}, {label: "Attended project development"}]}
     ];
 
+    const fallbackExperimentalPolicy = {
+      public_label: "Experimental capabilities",
+      plain_language_outcome: "Try selected capabilities through controlled, reversible pilots before they become fully supported.",
+      access_tiers: ["OWNER_PILOT", "INVITED_EXPERIMENTAL", "PUBLIC_EXPERIMENTAL"],
+      default_access_route: "/install experimental <pack_id>",
+      required_controls: ["explicit experimental notice", "user consent", "feature flag or allowlist", "data boundary", "kill switch", "rollback", "review or expiry date", "evidence receipts"],
+      promotion_boundary: "Experimental evidence can recommend promotion but cannot make a capability canonical automatically.",
+      current_public_experimental_count: 0
+    };
+
     function statusClass(label) {
       if (label === "Available in private beta") return "ready";
+      if (label === "Experimental") return "testing";
       if (label === "In active testing") return "testing";
       return "planned";
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[character]);
+    }
+
+    function renderExperimentalPolicy(policy) {
+      const grid = document.getElementById("experimental-policy");
+      const controls = (policy.required_controls || []).map((item) => `<li>${item}</li>`).join("");
+      const count = Number(policy.current_public_experimental_count || 0);
+      const inventory = count
+        ? `${count} experimental ${count === 1 ? "capability is" : "capabilities are"} currently available.`
+        : "No capability is currently open for public experimental access. The pathway is ready, but BOS will not overstate availability.";
+      grid.innerHTML = `
+        <article class="capability-card pack-card">
+          <div class="kicker">Controlled runtime pilot</div>
+          <h3>${policy.public_label || "Experimental capabilities"}</h3>
+          <p>${policy.plain_language_outcome}</p>
+          <div class="status-row"><span class="pill testing">Experimental—not fully supported</span></div>
+          <code class="pack-command">${escapeHtml(policy.default_access_route || "/install experimental <pack_id>")}</code>
+          <p>${inventory}</p>
+        </article>
+        <article class="capability-card">
+          <div class="kicker">Required safeguards</div>
+          <h3>Try safely. Improve with evidence.</h3>
+          <ul class="mini-list">${controls}</ul>
+          <p>${policy.promotion_boundary}</p>
+        </article>
+      `;
     }
 
     function renderGroups(groups, generatedAt) {
@@ -546,7 +603,7 @@
           <h3>${pack.name}</h3>
           <p>${pack.plain_language_outcome || "Install this capability through BOS readiness, approval, staged build, and verification."}</p>
           <div class="status-row"><span class="pill ${statusClass(pack.public_availability)}">${pack.public_lifecycle || "Being packaged"}</span></div>
-          <code class="pack-command">${command}</code>
+          <code class="pack-command">${escapeHtml(command)}</code>
           <ul class="mini-list">${[...features, ...modes].join("")}</ul>
           <p>${pack.public_next_action || "Ask BOS to assess whether this capability fits your app."}</p>
         `;
@@ -561,6 +618,7 @@
       })
       .then((data) => {
         renderGroups(data.capability_groups || [], data.generated_at);
+        renderExperimentalPolicy(data.experimental_capability_policy || fallbackExperimentalPolicy);
         renderPacks(data.capability_packs || fallbackPacks);
       })
       .catch(() => {
@@ -572,6 +630,7 @@
           proof_level: "Static fallback summary"
         })));
         renderPacks(fallbackPacks);
+        renderExperimentalPolicy(fallbackExperimentalPolicy);
       });
   </script>
 </body>

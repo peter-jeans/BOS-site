@@ -2,8 +2,8 @@
   "schema": "BOS_PUBLIC_SITE_EXPORT_V1",
   "managed_by": "masterBOS",
   "source_folder": "public",
-  "source_commit": "5368208",
-  "exported_at": "2026-07-18T11:50:42Z",
+  "source_commit": "9dda87c",
+  "exported_at": "2026-07-18T12:03:01Z",
   "privacy_boundary": [
     "public static pages only",
     "no .bos",

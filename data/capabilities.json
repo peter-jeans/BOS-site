@@ -1,6 +1,6 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-07-18T11:50:42Z",
+  "generated_at": "2026-07-18T12:03:01Z",
   "source_summary": {
     "total_capabilities": 92,
     "public_boundary": "Public-safe aggregate only. No private project memory, development packs, raw evidence records, prompt libraries, source internals, tokens, or customer/project data."
@@ -249,7 +249,12 @@
         "Operational metrics",
         "Retention policy"
       ],
-      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "build-feedback",
@@ -270,7 +275,12 @@
         "Source attribution",
         "Post-build refresh"
       ],
-      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "design-quality",
@@ -292,7 +302,12 @@
         "Mobile usability",
         "Accessibility checks"
       ],
-      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "governance",
@@ -313,7 +328,12 @@
         "Build intentions",
         "Governed receipts"
       ],
-      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "governed-multi-agent",
@@ -352,7 +372,12 @@
         "Read-only deliberation",
         "Attended development"
       ],
-      "public_next_action": "Run /install multi-agent; BOS will assess readiness, risk, owner approval and each verified install slice."
+      "public_next_action": "Run /install multi-agent; BOS will assess readiness, risk, owner approval and each verified install slice.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "launch-readiness",
@@ -373,7 +398,12 @@
         "Rollback readiness",
         "Public-claim boundaries"
       ],
-      "public_next_action": "Use /analyze maturity to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /analyze maturity to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "llm-access",
@@ -394,7 +424,12 @@
         "Task policies",
         "Privacy-safe receipts"
       ],
-      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "notifications",
@@ -429,7 +464,12 @@
         "Admin broadcasts",
         "User-configured triggers"
       ],
-      "public_next_action": "Run /install notifications; BOS will assess readiness, risk, owner approval and each verified install slice."
+      "public_next_action": "Run /install notifications; BOS will assess readiness, risk, owner approval and each verified install slice.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "portability",
@@ -472,7 +512,12 @@
         "Portable-core planning",
         "Migration evidence"
       ],
-      "public_next_action": "Run /install portability; BOS will assess readiness, risk, owner approval and each verified install slice."
+      "public_next_action": "Run /install portability; BOS will assess readiness, risk, owner approval and each verified install slice.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "pwa",
@@ -493,7 +538,12 @@
         "Update handling",
         "Pull-to-refresh"
       ],
-      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "recovery",
@@ -514,7 +564,12 @@
         "Restore evidence",
         "Rollback guidance"
       ],
-      "public_next_action": "Use /update to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /update to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "rescue",
@@ -535,7 +590,12 @@
         "Recovery path",
         "Readback checks"
       ],
-      "public_next_action": "Use /scanfix to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /scanfix to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "security",
@@ -557,7 +617,12 @@
         "Secret boundaries",
         "Rate-limit planning"
       ],
-      "public_next_action": "Use /scan to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /scan to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "subscriptions",
@@ -577,7 +642,12 @@
         "Store compatibility",
         "Access gates"
       ],
-      "public_next_action": "This capability is not currently available; the named safety and authority gates must be cleared first."
+      "public_next_action": "This capability is not currently available; the named safety and authority gates must be cleared first.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "user-onboarding",
@@ -598,7 +668,12 @@
         "Role-aware setup",
         "Recovery cues"
       ],
-      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     },
     {
       "pack_id": "validation",
@@ -619,9 +694,38 @@
         "Artifact readback",
         "Verification evidence"
       ],
-      "public_next_action": "Use /scan to explore this capability; it is not an installable pack yet."
+      "public_next_action": "Use /scan to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false
     }
   ],
+  "experimental_capability_policy": {
+    "public_label": "Experimental capabilities",
+    "plain_language_outcome": "Try selected Building Zone capabilities in a controlled runtime pilot before they become fully supported BOS capabilities.",
+    "access_tiers": [
+      "OWNER_PILOT",
+      "INVITED_EXPERIMENTAL",
+      "PUBLIC_EXPERIMENTAL"
+    ],
+    "default_access_route": "/install experimental <pack_id>",
+    "required_controls": [
+      "explicit experimental notice",
+      "owner-approved audience",
+      "user consent",
+      "feature flag or allowlist",
+      "data boundary",
+      "kill switch",
+      "rollback",
+      "review or expiry date",
+      "evidence receipts",
+      "dependency boundary"
+    ],
+    "promotion_boundary": "Experimental use produces evidence but never promotes a capability automatically. Canonical installation still requires owner approval and verified readback.",
+    "current_public_experimental_count": 0
+  },
   "discovery_policy": {
     "rule": "Surface at most one relevant BOS feature suggestion when a user prompt clearly matches a capability group. Keep it playful and useful, not spammy.",
     "less_obvious_rule": "If the match is plausible but uncertain, ask whether the user wants BOS to handle it once or remember the phrasing for this project.",
