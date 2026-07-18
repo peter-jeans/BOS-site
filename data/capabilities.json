@@ -1,6 +1,6 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-07-18T11:03:54Z",
+  "generated_at": "2026-07-18T11:50:42Z",
   "source_summary": {
     "total_capabilities": 92,
     "public_boundary": "Public-safe aggregate only. No private project memory, development packs, raw evidence records, prompt libraries, source internals, tokens, or customer/project data."
@@ -232,15 +232,101 @@
   ],
   "capability_packs": [
     {
+      "pack_id": "analytics",
+      "name": "Analytics",
+      "plain_language_outcome": "Add privacy-bounded product and operational measurement through an explicit event contract and retention policy.",
+      "public_availability": "Future exploration",
+      "public_lifecycle": "Future exploration",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "BOS-enabled apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Event taxonomy",
+        "Consent boundary",
+        "Operational metrics",
+        "Retention policy"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "build-feedback",
+      "name": "Build Feedback & Evidence",
+      "plain_language_outcome": "Capture builder handoffs, mutation receipts, source attribution, and post-build verification signals.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "AI-assisted development projects",
+        "BOS-enabled apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Build receipts",
+        "Evidence readback",
+        "Source attribution",
+        "Post-build refresh"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "design-quality",
+      "name": "Design Quality & Accessibility",
+      "plain_language_outcome": "Apply design governance, interaction-pattern guidance, mobile checks, and accessibility evidence to an app.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "Web apps",
+        "PWAs",
+        "AI-built interfaces"
+      ],
+      "modes": [],
+      "public_features": [
+        "Design governance",
+        "Navigation clarity",
+        "Mobile usability",
+        "Accessibility checks"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "governance",
+      "name": "Governance & Project Memory",
+      "plain_language_outcome": "Add durable decisions, build intentions, receipts, authority routing, and continuity across development sessions.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "BOS-enabled projects",
+        "AI-built apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Project memory",
+        "Decision trail",
+        "Build intentions",
+        "Governed receipts"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+    },
+    {
       "pack_id": "governed-multi-agent",
       "name": "Governed Multi-Agent Development",
-      "plain_language_outcome": "Assess and add governed multi-agent development to a supported app through an owner-approved, staged installation with verification after each step.",
+      "plain_language_outcome": "Use different AI model roles for read-only discovery or attended development while BOS keeps authority, scope, evidence, and stop rules visible.",
       "public_availability": "In active testing",
+      "public_lifecycle": "Registered",
       "install_command": "/install multi-agent",
+      "discovery_route": "/install multi-agent",
       "supported_targets": [
-        "codex_local_app",
-        "base44_direct_app",
-        "connected_app"
+        "masterBOS",
+        "project-local .bos workspaces",
+        "Codex development projects"
       ],
       "modes": [
         {
@@ -259,19 +345,69 @@
           "id": "auto_code_unattended",
           "label": "Unattended fixed project development"
         }
-      ]
+      ],
+      "public_features": [
+        "Role-scoped agents",
+        "Model specifications",
+        "Read-only deliberation",
+        "Attended development"
+      ],
+      "public_next_action": "Run /install multi-agent; BOS will assess readiness, risk, owner approval and each verified install slice."
+    },
+    {
+      "pack_id": "launch-readiness",
+      "name": "Launch Readiness",
+      "plain_language_outcome": "Assess private beta, public claims, support, rollback, policy, and release gates before launch.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/analyze maturity",
+      "supported_targets": [
+        "Private beta apps",
+        "Public web apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Release gates",
+        "Support posture",
+        "Rollback readiness",
+        "Public-claim boundaries"
+      ],
+      "public_next_action": "Use /analyze maturity to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "llm-access",
+      "name": "Governed AI Access",
+      "plain_language_outcome": "Connect app features to replaceable governed LLM adapters through task policies, schemas, privacy gates, and conformance tests.",
+      "public_availability": "Future exploration",
+      "public_lifecycle": "Future exploration",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "AI-enabled apps",
+        "School-local deployments"
+      ],
+      "modes": [],
+      "public_features": [
+        "Provider-neutral port",
+        "Replaceable adapters",
+        "Task policies",
+        "Privacy-safe receipts"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
     },
     {
       "pack_id": "notifications",
       "name": "Notifications",
-      "plain_language_outcome": "Assess and add notifications to a supported app through an owner-approved, staged installation with verification after each step.",
+      "plain_language_outcome": "Add local notices, phone push, manual admin broadcasts, and governed user-triggered alerts through the right delivery level.",
       "public_availability": "Available in private beta",
+      "public_lifecycle": "Registered",
       "install_command": "/install notifications",
+      "discovery_route": "/install notifications",
       "supported_targets": [
-        "connected_app",
-        "base44_direct_app",
-        "codex_local_app",
-        "multi_app_codex_plan"
+        "BOS-enabled web apps",
+        "Base44 PWAs",
+        "connected apps"
       ],
       "modes": [
         {
@@ -286,18 +422,27 @@
           "id": "level_3",
           "label": "AppCoreHub APNs/FCM broker"
         }
-      ]
+      ],
+      "public_features": [
+        "Local notices",
+        "Phone push",
+        "Admin broadcasts",
+        "User-configured triggers"
+      ],
+      "public_next_action": "Run /install notifications; BOS will assess readiness, risk, owner approval and each verified install slice."
     },
     {
       "pack_id": "portability",
       "name": "Portability",
-      "plain_language_outcome": "Assess and add portability to a supported app through an owner-approved, staged installation with verification after each step.",
-      "public_availability": "Planned",
+      "plain_language_outcome": "Assess platform dependencies, protect a provider-neutral core, and prepare a staged move or self-hosted proof.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Assessment available",
       "install_command": "/install portability",
+      "discovery_route": "/install portability",
       "supported_targets": [
-        "codex_local_app",
-        "base44_direct_app",
-        "connected_app"
+        "BOS-built apps",
+        "Base44 apps",
+        "provider-neutral full-stack apps"
       ],
       "modes": [
         {
@@ -320,7 +465,161 @@
           "id": "p4_runtime_migration",
           "label": "Runtime migration"
         }
-      ]
+      ],
+      "public_features": [
+        "Readiness assessment",
+        "Dependency mapping",
+        "Portable-core planning",
+        "Migration evidence"
+      ],
+      "public_next_action": "Run /install portability; BOS will assess readiness, risk, owner approval and each verified install slice."
+    },
+    {
+      "pack_id": "pwa",
+      "name": "PWA Experience",
+      "plain_language_outcome": "Prepare installability, offline behavior, update prompts, pull-to-refresh, icons, and device-safe PWA interaction patterns.",
+      "public_availability": "Future exploration",
+      "public_lifecycle": "Future exploration",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "Web apps",
+        "Mobile web apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Install prompt",
+        "Offline behavior",
+        "Update handling",
+        "Pull-to-refresh"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "recovery",
+      "name": "Recovery & Backup",
+      "plain_language_outcome": "Check recoverability, preserve governance and project evidence, and prepare tested restore and rollback paths.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/update",
+      "supported_targets": [
+        "BOS-enabled projects",
+        "connected apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Recovery checks",
+        "Backup planning",
+        "Restore evidence",
+        "Rollback guidance"
+      ],
+      "public_next_action": "Use /update to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "rescue",
+      "name": "Live App Rescue",
+      "plain_language_outcome": "Triage a broken live app, contain risk, recover evidence, and execute a bounded repair path.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/scanfix",
+      "supported_targets": [
+        "Broken BOS-connected apps",
+        "Base44 apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Failure triage",
+        "Scoped repair",
+        "Recovery path",
+        "Readback checks"
+      ],
+      "public_next_action": "Use /scanfix to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "security",
+      "name": "Security & Hardening",
+      "plain_language_outcome": "Assess exposure, abuse paths, secrets, authentication, limits, and launch hardening before an app reaches users.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/scan",
+      "supported_targets": [
+        "Public web apps",
+        "API-backed apps",
+        "AI-enabled apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Threat review",
+        "Abuse-surface mapping",
+        "Secret boundaries",
+        "Rate-limit planning"
+      ],
+      "public_next_action": "Use /scan to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "subscriptions",
+      "name": "Billing & Subscriptions",
+      "plain_language_outcome": "Plan entitlement, billing, checkout, and subscription compatibility for the target app's declared commercial model.",
+      "public_availability": "Not currently available",
+      "public_lifecycle": "Blocked",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "Commercial connected apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Entitlement model",
+        "Billing boundaries",
+        "Store compatibility",
+        "Access gates"
+      ],
+      "public_next_action": "This capability is not currently available; the named safety and authority gates must be cleared first."
+    },
+    {
+      "pack_id": "user-onboarding",
+      "name": "End-User Onboarding",
+      "plain_language_outcome": "Design first-run guidance, permissions, recovery cues, and role-appropriate onboarding for app users.",
+      "public_availability": "Future exploration",
+      "public_lifecycle": "Future exploration",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "User-facing web apps",
+        "PWAs"
+      ],
+      "modes": [],
+      "public_features": [
+        "First-run guidance",
+        "Permission prompts",
+        "Role-aware setup",
+        "Recovery cues"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet."
+    },
+    {
+      "pack_id": "validation",
+      "name": "App Validation",
+      "plain_language_outcome": "Add repeatable health, flow, verification, and artifact-readback checks for an app.",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/scan",
+      "supported_targets": [
+        "BOS-enabled apps",
+        "AI-built apps"
+      ],
+      "modes": [],
+      "public_features": [
+        "Health scans",
+        "Flow checks",
+        "Artifact readback",
+        "Verification evidence"
+      ],
+      "public_next_action": "Use /scan to explore this capability; it is not an installable pack yet."
     }
   ],
   "discovery_policy": {

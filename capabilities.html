@@ -461,7 +461,7 @@
           <div>
             <div class="kicker">In-app capability packs</div>
             <h2>Add a focused capability with one request.</h2>
-            <p class="section-lede">Type the shown command in a BOS-enabled app. BOS checks readiness and risk, asks the owner to approve the exact scope, then installs and verifies one bounded step at a time.</p>
+            <p class="section-lede">Available packs show an install command. Packs being prepared or explored show a discovery route instead. BOS never turns maturity evidence into an install without governed owner approval.</p>
           </div>
         </div>
         <div id="capability-pack-grid" class="capability-grid" aria-live="polite">
@@ -538,13 +538,17 @@
       packs.forEach((pack) => {
         const card = document.createElement("article");
         card.className = "capability-card pack-card";
-        const modes = (pack.modes || []).map((mode) => `<li>${mode.label}</li>`).join("");
+        const modes = (pack.modes || []).map((mode) => `<li>${mode.label}</li>`);
+        const features = (pack.public_features || []).map((item) => `<li>${item}</li>`);
+        const command = pack.install_command || pack.discovery_route || "/bos advice";
         card.innerHTML = `
           <div class="kicker">${pack.public_availability || "In active testing"}</div>
           <h3>${pack.name}</h3>
           <p>${pack.plain_language_outcome || "Install this capability through BOS readiness, approval, staged build, and verification."}</p>
-          <code class="pack-command">${pack.install_command}</code>
-          <ul class="mini-list">${modes}</ul>
+          <div class="status-row"><span class="pill ${statusClass(pack.public_availability)}">${pack.public_lifecycle || "Being packaged"}</span></div>
+          <code class="pack-command">${command}</code>
+          <ul class="mini-list">${[...features, ...modes].join("")}</ul>
+          <p>${pack.public_next_action || "Ask BOS to assess whether this capability fits your app."}</p>
         `;
         grid.appendChild(card);
       });
