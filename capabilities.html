@@ -598,6 +598,11 @@
         const modes = (pack.modes || []).map((mode) => `<li>${mode.label}</li>`);
         const features = (pack.public_features || []).map((item) => `<li>${item}</li>`);
         const command = pack.install_command || pack.discovery_route || "/bos advice";
+        const actionable = Boolean(pack.install_command) && (pack.status === "Registered" || pack.public_lifecycle === "Available in private beta" || pack.public_lifecycle === "In active testing");
+        const targetText = (pack.supported_targets || []).join(" ").toLowerCase();
+        const base44Supported = ["base44", "bos-enabled", "web app", "pwa"].some((marker) => targetText.includes(marker));
+        const base44Action = actionable && base44Supported ? "Assess → generate and copy one BuildAI prompt → check installation" : (actionable ? "Assess target fit; no BuildAI prompt until a Base44 adapter is supported" : "View assessment; no BuildAI implementation prompt is available yet");
+        const codexAction = actionable ? "Assess → governed Codex implementation with project authority" : "View assessment; no implementation route is active yet";
         card.innerHTML = `
           <div class="kicker">${pack.public_availability || "In active testing"}</div>
           <h3>${pack.name}</h3>
@@ -605,6 +610,7 @@
           <div class="status-row"><span class="pill ${statusClass(pack.public_availability)}">${pack.public_lifecycle || "Being packaged"}</span></div>
           <p><strong>Status:</strong> ${pack.status || pack.public_lifecycle || "Being packaged"}<br><strong>Evidence:</strong> ${pack.evidence_status || "Not yet evidenced"}</p>
           <code class="pack-command">${escapeHtml(command)}</code>
+          <p><strong>Base44 owner:</strong> ${escapeHtml(base44Action)}<br><strong>Codex project:</strong> ${escapeHtml(codexAction)}</p>
           <ul class="mini-list">${[...features, ...modes].join("")}</ul>
           <p>${pack.public_next_action || "Ask BOS to assess whether this capability fits your app."}</p>
         `;

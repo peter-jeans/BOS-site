@@ -1,8 +1,8 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-07-18T13:21:02Z",
+  "generated_at": "2026-07-19T00:37:26Z",
   "source_summary": {
-    "total_capabilities": 94,
+    "total_capabilities": 95,
     "public_boundary": "Public-safe aggregate only. No private project memory, development packs, raw evidence records, prompt libraries, source internals, tokens, or customer/project data."
   },
   "capability_groups": [
@@ -120,7 +120,7 @@
       "audience": "Teams that need continuity, handoff, and safer development loops",
       "plain_language_outcome": "Keep project memory, decisions, routes, receipts, and evidence visible across sessions and tools.",
       "public_availability": "Available in private beta",
-      "proof_level": "62 product maturity signals mapped to a public-safe summary",
+      "proof_level": "63 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Project memory",
         "Decision trail",
