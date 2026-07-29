@@ -1,8 +1,8 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-07-19T00:37:26Z",
+  "generated_at": "2026-07-29T03:11:51Z",
   "source_summary": {
-    "total_capabilities": 95,
+    "total_capabilities": 103,
     "public_boundary": "Public-safe aggregate only. No private project memory, development packs, raw evidence records, prompt libraries, source internals, tokens, or customer/project data."
   },
   "capability_groups": [
@@ -76,7 +76,7 @@
       "audience": "Developers fixing drift, broken pages, and unclear failures",
       "plain_language_outcome": "Inspect pages, flows, authority, lifecycle, evidence, platform constraints, and maturity before broad rebuilds.",
       "public_availability": "Available in private beta",
-      "proof_level": "14 product maturity signals mapped to a public-safe summary",
+      "proof_level": "15 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Page checks",
         "Flow checks",
@@ -120,7 +120,7 @@
       "audience": "Teams that need continuity, handoff, and safer development loops",
       "plain_language_outcome": "Keep project memory, decisions, routes, receipts, and evidence visible across sessions and tools.",
       "public_availability": "Available in private beta",
-      "proof_level": "63 product maturity signals mapped to a public-safe summary",
+      "proof_level": "66 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Project memory",
         "Decision trail",
@@ -256,7 +256,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PRO_PROFILE",
+      "minimum_tier": "Pro",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "build-feedback",
@@ -284,7 +298,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "NATIVE",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "design-quality",
@@ -313,7 +341,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "STANDARD_PROFILE",
+      "minimum_tier": "Standard",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "governance",
@@ -341,14 +383,28 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "NATIVE",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "governed-multi-agent",
       "name": "Governed Multi-Agent Development",
       "plain_language_outcome": "Use different AI model roles for read-only discovery or attended development while BOS keeps authority, scope, evidence, and stop rules visible.",
       "status": "Registered",
-      "evidence_status": "PARTIALLY_EXECUTABLE",
+      "evidence_status": "NOT_OBSERVED",
       "public_availability": "In active testing",
       "public_lifecycle": "Registered",
       "install_command": "/install multi-agent",
@@ -387,7 +443,20 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PRO_PROFILE",
+      "minimum_tier": "Pro",
+      "target_compatibility": {
+        "BASE44": "ADVISORY_ONLY",
+        "CODEX": "NATIVE",
+        "REPLIT": "ADVISORY_ONLY",
+        "OTHER": "UNVERIFIED"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT"
+      ]
     },
     {
       "pack_id": "launch-readiness",
@@ -415,7 +484,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "STANDARD_PROFILE",
+      "minimum_tier": "Standard",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "llm-access",
@@ -443,16 +526,29 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "UNVERIFIED"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT"
+      ]
     },
     {
       "pack_id": "notifications",
       "name": "Notifications",
       "plain_language_outcome": "Add local notices, phone push, manual admin broadcasts, and governed user-triggered alerts through the right delivery level.",
-      "status": "Registered",
+      "status": "Registered pilot \u2014 partial verification",
       "evidence_status": "ACTIVE_COMPATIBILITY_REFERENCE",
       "public_availability": "Available in private beta",
-      "public_lifecycle": "Registered",
+      "public_lifecycle": "Registered pilot \u2014 partial verification",
       "install_command": "/install notifications",
       "discovery_route": "/install notifications",
       "supported_targets": [
@@ -485,7 +581,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "SUPPORTED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "SUPPORTED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "portability",
@@ -535,7 +645,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PRO_PROFILE",
+      "minimum_tier": "Pro",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "NATIVE",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "pwa",
@@ -563,7 +687,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "SUPPORTED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "SUPPORTED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "recovery",
@@ -591,7 +729,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "NATIVE",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "rescue",
@@ -619,14 +771,27 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PRO_PROFILE",
+      "minimum_tier": "Pro",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "UNVERIFIED"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT"
+      ]
     },
     {
       "pack_id": "security",
       "name": "Security & Hardening",
       "plain_language_outcome": "Assess exposure, abuse paths, secrets, authentication, limits, and launch hardening before an app reaches users.",
       "status": "Being packaged",
-      "evidence_status": "AUTHORITY_ONLY",
+      "evidence_status": "ADVISORY",
       "public_availability": "Being prepared",
       "public_lifecycle": "Being packaged",
       "install_command": null,
@@ -648,7 +813,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "STANDARD_PROFILE",
+      "minimum_tier": "Standard",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "subscriptions",
@@ -675,7 +854,20 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "UNVERIFIED"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT"
+      ]
     },
     {
       "pack_id": "user-onboarding",
@@ -703,7 +895,21 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "PLUS_PROFILE",
+      "minimum_tier": "Plus",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     },
     {
       "pack_id": "validation",
@@ -731,9 +937,185 @@
       "experimental_access_route": null,
       "experimental_notice": null,
       "experimental_known_limitations": [],
-      "experimental_consent_required": false
+      "experimental_consent_required": false,
+      "minimum_profile": "STANDARD_PROFILE",
+      "minimum_tier": "Standard",
+      "target_compatibility": {
+        "BASE44": "ATTENDED",
+        "CODEX": "NATIVE",
+        "REPLIT": "ATTENDED",
+        "OTHER": "ADVISORY_ONLY"
+      },
+      "available_targets": [
+        "BASE44",
+        "CODEX",
+        "REPLIT",
+        "OTHER"
+      ]
     }
   ],
+  "development_modes": {
+    "schema": "BOS_DBPP_BASE44_DEVELOPMENT_MODES_V1",
+    "version": "1.1.0",
+    "status": "ACTIVE",
+    "decision_summary": "Base44 direct-to-CloudBOS mode is a useful limited governed client. Git-attached Base44 with project-local .bos and independent Codex readback is the full orchestrated-development configuration.",
+    "recommended_mode_id": "GIT_ATTACHED_HYBRID",
+    "modes": [
+      {
+        "mode_id": "DIRECT_CLOUDBOS",
+        "public_label": "Direct CloudBOS + Base44",
+        "support_status": "SUPPORTED_LIMITED",
+        "plain_language_outcome": "Use CloudBOS guidance and Base44-native building when a local project runtime is not attached.",
+        "can_do": [
+          "Discuss and refine requirements",
+          "Capture public-safe decision and requirement candidates",
+          "Generate Base44 entities, functions and UI",
+          "Execute a bounded Base44-native package",
+          "Produce provisional platform receipts and runtime evidence"
+        ],
+        "limitations": [
+          "Cannot execute the local ./bos runtime",
+          "Cannot independently maintain or promote canonical project .bos and DevPack state",
+          "Cannot inspect a local Git worktree, Docker runtime or other deployment environment",
+          "Cannot independently accept its own implementation or receipt claim"
+        ],
+        "canonical_memory": "Public-safe projection and provisional receipt candidates only",
+        "verification": "Base44 runtime evidence remains provisional until reconciled through an independent project-authority path.",
+        "recommended_for": "Early direct builds, Base44-native work and projects without a connected local/Git governance runtime."
+      },
+      {
+        "mode_id": "GIT_ATTACHED_HYBRID",
+        "public_label": "Git-attached Base44 + Codex",
+        "support_status": "SUPPORTED_PRIMARY",
+        "plain_language_outcome": "Use Base44 for platform-native work while project-local BOS, Git and Codex retain canonical memory and independent acceptance.",
+        "can_do": [
+          "Maintain one canonical Local Development Pack (LDP), including the project model, DevPack and BuildPack",
+          "Route each bounded package to Codex or Base44",
+          "Synchronise application source through Git",
+          "Verify exact commits, diffs, tests and platform readback",
+          "Test Docker, portability and other target environments",
+          "Promote verified evidence into canonical project state"
+        ],
+        "limitations": [
+          "Requires a connected Git repository and project-local BOS runtime",
+          "Allows only one mutating builder per project at a time",
+          "Publishing and release approval remain separate owner-controlled actions"
+        ],
+        "canonical_memory": "Project-local LDP: .bos, DevPack, BuildPack, ./bos and verified receipts",
+        "verification": "Codex refreshes the exact Git result, computes the actual diff, runs relevant checks and promotes only verified evidence.",
+        "recommended_for": "Full orchestrated development, multi-environment applications and defensible long-running projects."
+      }
+    ],
+    "unsupported_mode": {
+      "mode_id": "BASE44_ONLY_AUTONOMOUS_DBPP",
+      "public_label": "Base44-only autonomous DBPP",
+      "support_status": "NOT_SUPPORTED",
+      "reason": "A hosted Base44 app cannot run the local DBPP compiler, filesystem integrity checks, Git safety checks or independent acceptance loop."
+    },
+    "shared_invariants": [
+      "Application databases, document stores and user records are not synchronised by Git or the governance bridge.",
+      "Base44 chat completion text and self-issued receipts are not independent acceptance evidence.",
+      "Only the builder named by the active package route may mutate the same project.",
+      "CloudBOS and Base44 receive public-safe projections rather than private project governance internals.",
+      "The owner controls build approval, publication, release and any expansion of external authority."
+    ],
+    "source_sha256": "8436900a1490ebcae67e24adb38c80cec04a1df9639caab3e921654cf02e566b"
+  },
+  "capability_access_model": {
+    "selector_id": "capability_entitlement_profile",
+    "tiers": [
+      {
+        "profile_id": "STANDARD_PROFILE",
+        "label": "Standard",
+        "public_status": "Available in private beta",
+        "promise": "Understand, plan and build more safely.",
+        "features": [
+          "Plain-language guidance and onboarding",
+          "Target, authority and safety checks",
+          "Basic scans and capability discovery",
+          "Manual prompts and verification guidance"
+        ]
+      },
+      {
+        "profile_id": "PLUS_PROFILE",
+        "label": "Plus",
+        "public_status": "Available in private beta",
+        "promise": "Remember and strengthen the project over time.",
+        "features": [
+          "Persistent project governance and App Specs",
+          "Build intentions, receipts and history",
+          "Advanced scans and recovery planning",
+          "Connected-app signals and persistent preferences"
+        ]
+      },
+      {
+        "profile_id": "PRO_PROFILE",
+        "label": "Pro",
+        "public_status": "In active testing",
+        "promise": "Actively coordinate and improve governed development.",
+        "features": [
+          "Privacy-bounded cross-app learning",
+          "Environment-aware orchestration",
+          "PDC and governed multi-agent workflows",
+          "Advanced portability, rescue and strategic intelligence"
+        ]
+      },
+      {
+        "profile_id": "ENTERPRISE_PROFILE",
+        "label": "Enterprise",
+        "public_status": "Planned",
+        "promise": "Govern delivery across teams and organisations.",
+        "features": [
+          "Organisation policy and role controls",
+          "Compliance packs and audit retention",
+          "Fleet administration and reporting",
+          "Private capability packs and custom integrations"
+        ]
+      }
+    ],
+    "targets": [
+      {
+        "target_id": "BASE44",
+        "label": "Base44",
+        "description": "BuildAI/direct-app work using governed prompts, app signals and exact artifact or live readback.",
+        "orchestration": "Attended by default; direct execution requires a separately verified native adapter."
+      },
+      {
+        "target_id": "CODEX",
+        "label": "Codex",
+        "description": "Repository-visible development using local authority, shell, Git, tests, browser checks and connected tools.",
+        "orchestration": "Native local orchestration where the active environment proves each required tool."
+      },
+      {
+        "target_id": "REPLIT",
+        "label": "Replit",
+        "description": "Workspace and deployment work constrained by verified Replit runtime, secret, database and publication evidence.",
+        "orchestration": "Attended or native only where the Replit adapter and environment proof exist."
+      },
+      {
+        "target_id": "OTHER",
+        "label": "Other",
+        "description": "Future registered development targets and provider-neutral advisory routes.",
+        "orchestration": "Advisory until a named target adapter and verification contract are registered."
+      }
+    ],
+    "compatibility_statuses": [
+      "NATIVE",
+      "SUPPORTED",
+      "ATTENDED",
+      "ADVISORY_ONLY",
+      "PLANNED",
+      "UNVERIFIED",
+      "NOT_APPLICABLE"
+    ],
+    "available_statuses": [
+      "NATIVE",
+      "SUPPORTED",
+      "ATTENDED",
+      "ADVISORY_ONLY"
+    ],
+    "boundary": "Compatibility, maturity and entitlement are independent. Installed BOS files do not prove a paid entitlement."
+  },
   "experimental_capability_policy": {
     "public_label": "Experimental capabilities",
     "plain_language_outcome": "Try selected Building Zone capabilities in a controlled runtime pilot before they become fully supported BOS capabilities.",

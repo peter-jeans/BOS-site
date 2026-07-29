@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BOS development comparisons</title>
+  <meta name="description" content="Public-safe, provisional observations from the BOS app-development calibration campaign.">
+  <style>
+    :root{--ink:#101816;--muted:#52605c;--paper:#f8f9f5;--white:#fff;--line:#d7ded9;--green:#146b58;--amber:#b46f22;--red:#983d36}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+    a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}.wrap{width:min(1160px,calc(100% - 36px));margin:0 auto}
+    header{border-bottom:1px solid var(--line);background:rgba(248,249,245,.95)}.nav{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;color:var(--ink)}.mark{width:36px;height:36px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:7px;background:var(--white);font-size:12px}
+    nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:14px}.current{font-weight:800;color:var(--ink)}
+    main{padding:64px 0}.eyebrow{color:var(--green);font-size:12px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}h1{max-width:860px;margin:12px 0 16px;font-size:clamp(40px,7vw,72px);line-height:1.02}.lede{max-width:840px;color:var(--muted);font-size:21px}
+    .notice{margin:28px 0;padding:16px;border-left:4px solid var(--amber);background:#fff8eb;border-radius:7px}.table-wrap{overflow:auto;margin-top:30px;background:var(--white);border:1px solid var(--line);border-radius:10px}table{width:100%;min-width:820px;border-collapse:collapse}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.status{font-weight:800}.status[data-status*="FAILED"]{color:var(--red)}.status[data-status*="PARTIAL"]{color:var(--amber)}
+    .limits{margin-top:30px;padding:24px;background:var(--white);border:1px solid var(--line);border-radius:10px}.limits li{margin:8px 0;color:var(--muted)}.loading{padding:22px;color:var(--muted)}
+    footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}@media(max-width:760px){.nav{align-items:flex-start;flex-direction:column;padding:14px 0}main{padding:42px 0}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html"><span class="mark">BOS</span><span>Build Operating System</span></a>
+      <nav aria-label="Site pages">
+        <a href="index.html">Home</a>
+        <a href="capabilities.html">Capabilities</a>
+        <a class="current" href="comparisons.html">Comparisons</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="install.html">Install</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="eyebrow">Public-safe calibration</div>
+    <h1>Observed development behavior, with the caveats left on.</h1>
+    <p class="lede" id="summary">Loading the current sanitized comparison…</p>
+    <div class="notice"><strong>What this is not:</strong> one campaign is not independent proof of BOS effectiveness, model superiority, platform failure rates or a commercial time-saving percentage.</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Development lane</th><th>Builder submissions</th><th>Repairs</th><th>Timed builder work</th><th>Critical failure rounds</th><th>Acceptance</th></tr></thead>
+        <tbody id="lanes"><tr><td class="loading" colspan="6">Loading comparison data…</td></tr></tbody>
+      </table>
+    </div>
+    <section class="limits"><h2>Interpretation limits</h2><ul id="limits"></ul><p><strong>Improvement index:</strong> <span id="index-status">Not calculated</span></p></section>
+  </main>
+  <footer><div class="wrap">Sanitized BOS evidence projection. No app identifiers, repository paths, raw prompts, exploit instructions or client material are published.</div></footer>
+  <script>
+    const escapeHtml=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+    fetch("data/app_maturation_comparison.json")
+      .then(response=>{if(!response.ok)throw new Error("comparison unavailable");return response.json()})
+      .then(data=>{
+        document.getElementById("summary").textContent=data.summary;
+        document.getElementById("lanes").innerHTML=data.lanes.map(item=>`<tr><td><strong>${escapeHtml(item.label)}</strong><br><small>${escapeHtml(item.evidence_class)}</small></td><td>${escapeHtml(item.builder_submissions)}</td><td>${escapeHtml(item.repair_submissions)}</td><td>${(Number(item.timed_builder_elapsed_seconds)/60).toFixed(1)} min</td><td>${escapeHtml(item.critical_failure_rounds)}</td><td class="status" data-status="${escapeHtml(item.acceptance_status)}">${escapeHtml(item.acceptance_status)}</td></tr>`).join("");
+        document.getElementById("limits").innerHTML=data.interpretation_limits.map(item=>`<li>${escapeHtml(item)}</li>`).join("");
+        document.getElementById("index-status").textContent=`${data.improvement_index.status}: ${data.improvement_index.reason}`;
+      })
+      .catch(error=>{document.getElementById("summary").textContent="The sanitized comparison is temporarily unavailable.";document.getElementById("lanes").innerHTML=`<tr><td class="loading" colspan="6">${escapeHtml(error.message)}</td></tr>`});
+  </script>
+</body>
+</html>

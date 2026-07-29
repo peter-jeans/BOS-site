@@ -261,6 +261,79 @@
       gap: 16px;
     }
 
+    .access-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: end;
+      padding: 16px;
+      margin-bottom: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .access-control {
+      display: grid;
+      gap: 7px;
+    }
+
+    .access-control > span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .access-switch {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+
+    .access-switch button {
+      border: 0;
+      border-radius: 6px;
+      padding: 7px 10px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .access-switch button.active {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .tier-card {
+      border-top: 5px solid var(--green);
+    }
+
+    .tier-card[data-tier="PRO_PROFILE"] {
+      border-top-color: var(--amber);
+    }
+
+    .tier-card[data-tier="ENTERPRISE_PROFILE"] {
+      border-top-color: #57447b;
+    }
+
+    .access-result-count {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .pack-command {
       display: inline-flex;
       margin-top: 8px;
@@ -370,7 +443,8 @@
       .section-head,
       .journey,
       .grid,
-      .capability-grid {
+      .capability-grid,
+      .tier-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -386,6 +460,7 @@
       <nav aria-label="Site pages">
         <a href="index.html">Home</a>
         <a class="nav-current" href="capabilities.html">Capabilities</a>
+        <a href="comparisons.html">Comparisons</a>
         <a href="how-it-works.html">How it works</a>
         <a href="install.html">Install</a>
         <a href="policies/index.html">Policies</a>
@@ -435,6 +510,22 @@
       </div>
     </section>
 
+    <section id="development-modes" class="band soft-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Development configuration</div>
+            <h2>Choose the right orchestration path.</h2>
+            <p class="section-lede" id="development-mode-summary">The current Base44 development-mode contract is loading.</p>
+          </div>
+        </div>
+        <div id="development-mode-grid" class="capability-grid" aria-live="polite">
+          <article class="capability-card"><div class="kicker">Loading</div><h3>Development modes are loading.</h3></article>
+        </div>
+        <article class="card" id="development-mode-boundaries" hidden></article>
+      </div>
+    </section>
+
     <section id="capability-data">
       <div class="wrap">
         <div class="section-head">
@@ -451,6 +542,38 @@
             <h3>Capability summaries are loading.</h3>
             <p>If this page is opened directly from the filesystem, the generated public data may not load until it is served by the public site.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans-and-targets" class="band soft-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Plans and development targets</div>
+            <h2>See what fits your plan and build environment.</h2>
+            <p class="section-lede">Plan inclusion, development-target compatibility and current maturity are separate. An installed BOS file does not prove a paid entitlement.</p>
+          </div>
+        </div>
+        <div class="access-controls">
+          <label class="access-control"><span>Development target</span><span class="access-switch" id="public-target-switch">
+            <button type="button" class="active" data-public-target="ALL" aria-pressed="true">All</button>
+            <button type="button" data-public-target="BASE44" aria-pressed="false">Base44</button>
+            <button type="button" data-public-target="CODEX" aria-pressed="false">Codex</button>
+            <button type="button" data-public-target="REPLIT" aria-pressed="false">Replit</button>
+            <button type="button" data-public-target="OTHER" aria-pressed="false">Other</button>
+          </span></label>
+          <label class="access-control"><span>BOS plan includes</span><span class="access-switch" id="public-tier-switch">
+            <button type="button" class="active" data-public-tier="ALL" aria-pressed="true">All</button>
+            <button type="button" data-public-tier="STANDARD_PROFILE" aria-pressed="false">Standard</button>
+            <button type="button" data-public-tier="PLUS_PROFILE" aria-pressed="false">Plus</button>
+            <button type="button" data-public-tier="PRO_PROFILE" aria-pressed="false">Pro</button>
+            <button type="button" data-public-tier="ENTERPRISE_PROFILE" aria-pressed="false">Enterprise</button>
+          </span></label>
+          <span class="access-result-count" id="public-access-count">Loading capability packs…</span>
+        </div>
+        <div id="tier-grid" class="tier-grid" aria-live="polite">
+          <article class="card"><h3>Plan details are loading.</h3></article>
         </div>
       </div>
     </section>
@@ -505,9 +628,9 @@
     ];
 
     const fallbackPacks = [
-      {pack_id: "notifications", name: "Notifications", public_availability: "Available in private beta", install_command: "/install notifications", modes: [{label: "Local notifications"}, {label: "Backend-triggered remote push"}, {label: "AppCoreHub APNs/FCM broker"}]},
-      {pack_id: "portability", name: "Portability", public_availability: "Planned", install_command: "/install portability", modes: [{label: "Assess"}, {label: "Protect future work"}, {label: "Portable core"}]},
-      {pack_id: "governed-multi-agent", name: "Governed Multi-Agent Development", public_availability: "In active testing", install_command: "/install multi-agent", modes: [{label: "Discovery and read-only planning"}, {label: "Attended project development"}]}
+      {pack_id: "notifications", name: "Notifications", public_availability: "Available in private beta", install_command: "/install notifications", minimum_profile: "PLUS_PROFILE", minimum_tier: "Plus", target_compatibility: {BASE44: "SUPPORTED", CODEX: "SUPPORTED", REPLIT: "SUPPORTED", OTHER: "ADVISORY_ONLY"}, modes: [{label: "Local notifications"}, {label: "Backend-triggered remote push"}, {label: "AppCoreHub APNs/FCM broker"}]},
+      {pack_id: "portability", name: "Portability", public_availability: "Planned", install_command: "/install portability", minimum_profile: "PLUS_PROFILE", minimum_tier: "Plus", target_compatibility: {BASE44: "ADVISORY_ONLY", CODEX: "SUPPORTED", REPLIT: "ADVISORY_ONLY", OTHER: "ADVISORY_ONLY"}, modes: [{label: "Assess"}, {label: "Protect future work"}, {label: "Portable core"}]},
+      {pack_id: "governed-multi-agent", name: "Governed Multi-Agent Development", public_availability: "In active testing", install_command: "/install multi-agent", minimum_profile: "PRO_PROFILE", minimum_tier: "Pro", target_compatibility: {BASE44: "ATTENDED", CODEX: "NATIVE", REPLIT: "ADVISORY_ONLY", OTHER: "ADVISORY_ONLY"}, modes: [{label: "Discovery and read-only planning"}, {label: "Attended project development"}]}
     ];
 
     const fallbackExperimentalPolicy = {
@@ -519,6 +642,22 @@
       promotion_boundary: "Experimental evidence can recommend promotion but cannot make a capability canonical automatically.",
       current_public_experimental_count: 0
     };
+
+    const fallbackAccessModel = {
+      tiers: [
+        {profile_id: "STANDARD_PROFILE", label: "Standard", public_status: "Available in private beta", promise: "Understand, plan and build more safely.", features: ["Guidance and onboarding", "Safety checks", "Basic scans"]},
+        {profile_id: "PLUS_PROFILE", label: "Plus", public_status: "Available in private beta", promise: "Remember and strengthen the project over time.", features: ["Persistent project memory", "Build intentions and receipts", "Connected-app signals"]},
+        {profile_id: "PRO_PROFILE", label: "Pro", public_status: "In active testing", promise: "Actively coordinate and improve governed development.", features: ["Cross-app learning", "Environment-aware orchestration", "PDC and advanced tooling"]},
+        {profile_id: "ENTERPRISE_PROFILE", label: "Enterprise", public_status: "Planned", promise: "Govern delivery across teams and organisations.", features: ["Organisation policy", "Audit and compliance", "Private integrations"]}
+      ],
+      available_statuses: ["NATIVE", "SUPPORTED", "ATTENDED", "ADVISORY_ONLY"],
+      boundary: "Compatibility, maturity and entitlement are independent."
+    };
+
+    let selectedPublicTarget = "ALL";
+    let selectedPublicTier = "ALL";
+    let currentPublicPacks = [];
+    let currentAccessModel = fallbackAccessModel;
 
     function statusClass(label) {
       if (label === "Available in private beta") return "ready";
@@ -558,6 +697,52 @@
       `;
     }
 
+    function renderDevelopmentModes(profile) {
+      const grid = document.getElementById("development-mode-grid");
+      const summary = document.getElementById("development-mode-summary");
+      const boundaries = document.getElementById("development-mode-boundaries");
+      const modes = Array.isArray(profile?.modes) ? profile.modes : [];
+      summary.textContent = profile?.decision_summary || "The development-mode contract is unavailable.";
+      grid.innerHTML = "";
+      modes.forEach((mode) => {
+        const card = document.createElement("article");
+        card.className = "capability-card pack-card";
+        const recommended = mode.mode_id === profile.recommended_mode_id
+          ? '<span class="pill ready">Recommended full orchestration</span>'
+          : "";
+        const canDo = (mode.can_do || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+        const limitations = (mode.limitations || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+        card.innerHTML = `
+          <div class="kicker">${escapeHtml(mode.support_status || "Status not recorded")}</div>
+          <h3>${escapeHtml(mode.public_label)}</h3>
+          <div class="status-row">${recommended}</div>
+          <p>${escapeHtml(mode.plain_language_outcome)}</p>
+          <p><strong>What it can do</strong></p>
+          <ul class="mini-list">${canDo}</ul>
+          <p><strong>Limits</strong></p>
+          <ul class="mini-list">${limitations}</ul>
+          <p><strong>Recommended for:</strong> ${escapeHtml(mode.recommended_for)}</p>
+        `;
+        grid.appendChild(card);
+      });
+      if (!modes.length) {
+        grid.innerHTML = '<article class="capability-card"><h3>Development-mode data is unavailable.</h3><p>No mode should be inferred until the canonical public-safe projection loads.</p></article>';
+      }
+      const invariants = (profile?.shared_invariants || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+      const unsupported = profile?.unsupported_mode || {};
+      if (invariants || unsupported.reason) {
+        boundaries.hidden = false;
+        boundaries.innerHTML = `
+          <h3>Shared boundaries</h3>
+          <ul class="mini-list">${invariants}</ul>
+          <p><strong>${escapeHtml(unsupported.public_label || "Unsupported mode")}:</strong> ${escapeHtml(unsupported.reason || "")}</p>
+        `;
+      } else {
+        boundaries.hidden = true;
+        boundaries.innerHTML = "";
+      }
+    }
+
     function renderGroups(groups, generatedAt) {
       const grid = document.getElementById("capability-grid");
       grid.innerHTML = "";
@@ -589,34 +774,88 @@
       }
     }
 
+    function renderAccessModel(model) {
+      const grid = document.getElementById("tier-grid");
+      grid.innerHTML = "";
+      (model.tiers || []).forEach((tier) => {
+        const card = document.createElement("article");
+        card.className = "card tier-card";
+        card.dataset.tier = tier.profile_id;
+        const features = (tier.features || []).map((feature) => `<li>${escapeHtml(feature)}</li>`).join("");
+        card.innerHTML = `
+          <div class="kicker">${escapeHtml(tier.public_status || "Planned")}</div>
+          <h3>${escapeHtml(tier.label)}</h3>
+          <p>${escapeHtml(tier.promise)}</p>
+          <ul class="mini-list">${features}</ul>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function profileRank(profileId) {
+      return ["STANDARD_PROFILE", "PLUS_PROFILE", "PRO_PROFILE", "ENTERPRISE_PROFILE"].indexOf(profileId);
+    }
+
     function renderPacks(packs) {
       const grid = document.getElementById("capability-pack-grid");
       grid.innerHTML = "";
-      packs.forEach((pack) => {
+      const availableStatuses = new Set(currentAccessModel.available_statuses || []);
+      const visiblePacks = packs.filter((pack) => {
+        const targetStatus = selectedPublicTarget === "ALL" ? "" : (pack.target_compatibility || {})[selectedPublicTarget] || "UNVERIFIED";
+        const targetMatch = selectedPublicTarget === "ALL" || availableStatuses.has(targetStatus);
+        const tierMatch = selectedPublicTier === "ALL" || profileRank(pack.minimum_profile) <= profileRank(selectedPublicTier);
+        return targetMatch && tierMatch;
+      });
+      visiblePacks.forEach((pack) => {
         const card = document.createElement("article");
         card.className = "capability-card pack-card";
         const modes = (pack.modes || []).map((mode) => `<li>${mode.label}</li>`);
         const features = (pack.public_features || []).map((item) => `<li>${item}</li>`);
         const command = pack.install_command || pack.discovery_route || "/bos advice";
         const actionable = Boolean(pack.install_command) && (pack.status === "Registered" || pack.public_lifecycle === "Available in private beta" || pack.public_lifecycle === "In active testing");
-        const targetText = (pack.supported_targets || []).join(" ").toLowerCase();
-        const base44Supported = ["base44", "bos-enabled", "web app", "pwa"].some((marker) => targetText.includes(marker));
+        const base44Status = (pack.target_compatibility || {}).BASE44 || "UNVERIFIED";
+        const codexStatus = (pack.target_compatibility || {}).CODEX || "UNVERIFIED";
+        const base44Supported = availableStatuses.has(base44Status);
         const base44Action = actionable && base44Supported ? "Assess → generate and copy one BuildAI prompt → check installation" : (actionable ? "Assess target fit; no BuildAI prompt until a Base44 adapter is supported" : "View assessment; no BuildAI implementation prompt is available yet");
         const codexAction = actionable ? "Assess → governed Codex implementation with project authority" : "View assessment; no implementation route is active yet";
         card.innerHTML = `
           <div class="kicker">${pack.public_availability || "In active testing"}</div>
           <h3>${pack.name}</h3>
           <p>${pack.plain_language_outcome || "Install this capability through BOS readiness, approval, staged build, and verification."}</p>
-          <div class="status-row"><span class="pill ${statusClass(pack.public_availability)}">${pack.public_lifecycle || "Being packaged"}</span></div>
+          <div class="status-row"><span class="pill ${statusClass(pack.public_availability)}">${pack.public_lifecycle || "Being packaged"}</span><span class="pill">${escapeHtml(pack.minimum_tier || "Standard")}</span></div>
           <p><strong>Status:</strong> ${pack.status || pack.public_lifecycle || "Being packaged"}<br><strong>Evidence:</strong> ${pack.evidence_status || "Not yet evidenced"}</p>
           <code class="pack-command">${escapeHtml(command)}</code>
+          <p><strong>Base44:</strong> ${escapeHtml(base44Status.replaceAll("_", " "))}<br><strong>Codex:</strong> ${escapeHtml(codexStatus.replaceAll("_", " "))}</p>
           <p><strong>Base44 owner:</strong> ${escapeHtml(base44Action)}<br><strong>Codex project:</strong> ${escapeHtml(codexAction)}</p>
           <ul class="mini-list">${[...features, ...modes].join("")}</ul>
           <p>${pack.public_next_action || "Ask BOS to assess whether this capability fits your app."}</p>
         `;
         grid.appendChild(card);
       });
+      if (!visiblePacks.length) {
+        grid.innerHTML = '<article class="capability-card"><h3>No capability packs match this combination.</h3><p>Try a higher plan or another development target.</p></article>';
+      }
+      document.getElementById("public-access-count").textContent = `${visiblePacks.length} of ${packs.length} capability packs`;
     }
+
+    function selectPublicSwitch(selector, selected, dataKey) {
+      document.querySelectorAll(selector).forEach((button) => {
+        const active = button.dataset[dataKey] === selected;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+    }
+
+    document.querySelectorAll("[data-public-target]").forEach((button) => button.addEventListener("click", () => {
+      selectedPublicTarget = button.dataset.publicTarget;
+      selectPublicSwitch("[data-public-target]", selectedPublicTarget, "publicTarget");
+      renderPacks(currentPublicPacks);
+    }));
+    document.querySelectorAll("[data-public-tier]").forEach((button) => button.addEventListener("click", () => {
+      selectedPublicTier = button.dataset.publicTier;
+      selectPublicSwitch("[data-public-tier]", selectedPublicTier, "publicTier");
+      renderPacks(currentPublicPacks);
+    }));
 
     fetch("data/capabilities.json")
       .then((response) => {
@@ -624,11 +863,19 @@
         return response.json();
       })
       .then((data) => {
+        currentAccessModel = data.capability_access_model || fallbackAccessModel;
+        currentPublicPacks = data.capability_packs || fallbackPacks;
+        renderDevelopmentModes(data.development_modes || {});
+        renderAccessModel(currentAccessModel);
         renderGroups(data.capability_groups || [], data.generated_at);
         renderExperimentalPolicy(data.experimental_capability_policy || fallbackExperimentalPolicy);
-        renderPacks(data.capability_packs || fallbackPacks);
+        renderPacks(currentPublicPacks);
       })
       .catch(() => {
+        currentAccessModel = fallbackAccessModel;
+        currentPublicPacks = fallbackPacks;
+        renderDevelopmentModes({});
+        renderAccessModel(currentAccessModel);
         renderGroups(fallbackGroups.map(([name, outcome]) => ({
           name,
           audience: "Public fallback",
@@ -636,7 +883,7 @@
           public_availability: "In active testing",
           proof_level: "Static fallback summary"
         })));
-        renderPacks(fallbackPacks);
+        renderPacks(currentPublicPacks);
         renderExperimentalPolicy(fallbackExperimentalPolicy);
       });
   </script>

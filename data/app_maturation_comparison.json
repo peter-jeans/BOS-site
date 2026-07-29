@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-07-29T03:07:30Z",
+  "improvement_index": {
+    "promotion_gate": "REPEAT_ACROSS_LOCKED_SIX_TEST_BENCHMARK_MATRIX",
+    "reason": "One campaign with unequal evidence classes is insufficient for a causal improvement index.",
+    "status": "NOT_PROMOTED"
+  },
+  "interpretation_limits": [
+    "Tests 1 and 2 support controlled comparison only where their source state, target outcome and acceptance harness are equivalent.",
+    "Test 3 is an ecological beginner baseline and must not be used as causal isolation of BOS.",
+    "Base44 synchronization and publishing overhead is reported separately from Codex build time.",
+    "No effectiveness ratio may be promoted from a single campaign.",
+    "No app identifiers, repository paths, raw prompts, exploit instructions or client material are published.",
+    "Metrics are internal and are not independently verified."
+  ],
+  "lanes": [
+    {
+      "acceptance_status": "LIVE_PUBLISHED_ARTIFACT_READBACK_VERIFIED_RUNTIME_ACCEPTANCE_PARTIAL",
+      "builder_submissions": 7,
+      "critical_failure_rounds": 0,
+      "evidence_class": "COMPARABLE_CALIBRATION_WITH_LIVE_ACCEPTANCE",
+      "label": "Codex + BOS mediated",
+      "repair_submissions": 2,
+      "timed_builder_elapsed_seconds": 1064.097
+    },
+    {
+      "acceptance_status": "PARTIAL_VERIFIED",
+      "builder_submissions": 3,
+      "critical_failure_rounds": 1,
+      "evidence_class": "MATCHED_REPLAY",
+      "label": "Direct Base44 + BOS",
+      "repair_submissions": 1,
+      "timed_builder_elapsed_seconds": 817.0
+    },
+    {
+      "acceptance_status": "PARTIAL_VERIFIED_SECURITY_ACCEPTANCE_FAILED",
+      "builder_submissions": 8,
+      "critical_failure_rounds": 3,
+      "evidence_class": "ECOLOGICAL_BEGINNER_BASELINE",
+      "label": "Direct Base44 beginner",
+      "repair_submissions": 2,
+      "timed_builder_elapsed_seconds": 3104.0
+    }
+  ],
+  "schema": "BOS_PUBLIC_APP_MATURATION_COMPARISON_V1",
+  "status": "SINGLE_CAMPAIGN_PROVISIONAL",
+  "summary": "A single live campaign compared mediated, matched direct and beginner-style development. It is evidence of observed behavior, not independent proof of general effectiveness.",
+  "title": "Observed app-development calibration"
+}
