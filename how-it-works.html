@@ -194,6 +194,26 @@
       margin-top: 28px;
     }
 
+    .architecture-visual {
+      margin: 28px 0 0;
+      padding: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .architecture-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .architecture-visual figcaption {
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
     .flow {
       background: var(--white);
       border: 1px solid var(--line);
@@ -312,6 +332,18 @@
         <div class="eyebrow">How BOS works</div>
         <h1>The operating loop that keeps AI work grounded.</h1>
         <p class="lede">The app keeps its own memory. Cloud BOS supplies current guidance. The AI builder still does the work, but BOS helps decide what to ask, what to check, and what evidence is needed before accepting the result.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">A safe first step</div>
+        <h2>External app governance before any connection.</h2>
+        <p class="section-lede">BOS Estimator works from a ZIP or read-only repository snapshot. It supplies app intelligence, one bounded improvement track, project memory and comparative verification while you remain in control of every change.</p>
+        <figure class="architecture-visual">
+          <img src="assets/bos-governance-paths/bos-estimator-external-app-governance-v1.png" alt="BOS Estimator limited external app governance workflow">
+          <figcaption>No source changes, BOS installation, internal stabilisation, directBOS, deployment authority or live runtime control are included.</figcaption>
+        </figure>
       </div>
     </section>
 

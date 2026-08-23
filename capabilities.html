@@ -261,6 +261,23 @@
       gap: 16px;
     }
 
+    .governance-path-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .governance-path-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 14px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
     .access-controls {
       display: flex;
       flex-wrap: wrap;
@@ -444,6 +461,7 @@
       .journey,
       .grid,
       .capability-grid,
+      .governance-path-grid,
       .tier-grid {
         grid-template-columns: 1fr;
       }
@@ -521,6 +539,20 @@
         </div>
         <div id="development-mode-grid" class="capability-grid" aria-live="polite">
           <article class="capability-card"><div class="kicker">Loading</div><h3>Development modes are loading.</h3></article>
+        </div>
+        <div class="governance-path-grid" aria-label="Connected governance architecture paths">
+          <article class="card governance-path-card">
+            <div class="kicker">Private beta · Base44</div>
+            <h3>Connected project governance</h3>
+            <img src="assets/bos-governance-paths/base44-project-bos-architecture-v2.png" alt="Base44 Project LDP connected governance architecture">
+            <p>The Project LDP keeps rules, memory, scans and verification with the app. Cloud BOS coordination is optional; the published app remains independently operable.</p>
+          </article>
+          <article class="card governance-path-card">
+            <div class="kicker">Private beta · Codex</div>
+            <h3>Advanced governed development</h3>
+            <img src="assets/bos-governance-paths/codex-cloudbos-connected-development-v3.png" alt="Codex, Project LDP, Cloud BOS and GitHub governed development architecture">
+            <p>Cloud BOS coordinates through the Project LDP and Codex. GitHub remains versioned source authority for delivery into supported builders or container and server infrastructure—not a direct Cloud BOS-to-runtime control path.</p>
+          </article>
         </div>
         <article class="card" id="development-mode-boundaries" hidden></article>
       </div>

@@ -1,8 +1,8 @@
 {
   "schema": "BOS_PUBLIC_CAPABILITY_SUMMARY_V1",
-  "generated_at": "2026-07-29T03:11:51Z",
+  "generated_at": "2026-08-18T11:25:09Z",
   "source_summary": {
-    "total_capabilities": 103,
+    "total_capabilities": 106,
     "public_boundary": "Public-safe aggregate only. No private project memory, development packs, raw evidence records, prompt libraries, source internals, tokens, or customer/project data."
   },
   "capability_groups": [
@@ -11,7 +11,7 @@
       "audience": "Founders, product owners, AI app builders",
       "plain_language_outcome": "Turn an idea into a clear app direction, target audience, stage, risks, and next build intention.",
       "public_availability": "Available in private beta",
-      "proof_level": "10 product maturity signals mapped to a public-safe summary",
+      "proof_level": "11 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "App direction",
         "Audience fit",
@@ -120,7 +120,7 @@
       "audience": "Teams that need continuity, handoff, and safer development loops",
       "plain_language_outcome": "Keep project memory, decisions, routes, receipts, and evidence visible across sessions and tools.",
       "public_availability": "Available in private beta",
-      "proof_level": "66 product maturity signals mapped to a public-safe summary",
+      "proof_level": "68 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Project memory",
         "Decision trail",
@@ -163,7 +163,7 @@
       "audience": "Builders preparing apps for users, public surfaces, AI/API calls, or production-like traffic",
       "plain_language_outcome": "Make threat modelling, security baseline, abuse-surface mapping, rate-limit planning, proxy safety, payload limits, and launch hardening visible before the app is exposed.",
       "public_availability": "Available in private beta",
-      "proof_level": "15 product maturity signals mapped to a public-safe summary",
+      "proof_level": "16 product maturity signals mapped to a public-safe summary",
       "public_features": [
         "Threat-model conversation",
         "Security baseline",
@@ -355,6 +355,48 @@
         "CODEX",
         "REPLIT",
         "OTHER"
+      ]
+    },
+    {
+      "pack_id": "engineering-correctness",
+      "name": "Engineering Correctness Review",
+      "plain_language_outcome": "Review temporal boundaries, recurrence, filesystem patterns, redirects, and semantic listing structures with explicit contracts and targeted evidence before delivery.",
+      "status": "Being packaged",
+      "evidence_status": "NO_COMPONENT_EVIDENCE",
+      "public_availability": "Being prepared",
+      "public_lifecycle": "Being packaged",
+      "install_command": null,
+      "discovery_route": "/bos advice",
+      "supported_targets": [
+        "BOS-enabled apps",
+        "Connected apps",
+        "AI-assisted development projects"
+      ],
+      "modes": [],
+      "public_features": [
+        "Temporal boundary checks",
+        "Recurrence checks",
+        "Glob semantics",
+        "Canonical redirects",
+        "Semantic item containers",
+        "Contract-to-evidence delivery gate"
+      ],
+      "public_next_action": "Use /bos advice to explore this capability; it is not an installable pack yet.",
+      "experimental_tier": null,
+      "experimental_access_route": null,
+      "experimental_notice": null,
+      "experimental_known_limitations": [],
+      "experimental_consent_required": false,
+      "minimum_profile": "STANDARD_PROFILE",
+      "minimum_tier": "Standard",
+      "target_compatibility": {
+        "BASE44": "UNVERIFIED",
+        "CODEX": "SUPPORTED",
+        "REPLIT": "UNVERIFIED",
+        "OTHER": "UNVERIFIED"
+      },
+      "available_targets": [
+        "CODEX"
       ]
     },
     {
@@ -956,9 +998,9 @@
   ],
   "development_modes": {
     "schema": "BOS_DBPP_BASE44_DEVELOPMENT_MODES_V1",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "status": "ACTIVE",
-    "decision_summary": "Base44 direct-to-CloudBOS mode is a useful limited governed client. Git-attached Base44 with project-local .bos and independent Codex readback is the full orchestrated-development configuration.",
+    "decision_summary": "Base44 direct-to-CloudBOS mode is a useful limited governed client. Git-attached Base44 with project-local .bos, Git authority, Codex Base44 plugin stored-source readback and independent browser acceptance is the full orchestrated-development configuration.",
     "recommended_mode_id": "GIT_ATTACHED_HYBRID",
     "modes": [
       {
@@ -992,17 +1034,20 @@
           "Maintain one canonical Local Development Pack (LDP), including the project model, DevPack and BuildPack",
           "Route each bounded package to Codex or Base44",
           "Synchronise application source through Git",
-          "Verify exact commits, diffs, tests and platform readback",
+          "Verify exact commits and diffs through Git or GitHub",
+          "Verify exact post-sync Base44 stored source through the Codex Base44 plugin when available",
+          "Verify publication through Base44 owner controls and live behavior through browser road-testing",
           "Test Docker, portability and other target environments",
           "Promote verified evidence into canonical project state"
         ],
         "limitations": [
           "Requires a connected Git repository and project-local BOS runtime",
           "Allows only one mutating builder per project at a time",
+          "The Base44 plugin cannot prove a Git SHA, initiate GitHub sync or publish the app",
           "Publishing and release approval remain separate owner-controlled actions"
         ],
         "canonical_memory": "Project-local LDP: .bos, DevPack, BuildPack, ./bos and verified receipts",
-        "verification": "Codex refreshes the exact Git result, computes the actual diff, runs relevant checks and promotes only verified evidence.",
+        "verification": "Codex refreshes the exact Git result, computes the actual diff, runs relevant checks, verifies Base44 stored source through the plugin when available, then keeps owner publication and live browser acceptance as separate evidence stages.",
         "recommended_for": "Full orchestrated development, multi-environment applications and defensible long-running projects."
       }
     ],
@@ -1015,11 +1060,12 @@
     "shared_invariants": [
       "Application databases, document stores and user records are not synchronised by Git or the governance bridge.",
       "Base44 chat completion text and self-issued receipts are not independent acceptance evidence.",
+      "Codex Base44 plugin stored-source readback is independent source evidence but is not Git SHA, publication, live-runtime or security authority.",
       "Only the builder named by the active package route may mutate the same project.",
       "CloudBOS and Base44 receive public-safe projections rather than private project governance internals.",
       "The owner controls build approval, publication, release and any expansion of external authority."
     ],
-    "source_sha256": "8436900a1490ebcae67e24adb38c80cec04a1df9639caab3e921654cf02e566b"
+    "source_sha256": "2817f708fc79ad9562293a6656c3f206b6a6a9a5296e94259c9176737ce09c59"
   },
   "capability_access_model": {
     "selector_id": "capability_entitlement_profile",

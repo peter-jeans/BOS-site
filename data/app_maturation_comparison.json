@@ -1,15 +1,80 @@
 {
-  "generated_at": "2026-07-29T03:07:30Z",
+  "big_three_observation": {
+    "builder_submissions": 40,
+    "cards": [
+      {
+        "label": "Pivot breakage",
+        "result": "The governed repository lane could execute, repair and roll back a hard platform pivot. The reduced-authority lane stopped safely when platform policy and migration evidence were unavailable."
+      },
+      {
+        "label": "User + agent drift",
+        "result": "Governance improved runtime checks and return to the main workflow, but did not prevent two casually requested security-contract changes. Both the human and builder still need containment gates."
+      },
+      {
+        "label": "Hallucination",
+        "result": "The governed lane disclosed more incomplete verification and latent defects. The comparison lane changed one wrong UI target and overstated an audit whose negative isolation check was not run."
+      },
+      {
+        "label": "Plugin effect",
+        "result": "The browser plugin transported the test interactions. No reasoning-plugin intervention or measurable outcome change was observed."
+      },
+      {
+        "label": "Improvement candidates",
+        "result": "Nine issues are promoted for governed design, four remain monitor-and-retest candidates, and three are discounted with retained reasons. Highest priority: target locking, material authorization-delta gates, security-contract migration gates, AI-session-amnesia rehydration and evidence-derived completion wording."
+      }
+    ],
+    "caveat": "This is one internal matched campaign with partial source-readback coverage. It is not an independent failure-rate or causal-effect estimate.",
+    "matched_turns": 20,
+    "status": "PROVISIONAL_PARTIAL_VERIFICATION",
+    "title": "Long-run stress test"
+  },
+  "bos_codex_specification": {
+    "acceptance_standard": "The same product outcome had to be supported by inspectable source, tests, runtime evidence and Base44 synchronization readback.",
+    "development_surface": "Governed local repository",
+    "model": "GPT-5.6 Sol",
+    "owner_starting_prompts": 1,
+    "reasoning_profile": "High reasoning, selected by the owner",
+    "stages": [
+      "Reporting foundation and deterministic golden dataset",
+      "Bulk scoring, partial failure and idempotent retry",
+      "Late versioned reporting and provenance pivot",
+      "Workspace isolation, role boundaries and migration repair",
+      "Independent negative and reconciliation acceptance",
+      "Recovery, rollback and synthetic cleanup"
+    ],
+    "status": "LOCKED_READY",
+    "title": "How the BOS + Codex lane was specified"
+  },
+  "current_reviewed_measure": {
+    "caveat": "This is not a causal BOS effect, independently verified benchmark, customer guarantee, quotation multiplier or universal result.",
+    "central_multiplier": 3.0,
+    "description": "A rounded planning interpretation of one difficult workflow, pivot, security-repair and recovery campaign.",
+    "display_range": "3\u20134x",
+    "evidence_status": "INTERNAL_NOT_INDEPENDENTLY_VERIFIED",
+    "improvement_index_promoted": false,
+    "owner_discussion_status": "NOT_HISTORICALLY_MEASURED",
+    "prompt_burden_reduction_percent": {
+      "high": 90.0,
+      "low": 70.0
+    },
+    "reviewed_at": "2026-07-29T05:36:46Z",
+    "status": "CURRENT_REVIEWED_PROVISIONAL",
+    "title": "Current reviewed working measure",
+    "upper_multiplier": 4.0
+  },
+  "generated_at": "2026-08-23T08:24:05Z",
   "improvement_index": {
     "promotion_gate": "REPEAT_ACROSS_LOCKED_SIX_TEST_BENCHMARK_MATRIX",
     "reason": "One campaign with unequal evidence classes is insufficient for a causal improvement index.",
     "status": "NOT_PROMOTED"
   },
+  "initial_calibration_plain_language": "In the initial calibration, BOS reduced the amount of back-and-forth needed to build the app by roughly 70\u201390%.",
   "interpretation_limits": [
     "Tests 1 and 2 support controlled comparison only where their source state, target outcome and acceptance harness are equivalent.",
     "Test 3 is an ecological beginner baseline and must not be used as causal isolation of BOS.",
     "Base44 synchronization and publishing overhead is reported separately from Codex build time.",
     "No effectiveness ratio may be promoted from a single campaign.",
+    "Plugin availability, invocation, material intervention and outcome change are reported separately.",
     "No app identifiers, repository paths, raw prompts, exploit instructions or client material are published.",
     "Metrics are internal and are not independently verified."
   ],
@@ -42,8 +107,124 @@
       "timed_builder_elapsed_seconds": 3104.0
     }
   ],
-  "schema": "BOS_PUBLIC_APP_MATURATION_COMPARISON_V1",
+  "latest_calibration": {
+    "golden_score": 88.5,
+    "ratio_status": "PROHIBITED_ACCEPTANCE_NOT_EQUIVALENT",
+    "status": "COMPLETE_WITH_RETAINED_FAILURES",
+    "summary": "This round did not produce a three-lane speed comparison. It did expose three different failure classes: unresolved repository startup, governed cloud transport failure, and a working but security-incomplete beginner build.",
+    "title": "S4\u2013S6 workspace security and recovery"
+  },
+  "scenarios": [
+    {
+      "app": "A workflow app for creating, assigning and updating connected work items.",
+      "chip": "Initial workflow test",
+      "evidence_limit": "One internal campaign; useful planning evidence, not a universal guarantee.",
+      "id": "initial-workflow-calibration",
+      "non_bos_tripups": "The beginner-style lane needed more prompting and repair, then still allowed a foreign-parent create and an unsafe tenant-bound bulk update.",
+      "pivot": "The app had to move from a straightforward workflow into a multi-tenant product without letting one workspace affect another.",
+      "result": "This initial campaign produced the provisional 3\u20134\u00d7 planning range and roughly 70\u201390% less build back-and-forth.",
+      "title": "From a working task flow to a secure shared workspace",
+      "trajectory": [
+        "Build the useful single-workspace flow.",
+        "Pivot it into organisation workspaces with roles and isolation.",
+        "Run adversarial checks, repair failures and test recovery."
+      ]
+    },
+    {
+      "app": "A reporting app that scores evaluation submissions and turns them into reviewable reports and exports.",
+      "chip": "Reporting foundation",
+      "evidence_limit": "S1 timing was excluded because formal timing began too late.",
+      "id": "reporting-foundation",
+      "non_bos_tripups": "The non-BOS lane built and scored data, but left workspace boundaries, canonical control and version provenance incomplete.",
+      "pivot": "The foundation had to be version-ready and workspace-aware before later bulk processing and historical reporting changes arrived.",
+      "result": "Both executable Base44 lanes produced working foundations, but neither earned full S1 acceptance.",
+      "title": "Build a reporting product from a known starting point",
+      "trajectory": [
+        "Start all lanes from clean copies of the same source app.",
+        "Add the reporting routes, records, controller and golden test data.",
+        "Read the artifacts back before accepting the foundation."
+      ]
+    },
+    {
+      "app": "The same reporting app, now scoring many submissions in one run.",
+      "chip": "Bulk scoring + retry",
+      "evidence_limit": "This supports the initial direction, but unequal acceptance prevents a new speed ratio.",
+      "id": "bulk-scoring-retry",
+      "non_bos_tripups": "The non-BOS lane offered usable batch retry, but updated mutable submission records instead of creating results keyed to exact versions. It also added owner/admin access rules outside the requested scope.",
+      "pivot": "A simple one-at-a-time scoring flow became a resilient bulk workflow that had to survive partial failure and safe retry.",
+      "result": "Direct Base44 + BOS fully passed this stage: sibling successes were retained and replay created no duplicate results.",
+      "title": "Keep the good results when part of a batch fails",
+      "trajectory": [
+        "Process a mixed batch containing successful and failing submissions.",
+        "Keep successful results and clearly expose retryable failures.",
+        "Repair one item and replay without creating duplicates."
+      ]
+    },
+    {
+      "app": "The reporting app after reports had already been calculated and published.",
+      "chip": "Versioned-reporting pivot",
+      "evidence_limit": "The second campaign strengthens the correctness finding, not the provisional multiplier.",
+      "id": "versioned-reporting-pivot",
+      "non_bos_tripups": "The non-BOS lane copied frozen inputs into reports, but continued changing metric definitions in place and omitted deterministic fingerprints and workspace scoping.",
+      "pivot": "Late in development, reports had to become auditable historical records: new corrections could supersede old reports, but never alter them.",
+      "result": "Direct Base44 + BOS fully passed: the correction created a new version while the original published bytes and fingerprint stayed unchanged.",
+      "title": "Change the reporting model without rewriting history",
+      "trajectory": [
+        "Introduce versioned metric definitions and provenance fingerprints.",
+        "Publish an immutable snapshot tied to exact calculation inputs.",
+        "Correct the report by creating a linked successor, not editing history."
+      ]
+    },
+    {
+      "app": "The same reporting product, implemented from a governed local repository and synchronized to a private Base44 test app.",
+      "chip": "BOS + Codex specification",
+      "evidence_limit": "A specified but blocked lane is governance evidence, not performance evidence.",
+      "id": "bos-codex-specification",
+      "non_bos_tripups": "This scenario was not a non-BOS failure: the Codex lane itself stopped before product mutation when repository activation routed to the wrong governance gate.",
+      "pivot": "The locked plan covered foundation, bulk retry, versioned reporting, security repair, adversarial acceptance and recovery.",
+      "result": "The failure was retained instead of hidden. No Codex product code or Base44 synchronization was claimed for the second campaign.",
+      "title": "The repository-mediated lane and its fail-closed boundary",
+      "trajectory": [
+        "Reporting foundation and deterministic golden dataset",
+        "Bulk scoring, partial failure and idempotent retry",
+        "Late versioned reporting and provenance pivot",
+        "Workspace isolation, role boundaries and migration repair",
+        "Independent negative and reconciliation acceptance",
+        "Recovery, rollback and synthetic cleanup"
+      ]
+    },
+    {
+      "app": "The same reporting app after bulk scoring and versioned reports were already working.",
+      "chip": "Workspace security + recovery",
+      "evidence_limit": "No lane completed all three stages, so this round is failure-mode evidence and creates no speed or effectiveness ratio.",
+      "id": "workspace-security-recovery",
+      "non_bos_tripups": "The beginner lane added role-aware screens and a workspace helper, but did not add workspace fields or workspace RLS to the four reporting schemas. The interface looked governed while backend isolation remained incomplete, and no restart-handover or rollback surface was available.",
+      "pivot": "The next change was security and recovery rather than another visible feature: every reporting record and operation had to stay inside one workspace and survive restart or rollback.",
+      "result": "The beginner app still built and reproduced the exact 88.5 golden score, but S4 and S5 were only partially verified and S6 blocked. Both BOS lanes stopped before product mutation on separate prerequisite failures.",
+      "title": "Turn a working reporting app into an isolated, recoverable product",
+      "trajectory": [
+        "Add workspace ownership and administrator, analyst and viewer boundaries.",
+        "Run independent role, workspace, export and provenance checks without silent repair.",
+        "Prove restart handover, rollback and synthetic-data cleanup."
+      ]
+    }
+  ],
+  "schema": "BOS_PUBLIC_APP_MATURATION_COMPARISON_V2",
+  "sources": [
+    "OS/VALIDATION/APP_MATURATION_THREE_WAY_CALIBRATION_PROTOCOL_20260729.json",
+    "OS/VALIDATION/APP_MATURATION_CURRENT_REVIEWED_MEASURE.json",
+    "OS/RECEIPTS/APP_MATURATION_THREE_LANE_S1_S3_AUTOMATED_EXECUTION_20260820.md",
+    "OS/VALIDATION/APP_MATURATION_REPORTING_CODEX_BOS_BENCHMARK_20260810.json",
+    "OS/VALIDATION/APP_MATURATION_REPORTING_S4_S6_RESULT_20260823.json",
+    "OS/RECEIPTS/APP_MATURATION_REPORTING_S4_S6_EXECUTION_20260823.md"
+  ],
   "status": "SINGLE_CAMPAIGN_PROVISIONAL",
   "summary": "A single live campaign compared mediated, matched direct and beginner-style development. It is evidence of observed behavior, not independent proof of general effectiveness.",
+  "supporting_calibration": {
+    "measurement_boundary": "The later lanes did not finish under equivalent conditions. They add correctness and failure-mode evidence, but they do not create a new speed multiplier.",
+    "status": "SUPPORTING_EVIDENCE_NO_NEW_RATIO",
+    "summary": "The second calibration showed Direct Base44 + BOS fully passing bulk retry and the late versioned-reporting pivot while the beginner-style lane missed exact version identity, immutable definitions, fingerprints and workspace boundaries. The S4\u2013S6 round then reproduced the workspace-boundary problem: the beginner app looked role-aware but still lacked backend workspace enforcement.",
+    "title": "Later reporting calibrations strengthened the correctness signal"
+  },
   "title": "Observed app-development calibration"
 }
