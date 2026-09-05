@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud BOS Support — safe help for Codex, Claude Code and Base44</title>
+  <meta name="description" content="Start Cloud BOS support safely for Codex, Claude Code or Base44 without sharing secrets, private source, raw logs or customer data.">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/bos-icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <style>
+    :root {
+      --ink: #13201c;
+      --muted: #5a6862;
+      --paper: #f7f8f4;
+      --card: #fff;
+      --line: #d7dfda;
+      --green: #116b56;
+      --green-dark: #0a4438;
+      --green-soft: #e6f1ec;
+      --amber: #875d1a;
+      --amber-soft: #f8efdc;
+      --red: #9b3434;
+      --red-soft: #fff1ed;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at 86% 2%, rgba(17, 107, 86, .12), transparent 28rem), var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: var(--green); }
+    a:hover { color: var(--green-dark); }
+    .wrap { width: min(1040px, calc(100% - 36px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(19, 32, 28, .10);
+      background: rgba(247, 248, 244, .94);
+      backdrop-filter: blur(14px);
+    }
+    .nav { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 850; text-decoration: none; }
+    .brand img { width: 36px; height: 36px; border-radius: 9px; object-fit: cover; }
+    .nav-links { display: flex; align-items: center; gap: 18px; font-size: 14px; font-weight: 750; }
+    .nav-links a { color: var(--ink); text-decoration: none; }
+
+    .hero { padding: clamp(64px, 9vw, 104px) 0 52px; border-bottom: 1px solid var(--line); }
+    .eyebrow, .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .eyebrow { padding: 7px 11px; color: var(--green-dark); background: var(--green-soft); border: 1px solid rgba(17, 107, 86, .18); }
+    h1, h2, h3 { margin-top: 0; line-height: 1.08; letter-spacing: -.03em; }
+    h1 { max-width: 820px; margin: 18px 0 20px; font-size: clamp(43px, 7vw, 72px); }
+    h2 { margin-bottom: 12px; font-size: clamp(29px, 4.5vw, 44px); }
+    h3 { margin-bottom: 8px; font-size: 21px; }
+    p { color: var(--muted); }
+    .lede { max-width: 760px; margin: 0; font-size: clamp(18px, 2.4vw, 23px); color: #304039; }
+    .host-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
+    .pill { padding: 7px 11px; color: var(--green-dark); background: var(--card); border: 1px solid var(--line); }
+
+    section { padding: 58px 0; }
+    section + section { border-top: 1px solid var(--line); }
+    .section-intro { max-width: 720px; margin-bottom: 26px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+    .card p { margin-bottom: 0; }
+    .card strong { color: var(--ink); }
+    .step { display: inline-grid; width: 32px; height: 32px; margin-bottom: 16px; place-items: center; border-radius: 9px; color: #fff; background: var(--green-dark); font-weight: 850; }
+
+    .safe-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr); gap: 18px; }
+    .checklist, .warning { padding: 24px; border-radius: 12px; }
+    .checklist { border: 1px solid var(--line); background: var(--card); }
+    .warning { border: 1px solid rgba(155, 52, 52, .22); background: var(--red-soft); }
+    ul { margin: 12px 0 0; padding-left: 22px; }
+    li { margin: 8px 0; color: #304039; }
+    code { padding: 2px 5px; border-radius: 5px; background: #edf1ee; font-size: .92em; }
+
+    .continuity { padding: 24px; border: 1px solid rgba(135, 93, 26, .24); border-radius: 12px; background: var(--amber-soft); }
+    .continuity p:last-child { margin-bottom: 0; }
+    .contact { padding: 26px; border: 1px solid rgba(17, 107, 86, .24); border-radius: 12px; background: var(--green-soft); }
+    .contact p { max-width: 760px; color: #304039; }
+    .contact p:last-child { margin-bottom: 0; }
+
+    footer { padding: 28px 0; border-top: 1px solid var(--line); background: #eef2ef; }
+    .footer-row { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    @media (max-width: 760px) {
+      .grid, .safe-summary { grid-template-columns: 1fr; }
+      .nav-links a:first-child { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html, *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="Cloud BOS home">
+        <img src="assets/brand/bos-icon-64.png" width="36" height="36" alt="" aria-hidden="true">
+        <span>Cloud BOS Support</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Base44 setup</a>
+        <a href="#contact">Get help</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Private beta support</span>
+        <h1>Get help without handing over your project.</h1>
+        <p class="lede">This is the public starting point for Cloud BOS support. Identify the environment and the kind of problem, share only compact status, and keep source code, credentials, raw logs and customer data private.</p>
+        <div class="host-row" aria-label="Cloud BOS version 1 environments">
+          <span class="pill">Codex</span>
+          <span class="pill">Claude Code</span>
+          <span class="pill">Base44</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="start-title">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2 id="start-title">Start with the smallest safe check</h2>
+          <p>Choose the path that matches what failed. A connection problem is different from project-governance drift or an application problem.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="step" aria-hidden="true">1</span>
+            <h3>Connection</h3>
+            <p>Run the read-only Cloud BOS connection check in your installed host. Record the broad transport result and whether the platform is connected.</p>
+          </article>
+          <article class="card">
+            <span class="step" aria-hidden="true">2</span>
+            <h3>Project governance</h3>
+            <p>Record whether the project is unbound, governed, stale or drifted. Do not repair, remove or overwrite governance until an exact current plan is approved.</p>
+          </article>
+          <article class="card">
+            <span class="step" aria-hidden="true">3</span>
+            <h3>Application behavior</h3>
+            <p>Confirm whether the application still opens and its ordinary data path still works. Cloud BOS is build-time guidance and must not become an application runtime dependency.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="summary-title">
+      <div class="wrap safe-summary">
+        <div class="checklist">
+          <h2 id="summary-title">Prepare a privacy-safe summary</h2>
+          <p>Include only what support needs to route the issue:</p>
+          <ul>
+            <li>environment: Codex, Claude Code or Base44;</li>
+            <li>installed Cloud BOS plugin version, when visible;</li>
+            <li>issue category: connection, governance, entitlement, billing or availability;</li>
+            <li>compact states such as <code>transport_status</code>, <code>platform_connection_state</code> and <code>project_governance_state</code>;</li>
+            <li>a privacy-safe receipt or incident reference, if one was created.</li>
+          </ul>
+        </div>
+        <aside class="warning" aria-labelledby="never-send-title">
+          <h3 id="never-send-title">Never send</h3>
+          <ul>
+            <li>passwords, API keys, access tokens or private keys;</li>
+            <li>private source code or full prompts;</li>
+            <li>raw logs, database exports or screenshots with private data;</li>
+            <li>customer, student, employee or tenant records;</li>
+            <li>Master BOS, LDP:FULL, DevPack or private governance internals.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section aria-labelledby="continuity-title">
+      <div class="wrap">
+        <div class="continuity">
+          <h2 id="continuity-title">If Cloud BOS is unavailable</h2>
+          <p>Your application should continue to operate. Pause governed writes, keep the last verified project state, and record a compact availability issue. Do not weaken authentication, paste a token into source, or replace an approved governance plan to work around an outage.</p>
+          <p>Removing a host connection, workspace skill or project-governance projection must be handled separately and must preserve the application, its data and its normal runtime behavior.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact">
+          <h2 id="contact-title">Contact and escalation</h2>
+          <p>Use the support handoff supplied with your private-beta access and include the privacy-safe summary above. This website is the canonical support starting point; a public form or email address will be added only after its delivery and privacy controls are verified.</p>
+          <p>For suspected credential exposure, cross-tenant access or destructive mutation, stop using the affected Cloud BOS connection and escalate it as a critical incident through that handoff.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>Cloud BOS · public support preview</span>
+      <span class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="policies/privacy.html">Privacy</a>
+        <a href="policies/terms.html">Terms</a>
+        <a href="policies/acceptable-use.html">Acceptable use</a>
+        <a href="policies/data-processing-summary.html">Data boundary</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

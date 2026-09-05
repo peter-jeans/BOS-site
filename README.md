@@ -1,4 +1,8 @@
-# Site temporarily offline
+# Cloud BOS public website
 
-The public site is intentionally unavailable. Its prior published state is
-preserved in repository history for controlled restoration by the owner.
+Static capability explanations, tier and development-environment comparisons,
+and onboarding guidance for Base44, Codex and Claude Code.
+
+Published at https://peter-jeans.github.io/BOS-site/ from the main branch.
+Plugin installation and production connection links remain pending.
+Policy pages are labelled drafts; this publication does not enable purchases.
