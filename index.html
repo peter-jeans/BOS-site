@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cloud BOS — Keep your AI build on track</title>
-  <meta name="description" content="Understand BOS drift protection, early warnings, project memory and cross-app learning. Compare tiers and delivery in Base44, Codex and Claude Code, then explore your setup guide.">
+  <meta name="description" content="Help your coding AI remember the plan, spot risky changes and check its work. Explore the Early Warning System, Project Memory and BOS tiers for Base44, Codex and Claude Code.">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/bos-icon-192.png">
@@ -475,22 +475,23 @@
         <div>
           <span class="eyebrow">BOS for AI-assisted app development</span>
           <h1>Keep your AI build<br>on track.</h1>
-          <p class="lede">Keep project decisions in view, catch changes that drift from the plan, and check whether a repair really worked. BOS brings context, targeted checks and evidence into your coding workflow.</p>
+          <p class="lede">BOS helps your coding AI remember the plan, spot risky changes and check its work—so you can make clearer decisions about what to build next.</p>
+          <p>AI can build quickly, but it can also forget decisions, change more than you asked, or declare a fix finished too soon.</p><p><strong>Remember the plan · Catch problems earlier · Check the result</strong></p>
           <nav class="hero-actions" aria-label="Explore BOS">
             <a class="button primary" href="#benefits">What BOS helps you do</a>
-            <a class="button" href="#environments">Find your environment</a>
+            <a class="button" href="#environments">Find your coding tool</a>
           </nav>
-          <p><a href="#tiers">Compare tiers</a> · Setup guides: <a href="#setup">Base44</a>, <a href="#codex">Codex</a>, <a href="#claude-code">Claude Code</a></p>
+          <p><a href="#tiers">Compare tiers</a> · Setup guides: <a href="setup.html#setup">Base44</a>, <a href="setup.html#codex">Codex</a>, <a href="setup.html#claude-code">Claude Code</a></p>
         </div>
 
         <aside class="overview" aria-label="Setup overview">
-          <span class="status">Production connection pending</span>
+          <span class="status">Private beta · Public release pending</span>
           <ol>
-            <li><span class="number">1</span><span><strong>Connect your tool</strong><span>Follow the guide for your development environment.</span></span></li>
-            <li><span class="number">2</span><span><strong>Check the connection</strong><span>Confirm Cloud BOS can identify the current project.</span></span></li>
-            <li><span class="number">3</span><span><strong>Govern each project</strong><span>Review and approve a separate setup plan.</span></span></li>
+            <li><span class="number">1</span><span><strong>Connect BOS</strong><span>Sign in through your coding tool and check the connection.</span></span></li>
+            <li><span class="number">2</span><span><strong>Approve setup for your app</strong><span>Review what BOS proposes to add before anything changes.</span></span></li>
+            <li><span class="number">3</span><span><strong>Check that BOS is working</strong><span>Verify setup in that specific app before relying on its guidance.</span></span></li>
           </ol>
-          <p class="release-note">Setup preview: public installation links and the production connection will appear here when released. These instructions do not yet enable a public installation.</p>
+          <p class="release-note">Available to invited beta testers. Features vary by tier and coding tool; some are still being tested. Public installation is not open yet. <a href="support.html#contact">Beta access and support</a>.</p>
         </aside>
       </div>
     </section>
@@ -499,36 +500,37 @@
       <div class="wrap">
         <div class="section-intro">
           <h2 id="benefits-title">What changes when you build with BOS?</h2>
-          <p>Less context to reconstruct. Clearer reasons to pause. Better evidence before you call a change finished. Open a benefit to see an example, the output and its availability.</p>
+          <p>Less time explaining the project again. Earlier notice of risky changes. A clearer answer to “did the fix work?” Open a capability for an example and its current availability.</p>
         </div>
         <div class="benefit-grid">
           <details class="benefit" id="benefit-drift" data-benefit="drift-protection">
-            <summary><span class="benefit-title">Keep changes aligned with your app</span><span class="benefit-lede">Drift protection helps catch a small request turning into an unintended change of rules, data or scope.</span><span class="detail-hint">Explore drift protection</span></summary>
-            <div class="detail-body"><p>BOS checks the proposed work against the app's purpose, current state and agreed boundaries. Project history helps carry those decisions into later sessions.</p><p class="example"><strong>For example:</strong> you ask for a simpler booking screen. If the proposed change also alters cancellation rules or access to bookings, BOS can flag the mismatch and narrow the work.</p><p><strong>You receive:</strong> the specific mismatch, why it matters, and the next check or change needed.</p><p class="availability">Standard provides baseline review and safety checks. Plus adds persistent history and deeper drift validation. The checks your environment can execute are shown below.</p></div>
+            <summary><span class="benefit-title">Keep Your Build on Track</span><span class="benefit-lede">A small request can accidentally turn into a bigger change. BOS helps check that the AI stays within what you agreed.</span><span class="detail-hint">See an example and availability</span></summary>
+            <div class="detail-body"><p>BOS compares proposed changes with your app’s purpose, requirements and previous decisions. It can flag changes to rules or data that you did not ask for.</p><p class="example"><strong>For example:</strong> You ask for a simpler booking screen. The AI also proposes changing cancellation rules. BOS can flag that extra change before you proceed.</p><p><strong>You receive:</strong> The mismatch, why it matters and a suggested next step.</p><p class="availability">Standard: basic review and safety checks. Plus: saved history and deeper checks against earlier decisions. What can run depends on your coding tool and setup.</p></div>
           </details>
           <details class="benefit" id="benefit-memory" data-benefit="project-memory">
-            <summary><span class="benefit-title">Pick up where you left off</span><span class="benefit-lede">Project memory keeps decisions, unfinished work and the reason behind your app's design available for the next session.</span><span class="detail-hint">Explore project memory</span></summary>
-            <div class="detail-body"><p>BOS uses saved project records to bring the specification, accepted decisions, build intentions and verification history back into view. It checks the current records instead of relying on chat recollection.</p><p class="example"><strong>For example:</strong> return to an app next week and see why one save path was chosen, what has passed testing and which work is still outstanding.</p><p><strong>You receive:</strong> a grounded starting point and a clear next action, with the relevant project decisions available to the coding agent.</p><p class="availability">Plus includes persistent project governance and remembered project history. Basic project documents are available in the setup workflow. Cross-computer sync and restore are separate Pro features whose delivery is still being verified.</p></div>
+            <summary><span class="benefit-title">Project Memory</span><span class="benefit-lede">Return to a project without explaining everything again. Keep important decisions, unfinished work and previous test results in view.</span><span class="detail-hint">See an example and availability</span></summary>
+            <div class="detail-body"><p>BOS uses saved project records to help your coding AI pick up the work. It checks what those records actually say instead of relying on the previous conversation.</p><p class="example"><strong>For example:</strong> Come back next week and see why a particular save method was chosen, what passed testing and what still needs doing.</p><p><strong>You receive:</strong> A clear starting point, relevant decisions and the next unfinished task.</p><p class="availability">Plus: lasting project history. Basic project documents are part of setup. Pro’s planned ability to sync and restore across computers still needs verification.</p></div>
           </details>
           <details class="benefit" id="benefit-warnings" data-benefit="early-warnings">
-            <summary><span class="benefit-title">See developing risks sooner</span><span class="benefit-lede">Early warnings make stale state, recurring regressions and missing proof visible while work is underway.</span><span class="detail-hint">Explore early warnings</span></summary>
-            <div class="detail-body"><p>BOS can identify risks such as an outdated starting point, conflicting edits, access-control concerns or a mismatch between saved code and the running app. Advanced build verification records the warning separately from the builder's claim and the independent check.</p><p class="example"><strong>For example:</strong> the builder says a repair is complete, but the running app has not been checked. BOS keeps that missing proof visible and identifies the readback needed.</p><p><strong>You receive:</strong> a warning, its evidence and an appropriate next step: pause, investigate, obtain proof or repair.</p><p class="availability">Basic safety warnings apply across tiers. The advanced warning and build-verification workflow currently falls under Pro and has local test evidence; host-specific delivery and real-world effectiveness remain under verification. BOS does not predict every failure.</p></div>
+            <summary><span class="benefit-title">Early Warning System</span><span class="benefit-lede">Spot signs that your AI build is going off track, such as conflicting changes, forgotten requirements or fixes that haven’t been tested.</span><span class="detail-hint">See an example and availability</span></summary>
+            <div class="detail-body"><p>BOS helps identify problems while you build and explains why they matter. A warning may suggest checking a result, investigating a conflict or pausing a risky change.</p><p class="example"><strong>For example:</strong> The AI says saving is fixed, but nobody has checked whether the information survives reopening the app. BOS keeps that missing check visible.</p><p><strong>You receive:</strong> A clear warning, what prompted it and a suggested next step.</p><p class="availability">All tiers: basic safety warnings. Pro: advanced warnings and checks have passed local tests; delivery in each coding tool and effectiveness in real builds are still being tested. BOS cannot predict every failure.</p></div>
           </details>
           <details class="benefit" id="benefit-proof" data-benefit="verified-repairs">
-            <summary><span class="benefit-title">Know what actually passed</span><span class="benefit-lede">Verification separates “the AI says it is fixed” from inspected changes, test results and observed behavior.</span><span class="detail-hint">Explore testing and repair evidence</span></summary>
-            <div class="detail-body"><p>BOS narrows a broken flow into a checkable problem, defines the evidence required and records what passed. An equipped coding environment can run app tests and representative user journeys; a suggested check alone is not a result.</p><p class="example"><strong>For example:</strong> after a save-flow repair, check that data survives reopening the app, invalid input is handled and the change has not broken a related flow.</p><p><strong>You receive:</strong> a change-and-test record showing completed checks, unresolved issues and anything still awaiting live verification.</p><p class="availability">Standard includes baseline verification guidance and testing components where installed. Plus adds retained build evidence and history. Pro adds advanced coordinated verification. Every tier keeps basic safety checks.</p></div>
+            <summary><span class="benefit-title">Check That the Fix Worked</span><span class="benefit-lede">An AI saying “fixed” is only a starting point. Define what needs testing and see which checks actually passed.</span><span class="detail-hint">See an example and availability</span></summary>
+            <div class="detail-body"><p>BOS helps turn a reported problem into a focused repair and test plan. Your coding tool runs the checks it supports; BOS helps keep the results and remaining gaps clear.</p><p class="example"><strong>For example:</strong> After repairing saving, test reopening the app, invalid entries and a related screen to check that the change did not break something else.</p><p><strong>You receive:</strong> What changed, what passed, what failed and what still needs checking in the running app.</p><p class="availability">Standard: basic test guidance and checks where the required tools are installed. Plus: retained test history. Pro: help coordinating more complex checks.</p></div>
           </details>
           <details class="benefit" id="benefit-platform" data-benefit="platform-feasibility">
-            <summary><span class="benefit-title">Check the platform before committing</span><span class="benefit-lede">Find out whether your chosen environment can support the behavior your app needs.</span><span class="detail-hint">Explore platform checks</span></summary>
-            <div class="detail-body"><p>BOS brings platform constraints into planning and identifies what requires a device test, a different design or a fallback. Design, security and data-ownership checks help keep the proposed solution coherent.</p><p class="example"><strong>For example:</strong> before building a feature that relies on background location or phone notifications, identify the platform limits and the device evidence needed.</p><p><strong>You receive:</strong> a requirement-specific constraint, a test or proof requirement, and a feasible next step.</p><p class="availability">Standard includes baseline platform guidance. Pro adds advanced environment coordination and migration assessment. Device support must be established for the actual app.</p></div>
+            <summary><span class="benefit-title">Check Platform Fit</span><span class="benefit-lede">Find features that may need a different approach on your chosen platform before spending time building them.</span><span class="detail-hint">See an example and availability</span></summary>
+            <div class="detail-body"><p>BOS helps identify platform limits and the device tests needed to confirm support. It can suggest a different design or a fallback when the original approach is unsuitable.</p><p class="example"><strong>For example:</strong> Before building phone notifications, check whether they can work when the screen is locked—and test that behaviour on an actual phone.</p><p><strong>You receive:</strong> The relevant limitation, what needs testing and a practical next step.</p><p class="availability">Standard: basic platform guidance. Pro: deeper planning across coding tools and assessment of a move to another platform. Support must be checked for your actual app and devices.</p></div>
           </details>
           <details class="benefit" id="benefit-learning" data-benefit="cross-app-learning">
-            <summary><span class="benefit-title">Carry useful lessons into the next build</span><span class="benefit-lede">Cross-app learning can turn a verified repair into reviewed guidance for another eligible project.</span><span class="detail-hint">Explore cross-app learning</span></summary>
-            <div class="detail-body"><p>A verified outcome can become an abstract lesson about the problem, intervention and required checks. A governed reviewer decides whether it is suitable for reuse. Another app receives it only when the context fits and must verify its own result.</p><p class="example"><strong>For example:</strong> a reviewed lesson about duplicate processing on retries could help another app check a similar flow.</p><p><strong>You receive:</strong> a relevant pattern, its prerequisites and verification requirements. Collecting a signal alone does not prove that a lesson worked elsewhere.</p><p class="availability">Pro includes privacy-bounded cross-app learning. Its delivery is in active testing and needs the appropriate app integration. Shared learning payloads exclude raw source, private conversations and customer data.</p></div>
+            <summary><span class="benefit-title">Learn from Proven Fixes</span><span class="benefit-lede">Use reviewed lessons from successful repairs to help with similar problems in another app.</span><span class="detail-hint">See an example and availability</span></summary>
+            <div class="detail-body"><p>A reviewer checks whether a lesson is suitable to share without private project material. Another app receives it only when relevant and must still test its own result.</p><p class="example"><strong>For example:</strong> A retry caused duplicate actions in another app. A reviewed lesson can help you check whether your app has the same risk.</p><p><strong>You receive:</strong> A relevant lesson, when it applies and the checks needed before relying on it.</p><p class="availability">Pro: in active testing; each app needs the appropriate setup. Shared lessons exclude raw source code, private conversations and customer data.</p></div>
           </details>
+          <details class="benefit" id="benefit-specialists" data-benefit="expert-review"><summary><span class="benefit-title">Expert AI Review</span><span class="benefit-lede">Bring specialist AI perspectives to a difficult change, helping you consider risks and options before proceeding.</span><span class="detail-hint">See an example and availability</span></summary><div class="detail-body"><p>A person supervises the review and decides what happens next. The aim is to surface concerns that one perspective might miss.</p><p class="example"><strong>For example:</strong> review a complex change from security, usability and testing perspectives before building it.</p><p><strong>You receive:</strong> additional perspectives, concerns and suggested checks.</p><p class="availability">Pro: being tested in Codex with human supervision. Equivalent specialist workflows have not yet been verified in Base44 or Claude Code.</p></div></details>
         </div>
         <p class="availability">Examples illustrate how BOS is intended to help; they are not claims that those particular apps have been tested. Feature delivery depends on your tier, installed components and development environment.</p>
-        <div class="compare-links"><a href="#tiers">Compare tiers</a><a href="#environments">Compare development environments</a><a href="#capability-families">Explore all capability families</a></div>
+        <div class="compare-links"><a href="#tiers">Compare tiers</a><a href="#environments">Compare development environments</a><a href="#capability-families">Explore all capabilities</a></div>
       </div>
     </section>
 
@@ -537,308 +539,101 @@
         <div class="section-intro">
           <h2 id="tiers-title">Choose the depth of help you need</h2>
           <p>Start with guidance for the current task. Add lasting project history, then coordinated work and reviewed learning across projects. Each tier includes the one before it.</p>
-          <p class="release-note"><strong>Public release pending.</strong> These are the existing BOS tiers. Features have different delivery stages, and a plugin connection alone does not enable every feature. Check the environment comparison and availability details before choosing.</p>
+          <p class="release-note"><strong>Public release pending.</strong> Access is by invitation. A tier describes the help you may access; it does not mean every capability is ready in every coding tool. Check the availability below. <a href="policies/trial-billing.html">See private-beta pricing and access conditions</a>. Self-service checkout is not live.</p>
         </div>
         <div class="tier-table-wrap" role="region" aria-label="BOS tier comparison" tabindex="0">
           <table class="tier-table">
-            <caption>What each BOS tier unlocks</caption>
+            <caption>What each tier includes in its scope</caption>
             <thead><tr><th scope="col">Tier</th><th scope="col">What it helps you do</th><th scope="col">When it becomes useful</th></tr></thead>
             <tbody>
-              <tr data-tier="STANDARD" data-profile="STANDARD_PROFILE"><th scope="row">Standard<span class="tier-label">Available in private beta</span></th><td><p><strong>Build with a clearer next step.</strong></p><p>Understand the app, find gaps, review risky or drifting changes, prepare a focused build plan and define the checks needed to verify it.</p><a href="#tier-standard-details">Explore Standard</a></td><td>“Before changing login, show what could break and how we will check the fix.”</td></tr>
-              <tr data-tier="PLUS" data-profile="PLUS_PROFILE"><th scope="row">Plus<span class="tier-label">Available in private beta</span></th><td><p><strong>Keep the project coherent over time.</strong></p><p>Add persistent project memory, remembered projects, decisions and build history, deeper drift checks, lifecycle validation and recovery planning.</p><a href="#tier-plus-details">Explore Plus</a></td><td>“Resume the app next week, keep our decisions in view and show what remains unfinished.”</td></tr>
-              <tr data-tier="PRO" data-profile="PRO_PROFILE"><th scope="row">Pro<span class="tier-label">In active testing</span></th><td><p><strong>Coordinate more demanding development.</strong></p><p>Add advanced build assistance, specialist and multi-agent workflows, environment coordination, reviewed cross-app learning and portability or rescue assessment.</p><a href="#tier-pro-details">Explore Pro</a></td><td>“Plan a complex change, flag developing risks, get specialist review and apply relevant verified lessons.”</td></tr>
-              <tr data-tier="ENTERPRISE" data-profile="ENTERPRISE_PROFILE"><th scope="row">Enterprise<span class="tier-label">Planned</span></th><td><p><strong>Govern delivery across an organisation.</strong></p><p>Add shared policies, reviewer roles, audit history, compliance frameworks and oversight across teams and projects as these features become available.</p><a href="#tier-enterprise-details">Explore Enterprise</a></td><td>“Show which projects meet our release policy, what proof is missing and who can review it.”</td></tr>
+              <tr data-tier="STANDARD" data-profile="STANDARD_PROFILE"><th scope="row">Standard<span class="tier-label">Available in private beta</span></th><td><p><strong>Guidance for the task.</strong></p><p>Understand your app, spot gaps, review risky changes and decide what to build and test next.</p><a href="#tier-standard-details">Explore Standard</a></td><td>“Before changing login, show what could break and how we will check the fix.”</td></tr>
+              <tr data-tier="PLUS" data-profile="PLUS_PROFILE"><th scope="row">Plus<span class="tier-label">Available in private beta</span></th><td><p><strong>Continuity across the project.</strong></p><p>Remember decisions and unfinished work, keep test history, check changes against the project plan and prepare for recovery.</p><a href="#tier-plus-details">Explore Plus</a></td><td>“Resume the app next week, keep our decisions in view and show what remains unfinished.”</td></tr>
+              <tr data-tier="PRO" data-profile="PRO_PROFILE"><th scope="row">Pro<span class="tier-label">In active testing</span></th><td><p><strong>Help with complex development.</strong></p><p>Get specialist AI perspectives, plan work across coding tools, learn from reviewed fixes and assess difficult repairs or platform moves.</p><a href="#tier-pro-details">Explore Pro</a></td><td>“Plan a complex change, flag developing risks, get specialist review and apply relevant verified lessons.”</td></tr>
+              <tr data-tier="ENTERPRISE" data-profile="ENTERPRISE_PROFILE"><th scope="row">Enterprise<span class="tier-label">Planned</span></th><td><p><strong>Planned oversight across teams.</strong></p><p>Help teams follow shared rules, organise reviews and see which projects still need checks before release, as these planned features become available.</p><a href="#tier-enterprise-details">Explore Enterprise</a></td><td>“Show which projects meet our release policy, what proof is missing and who can review it.”</td></tr>
             </tbody>
           </table>
         </div>
         <p class="table-help">On a small screen, scroll the table sideways. Open a tier below for its detailed scope.</p>
-        <details class="tier-details" id="tier-standard-details" data-tier-detail="STANDARD">
-          <summary>Standard — guidance, focused checks and baseline safety</summary>
-          <div class="detail-body"><p>Start with app intake and health summaries, gap detection, a project-specification template, manual build guidance, scoped prompts and verification expectations. Get explanations at a depth that fits you.</p><p>Design, usability, platform, security and code-structure guidance can inform the current task. Your installed tools determine which checks can actually run. Basic target, access, security and verification safeguards are retained at every tier.</p><p>You can use BOS manually on different projects. Standard does not include long-term cloud history, automatic scan orchestration or cross-project intelligence.</p></div>
-        </details>
-        <details class="tier-details" id="tier-plus-details" data-tier-detail="PLUS">
-          <summary>Plus — project memory, deeper checks and continuity</summary>
-          <div class="detail-body"><p>Keep multiple projects and their history: specifications, accepted decisions, unfinished build intentions, changes and evidence. Use saved preferences so BOS continues communicating in the way you need.</p><p>Deeper validation checks whether project records remain consistent, whether setup/change/verification steps have been followed, and which approved source governs a change. Evolution and governance-effectiveness reporting make progress and gaps visible.</p><p>Recovery planning and governance-memory backups require the appropriate project integration. Remembered project history is distinct from backing up app databases or restoring work on another computer. Plus does not include continuous unattended operation.</p></div>
-        </details>
-        <details class="tier-details" id="tier-pro-details" data-tier-detail="PRO">
-          <summary>Pro — early warnings, reviewed learning and coordinated work</summary>
-          <div class="detail-body"><p>Bring specialist perspectives into a difficult decision, coordinate bounded work across available coding tools, and use deeper project intelligence. Advanced warning and build-verification workflows make risks and evidence visible during a build.</p><p>Cross-app learning captures verified, privacy-safe lessons for review and appropriate reuse. Portability and rescue capabilities help assess dependencies, plan a migration or scope the repair of a broken app.</p><p>The Pro tier also includes cross-computer capsule sync/restore, project dashboards and timelines, automatic scan recommendations and scheduled snapshots in its product scope. <strong>These are not all delivered by the current public plugin.</strong> Local memory reconstruction is in pilot; cross-host restore, unattended execution and feature parity need their own verification. Current specialist orchestration is attended.</p></div>
-        </details>
-        <details class="tier-details" id="tier-enterprise-details" data-tier-detail="ENTERPRISE">
-          <summary>Enterprise — shared policies, review and audit across teams</summary>
-          <div class="detail-body"><p>Enterprise extends the model to organisation policies, custom governance frameworks, reviewer access, audit trails, team administration, cross-team reporting and private integrations.</p><p><strong>Planned:</strong> these require their own organisation features and verified delivery. The current public plugin can plan policy and portfolio checks; it does not itself enforce company-wide policy or certify compliance. Project metrics must remain separate from individual developer scoring.</p></div>
-        </details>
+        <details class="tier-details" id="tier-standard-details" data-tier-detail="STANDARD"><summary>Standard — guidance for the task</summary><div class="detail-body"><p>Describe the app, find gaps, prepare a project brief and turn the next task into focused instructions for your coding AI. Agree how the result will be tested before calling it complete.</p><p>Get guidance on design, usability, security, platform limits and code structure. Your installed tools determine which checks can run. Basic checks of the target app, access and test results apply at every tier.</p><p>You can use BOS manually on different projects. Standard does not include long-term cloud history, automatic coordination of scans or lessons drawn across projects.</p></div></details>
+        <details class="tier-details" id="tier-plus-details" data-tier-detail="PLUS"><summary>Plus — keep the project’s history and direction</summary><div class="detail-body"><p>Keep requirements, accepted decisions, unfinished work, changes and test results across sessions and projects. Saved preferences help BOS explain things in the way you need.</p><p>Deeper checks look for conflicting records, missed setup or review steps, and changes that depart from approved decisions. Reports show progress and gaps in how the project is being managed.</p><p>Recovery planning and backups of BOS project records require additional setup. Remembering a project does not back up its database or restore it on another computer. Plus does not include continuous work without human supervision.</p></div></details>
+        <details class="tier-details" id="tier-pro-details" data-tier-detail="PRO"><summary>Pro — help with more complex development</summary><div class="detail-body"><p>Get specialist AI perspectives, plan work across available coding tools and use advanced warnings and checks during a build. Current specialist work is supervised by a person.</p><p>Use reviewed lessons from verified repairs, with private information excluded. Assess what ties an app to its platform, plan a move or investigate a broken app.</p><p>Pro’s scope also includes syncing and restoring project records across computers, dashboards, timelines, automatic suggestions for scans and scheduled snapshots. <strong>These are not all delivered by the current public plugin.</strong> Rebuilding project memory from saved records is being tested locally. Restore across computers, work without supervision and equivalent support in each coding tool still need verification.</p></div></details>
+        <details class="tier-details" id="tier-enterprise-details" data-tier-detail="ENTERPRISE"><summary>Enterprise — planned oversight across teams</summary><div class="detail-body"><p>Planned features include shared project rules, reviewer permissions, review history, team administration, reporting across projects and private integrations.</p><p>The current plugin can help plan checks against company policies. It does not enforce those policies across an organisation or certify compliance. These broader features still need to be built and verified. Project reporting is separate from scoring individual developers.</p></div></details>
         <details class="tier-details" id="tier-access">
-          <summary>How do tiers, installation and access work together?</summary>
-          <div class="detail-body"><p>Your BOS tier determines which capabilities you may access. Your development environment, installed components and verified project setup determine how they can be delivered. An included capability may still be in testing or unavailable in a particular environment.</p><p>There is one public plugin. Changing tiers does not require reinstalling the plugin or your project's governance. A recommendation to upgrade does not change your access. No tier grants permission to change or publish an app automatically.</p><p>Platform subscriptions, hosting and model usage remain separate. The setup guides will provide public installation destinations when released.</p></div>
+          <summary>Does connecting the plugin turn everything on?</summary>
+          <div class="detail-body"><p>No. BOS checks your access, the features supported by your coding tool and the setup of the specific project. A capability included in your tier may still be in testing or unavailable in your tool.</p><p>There is one public plugin. Changing tiers does not require reinstalling the plugin or your project’s BOS setup. A recommendation to upgrade does not change your access. No tier grants permission to change or publish an app automatically.</p><p>Platform subscriptions, hosting and model usage remain separate. The setup guides will provide public installation destinations when released.</p></div>
         </details>
       </div>
     </section>
 
     <section id="environments" aria-labelledby="environments-title">
       <div class="wrap">
-        <div class="section-intro"><h2 id="environments-title">How will BOS work in your environment?</h2><p>Your coding environment performs the edits and tests. BOS brings the applicable project context, checks and workflow. The same tier can therefore be delivered differently in each environment.</p></div>
+        <div class="section-intro"><h2 id="environments-title">How will BOS work in your environment?</h2><p>Your coding tool edits the app and runs tests. BOS helps it use the project’s decisions and choose the right checks. Here is what is available, what needs setup and what still needs testing.</p></div>
         <p id="environment-scope"><strong>Local features need local installation.</strong> The Codex and Claude Code columns assume a project with the appropriate BOS Local Development Pack installed and activated. Connecting the public plugin alone does not install these components. Base44 here means its native AI app builder.</p>
         <div class="tier-table-wrap" role="region" aria-label="Development environment comparison" tabindex="0">
           <table class="tier-table environment-table" aria-describedby="environment-scope">
-            <caption>Delivery and current evidence by environment</caption>
+            <caption>What can I use, and what still needs testing?</caption>
             <thead><tr><th scope="col">What you want to do</th><th scope="col" data-environment="BASE44">Base44 BuildAI</th><th scope="col" data-environment="CODEX">Codex + local BOS</th><th scope="col" data-environment="CLAUDE_CODE">Claude Code + local BOS</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Connect BOS</th><td>Account connection plus workspace skill. Native setup acceptance is still pending in the reviewed beta.</td><td>Plugin connection tested in an isolated live setup. Public production release remains pending.</td><td>Plugin connection tested in an isolated live setup. Public production release remains pending.</td></tr>
-              <tr><th scope="row">Keep scope and decisions in view</th><td>Guided review through the app's specification, build intentions and governance documents. Verify setup for each app.</td><td>Local records and repository inspection support project continuity and checks against the agreed change.</td><td>Repository-based guidance and shared local components. Each BOS workflow needs separate Claude verification.</td></tr>
-              <tr><th scope="row">Reconstruct project memory</th><td>Existing app documents support continuity. The newer dedicated memory-reconstruction adapter is not yet built.</td><td>Local memory reconstruction is in pilot, with fresh-session and independent-app evidence. Cross-host restore remains unverified.</td><td>Shared memory runtime is implemented; a genuine Claude session test remains pending.</td></tr>
-              <tr><th scope="row">Run checks and verify repairs</th><td>BuildAI and approved app adapters perform available work. Running-app and device behavior need their own checks.</td><td>Installed local runners can test actual app logic and journeys. Advanced warning and verification workflows have local test evidence.</td><td>The coding agent can use its installed testing tools. Equivalent BOS workflow execution has not been established for every feature.</td></tr>
-              <tr><th scope="row">Coordinate specialists</th><td>Advisory guidance; the local multi-agent pilot is not a native BuildAI executor.</td><td>Attended specialist-review and governed-agent pilot routes are available subject to their gates.</td><td>Equivalent BOS orchestration pilot evidence is not yet established.</td></tr>
-              <tr><th scope="row">Reuse lessons across apps</th><td>Requires an app-specific learning integration and verified, privacy-safe outcomes.</td><td>Local capture and review workflows exist. Each connected app still needs verified transport and reuse evidence.</td><td>Capture, review, retrieval and receiving-app verification need host-specific evidence.</td></tr>
-            </tbody>
+<tr><th scope="row">Connect BOS</th><td>Needs an account connection and a skill in the selected workspace. Complete setup in the native Base44 builder is still being verified in the beta.</td><td>The plugin connection has been tested in a separate beta setup. Public installation is not open yet.</td><td>The plugin connection has been tested in a separate beta setup. Public installation is not open yet.</td></tr>
+<tr><th scope="row">Keep the build on track</th><td>Uses the app’s requirements, planned work and saved BOS documents. Setup must be checked for each app.</td><td>Uses local project records and code inspection to check work against agreed decisions.</td><td>Uses local project records and shared BOS components. Each workflow still needs its own Claude Code test.</td></tr>
+<tr><th scope="row">Pick up previous work</th><td>Existing app documents help preserve context. The newer feature for rebuilding project memory is not yet built for native Base44.</td><td>Rebuilding memory from saved records has been tested in fresh sessions and another app. Restoring across coding tools is not yet verified.</td><td>The shared memory component is implemented. Its use in a real Claude Code session has not yet been verified.</td></tr>
+<tr><th scope="row">Check the fix</th><td>BuildAI and approved app connections carry out supported checks. The running app and phone behaviour still need testing.</td><td>Installed test tools can check app logic and user journeys. Advanced warning and verification features have passed local tests.</td><td>Claude Code can use its installed test tools. Not every BOS checking workflow has been verified here.</td></tr>
+<tr><th scope="row">Get expert AI review</th><td>BOS can help plan a review. It does not yet organise the local specialist AI workflow inside BuildAI.</td><td>Being tested with a person supervising. Specialist AI reviewers contribute perspectives; the person decides what happens next.</td><td>Equivalent specialist AI workflows have not yet been verified in Claude Code.</td></tr>
+<tr><th scope="row">Learn from proven fixes</th><td>Needs additional setup for each app and verified results that are safe to share.</td><td>Local tools can collect and review lessons. Sharing and successfully using them must still be verified for each connected app.</td><td>Collecting, reviewing, finding and successfully using lessons still need to be verified in Claude Code.</td></tr>
+</tbody>
           </table>
         </div>
         <p class="table-help">Scroll sideways to compare all three environments on a smaller screen. “Tested” applies to the named setup or component, not every feature or app.</p>
-        <details class="tier-details" id="environment-details"><summary>What do “guided”, “local” and “pending verification” mean?</summary><div class="detail-body"><p><strong>Guided:</strong> BOS helps choose the right work and proof; the coding agent or an approved adapter carries it out. <strong>Local:</strong> an installed project component can inspect files or execute checks using the tools available there. <strong>Pending verification:</strong> the required evidence for that host or feature is not yet established.</p><p>A Base44 app edited through a linked repository uses the Codex or Claude Code route for that repository work. The running Base44 app still needs its own readback. Claude Code includes its VS Code integration; ordinary Claude web chat is outside these setup guides.</p><p>Specific Base44 security/optimisation checks have target-bound live evidence. That does not verify every Base44 app or establish equivalent execution on another host. Enterprise organisation features remain planned across environments.</p></div></details>
-        <nav class="setup-nav" aria-label="Choose your development tool"><a class="button primary" href="#setup">Base44 setup guide</a><a class="button" href="#codex">Codex setup guide</a><a class="button" href="#claude-code">Claude Code setup guide</a></nav>
+        <details class="tier-details" id="environment-details"><summary>Why does support differ between coding tools?</summary><div class="detail-body"><p><strong>Guidance:</strong> BOS suggests work and checks; your coding tool carries them out. <strong>Local installation:</strong> additional BOS components in your project can inspect files or run supported checks. <strong>Not yet verified:</strong> we have not established that the particular feature works in that coding tool.</p><p>A Base44 app edited through a linked code repository uses the Codex or Claude Code setup for that work. Changes still need checking in the running Base44 app. Claude Code includes its VS Code extension; ordinary Claude web chat is outside these guides.</p><p>Some security and performance checks have been tested on specific Base44 apps. That does not establish support for all apps or other coding tools. Enterprise team features remain planned.</p></div></details>
+        <nav class="setup-nav" aria-label="Choose your development tool"><a class="button primary" href="setup.html#setup">Base44 setup guide</a><a class="button" href="setup.html#codex">Codex setup guide</a><a class="button" href="setup.html#claude-code">Claude Code setup guide</a></nav>
       </div>
     </section>
 
     <section id="more-capabilities" aria-labelledby="more-capabilities-title">
       <div class="wrap">
-        <div class="section-intro"><h2 id="more-capabilities-title">Go deeper when you need to</h2><p>Explore the wider capability catalogue or the current public plugin's technical scope. Setup instructions follow below.</p></div>
-        <details class="tier-details" id="capability-families"><summary>Explore all 17 capability families and their availability</summary><div class="detail-body"><p>A BOS capability can help during guided development while its reusable install pack is still being prepared. These are catalogue families, not a promise that every pack is ready to install.</p><div class="tier-table-wrap" role="region" aria-label="Capability family catalogue" tabindex="0"><table class="tier-table"><caption>Existing pack tiers and recorded availability</caption><thead><tr><th scope="col">Capability family</th><th scope="col">What it helps you do</th><th scope="col">Minimum tier</th><th scope="col">Availability</th></tr></thead><tbody>
-          <tr data-pack="engineering-correctness"><th scope="row">Engineering correctness</th><td>Check tricky timing, recurrence, path matching and redirects.</td><td>Standard</td><td>Being prepared</td></tr>
-          <tr data-pack="validation"><th scope="row">Validation</th><td>Check app health, user flows and completion evidence.</td><td>Standard</td><td>Being prepared</td></tr>
-          <tr data-pack="design-quality"><th scope="row">Design quality</th><td>Improve navigation, mobile usability and design consistency.</td><td>Standard</td><td>Being prepared</td></tr>
-          <tr data-pack="security"><th scope="row">Security</th><td>Identify risks and define evidence for safe behavior.</td><td>Standard</td><td>Being prepared</td></tr>
-          <tr data-pack="launch-readiness"><th scope="row">Launch readiness</th><td>Expose support, privacy, rollback and release-evidence gaps.</td><td>Standard</td><td>Being prepared</td></tr>
-          <tr data-pack="governance"><th scope="row">Governance</th><td>Keep project decisions and change history durable.</td><td>Plus</td><td>Being prepared</td></tr>
-          <tr data-pack="recovery"><th scope="row">Recovery</th><td>Prepare backup scope, recovery checks and restore evidence.</td><td>Plus</td><td>Being prepared</td></tr>
-          <tr data-pack="build-feedback"><th scope="row">Build feedback</th><td>Retain handoff, change and verification evidence.</td><td>Plus</td><td>Being prepared</td></tr>
-          <tr data-pack="notifications"><th scope="row">Notifications</th><td>Add notices, broadcasts, user triggers and appropriate phone push.</td><td>Plus</td><td>Available in private beta<br>Background and locked-screen phone proof remains partial.</td></tr>
-          <tr data-pack="pwa"><th scope="row">PWA</th><td>Plan app installation, offline behavior and updates.</td><td>Plus</td><td>Future exploration</td></tr>
-          <tr data-pack="llm-access"><th scope="row">LLM access</th><td>Add governed access to replaceable AI models.</td><td>Plus</td><td>Future exploration</td></tr>
-          <tr data-pack="subscriptions"><th scope="row">Subscriptions</th><td>Integrate the app's own billing and feature-access model.</td><td>Plus</td><td>Not currently available</td></tr>
-          <tr data-pack="user-onboarding"><th scope="row">User onboarding</th><td>Improve the app's first-run and permissions experience for its users.</td><td>Plus</td><td>Future exploration</td></tr>
-          <tr data-pack="governed-multi-agent"><th scope="row">Governed multi-agent</th><td>Coordinate attended specialist review and build work.</td><td>Pro</td><td>In active testing</td></tr>
-          <tr data-pack="portability"><th scope="row">Portability</th><td>Assess dependencies and plan a staged migration.</td><td>Pro</td><td>Being prepared<br>An assessment route is registered.</td></tr>
-          <tr data-pack="rescue"><th scope="row">Rescue</th><td>Diagnose a broken live app and scope a verifiable repair.</td><td>Pro</td><td>Being prepared</td></tr>
-          <tr data-pack="analytics"><th scope="row">Analytics</th><td>Define privacy-bounded events and operational measurement.</td><td>Pro</td><td>Future exploration</td></tr>
-        </tbody></table></div></div></details>
-        <details class="tier-details" id="plugin-details"><summary>Technical detail: what does the current public plugin expose?</summary><div class="detail-body"><p>The public plugin supplies seven advisory tools and a five-step project-governance lifecycle. Higher tiers add check-planning depth. These tool interfaces are one way to access BOS; they are not the complete list of BOS product capabilities.</p><div class="tier-table-wrap" role="region" aria-label="Current public plugin scan depth" tabindex="0"><table class="tier-table"><caption>Current public plugin — cumulative scan planning</caption><thead><tr><th scope="col">Tier</th><th scope="col">Planning depth added</th></tr></thead><tbody>
-          <tr data-scan-tier="STANDARD"><th scope="row">Standard</th><td>Baseline health, evidence, specification, security and release checks.</td></tr>
-          <tr data-scan-tier="PLUS" data-capability-id="bos_scan_depth_plus"><th scope="row">Plus</th><td>Lifecycle, authority and governance-drift checks.</td></tr>
-          <tr data-scan-tier="PRO" data-capability-id="bos_scan_depth_pro"><th scope="row">Pro</th><td>Environment orchestration and sanitized cross-project-pattern checks.</td></tr>
-          <tr data-scan-tier="ENTERPRISE" data-capability-id="bos_scan_depth_enterprise"><th scope="row">Enterprise</th><td>Organisation-policy, compliance-pack and portfolio-audit checks.</td></tr>
+        <div class="section-intro"><h2 id="more-capabilities-title">Explore the capabilities</h2><p>Find help for the build itself, or features BOS can help you add to an app. Minimum tier and availability are shown separately; inclusion is not a promise of immediate delivery.</p></div>
+        <details class="tier-details" id="capability-families"><summary>Explore all 17 capabilities and their availability</summary><div class="detail-body"><p><strong>Read the status before planning a build.</strong> Some guidance can be used before a complete, reusable installation is ready. A minimum tier describes access, not readiness in your app.</p><p><strong>Available in private beta:</strong> invited testers only, with the stated limits. <strong>In active testing:</strong> still being proven. <strong>Being prepared:</strong> the reusable installation is not ready. <strong>Future exploration:</strong> an idea to investigate, with no delivery promise. <strong>Not currently available:</strong> cannot be installed now.</p><h3>Help with your AI build</h3><div class="tier-table-wrap" role="region" aria-label="Help with your AI build" tabindex="0"><table class="tier-table"><caption>Help with your AI build</caption><thead><tr><th scope="col">Capability</th><th scope="col">How it helps</th><th scope="col">Minimum tier</th><th scope="col">Availability</th></tr></thead><tbody><tr data-pack="engineering-correctness"><th scope="row">Reliable App Logic</th><td>Check complicated rules, such as recurring dates, timing and redirects, to help prevent unexpected behaviour.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="validation"><th scope="row">App and User Journey Checks</th><td>Plan checks of important tasks, such as signing in, saving and completing a booking, and record what actually passed.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="design-quality"><th scope="row">Clear, Consistent App Design</th><td>Help make screens easier to understand, navigation more predictable and mobile layouts easier to use.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="security"><th scope="row">Security and Access Checks</th><td>Identify where information or actions need protection, and define tests showing that access restrictions work.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="launch-readiness"><th scope="row">Ready-to-Launch Review</th><td>Find missing checks, support arrangements, privacy information and recovery plans before release.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="governance"><th scope="row">Project Decisions and Change Control</th><td>Keep agreed requirements and decisions visible so later AI changes can be checked against them.</td><td>Plus</td><td>Being prepared</td></tr><tr data-pack="recovery"><th scope="row">Backup and Recovery Planning</th><td>Identify what needs backing up and how you would test recovery before relying on it.</td><td>Plus</td><td>Being prepared</td></tr><tr data-pack="build-feedback"><th scope="row">Build Progress and Test History</th><td>Keep a clear record of what changed, what was checked and what the next developer or AI session needs to know.</td><td>Plus</td><td>Being prepared</td></tr><tr data-pack="governed-multi-agent"><th scope="row">Expert AI Review and Teamwork</th><td>Organise specialist AI contributions to a difficult task, with clear responsibilities and human oversight.</td><td>Pro</td><td>In active testing</td></tr><tr data-pack="portability"><th scope="row">Moving to Another Platform</th><td>Identify what ties your app to its current platform and plan a staged move.</td><td>Pro</td><td>Being prepared<br>Assessment guidance exists; a complete installation is still being prepared.</td></tr><tr data-pack="rescue"><th scope="row">Broken App Diagnosis and Repair Planning</th><td>Work through what failed, identify a focused repair and define how to check the result.</td><td>Pro</td><td>Being prepared</td></tr></tbody></table></div><h3>Features BOS can help you add to your app</h3><div class="tier-table-wrap" role="region" aria-label="Features BOS can help you add to your app" tabindex="0"><table class="tier-table"><caption>Features BOS can help you add to your app</caption><thead><tr><th scope="col">Capability</th><th scope="col">How it helps</th><th scope="col">Minimum tier</th><th scope="col">Availability</th></tr></thead><tbody><tr data-pack="notifications"><th scope="row">Alerts and Notifications</th><td>Help plan and add useful alerts, including checks of what phone notifications can actually do.</td><td>Plus</td><td>Available in private beta<br>Phone behaviour in the background and with a locked screen has only been partly verified.</td></tr><tr data-pack="pwa"><th scope="row">Installable Web Apps</th><td>Plan home-screen installation, offline behaviour and updates for a web app.</td><td>Plus</td><td>Future exploration</td></tr><tr data-pack="llm-access"><th scope="row">AI Features for Your App</th><td>Help plan how your app connects to AI models and how that choice could change later.</td><td>Plus</td><td>Future exploration</td></tr><tr data-pack="subscriptions"><th scope="row">Paid Plans and Feature Access</th><td>Help connect your app’s billing arrangements to the features each customer can use.</td><td>Plus</td><td>Not currently available</td></tr><tr data-pack="user-onboarding"><th scope="row">First-Time User Setup</th><td>Help new users understand the app, complete setup and make informed permission choices.</td><td>Plus</td><td>Future exploration</td></tr><tr data-pack="analytics"><th scope="row">Understand How Your App Is Used</th><td>Plan useful measurements of app activity while limiting the collection of private information.</td><td>Pro</td><td>Future exploration</td></tr></tbody></table></div></div></details>
+        <details class="tier-details" id="plugin-details"><summary>Optional technical detail: the tools behind the guidance</summary><div class="detail-body"><p>The public plugin supplies seven advisory tools and a five-step project-governance lifecycle. Higher tiers add check-planning depth. These tool interfaces are one way to access BOS; they are not the complete list of BOS product capabilities.</p><div class="tier-table-wrap" role="region" aria-label="Current public plugin scan depth" tabindex="0"><table class="tier-table"><caption>Current public plugin — cumulative scan planning</caption><thead><tr><th scope="col">Tier</th><th scope="col">Planning depth added</th></tr></thead><tbody>
+          <tr data-scan-tier="STANDARD"><th scope="row">Standard</th><td>Plan checks of app health, requirements, security, test results and readiness for release.</td></tr>
+          <tr data-scan-tier="PLUS" data-capability-id="bos_scan_depth_plus"><th scope="row">Plus</th><td>Add checks of project history, approved decisions and changes that depart from the plan.</td></tr>
+          <tr data-scan-tier="PRO" data-capability-id="bos_scan_depth_pro"><th scope="row">Pro</th><td>Add planning across coding tools and checks of relevant lessons from other projects, with private information excluded.</td></tr>
+          <tr data-scan-tier="ENTERPRISE" data-capability-id="bos_scan_depth_enterprise"><th scope="row">Enterprise</th><td>Plan checks against company rules and review requirements across projects; broader organisation features remain planned.</td></tr>
         </tbody></table></div><p id="tier-planning-boundary"><strong>Receiving a plan does not mean a scan ran.</strong> Your authorised coding tool performs the work and inspects the results. A returned check plan is not a completed repair, a compliance certification or a verified healthy app.</p><dl>
-          <dt data-tool="bos_connect">Check the connection</dt><dd>Confirm version and access; distinguish a connected tool from a governed project.</dd>
-          <dt data-tool="bos_assess_project">Assess the project</dt><dd>Summarise readiness, risks and missing evidence from supplied project facts.</dd>
+          <dt data-tool="bos_connect">Check the connection</dt><dd>Check the BOS version and your access. Show whether the tool is connected and whether this specific app is set up.</dd>
+          <dt data-tool="bos_assess_project">Assess the project</dt><dd>Use the supplied project facts to explain what looks ready, what is risky and what still needs checking.</dd>
           <dt data-tool="bos_project_spec_check">Check the project brief</dt><dd>Check whether purpose, users, workflow and target environments are recorded, accepted and current.</dd>
-          <dt data-tool="bos_maturity_next">Choose the next step</dt><dd>Identify the next unfinished development stage from supplied evidence.</dd>
-          <dt data-tool="bos_scan_plan">Plan the checks</dt><dd>List relevant checks and missing evidence at the depth allowed by your verified tier.</dd>
-          <dt data-tool="bos_health_snapshot">Read a health summary</dt><dd>Summarise supplied evidence and blockers. A reachable service does not prove a healthy app.</dd>
-          <dt data-tool="bos_capabilities">See what you can use</dt><dd>Report capabilities available, blocked or unavailable for your current access and project.</dd>
-        </dl><p>The project-governance lifecycle covers discovery, a reviewed plan, activation, verification and controlled removal. See <a href="#project-setup">project setup</a>. Project assessment and checks require verified project governance.</p><p>Cloud memory, cross-computer restore, unattended operation and organisation administration need their own installed components and delivery evidence. The public plugin does not enable them merely because your tier includes them.</p></div></details>
+          <dt data-tool="bos_maturity_next">Choose the next step</dt><dd>Use the available project records to identify the next unfinished task.</dd>
+          <dt data-tool="bos_scan_plan">Plan the checks</dt><dd>Suggest relevant checks and explain which results are still missing, within your tier’s scope.</dd>
+          <dt data-tool="bos_health_snapshot">Read a health summary</dt><dd>Summarise available test results and unresolved problems. A working connection does not prove that the app works.</dd>
+          <dt data-tool="bos_capabilities">See what you can use</dt><dd>Show what you can use in this project and explain what is unavailable or needs attention.</dd>
+        </dl><p>The project-governance lifecycle covers discovery, a reviewed plan, activation, verification and controlled removal. See <a href="setup.html#project-setup">project setup</a>. Project assessment and checks require verified project governance.</p><p>Cloud memory, cross-computer restore, unattended operation and organisation administration need their own installed components and delivery evidence. The public plugin does not enable them merely because your tier includes them.</p></div></details>
       </div>
     </section>
 
-    <section id="setup">
-      <div class="wrap">
-        <div class="section-intro">
-          <h2>Set up Base44</h2>
-          <p>For the Base44 AI app builder. The connection is account-wide; add the skill separately to each workspace where you want it.</p>
-          <p>You need a Base44 Builder plan or higher, room for another MCP connection and room for a skill in the selected workspace. Confirm the app belongs to that workspace before setup.</p>
-          <p><a href="https://docs.base44.com/documentation/account-and-billing/setting-up-a-custom-mcp">Base44 connection guide</a> · <a href="https://docs.base44.com/documentation/using-your-workspaces/adding-workspace-skills">Base44 workspace skills guide</a></p>
-        </div>
-
-        <div class="steps">
-          <article class="step">
-            <div class="step-number" aria-hidden="true">1</div>
-            <div>
-              <h3>Add the account connection</h3>
-              <p>In Base44, open your profile menu and choose <strong>Settings → MCP connections → Add custom MCP</strong>.</p>
-              <div class="field-grid" aria-label="MCP connection values">
-                <div class="field"><span class="field-label">Name</span><span class="field-value">Cloud BOS</span></div>
-                <div class="field"><span class="field-label">Authentication</span><span class="field-value">OAuth</span></div>
-                <div class="field"><span class="field-label">URL</span><span class="field-value pending">Published after the production release gate</span></div>
-                <div class="field"><span class="field-label">Custom headers</span><span class="field-value">None</span></div>
-              </div>
-              <p><strong>Do not use a static token or copy a test endpoint.</strong> The production URL will use Base44-managed OAuth.</p>
-              <p>Once the production URL is available, click <strong>Test</strong>, then <strong>Test &amp; add</strong>, and complete the browser sign-in. Check that the Cloud BOS connection is enabled.</p>
-            </div>
-          </article>
-
-          <article class="step">
-            <div class="step-number" aria-hidden="true">2</div>
-            <div>
-              <h3>Add the workspace skill</h3>
-              <p>Open the workspace menu and choose <strong>Settings → Skills → Add skill → Start from scratch</strong>.</p>
-              <div class="field-grid" aria-label="Workspace skill values">
-                <div class="field"><span class="field-label">Skill name</span><span class="field-value" id="skill-name">cloudbos-governed-build</span></div>
-                <div class="field"><span class="field-label">Scope</span><span class="field-value">Selected workspace</span></div>
-              </div>
-              <p id="skill-description">Use Cloud BOS during Base44 AI app-building work to assess the project, keep platform connection separate from per-app governance, require exact approval before governance writes, and verify changed artifacts without adding a runtime dependency.</p>
-              <p>Paste the name, description and instructions below into their matching fields, then click <strong>Add skill</strong>. Keep the supplied wording and confirm the skill is enabled.</p>
-              <div class="copy-row">
-                <button class="copy-button" type="button" data-copy="name">Copy skill name</button>
-                <button class="copy-button" type="button" data-copy="description">Copy description</button>
-                <button class="copy-button" type="button" data-copy="instructions">Copy instructions</button>
-                <span class="copy-state" role="status" aria-live="polite"></span>
-              </div>
-
-              <details>
-                <summary>Review the exact public skill instructions</summary>
-                <div class="skill-copy">
-                  <ol id="skill-instructions">
-                    <li>At the start of a new or resumed app-building request, use the Cloud BOS bos_connect tool and read platform_connection_state and project_governance_state separately.</li>
-                    <li>For every new, resumed, context-compacted or app-switched chat, follow contracts/base44-session-memory-activation.json. Never resume governed work from chat memory or a chat summary alone.</li>
-                    <li>Before continuing an existing build intention, verify the exact app binding and Governance Manifest, then re-read Project State, the accepted Project Spec, active Build Intentions, Capability Manifest, applicable Build Gates and only the latest bounded Evidence Ledger references.</li>
-                    <li>If a background or external build may have changed the app, stop governed mutation until a fresh durable revision and artifact readback verifies currentness. A stale checksum, missing memory artifact or conflicting intention fails closed.</li>
-                    <li>When a Cloud BOS result is actually consulted, begin the visible governed response with BOS&lt;verified-service-major.minor&gt;&gt; Base44&gt; user&gt;. Resolve the version from the authenticated bos_connect result; never invent or retain a stale version.</li>
-                    <li>Do not use the BOS speaker when Cloud BOS was not consulted or its identity/currentness could not be verified. Speaker text is provenance for the response, not entitlement, mutation authority or proof that an app is governed.</li>
-                    <li>Never describe an app as governed unless project_governance_state is GOVERNED_ACTIVE and project_binding_verified is true.</li>
-                    <li>For an unbound app, use bos_project_discover and bos_project_governance_plan first. Show the exact current plan and stop for approval bound to its plan hash before any governance write.</li>
-                    <li>Use contracts/base44-governed-app-onboarding.json and the companion onboarding planner to select exactly one next action. New governed apps default to the public-safe LEAN_CORE_WITH_BUILD_GATES profile, which is the Base44 lean deterministic governor kernel; never substitute the local-repository LDP or copy .bos into the app.</li>
-                    <li>For an app-native plan, call bos_project_governance_plan with base44_profile.profile_id set to LEAN_CORE_WITH_BUILD_GATES, the accepted project_spec and build_intentions including active_id, and the exact app_id plus current expected_app_revision. Only the server-issued, anchored plan is approvable. The legacy three-file projection cannot represent this profile.</li>
-                    <li>For drift repair, request an explicit ROLLBACK plan with the canonical installed manifest text, all exact restoration artifacts and the current observed prior hashes. Verify every restored byte against the bound manifest. Never turn repair into an unapproved update. After host application, use the lifecycle readback helper with independently verified provider evidence and matching before/after application-source digests before calling bos_project_governance_activate.</li>
-                    <li>After the eight-artifact governance profile is activated and read back, plan the owner/admin Cloud BOS connection-plug indicator as a separate app-surface action. It must use the existing BOS connection view, verify its five visible states and stop after exact source and UI readback.</li>
-                    <li>Before declaring a governed app ready for Base44 BuildAI, inspect the native AI Controls custom-instructions pointer. If it is absent, stale, misdirected or unreadable, use the onboarding contract&#x27;s separate alter_base44_ai_controls_pointer_via_assist action. Assist selects the bounded action but grants no mutation authority and is not an app slash command. After exact documents/AICONTROL.md and Governance Manifest readback, Codex or Claude Code must use host computer control to install the canonical pointer verbatim, save, reopen the native surface, verify exact text readback, and stop on mismatch or unavailable computer control.</li>
-                    <li>Do not reconstruct, shorten, substitute or locally invent a governance plan, manifest, binding or approval.</li>
-                    <li>Use the available Level-1 advisory tools before an app change when they match the request. Their results guide the build but do not independently authorize app, data, deployment, billing or governance mutation.</li>
-                    <li>When the owner requests an outcome that maps to a specific BOS capability, call bos_capabilities with only the relevant capability_ids. Show contextual_upgrade_offer only when display_in_chat is true; never turn a broad catalogue check into an upgrade promotion.</li>
-                    <li>An upgrade offer must explain the capability relevant to the current request, the minimum tier, and the option to continue with current capabilities. Respect SUPPRESSED_COOLDOWN and SUPPRESSED_DISMISSED, and never repeat or rephrase a suppressed offer.</li>
-                    <li>Never claim that chat approval, a checkout redirect or a client tier field grants access. Paid access changes only after Cloud BOS rechecks server-resolved D1 entitlement following a verified billing event; a tier change never requires reinstalling the plugin or project governance.</li>
-                    <li>When a verified paid entitlement makes a governance capability pack eligible, prefer server-only enablement. Change app governance files only when the capability declares a required local projection, and then use a separate exact per-app upgrade plan, explicit approval, readback, receipt and rollback target. Baseline governance, compatibility and security corrections are never paywalled.</li>
-                    <li>After an approved build change, inspect the exact changed artifacts and observable app behavior. Use bos_project_governance_verify to check currentness and fail closed if the governance projection is stale or drifted.</li>
-                    <li>Send only privacy-minimal project facts to Cloud BOS. Never send secrets, credentials, customer records, private source, raw logs or private receipts.</li>
-                    <li>Never install or request LDP:FULL, Master BOS, the DevPack, private prompts, estimator internals or payment credentials in a Base44 workspace or app.</li>
-                    <li>Keep Cloud BOS build-time governance separate from application runtime features. Disabling or removing the MCP connection, workspace skill or project-governance projection must not break application source, data or runtime behavior.</li>
-                  </ol>
-                </div>
-              </details>
-            </div>
-          </article>
-
-          <article class="step">
-            <div class="step-number" aria-hidden="true">3</div>
-            <div>
-              <h3>Verify from an app</h3>
-              <p>Open any app in that workspace and send this read-only check in the Base44 builder chat:</p>
-              <div class="prompt" id="verify-prompt">Use Cloud BOS. Run bos_connect and report platform_connection_state and project_governance_state separately. Do not write or change anything.</div>
-              <div class="copy-row">
-                <button class="copy-button" type="button" data-copy="prompt">Copy verification prompt</button>
-                <span class="copy-state" role="status" aria-live="polite"></span>
-              </div>
-              <p>A connected platform is not automatically a governed app. Each app needs its own exact plan, approval, activation and verified readback.</p>
-              <p>Continue with <a href="#project-setup">Set up governance for a project</a>.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="codex" aria-labelledby="codex-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <h2 id="codex-title">Set up Codex</h2>
-          <p>Use the Codex desktop app or CLI with a local project you can inspect and edit. The public package includes the Cloud BOS skill and its MCP connection.</p>
-          <p><a href="https://learn.chatgpt.com/docs/plugins">Official Codex plugin guide</a></p>
-        </div>
-        <article class="step">
-          <div class="step-number" aria-hidden="true">1–3</div>
-          <div>
-            <h3>Install, sign in, then check</h3>
-            <p class="release-note"><strong>Codex installation link pending.</strong> The approved public listing or marketplace source will be linked here at release.</p>
-            <ol class="step-list">
-              <li>Open <strong>Plugins</strong> in the desktop app, or enter <code>/plugins</code> in Codex CLI. Use the public source linked here at release and select <strong>Cloud BOS</strong> by Peter Jeans, package <code>cloudbos-public-plugin</code>. Review the supplied skills, connection and hooks, then install.</li>
-              <li>Complete the Cloud BOS browser sign-in when prompted. Start a new Codex session in the project you want to work on so the installed tools and skill are loaded.</li>
-              <li>Send the check below. Read connection status and project governance status separately, then follow <a href="#project-setup">the project setup step</a>.</li>
-            </ol>
-            <div class="prompt" id="codex-verify-prompt">Use Cloud BOS for the current local project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
-            <div class="copy-row">
-              <button class="copy-button" type="button" data-copy-target="codex-verify-prompt">Copy Codex check</button>
-              <span class="copy-state" role="status" aria-live="polite"></span>
-            </div>
-            <p>If Cloud BOS is missing from your available plugins, wait for the released source above. If its tools are unavailable, check the installed plugin and sign-in before continuing.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="claude-code" aria-labelledby="claude-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <h2 id="claude-title">Set up Claude Code</h2>
-          <p>For Claude Code and its VS Code extension, using a local project. This guide does not cover ordinary Claude web chats.</p>
-          <p><a href="https://code.claude.com/docs/en/discover-plugins">Official Claude Code plugin guide</a> · <a href="https://code.claude.com/docs/en/ide-integrations">Claude Code in VS Code</a></p>
-        </div>
-        <article class="step">
-          <div class="step-number" aria-hidden="true">1–3</div>
-          <div>
-            <h3>Add the marketplace and install for yourself</h3>
-            <p class="release-note"><strong>Claude Code marketplace link pending.</strong> The approved public marketplace source and exact install command will be provided here at release.</p>
-            <ol class="step-list">
-              <li>Open Claude Code in your project and enter <code>/plugin</code>. Add the public marketplace linked here at release, then find <strong>Cloud BOS</strong>, package <code>cloudbos-public-plugin</code>. In the VS Code extension, open <code>/plugins</code> to manage the same plugins.</li>
-              <li>Choose <strong>User scope / Install for you</strong> so the plugin is available across your projects. Review and accept the plugin trust prompt, then follow any reload or restart instruction. Complete the Cloud BOS browser sign-in when requested; use <code>/mcp</code> in Claude Code to check or authenticate its connection.</li>
-              <li>Send the check below in the intended project. Once connected, continue with <a href="#project-setup">the separate project setup step</a>.</li>
-            </ol>
-            <div class="prompt" id="claude-verify-prompt">Use Cloud BOS for this Claude Code project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
-            <div class="copy-row">
-              <button class="copy-button" type="button" data-copy-target="claude-verify-prompt">Copy Claude Code check</button>
-              <span class="copy-state" role="status" aria-live="polite"></span>
-            </div>
-            <p>If the plugin is installed but its connection is unavailable, check its enabled state, reload it and finish sign-in. Installation alone does not verify governance for a project.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="project-setup" aria-labelledby="project-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <h2 id="project-title">Set up governance for a project</h2>
-          <p>Do this separately for each app or repository, after connecting your development tool. Cloud BOS prepares a plan first; you decide whether to apply it.</p>
-        </div>
-        <article class="boundary-card">
-          <h3>Ask for a plan before changes</h3>
-          <div class="prompt" id="project-plan-prompt">Use Cloud BOS to discover this exact app or repository with bos_project_discover, then prepare its current setup plan with bos_project_governance_plan. Ask me for any missing project specification or build intention. Show the exact proposed files, permissions and rollback or removal boundary, together with the current plan hash. Stop for my approval before writing anything. If governance is already active, verify it and report any drift instead of reinstalling.</div>
-          <div class="copy-row">
-            <button class="copy-button" type="button" data-copy-target="project-plan-prompt">Copy project setup request</button>
-            <span class="copy-state" role="status" aria-live="polite"></span>
-          </div>
-          <ol class="step-list">
-            <li>Check the exact app or repository, intended work and proposed changes. Approve only the current plan and its plan hash. If the plan changes or expires, review a fresh one.</li>
-            <li>Let your coding tool apply the approved plan and reopen the exact files it changed. For Base44, the native AI Controls step needs Codex or Claude Code with computer control: save the approved pointer, reopen that app's AI Controls and verify the exact saved text. If that access is unavailable, app setup remains incomplete.</li>
-            <li>Have Cloud BOS activate and verify the installed result. A governed project must report <code>project_governance_state: GOVERNED_ACTIVE</code> and <code>project_binding_verified: true</code>. A successful connection alone is insufficient.</li>
-          </ol>
-          <p>On later sessions, ask to use Cloud BOS and check the current project before work. If sign-in, binding or verification fails, resolve that status before relying on governed changes.</p>
-          <details>
-            <summary>Disconnecting or removing governance</summary>
-            <p>Disabling a connection or plugin stops that tool from using Cloud BOS. Removing a project's governance is a separate, reviewed operation: request a removal plan for that exact project, approve its scope and verify the result. Application source, data and runtime behavior must be preserved.</p>
-          </details>
-        </article>
-      </div>
-    </section>
-
+    <section aria-label="Setup guides"><div class="wrap"><h2>Connect BOS to your coding tool</h2><p>Connect BOS, approve setup for your app, then check that it is working in that app. Public installation remains pending; invited testers should use their beta instructions.</p><div class="setup-nav"><a class="button" id="setup" href="setup.html#setup">Base44 setup</a><a class="button" id="codex" href="setup.html#codex">Codex setup</a><a class="button" id="claude-code" href="setup.html#claude-code">Claude Code setup</a><a class="button" id="project-setup" href="setup.html#project-setup">Approve and check app setup</a></div></div></section>
     <section aria-labelledby="boundary-title">
       <div class="wrap">
         <div class="section-intro">
-          <h2 id="boundary-title">What this installs—and what it does not</h2>
-          <p>Cloud BOS stays in the build-time guidance layer. It does not become part of your published application.</p>
+          <h2 id="boundary-title">BOS helps during the build</h2>
+          <p>Cloud BOS works with your coding tool while you build. Your published app should keep working when Cloud BOS is disconnected.</p>
         </div>
         <div class="boundary-grid">
           <article class="boundary-card">
             <h3>Available while building</h3>
-            <p>Your coding tool can use Cloud BOS to assess a project, plan checks and verify its governance while you build.</p>
+            <p>Your coding tool can ask BOS to review the project, plan tests and check that the app’s BOS setup is still correct.</p>
           </article>
           <article class="boundary-card">
-            <h3>Scoped to your setup</h3>
-            <p>Base44 uses an account connection and a skill per selected workspace. Codex and Claude Code use a plugin. Every governed project has its own approved setup.</p>
+            <h3>Set up for each project</h3>
+            <p>Base44 uses an account connection and a skill per selected workspace. Codex and Claude Code use a plugin. Each project has its own approved setup.</p>
           </article>
           <article class="boundary-card">
-            <h3>Not full private BOS</h3>
-            <p>No private project source, secrets, full project memory, private prompts or internal development pack is installed.</p>
+            <h3>Keep private material private</h3>
+            <p>The public connection does not install private BOS source, secrets or full private project memory. <a href="policies/data-processing-summary.html">Read the data-sharing summary</a>.</p>
           </article>
         </div>
         <div class="static-note">
           <span aria-hidden="true">✓</span>
-          <div><strong>This is a static onboarding page.</strong> It has no chat, model call, analytics, account form or project-data upload. Its only script copies text to your clipboard when you press a copy button.</div>
+          <div><strong>This website explains BOS.</strong> It has no chat, analytics, account form or project-data upload. The setup guide’s copy buttons use your clipboard only.</div>
         </div>
       </div>
     </section>
@@ -852,68 +647,10 @@
         <a href="policies/privacy.html">Privacy</a>
         <a href="policies/terms.html">Terms</a>
         <a href="policies/acceptable-use.html">Acceptable use</a>
-        <a href="policies/data-processing-summary.html">Data boundary</a>
+        <a href="policies/data-processing-summary.html">Data sharing</a><a href="policies/index.html">All policies</a>
       </span>
     </div>
   </footer>
 
-  <script id="base44-skill" type="application/json">
-{
-  "name": "cloudbos-governed-build",
-  "description": "Use Cloud BOS during Base44 AI app-building work to assess the project, keep platform connection separate from per-app governance, require exact approval before governance writes, and verify changed artifacts without adding a runtime dependency.",
-  "instructions": [
-    "At the start of a new or resumed app-building request, use the Cloud BOS bos_connect tool and read platform_connection_state and project_governance_state separately.",
-    "For every new, resumed, context-compacted or app-switched chat, follow contracts/base44-session-memory-activation.json. Never resume governed work from chat memory or a chat summary alone.",
-    "Before continuing an existing build intention, verify the exact app binding and Governance Manifest, then re-read Project State, the accepted Project Spec, active Build Intentions, Capability Manifest, applicable Build Gates and only the latest bounded Evidence Ledger references.",
-    "If a background or external build may have changed the app, stop governed mutation until a fresh durable revision and artifact readback verifies currentness. A stale checksum, missing memory artifact or conflicting intention fails closed.",
-    "When a Cloud BOS result is actually consulted, begin the visible governed response with BOS<verified-service-major.minor>> Base44> user>. Resolve the version from the authenticated bos_connect result; never invent or retain a stale version.",
-    "Do not use the BOS speaker when Cloud BOS was not consulted or its identity/currentness could not be verified. Speaker text is provenance for the response, not entitlement, mutation authority or proof that an app is governed.",
-    "Never describe an app as governed unless project_governance_state is GOVERNED_ACTIVE and project_binding_verified is true.",
-    "For an unbound app, use bos_project_discover and bos_project_governance_plan first. Show the exact current plan and stop for approval bound to its plan hash before any governance write.",
-    "Use contracts/base44-governed-app-onboarding.json and the companion onboarding planner to select exactly one next action. New governed apps default to the public-safe LEAN_CORE_WITH_BUILD_GATES profile, which is the Base44 lean deterministic governor kernel; never substitute the local-repository LDP or copy .bos into the app.",
-    "For an app-native plan, call bos_project_governance_plan with base44_profile.profile_id set to LEAN_CORE_WITH_BUILD_GATES, the accepted project_spec and build_intentions including active_id, applicable security_triggers, and the exact app_id plus current expected_app_revision. Only the server-issued, anchored plan is approvable. The legacy three-file projection cannot represent this profile.",
-    "Base44 can truncate large MCP results. Request response_format BASE44_PLAN_CHUNK_V1 from bos_project_governance_plan. Fetch every chunk with identical original plan inputs and plan_chunk containing the returned plan_hash, created_at and next_chunk_index as chunk_index. Concatenate the decoded base64 bytes in index order; verify json_bytes, json_sha256, the complete plan_hash and every artifact checksum before review, approval or writes. Every chunk must agree on plan identity, expiry, count and JSON digest. Missing, inconsistent or truncated chunks fail closed; never reconstruct missing text or treat a partial plan as approved. Retrieval preserves the original expiry and creates no new plan.",
-    "For drift repair, request an explicit ROLLBACK plan with the canonical installed manifest text, all exact restoration artifacts and the current observed prior hashes. Verify every restored byte against the bound manifest. Never turn repair into an unapproved update. After host application, use the lifecycle readback helper with independently verified provider evidence and matching before/after application-source digests before calling bos_project_governance_activate.",
-    "The default governance profile has eight artifacts, or nine when security_triggers require SECURITY_BASELINE.md. Verify the required set before activation. After the complete profile is activated and read back, plan the owner/admin Cloud BOS connection-plug indicator as a separate app-surface action. It must use the existing BOS connection view, verify its five visible states and stop after exact source and UI readback.",
-    "Before declaring a governed app ready for Base44 BuildAI, inspect the native AI Controls custom-instructions pointer. If it is absent, stale, misdirected or unreadable, use the onboarding contract's separate alter_base44_ai_controls_pointer_via_assist action. Assist selects the bounded action but grants no mutation authority and is not an app slash command. After exact documents/AICONTROL.md and Governance Manifest readback, Codex or Claude Code must use host computer control to install the canonical pointer verbatim, save, reopen the native surface, verify exact text readback, and stop on mismatch or unavailable computer control.",
-    "Do not reconstruct, shorten, substitute or locally invent a governance plan, manifest, binding or approval.",
-    "Use the available Level-1 advisory tools before an app change when they match the request. Their results guide the build but do not independently authorize app, data, deployment, billing or governance mutation.",
-    "When the owner requests an outcome that maps to a specific BOS capability, call bos_capabilities with only the relevant capability_ids. Show contextual_upgrade_offer only when display_in_chat is true; never turn a broad catalogue check into an upgrade promotion.",
-    "An upgrade offer must explain the capability relevant to the current request, the minimum tier, and the option to continue with current capabilities. Respect SUPPRESSED_COOLDOWN and SUPPRESSED_DISMISSED, and never repeat or rephrase a suppressed offer.",
-    "Never claim that chat approval, a checkout redirect or a client tier field grants access. Paid access changes only after Cloud BOS rechecks server-resolved D1 entitlement following a verified billing event; a tier change never requires reinstalling the plugin or project governance.",
-    "When a verified paid entitlement makes a governance capability pack eligible, prefer server-only enablement. Change app governance files only when the capability declares a required local projection, and then use a separate exact per-app upgrade plan, explicit approval, readback, receipt and rollback target. Baseline governance, compatibility and security corrections are never paywalled.",
-    "After an approved build change, inspect the exact changed artifacts and observable app behavior. Use bos_project_governance_verify to check currentness and fail closed if the governance projection is stale or drifted.",
-    "Send only privacy-minimal project facts to Cloud BOS. Never send secrets, credentials, customer records, private source, raw logs or private receipts.",
-    "Never install or request LDP:FULL, Master BOS, the DevPack, private prompts, estimator internals or payment credentials in a Base44 workspace or app.",
-    "Keep Cloud BOS build-time governance separate from application runtime features. Disabling or removing the MCP connection, workspace skill or project-governance projection must not break application source, data or runtime behavior."
-  ]
-}
-  </script>
-  <script>
-    (() => {
-      const payload = JSON.parse(document.getElementById("base44-skill").textContent);
-      const copyValue = {
-        name: payload.name,
-        description: payload.description,
-        instructions: payload.instructions.map((item, index) => (index + 1) + ". " + item).join("\n"),
-        prompt: document.getElementById("verify-prompt").textContent.trim()
-      };
-
-      document.querySelectorAll("[data-copy], [data-copy-target]").forEach((button) => {
-        button.addEventListener("click", async () => {
-          const state = button.parentElement.querySelector(".copy-state");
-          try {
-            const value = button.dataset.copyTarget
-              ? document.getElementById(button.dataset.copyTarget).textContent.trim()
-              : copyValue[button.dataset.copy];
-            await navigator.clipboard.writeText(value);
-            state.textContent = "Copied";
-          } catch {
-            state.textContent = "Select the text above and copy it manually.";
-          }
-        });
-      });
-    })();
-  </script>
 </body>
 </html>

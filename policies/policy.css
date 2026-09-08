@@ -151,3 +151,8 @@ footer {
     padding: 16px 0;
   }
 }
+
+.panel h2 { margin-top: 0; }
+details { margin-top: 28px; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); }
+summary { cursor: pointer; font-weight: 750; }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }

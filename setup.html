@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud BOS — Setup guides</title>
+  <meta name="description" content="Connect BOS, approve setup for your app and verify it. Preview guides for Base44, Codex and Claude Code.">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/bos-icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <style>
+    :root {
+      --ink: #13201c;
+      --muted: #5a6862;
+      --paper: #f7f8f4;
+      --card: #fff;
+      --line: #d7dfda;
+      --green: #116b56;
+      --green-dark: #0a4438;
+      --green-soft: #e6f1ec;
+      --amber: #875d1a;
+      --amber-soft: #f8efdc;
+      --shadow: 0 20px 60px rgba(19, 32, 28, .10);
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 88% 4%, rgba(17, 107, 86, .13), transparent 28rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: var(--green); }
+    a:hover { color: var(--green-dark); }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .wrap {
+      width: min(1040px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(19, 32, 28, .10);
+      background: rgba(247, 248, 244, .92);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 9px;
+      background: var(--card);
+      font-size: 12px;
+      letter-spacing: -.04em;
+    }
+
+    .nav-actions { display: flex; align-items: center; gap: 18px; font-size: 14px; font-weight: 700; }
+    .nav-actions a { color: var(--green-dark); text-decoration: none; font-weight: 800; }
+    .nav-context { color: var(--muted); }
+
+    main { overflow: hidden; }
+
+    .hero {
+      padding: clamp(68px, 10vw, 112px) 0 58px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(300px, .78fr);
+      gap: clamp(32px, 7vw, 72px);
+      align-items: center;
+    }
+
+    .eyebrow, .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      padding: 7px 11px;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      border: 1px solid rgba(17, 107, 86, .18);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 20px;
+      font-size: clamp(45px, 7.5vw, 78px);
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: clamp(30px, 4.8vw, 48px);
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .lede {
+      max-width: 720px;
+      margin: 0;
+      color: #34443e;
+      font-size: clamp(18px, 2.4vw, 23px);
+    }
+
+    .hero-actions, .copy-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .button, .copy-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      border-radius: 9px;
+      color: var(--ink);
+      background: var(--card);
+      font: inherit;
+      font-weight: 820;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button {
+      min-height: 46px;
+      padding: 11px 16px;
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--ink);
+    }
+
+    .button:hover {
+      color: inherit;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .overview {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: var(--shadow);
+    }
+
+    .overview ol {
+      display: grid;
+      gap: 18px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .overview li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .number {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      color: #fff;
+      background: var(--green);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .overview strong { display: block; }
+    .overview span:last-child { color: var(--muted); font-size: 14px; }
+
+    .status {
+      padding: 6px 10px;
+      color: var(--amber);
+      border: 1px solid rgba(135, 93, 26, .22);
+      background: var(--amber-soft);
+    }
+
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .section-intro p, .step p, .boundary-card p {
+      color: var(--muted);
+    }
+
+    .section-intro p { margin: 0; font-size: 18px; }
+    .steps { display: grid; gap: 18px; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 20px;
+      padding: clamp(22px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      color: #fff;
+      background: var(--ink);
+      font-size: 18px;
+      font-weight: 880;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .field {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #f8faf7;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 820;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .field-value {
+      display: block;
+      overflow-wrap: anywhere;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      font-weight: 720;
+    }
+
+    .pending { color: var(--amber); }
+
+    .copy-button {
+      min-height: 40px;
+      padding: 8px 12px;
+      border-color: var(--line);
+      font-size: 14px;
+    }
+
+    .copy-button:hover { border-color: var(--green); }
+
+    .copy-state {
+      align-self: center;
+      min-height: 22px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    details {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #f8faf7;
+    }
+
+    summary {
+      padding: 14px 16px;
+      font-weight: 820;
+      cursor: pointer;
+    }
+
+    .skill-copy { padding: 0 16px 18px; }
+    .skill-copy ol { color: var(--muted); font-size: 14px; }
+
+    .prompt {
+      margin-top: 18px;
+      padding: 16px;
+      overflow-wrap: anywhere;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: #24352f;
+      background: #f4f7f4;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .boundary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .boundary-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+    }
+
+    .boundary-card p { margin-bottom: 0; }
+
+    .static-note {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 22px;
+      padding: 18px;
+      border: 1px solid rgba(17, 107, 86, .20);
+      border-radius: 12px;
+      background: var(--green-soft);
+    }
+
+    .static-note strong { color: var(--green-dark); }
+
+    section[id] { scroll-margin-top: 90px; }
+    .setup-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .setup-nav .button { flex: 1 1 180px; }
+    .release-note { padding: 16px 20px; border-radius: 12px; background: var(--amber-soft); color: var(--amber); }
+    .step-list { padding-left: 22px; }
+    .step-list li + li { margin-top: 12px; }
+    code { overflow-wrap: anywhere; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
+    .tier-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+    .tier-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .tier-table caption { padding: 20px; text-align: left; font-weight: 700; }
+    .tier-table th, .tier-table td { padding: 18px 20px; vertical-align: top; border-top: 1px solid var(--line); }
+    .tier-table thead th { background: var(--green-soft); }
+    .tier-table tbody th { min-width: 110px; color: var(--green-dark); }
+    .tier-table td { min-width: 220px; }
+    .tier-table p { margin: 0 0 10px; }
+    .tier-table p:last-child { margin-bottom: 0; }
+    .tier-details { margin-top: 22px; }
+    .tier-details dl { margin-bottom: 0; }
+    .tier-details dt { margin-top: 18px; font-weight: 750; }
+    .tier-details dd { margin: 5px 0 0; color: var(--muted); }
+    .tier-details > p, .tier-details > dl { margin-left: 18px; margin-right: 18px; }
+    .benefit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+    .benefit { margin: 0; background: var(--card); }
+    .benefit summary { padding: 22px; }
+    .benefit-title { font-size: 21px; letter-spacing: -.025em; }
+    .benefit-lede { display: block; margin-top: 10px; color: var(--muted); font-weight: 450; }
+    .detail-hint { display: block; margin-top: 14px; color: var(--green); font-size: 13px; }
+    .detail-body { padding: 0 22px 22px; }
+    .detail-body p:last-child { margin-bottom: 0; }
+    .example { padding: 16px; border-left: 3px solid var(--green); background: var(--green-soft); }
+    .availability { color: var(--muted); font-size: 14px; }
+    .compare-links { display: flex; gap: 12px 22px; flex-wrap: wrap; margin-top: 24px; }
+    .table-help { color: var(--muted); font-size: 14px; }
+    .tier-label { display: block; margin-top: 8px; font-weight: 500; color: var(--muted); font-size: 13px; }
+    .environment-table td { min-width: 245px; }
+    .environment-table tbody th { min-width: 160px; }
+    details[id] { scroll-margin-top: 90px; }
+    .tier-table-wrap:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-row, .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-row {
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid, .boundary-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 58px; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 24px, 1040px); }
+      .nav-context { display: none; }
+      .step, .field-grid { grid-template-columns: 1fr; }
+      .hero-actions .button { width: 100%; }
+      .benefit-grid { grid-template-columns: 1fr; }
+      .nav-actions { gap: 10px; font-size: 13px; }
+      .brand { font-size: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html, *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body><header><div class="wrap nav"><a class="brand" href="index.html">Cloud BOS</a><nav class="nav-actions" aria-label="Main navigation"><a href="index.html#benefits">Capabilities</a><a href="index.html#tiers">Tiers</a><a href="support.html">Support</a></nav></div></header><main id="top"><section class="hero"><div class="wrap"><span class="eyebrow">Setup preview</span><h1>Connect BOS.<br>Then check your app.</h1><p class="lede">Sign in through your coding tool, approve a setup plan for the specific app, and check the saved result before relying on BOS.</p><p class="release-note"><strong>Production connection pending.</strong> Public installation is not open yet. Invited beta testers should use the instructions supplied with their access. These guides preview the public setup process.</p><nav class="setup-nav" aria-label="Setup guides"><a class="button" href="#setup">Base44</a><a class="button" href="#codex">Codex</a><a class="button" href="#claude-code">Claude Code</a><a class="button" href="#project-setup">Approve app setup</a></nav><p>First connect your tool. Then follow the shared app-setup step below. Connecting alone does not activate BOS in every app.</p></div></section>    <section id="setup">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Set up Base44</h2>
+          <p>For the Base44 AI app builder. The connection is account-wide; add the skill separately to each workspace where you want it.</p>
+          <p>You need a Base44 Builder plan or higher, room for another MCP connection and room for a skill in the selected workspace. Confirm the app belongs to that workspace before setup.</p>
+          <p><a href="https://docs.base44.com/documentation/account-and-billing/setting-up-a-custom-mcp">Base44 connection guide</a> · <a href="https://docs.base44.com/documentation/using-your-workspaces/adding-workspace-skills">Base44 workspace skills guide</a></p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number" aria-hidden="true">1</div>
+            <div>
+              <h3>Add the account connection</h3>
+              <p>In Base44, open your profile menu and choose <strong>Settings → MCP connections → Add custom MCP</strong>.</p>
+              <div class="field-grid" aria-label="MCP connection values">
+                <div class="field"><span class="field-label">Name</span><span class="field-value">Cloud BOS</span></div>
+                <div class="field"><span class="field-label">Authentication</span><span class="field-value">OAuth</span></div>
+                <div class="field"><span class="field-label">URL</span><span class="field-value pending">Available here after public release</span></div>
+                <div class="field"><span class="field-label">Custom headers</span><span class="field-value">None</span></div>
+              </div>
+              <p><strong>Do not use a static token or copy a test endpoint.</strong> The production URL will use Base44-managed OAuth.</p>
+              <p>Once the production URL is available, click <strong>Test</strong>, then <strong>Test &amp; add</strong>, and complete the browser sign-in. Check that the Cloud BOS connection is enabled.</p>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-number" aria-hidden="true">2</div>
+            <div>
+              <h3>Add the workspace skill</h3>
+              <p>Open the workspace menu and choose <strong>Settings → Skills → Add skill → Start from scratch</strong>.</p>
+              <div class="field-grid" aria-label="Workspace skill values">
+                <div class="field"><span class="field-label">Skill name</span><span class="field-value" id="skill-name">cloudbos-governed-build</span></div>
+                <div class="field"><span class="field-label">Scope</span><span class="field-value">Selected workspace</span></div>
+              </div>
+              <p id="skill-description">Use Cloud BOS during Base44 AI app-building work to assess the project, keep platform connection separate from per-app governance, require exact approval before governance writes, and verify changed artifacts without adding a runtime dependency.</p>
+              <p>Paste the name, description and instructions below into their matching fields, then click <strong>Add skill</strong>. Keep the supplied wording and confirm the skill is enabled.</p>
+              <div class="copy-row">
+                <button class="copy-button" type="button" data-copy="name">Copy skill name</button>
+                <button class="copy-button" type="button" data-copy="description">Copy description</button>
+                <button class="copy-button" type="button" data-copy="instructions">Copy instructions</button>
+                <span class="copy-state" role="status" aria-live="polite"></span>
+              </div>
+
+              <details>
+                <summary>Review the exact public skill instructions</summary>
+                <div class="skill-copy">
+                  <ol id="skill-instructions">
+                    <li>At the start of a new or resumed app-building request, use the Cloud BOS bos_connect tool and read platform_connection_state and project_governance_state separately.</li>
+                    <li>For every new, resumed, context-compacted or app-switched chat, follow contracts/base44-session-memory-activation.json. Never resume governed work from chat memory or a chat summary alone.</li>
+                    <li>Before continuing an existing build intention, verify the exact app binding and Governance Manifest, then re-read Project State, the accepted Project Spec, active Build Intentions, Capability Manifest, applicable Build Gates and only the latest bounded Evidence Ledger references.</li>
+                    <li>If a background or external build may have changed the app, stop governed mutation until a fresh durable revision and artifact readback verifies currentness. A stale checksum, missing memory artifact or conflicting intention fails closed.</li>
+                    <li>When a Cloud BOS result is actually consulted, begin the visible governed response with BOS&lt;verified-service-major.minor&gt;&gt; Base44&gt; user&gt;. For a verified service version 1.7.x, write exactly BOS1.7&gt; Base44&gt; user&gt; (no angle brackets around the number). Resolve the version from the authenticated bos_connect result; never invent or retain a stale version.</li>
+                    <li>Do not use the BOS speaker when Cloud BOS was not consulted or its identity/currentness could not be verified. Speaker text is provenance for the response, not entitlement, mutation authority or proof that an app is governed.</li>
+                    <li>Never describe an app as governed unless project_governance_state is GOVERNED_ACTIVE and project_binding_verified is true.</li>
+                    <li>For an unbound app, use bos_project_discover and bos_project_governance_plan first. Show the exact current plan and stop for approval bound to its plan hash before any governance write.</li>
+                    <li>Use contracts/base44-governed-app-onboarding.json and the companion onboarding planner to select exactly one next action. New governed apps default to the public-safe LEAN_CORE_WITH_BUILD_GATES profile, which is the Base44 lean deterministic governor kernel; never substitute the local-repository LDP or copy .bos into the app.</li>
+                    <li>For an app-native plan, call bos_project_governance_plan with base44_profile.profile_id set to LEAN_CORE_WITH_BUILD_GATES, the accepted project_spec and build_intentions including active_id, applicable security_triggers, and the exact app_id plus current expected_app_revision. Only the server-issued, anchored plan is approvable. The legacy three-file projection cannot represent this profile.</li>
+                    <li>For Base44 discovery, classify only the exact app: local_repository_visible=false and github_remote_verified=false unless independently verified for this same host. Discovery does not fetch the current provider revision. Read the complete revision and current artifact hashes through Base44 before planning; if unavailable, report that precise missing evidence. Never omit the revision, copy an old preview revision, or submit a truncated hash. Use resource_uri cloudbos://projects/&lt;project_id&gt;, not base44://app/&lt;app_id&gt;. Preserve the exact owner-reviewed project_spec, in_scope, out_of_scope, build_intentions and active_id; do not rewrite scope to fit chat memory.</li>
+                    <li>Base44 can truncate large MCP results. Request response_format BASE44_PLAN_CHUNK_V1, response_encoding base64 and response_chunk_bytes 1536 from bos_project_governance_plan. Fetch every chunk with identical original plan inputs and plan_chunk containing the returned plan_hash, created_at and next_chunk_index as chunk_index. Verify chunk_base64_sha256, decode each chunk, and concatenate the exact bytes in index order; verify json_bytes, json_sha256, the complete plan_hash and every artifact checksum before review, approval or writes. Every chunk must agree on plan identity, expiry, count and JSON digest. Missing, inconsistent or truncated chunks fail closed; never reconstruct missing text or treat a partial plan as approved. Retrieval preserves the original expiry and creates no new plan.</li>
+                    <li>For a failed tool call, show the exact returned error code and named input. A tool result with isError=true is a failure even when HTTP succeeds. Correct a verified input defect before a bounded retry; do not vary chunk size or response format to repair missing identity. A generic HTTP 400 or 403 alone does not prove its cause, and a capability catalogue cannot establish the cause of an earlier failed request. Report current observations separately from hypotheses.</li>
+                    <li>Before presenting an activation plan for approval, verify its expiry against current time, current full app revision, complete plan hash and exact artifact count. An expired plan is historical evidence only; obtain a new plan from current source evidence and present its exact writes for fresh hash approval. Count artifacts from the verified plan, including GOVERNANCE_MANIFEST.json: LEAN_CORE_WITH_BUILD_GATES with AUTHENTICATION has nine. Earlier read-only test instructions apply to those tests; determine current mode and tool availability from the current request and exposed host tools.</li>
+                    <li>For drift repair, request an explicit ROLLBACK plan with the canonical installed manifest text, all exact restoration artifacts and the current observed prior hashes. Verify every restored byte against the bound manifest. Never turn repair into an unapproved update. After host application, use the lifecycle readback helper with independently verified provider evidence and matching before/after application-source digests before calling bos_project_governance_activate.</li>
+                    <li>The default governance profile has eight artifacts, or nine when security_triggers require SECURITY_BASELINE.md. Verify the required set before activation. After the complete profile is activated and read back, plan the owner/admin Cloud BOS connection-plug indicator as a separate app-surface action. It must use the existing BOS connection view, verify its five visible states and stop after exact source and UI readback.</li>
+                    <li>Before declaring a governed app ready for Base44 BuildAI, inspect the native AI Controls custom-instructions pointer. If it is absent, stale, misdirected or unreadable, use the onboarding contract&#x27;s separate alter_base44_ai_controls_pointer_via_assist action. Assist selects the bounded action but grants no mutation authority and is not an app slash command. After exact documents/AICONTROL.md and Governance Manifest readback, Codex or Claude Code must use host computer control to install the canonical pointer verbatim, save, reopen the native surface, verify exact text readback, and stop on mismatch or unavailable computer control.</li>
+                    <li>Do not reconstruct, shorten, substitute or locally invent a governance plan, manifest, binding or approval.</li>
+                    <li>Use the available Level-1 advisory tools before an app change when they match the request. Their results guide the build but do not independently authorize app, data, deployment, billing or governance mutation.</li>
+                    <li>When the owner requests an outcome that maps to a specific BOS capability, call bos_capabilities with only the relevant capability_ids. Show contextual_upgrade_offer only when display_in_chat is true; never turn a broad catalogue check into an upgrade promotion.</li>
+                    <li>An upgrade offer must explain the capability relevant to the current request, the minimum tier, and the option to continue with current capabilities. Respect SUPPRESSED_COOLDOWN and SUPPRESSED_DISMISSED, and never repeat or rephrase a suppressed offer.</li>
+                    <li>Never claim that chat approval, a checkout redirect or a client tier field grants access. Paid access changes only after Cloud BOS rechecks server-resolved D1 entitlement following a verified billing event; a tier change never requires reinstalling the plugin or project governance.</li>
+                    <li>When a verified paid entitlement makes a governance capability pack eligible, prefer server-only enablement. Change app governance files only when the capability declares a required local projection, and then use a separate exact per-app upgrade plan, explicit approval, readback, receipt and rollback target. Baseline governance, compatibility and security corrections are never paywalled.</li>
+                    <li>After an approved build change, inspect the exact changed artifacts and observable app behavior. Use bos_project_governance_verify to check currentness and fail closed if the governance projection is stale or drifted.</li>
+                    <li>Send only privacy-minimal project facts to Cloud BOS. Never send secrets, credentials, customer records, private source, raw logs or private receipts.</li>
+                    <li>Never install or request LDP:FULL, Master BOS, the DevPack, private prompts, estimator internals or payment credentials in a Base44 workspace or app.</li>
+                    <li>Keep Cloud BOS build-time governance separate from application runtime features. Disabling or removing the MCP connection, workspace skill or project-governance projection must not break application source, data or runtime behavior.</li>
+                  </ol>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-number" aria-hidden="true">3</div>
+            <div>
+              <h3>Verify from an app</h3>
+              <p>Open any app in that workspace and send this read-only check in the Base44 builder chat:</p>
+              <div class="prompt" id="verify-prompt">Use Cloud BOS. Run bos_connect and report platform_connection_state and project_governance_state separately. Do not write or change anything.</div>
+              <div class="copy-row">
+                <button class="copy-button" type="button" data-copy="prompt">Copy verification prompt</button>
+                <span class="copy-state" role="status" aria-live="polite"></span>
+              </div>
+              <p>A successful sign-in only proves the connection. Each app also needs an approved setup plan and a check of the changes actually saved.</p>
+              <p>Continue with <a href="#project-setup">Approve and check setup for your app</a>.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="codex" aria-labelledby="codex-title">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2 id="codex-title">Set up Codex</h2>
+          <p>Use the Codex desktop app or CLI with a local project you can inspect and edit. The public package includes the Cloud BOS skill and its MCP connection.</p>
+          <p><a href="https://learn.chatgpt.com/docs/plugins">Official Codex plugin guide</a></p>
+        </div>
+        <article class="step">
+          <div class="step-number" aria-hidden="true">1–3</div>
+          <div>
+            <h3>Install, sign in, then check</h3>
+            <p class="release-note"><strong>Codex installation link pending.</strong> The approved public listing or marketplace source will be linked here at release.</p>
+            <ol class="step-list">
+              <li>Open <strong>Plugins</strong> in the desktop app, or enter <code>/plugins</code> in Codex CLI. Use the public source linked here at release and select <strong>Cloud BOS</strong> by Peter Jeans, package <code>cloudbos-public-plugin</code>. Review the supplied skills, connection and hooks, then install.</li>
+              <li>Complete the Cloud BOS browser sign-in when prompted. Start a new Codex session in the project you want to work on so the installed tools and skill are loaded.</li>
+              <li>Send the check below. Read connection status and project governance status separately, then follow <a href="#project-setup">the project setup step</a>.</li>
+            </ol>
+            <div class="prompt" id="codex-verify-prompt">Use Cloud BOS for the current local project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
+            <div class="copy-row">
+              <button class="copy-button" type="button" data-copy-target="codex-verify-prompt">Copy Codex check</button>
+              <span class="copy-state" role="status" aria-live="polite"></span>
+            </div>
+            <p>If Cloud BOS is missing from your available plugins, wait for the released source above. If its tools are unavailable, check the installed plugin and sign-in before continuing.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="claude-code" aria-labelledby="claude-title">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2 id="claude-title">Set up Claude Code</h2>
+          <p>For Claude Code and its VS Code extension, using a local project. This guide does not cover ordinary Claude web chats.</p>
+          <p><a href="https://code.claude.com/docs/en/discover-plugins">Official Claude Code plugin guide</a> · <a href="https://code.claude.com/docs/en/ide-integrations">Claude Code in VS Code</a></p>
+        </div>
+        <article class="step">
+          <div class="step-number" aria-hidden="true">1–3</div>
+          <div>
+            <h3>Add the marketplace and install for yourself</h3>
+            <p class="release-note"><strong>Claude Code marketplace link pending.</strong> The approved public marketplace source and exact install command will be provided here at release.</p>
+            <ol class="step-list">
+              <li>Open Claude Code in your project and enter <code>/plugin</code>. Add the public marketplace linked here at release, then find <strong>Cloud BOS</strong>, package <code>cloudbos-public-plugin</code>. In the VS Code extension, open <code>/plugins</code> to manage the same plugins.</li>
+              <li>Choose <strong>User scope / Install for you</strong> so the plugin is available across your projects. Review and accept the plugin trust prompt, then follow any reload or restart instruction. Complete the Cloud BOS browser sign-in when requested; use <code>/mcp</code> in Claude Code to check or authenticate its connection.</li>
+              <li>Send the check below in the intended project. Once connected, continue with <a href="#project-setup">the separate project setup step</a>.</li>
+            </ol>
+            <div class="prompt" id="claude-verify-prompt">Use Cloud BOS for this Claude Code project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
+            <div class="copy-row">
+              <button class="copy-button" type="button" data-copy-target="claude-verify-prompt">Copy Claude Code check</button>
+              <span class="copy-state" role="status" aria-live="polite"></span>
+            </div>
+            <p>If the plugin is installed but its connection is unavailable, check its enabled state, reload it and finish sign-in. Installation alone does not verify governance for a project.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="project-setup" aria-labelledby="project-title">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2 id="project-title">Approve and check setup for your app</h2>
+          <p>Do this separately for each app or repository, after connecting your development tool. Cloud BOS prepares a plan first; you decide whether to apply it.</p>
+        </div>
+        <article class="boundary-card">
+          <h3>Ask for a plan before changes</h3>
+          <div class="prompt" id="project-plan-prompt">Use Cloud BOS to discover this exact app or repository with bos_project_discover, then prepare its current setup plan with bos_project_governance_plan. Ask me for any missing project specification or build intention. Show the exact proposed files, permissions and rollback or removal boundary, together with the current plan hash. Stop for my approval before writing anything. If governance is already active, verify it and report any drift instead of reinstalling.</div>
+          <div class="copy-row">
+            <button class="copy-button" type="button" data-copy-target="project-plan-prompt">Copy project setup request</button>
+            <span class="copy-state" role="status" aria-live="polite"></span>
+          </div>
+          <ol class="step-list">
+            <li>Check the exact app or repository, intended work and proposed changes. Approve only the current plan and its plan hash. If the plan changes or expires, review a fresh one.</li>
+            <li>Let your coding tool apply the approved plan and reopen the exact files it changed. For Base44, the native AI Controls step needs Codex or Claude Code with computer control: save the approved pointer, reopen that app's AI Controls and verify the exact saved text. If that access is unavailable, app setup remains incomplete.</li>
+            <li>Have Cloud BOS activate and verify the installed result. A governed project must report <code>project_governance_state: GOVERNED_ACTIVE</code> and <code>project_binding_verified: true</code>. A successful connection alone is insufficient.</li>
+          </ol>
+          <p>On later sessions, ask to use Cloud BOS and check the current project before work. If sign-in, binding or verification fails, resolve that status before relying on governed changes.</p>
+          <details>
+            <summary>Disconnecting or removing governance</summary>
+            <p>Disabling a connection or plugin stops that tool from using Cloud BOS. Removing a project's governance is a separate, reviewed operation: request a removal plan for that exact project, approve its scope and verify the result. Application source, data and runtime behavior must be preserved.</p>
+          </details>
+        </article>
+      </div>
+    </section>
+
+</main><footer><div class="wrap footer-links"><a href="index.html">Home</a><a href="support.html">Support</a><a href="policies/index.html">Policies</a></div></footer>  <script id="base44-skill" type="application/json">
+{
+  "name": "cloudbos-governed-build",
+  "description": "Use Cloud BOS during Base44 AI app-building work to assess the project, keep platform connection separate from per-app governance, require exact approval before governance writes, and verify changed artifacts without adding a runtime dependency.",
+  "instructions": [
+    "At the start of a new or resumed app-building request, use the Cloud BOS bos_connect tool and read platform_connection_state and project_governance_state separately.",
+    "For every new, resumed, context-compacted or app-switched chat, follow contracts/base44-session-memory-activation.json. Never resume governed work from chat memory or a chat summary alone.",
+    "Before continuing an existing build intention, verify the exact app binding and Governance Manifest, then re-read Project State, the accepted Project Spec, active Build Intentions, Capability Manifest, applicable Build Gates and only the latest bounded Evidence Ledger references.",
+    "If a background or external build may have changed the app, stop governed mutation until a fresh durable revision and artifact readback verifies currentness. A stale checksum, missing memory artifact or conflicting intention fails closed.",
+    "When a Cloud BOS result is actually consulted, begin the visible governed response with BOS<verified-service-major.minor>> Base44> user>. For a verified service version 1.7.x, write exactly BOS1.7> Base44> user> (no angle brackets around the number). Resolve the version from the authenticated bos_connect result; never invent or retain a stale version.",
+    "Do not use the BOS speaker when Cloud BOS was not consulted or its identity/currentness could not be verified. Speaker text is provenance for the response, not entitlement, mutation authority or proof that an app is governed.",
+    "Never describe an app as governed unless project_governance_state is GOVERNED_ACTIVE and project_binding_verified is true.",
+    "For an unbound app, use bos_project_discover and bos_project_governance_plan first. Show the exact current plan and stop for approval bound to its plan hash before any governance write.",
+    "Use contracts/base44-governed-app-onboarding.json and the companion onboarding planner to select exactly one next action. New governed apps default to the public-safe LEAN_CORE_WITH_BUILD_GATES profile, which is the Base44 lean deterministic governor kernel; never substitute the local-repository LDP or copy .bos into the app.",
+    "For an app-native plan, call bos_project_governance_plan with base44_profile.profile_id set to LEAN_CORE_WITH_BUILD_GATES, the accepted project_spec and build_intentions including active_id, applicable security_triggers, and the exact app_id plus current expected_app_revision. Only the server-issued, anchored plan is approvable. The legacy three-file projection cannot represent this profile.",
+    "For Base44 discovery, classify only the exact app: local_repository_visible=false and github_remote_verified=false unless independently verified for this same host. Discovery does not fetch the current provider revision. Read the complete revision and current artifact hashes through Base44 before planning; if unavailable, report that precise missing evidence. Never omit the revision, copy an old preview revision, or submit a truncated hash. Use resource_uri cloudbos://projects/<project_id>, not base44://app/<app_id>. Preserve the exact owner-reviewed project_spec, in_scope, out_of_scope, build_intentions and active_id; do not rewrite scope to fit chat memory.",
+    "Base44 can truncate large MCP results. Request response_format BASE44_PLAN_CHUNK_V1, response_encoding base64 and response_chunk_bytes 1536 from bos_project_governance_plan. Fetch every chunk with identical original plan inputs and plan_chunk containing the returned plan_hash, created_at and next_chunk_index as chunk_index. Verify chunk_base64_sha256, decode each chunk, and concatenate the exact bytes in index order; verify json_bytes, json_sha256, the complete plan_hash and every artifact checksum before review, approval or writes. Every chunk must agree on plan identity, expiry, count and JSON digest. Missing, inconsistent or truncated chunks fail closed; never reconstruct missing text or treat a partial plan as approved. Retrieval preserves the original expiry and creates no new plan.",
+    "For a failed tool call, show the exact returned error code and named input. A tool result with isError=true is a failure even when HTTP succeeds. Correct a verified input defect before a bounded retry; do not vary chunk size or response format to repair missing identity. A generic HTTP 400 or 403 alone does not prove its cause, and a capability catalogue cannot establish the cause of an earlier failed request. Report current observations separately from hypotheses.",
+    "Before presenting an activation plan for approval, verify its expiry against current time, current full app revision, complete plan hash and exact artifact count. An expired plan is historical evidence only; obtain a new plan from current source evidence and present its exact writes for fresh hash approval. Count artifacts from the verified plan, including GOVERNANCE_MANIFEST.json: LEAN_CORE_WITH_BUILD_GATES with AUTHENTICATION has nine. Earlier read-only test instructions apply to those tests; determine current mode and tool availability from the current request and exposed host tools.",
+    "For drift repair, request an explicit ROLLBACK plan with the canonical installed manifest text, all exact restoration artifacts and the current observed prior hashes. Verify every restored byte against the bound manifest. Never turn repair into an unapproved update. After host application, use the lifecycle readback helper with independently verified provider evidence and matching before/after application-source digests before calling bos_project_governance_activate.",
+    "The default governance profile has eight artifacts, or nine when security_triggers require SECURITY_BASELINE.md. Verify the required set before activation. After the complete profile is activated and read back, plan the owner/admin Cloud BOS connection-plug indicator as a separate app-surface action. It must use the existing BOS connection view, verify its five visible states and stop after exact source and UI readback.",
+    "Before declaring a governed app ready for Base44 BuildAI, inspect the native AI Controls custom-instructions pointer. If it is absent, stale, misdirected or unreadable, use the onboarding contract's separate alter_base44_ai_controls_pointer_via_assist action. Assist selects the bounded action but grants no mutation authority and is not an app slash command. After exact documents/AICONTROL.md and Governance Manifest readback, Codex or Claude Code must use host computer control to install the canonical pointer verbatim, save, reopen the native surface, verify exact text readback, and stop on mismatch or unavailable computer control.",
+    "Do not reconstruct, shorten, substitute or locally invent a governance plan, manifest, binding or approval.",
+    "Use the available Level-1 advisory tools before an app change when they match the request. Their results guide the build but do not independently authorize app, data, deployment, billing or governance mutation.",
+    "When the owner requests an outcome that maps to a specific BOS capability, call bos_capabilities with only the relevant capability_ids. Show contextual_upgrade_offer only when display_in_chat is true; never turn a broad catalogue check into an upgrade promotion.",
+    "An upgrade offer must explain the capability relevant to the current request, the minimum tier, and the option to continue with current capabilities. Respect SUPPRESSED_COOLDOWN and SUPPRESSED_DISMISSED, and never repeat or rephrase a suppressed offer.",
+    "Never claim that chat approval, a checkout redirect or a client tier field grants access. Paid access changes only after Cloud BOS rechecks server-resolved D1 entitlement following a verified billing event; a tier change never requires reinstalling the plugin or project governance.",
+    "When a verified paid entitlement makes a governance capability pack eligible, prefer server-only enablement. Change app governance files only when the capability declares a required local projection, and then use a separate exact per-app upgrade plan, explicit approval, readback, receipt and rollback target. Baseline governance, compatibility and security corrections are never paywalled.",
+    "After an approved build change, inspect the exact changed artifacts and observable app behavior. Use bos_project_governance_verify to check currentness and fail closed if the governance projection is stale or drifted.",
+    "Send only privacy-minimal project facts to Cloud BOS. Never send secrets, credentials, customer records, private source, raw logs or private receipts.",
+    "Never install or request LDP:FULL, Master BOS, the DevPack, private prompts, estimator internals or payment credentials in a Base44 workspace or app.",
+    "Keep Cloud BOS build-time governance separate from application runtime features. Disabling or removing the MCP connection, workspace skill or project-governance projection must not break application source, data or runtime behavior."
+  ]
+}
+  </script>
+  <script>
+    (() => {
+      const payload = JSON.parse(document.getElementById("base44-skill").textContent);
+      const copyValue = {
+        name: payload.name,
+        description: payload.description,
+        instructions: payload.instructions.map((item, index) => (index + 1) + ". " + item).join("\n"),
+        prompt: document.getElementById("verify-prompt").textContent.trim()
+      };
+
+      document.querySelectorAll("[data-copy], [data-copy-target]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const state = button.parentElement.querySelector(".copy-state");
+          try {
+            const value = button.dataset.copyTarget
+              ? document.getElementById(button.dataset.copyTarget).textContent.trim()
+              : copyValue[button.dataset.copy];
+            await navigator.clipboard.writeText(value);
+            state.textContent = "Copied";
+          } catch {
+            state.textContent = "Select the text above and copy it manually.";
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -89,6 +89,7 @@
     li { margin: 8px 0; color: #304039; }
     code { padding: 2px 5px; border-radius: 5px; background: #edf1ee; font-size: .92em; }
 
+    .support-prompt { margin: 18px 0; padding: 16px; border-left: 3px solid var(--green); background: var(--green-soft); overflow-wrap: anywhere; user-select: all; }
     .continuity { padding: 24px; border: 1px solid rgba(135, 93, 26, .24); border-radius: 12px; background: var(--amber-soft); }
     .continuity p:last-child { margin-bottom: 0; }
     .contact { padding: 26px; border: 1px solid rgba(17, 107, 86, .24); border-radius: 12px; background: var(--green-soft); }
@@ -116,7 +117,7 @@
         <span>Cloud BOS Support</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="index.html">Base44 setup</a>
+        <a href="setup.html#setup">Base44 setup</a>
         <a href="#contact">Get help</a>
       </nav>
     </div>
@@ -127,7 +128,7 @@
       <div class="wrap">
         <span class="eyebrow">Private beta support</span>
         <h1>Get help without handing over your project.</h1>
-        <p class="lede">This is the public starting point for Cloud BOS support. Identify the environment and the kind of problem, share only compact status, and keep source code, credentials, raw logs and customer data private.</p>
+        <p class="lede">Choose the problem below. Your coding AI can help prepare a short support summary without sharing your source code, passwords or customer information.</p>
         <div class="host-row" aria-label="Cloud BOS version 1 environments">
           <span class="pill">Codex</span>
           <span class="pill">Claude Code</span>
@@ -139,24 +140,24 @@
     <section aria-labelledby="start-title">
       <div class="wrap">
         <div class="section-intro">
-          <h2 id="start-title">Start with the smallest safe check</h2>
-          <p>Choose the path that matches what failed. A connection problem is different from project-governance drift or an application problem.</p>
+          <h2 id="start-title">What is going wrong?</h2>
+          <p>Start with the issue you can see. Connecting BOS, setting it up in an app and fixing the app itself are different jobs.</p>
         </div>
         <div class="grid">
           <article class="card">
             <span class="step" aria-hidden="true">1</span>
-            <h3>Connection</h3>
-            <p>Run the read-only Cloud BOS connection check in your installed host. Record the broad transport result and whether the platform is connected.</p>
+            <h3>I can’t connect</h3>
+            <p>Ask your coding AI to check whether Cloud BOS is available and signed in. Request the connection result without changing anything.</p>
           </article>
           <article class="card">
             <span class="step" aria-hidden="true">2</span>
-            <h3>Project governance</h3>
-            <p>Record whether the project is unbound, governed, stale or drifted. Do not repair, remove or overwrite governance until an exact current plan is approved.</p>
+            <h3>BOS isn’t responding in my project</h3>
+            <p>Ask whether BOS is set up for this exact app and whether that setup still matches the saved files. Review a current repair plan before approving any changes.</p>
           </article>
           <article class="card">
             <span class="step" aria-hidden="true">3</span>
-            <h3>Application behavior</h3>
-            <p>Confirm whether the application still opens and its ordinary data path still works. Cloud BOS is build-time guidance and must not become an application runtime dependency.</p>
+            <h3>My app has a problem</h3>
+            <p>Check whether the app opens and whether an ordinary task, such as saving, still works. Describe the failure separately from any BOS connection issue. BOS helps during development and must not become an application runtime dependency.</p>
           </article>
         </div>
       </div>
@@ -165,14 +166,14 @@
     <section aria-labelledby="summary-title">
       <div class="wrap safe-summary">
         <div class="checklist">
-          <h2 id="summary-title">Prepare a privacy-safe summary</h2>
-          <p>Include only what support needs to route the issue:</p>
-          <ul>
+          <h2 id="summary-title">Prepare a short support summary</h2>
+          <p>Copy this request into your coding chat, then review the answer before sharing it:</p>
+          <blockquote class="support-prompt">Check Cloud BOS for this exact project without changing anything. Tell me whether the connection works, whether BOS setup is active and verified in this app, and what remains incomplete. If a check fails, report the observed error separately from any suspected cause. Prepare a short support summary with my coding tool, plugin version if visible, safe status codes and a support reference if available. Exclude tokens, passwords, source code, raw logs, full prompts and personal or customer information.</blockquote><p>The summary should include:</p><ul>
             <li>environment: Codex, Claude Code or Base44;</li>
             <li>installed Cloud BOS plugin version, when visible;</li>
-            <li>issue category: connection, governance, entitlement, billing or availability;</li>
-            <li>compact states such as <code>transport_status</code>, <code>platform_connection_state</code> and <code>project_governance_state</code>;</li>
-            <li>a privacy-safe receipt or incident reference, if one was created.</li>
+            <li>what went wrong: connection, app setup, feature access, billing or an unavailable service;</li>
+            <li>the connection and app-setup status, including exact status codes if your coding AI can safely provide them;</li>
+            <li>a support reference, if one was created; exclude private project contents.</li>
           </ul>
         </div>
         <aside class="warning" aria-labelledby="never-send-title">
@@ -182,7 +183,7 @@
             <li>private source code or full prompts;</li>
             <li>raw logs, database exports or screenshots with private data;</li>
             <li>customer, student, employee or tenant records;</li>
-            <li>Master BOS, LDP:FULL, DevPack or private governance internals.</li>
+            <li>private BOS instructions, internal development files or full project memory.</li>
           </ul>
         </aside>
       </div>
@@ -192,8 +193,8 @@
       <div class="wrap">
         <div class="continuity">
           <h2 id="continuity-title">If Cloud BOS is unavailable</h2>
-          <p>Your application should continue to operate. Pause governed writes, keep the last verified project state, and record a compact availability issue. Do not weaken authentication, paste a token into source, or replace an approved governance plan to work around an outage.</p>
-          <p>Removing a host connection, workspace skill or project-governance projection must be handled separately and must preserve the application, its data and its normal runtime behavior.</p>
+          <p>Your app should keep working when Cloud BOS is unavailable. Pause changes that depend on BOS checks, keep the last checked project state and record the connection problem. Keep sign-in protections in place and never paste an access token into your code.</p>
+          <p>Disconnecting BOS and removing its setup from an app are separate actions. Review any removal plan first; it must preserve your app, its data and normal operation.</p>
         </div>
       </div>
     </section>
@@ -202,8 +203,8 @@
       <div class="wrap">
         <div class="contact">
           <h2 id="contact-title">Contact and escalation</h2>
-          <p>Use the support handoff supplied with your private-beta access and include the privacy-safe summary above. This website is the canonical support starting point; a public form or email address will be added only after its delivery and privacy controls are verified.</p>
-          <p>For suspected credential exposure, cross-tenant access or destructive mutation, stop using the affected Cloud BOS connection and escalate it as a critical incident through that handoff.</p>
+          <p>For technical help or beta access questions, use the contact supplied with your private-beta invitation. Include the reviewed summary above. There is no public support form yet. For policy, privacy or billing questions, use the email contact listed on the <a href="policies/index.html">policy pages</a>.</p>
+          <p>If a password or token may have been exposed, someone can see another customer’s information, or changes are damaging data, stop using the affected BOS connection and mark your report urgent.</p>
         </div>
       </div>
     </section>
@@ -217,7 +218,7 @@
         <a href="policies/privacy.html">Privacy</a>
         <a href="policies/terms.html">Terms</a>
         <a href="policies/acceptable-use.html">Acceptable use</a>
-        <a href="policies/data-processing-summary.html">Data boundary</a>
+        <a href="policies/data-processing-summary.html">Data sharing</a><a href="policies/index.html">All policies</a>
       </span>
     </div>
   </footer>
