@@ -572,7 +572,7 @@
             <ol class="step-list">
               <li>Open <strong>Plugins</strong> in the desktop app, or enter <code>/plugins</code> in Codex CLI. Use the public source linked here at release and select <strong>Cloud BOS</strong> by Peter Jeans, package <code>cloudbos-public-plugin</code>. Review the supplied skills, connection and hooks, then install.</li>
               <li>Complete the Cloud BOS browser sign-in when prompted. Start a new Codex session in the project you want to work on so the installed tools and skill are loaded.</li>
-              <li>Send the check below. Read connection status and project governance status separately, then follow <a href="#project-setup">the project setup step</a>.</li>
+              <li>Use the check below to verify the first installation. After initial setup and hook trust, BOS should check this project automatically whenever you start or resume a session. Read connection and project readiness separately.</li>
             </ol>
             <div class="prompt" id="codex-verify-prompt">Use Cloud BOS for the current local project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
             <div class="copy-row">
@@ -600,7 +600,7 @@
             <ol class="step-list">
               <li>Open Claude Code in your project and enter <code>/plugin</code>. Add the public marketplace linked here at release, then find <strong>Cloud BOS</strong>, package <code>cloudbos-public-plugin</code>. In the VS Code extension, open <code>/plugins</code> to manage the same plugins.</li>
               <li>Choose <strong>User scope / Install for you</strong> so the plugin is available across your projects. Review and accept the plugin trust prompt, then follow any reload or restart instruction. Complete the Cloud BOS browser sign-in when requested; use <code>/mcp</code> in Claude Code to check or authenticate its connection.</li>
-              <li>Send the check below in the intended project. Once connected, continue with <a href="#project-setup">the separate project setup step</a>.</li>
+              <li>Use the check below to verify the first installation in the intended project. After initial setup and trust, BOS should check the project automatically on new or resumed sessions. Continue with <a href="#project-setup">the separate project setup step</a>.</li>
             </ol>
             <div class="prompt" id="claude-verify-prompt">Use Cloud BOS for this Claude Code project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
             <div class="copy-row">
@@ -618,6 +618,8 @@
         <div class="section-intro">
           <h2 id="project-title">Approve and check setup for your app</h2>
           <p>Do this separately for each app or repository, after connecting your development tool. Cloud BOS prepares a plan first; you decide whether to apply it.</p>
+          <p>Once setup is approved, you should not need to remember a rebind command. Each new or resumed session checks your connection, the exact project and its saved working records before continuing.</p>
+          <details><summary>What does a complete connection check restore?</summary><div class="detail-body"><p>The check confirms current access, verifies the installed project setup and reloads the accepted plan, active intention and available project records. Being signed in alone does not prove that all of this is ready.</p><p>A rebind preserves the existing project and connection. It reports missing files, changed records or unresolved memory clearly; it does not invent decisions or silently accept changes. Connection checks run before questions about missing product requirements.</p><p>The customer plugin restores its approved public project records. The original private owner connection, called privatecloudBOS or foundercloudBOS, uses its existing private project framework. Installing the customer plugin does not switch a private project to that route.</p><p>One-time host trust, sign-in and approval of the initial project setup still apply. If automatic checks are unavailable, the host must report that gap. This preview is not evidence that every host has passed live verification.</p></div></details>
         </div>
         <article class="boundary-card">
           <h3>Ask for a plan before changes</h3>
