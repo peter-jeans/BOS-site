@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNED_APP_ONBOARDING_V1",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "status": "PUBLIC_SAFE_DETERMINISTIC_PLANNER_LOCAL_VERIFIED_LIVE_BASE44_MUTATION_PENDING",
   "purpose": "Turn one Base44 account MCP connection and one workspace skill installation into a repeatable, separately authorised governance activation for each selected app.",
   "installation_cardinality": {
@@ -180,5 +180,27 @@
       "checksum_proves_semantic_completeness": false,
       "same_unchanged_baseline_requires_reacceptance": false
     }
+  },
+  "lifecycle_readback": {
+    "helper": "scripts/base44-app-governance-profile.mjs",
+    "dependency": "contracts/base44-app-governance-profiles.json",
+    "export": "verifyBase44AppGovernanceLifecycle",
+    "runtime": "NODE_ESM_WITH_JSON_IMPORT_ATTRIBUTES",
+    "scope": "ADVISORY_HOST_READBACK_CONSTRUCTION_ONLY",
+    "execution_location": "TEMPORARY_DIRECTORY_OUTSIDE_APP_REPOSITORY",
+    "preserve_relative_helper_dependency_layout": true,
+    "verify_manifest_hashes_before_import": true,
+    "required_observations": [
+      "Exact current approved plan",
+      "Independently read provider artifact bytes",
+      "Stable provider revision before and after readback",
+      "Independently verified app identity and evidence reference",
+      "Matching before/after application-source digests",
+      "Whole app change set limited to approved targets"
+    ],
+    "caller_flags_are_authentication_proof": false,
+    "missing_observer_evidence": "BASE44_PROFILE_INDEPENDENT_PROVIDER_READBACK_REQUIRED",
+    "extra_app_paths": "UNAPPROVED_APP_PATHS_BLOCK_COMPLETION",
+    "publication_grants_execution_or_mutation": false
   }
 }

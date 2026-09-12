@@ -1,0 +1,110 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_APP_GOVERNANCE_PROFILES_V1",
+  "version": "1.2.0",
+  "status": "PUBLIC_SAFE_PROFILE_ENGINE_ACTIVATION_DRIFT_AND_REMOVAL_LOCAL_VERIFIED_LIVE_PENDING",
+  "default_onboarding_profile": "LEAN_CORE_WITH_BUILD_GATES",
+  "canonical_identity": {
+    "environment": "BASE44_GOVERNED_APP",
+    "adapter_id": "base44_app_governance"
+  },
+  "compatibility_aliases": {
+    "BASE44_DIRECT_APP": "BASE44_GOVERNED_APP",
+    "base44_direct_app": "base44_app_governance"
+  },
+  "profiles": {
+    "SKILL_MCP_ONLY": {
+      "calibration_treatment": "A",
+      "project_governance_projection_required": false,
+      "governed_active_allowed": false,
+      "artifacts": []
+    },
+    "LEAN_MEMORY_CORE": {
+      "calibration_treatment": "B",
+      "project_governance_projection_required": true,
+      "governed_active_allowed": true,
+      "artifacts": [
+        {"path": "documents/AICONTROL.md", "role": "AICONTROL_ROUTER"},
+        {"path": "documents/PROJECT_SPEC.md", "role": "PROJECT_INTENT"},
+        {"path": "governance/PROJECT_STATE.json", "role": "PROJECT_STATE_AND_BINDING"},
+        {"path": "governance/BUILD_INTENTIONS.md", "role": "BOUNDED_BUILD_INTENT"},
+        {"path": "governance/CAPABILITY_MANIFEST.json", "role": "CAPABILITY_CURRENTNESS"},
+        {"path": "governance/EVIDENCE_LEDGER.jsonl", "role": "APPEND_ONLY_EVIDENCE"},
+        {"path": "governance/GOVERNANCE_MANIFEST.json", "role": "CHECKSUM_DRIFT_UPDATE_ROLLBACK_REMOVAL"}
+      ]
+    },
+    "LEAN_CORE_WITH_BUILD_GATES": {
+      "calibration_treatment": "C",
+      "project_governance_projection_required": true,
+      "governed_active_allowed": true,
+      "governor_kernel": {
+        "id": "BASE44_LEAN_DETERMINISTIC_GOVERNOR",
+        "version": "1.1.0",
+        "purpose": "Bind durable project memory to alignment, early-warning and build-verification gates without distributing private BOS internals.",
+        "deterministic_local_artifacts": [
+          "documents/AICONTROL.md",
+          "documents/PROJECT_SPEC.md",
+          "governance/PROJECT_STATE.json",
+          "governance/BUILD_INTENTIONS.md",
+          "governance/CAPABILITY_MANIFEST.json",
+          "governance/BUILD_GATES.json",
+          "governance/EVIDENCE_LEDGER.jsonl",
+          "governance/GOVERNANCE_MANIFEST.json"
+        ],
+        "private_reasoning_and_scan_engines_location": "CLOUD_BOS_ONLY"
+      },
+      "extends": "LEAN_MEMORY_CORE",
+      "additional_artifacts": [
+        {"path": "governance/BUILD_GATES.json", "role": "ALIGNMENT_WARNING_VERIFICATION_GATES"}
+      ]
+    },
+    "LARGER_INTERNAL_REFERENCE": {
+      "calibration_treatment": "D",
+      "public_distribution_allowed": false,
+      "purpose": "INTERNAL_CALIBRATION_REFERENCE_ONLY"
+    }
+  },
+  "conditional_artifact": {
+    "path": "governance/SECURITY_BASELINE.md",
+    "required_when_any": ["AUTHENTICATION", "CUSTOMER_DATA", "MULTI_TENANCY", "PAYMENTS", "EXTERNAL_INTEGRATIONS"]
+  },
+  "companion_app_surface": {
+    "action_id": "install_cloud_bos_connection_plug_indicator",
+    "part_of_onboarding": true,
+    "included_in_governance_projection": false,
+    "upgrade_category": "app_surface",
+    "sequence": "AFTER_GOVERNANCE_PROFILE_ACTIVATION_AND_READBACK",
+    "mutation_rule": "SEPARATE_EXACT_PER_APP_PLAN_APPROVAL_READBACK_AND_STOP",
+    "visibility": "OWNER_ADMIN_ONLY",
+    "states": ["CONNECTED", "DISCONNECTED", "DEGRADED", "BLOCKED", "UNKNOWN_VISIBLE"],
+    "opens": "EXISTING_BOS_CONNECTION_VIEW",
+    "runtime_dependency": false
+  },
+  "paid_governance_upgrade_rule": {
+    "baseline_profile_not_paywalled": true,
+    "payment_grants_mutation_authority": false,
+    "verified_server_entitlement_makes_pack_eligible": true,
+    "app_files_change_only_when_capability_requires_local_projection": true,
+    "mutation_rule": "SEPARATE_EXACT_PER_APP_PLAN_APPROVAL_READBACK_AND_STOP",
+    "tier_change_requires_plugin_reinstall": false,
+    "local_capability_manifest_grants_entitlement": false
+  },
+  "deferred_acceptance_gate": {
+    "id": "BASE44_FULL_VS_LEAN_MATCHED_LANE_EFFICACY",
+    "status": "DEFERRED_NOT_WAIVED",
+    "required_before": ["GOVERNANCE_EQUIVALENCE_CLAIM", "FLEET_COMPLETION_CLAIM"],
+    "current_local_evidence_claim": "DETERMINISTIC_PACKAGE_AND_LIFECYCLE_VERIFIED_EFFECTIVENESS_NOT_YET_EQUIVALENT"
+  },
+  "invariants": [
+    "PLATFORM_AND_WORKSPACE_INSTALLATION_DO_NOT_IMPLY_APP_GOVERNANCE",
+    "GOVERNED_ACTIVE_REQUIRES_EXACT_PROFILE_BINDING_MANIFEST_AND_READBACK",
+    "EVERY_ARTIFACT_IS_VERSIONED_REPLACEABLE_AND_INDEPENDENTLY_REMOVABLE",
+    "REMOVAL_PRESERVES_APPLICATION_SOURCE_DATA_AND_RUNTIME",
+    "NO_APPLICATION_RUNTIME_DEPENDENCY_ON_CLOUDBOS",
+    "NEW_RESUMED_OR_CONTEXT_COMPACTED_CHAT_MUST_REACTIVATE_FROM_DURABLE_PROJECT_MEMORY_NOT_CHAT_MEMORY",
+    "BACKGROUND_OR_EXTERNAL_BUILD_REQUIRES_FRESH_REVISION_AND_MANIFEST_READBACK_BEFORE_GOVERNED_CONTINUATION",
+    "NO_LDP_FULL_MASTER_BOS_DEVPACK_PRIVATE_PROMPTS_SECRETS_CREDENTIALS_CUSTOMER_DATA_OR_UNNECESSARY_SOURCE",
+    "BASELINE_DETERMINISTIC_GOVERNOR_IS_NOT_PAYWALLED",
+    "CONNECTION_PLUG_IS_A_SEPARATE_APP_SURFACE_ACTION_NOT_GOVERNANCE_PROJECTION_CONTENT",
+    "VERIFIED_PAID_ENTITLEMENT_MAKES_AN_UPGRADE_ELIGIBLE_BUT_NEVER_AUTHORIZES_FILE_MUTATION"
+  ]
+}
