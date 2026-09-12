@@ -1,0 +1,95 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_SESSION_MEMORY_ACTIVATION_V1",
+  "version": "1.1.0",
+  "status": "PUBLIC_SAFE_LOCAL_CONTRACT_LIVE_VERIFICATION_PENDING",
+  "purpose": "Prevent a new, resumed or context-compacted Base44 BuildAI chat from continuing governed work from chat memory alone.",
+  "triggers": [
+    "NEW_BUILDAI_CHAT",
+    "RESUMED_BUILDAI_CHAT",
+    "CONTEXT_LOSS_OR_COMPACTION_SUSPECTED",
+    "APP_OR_WORKSPACE_SWITCH",
+    "EXTERNAL_BUILD_OR_SOURCE_CHANGE_OBSERVED",
+    "BEFORE_GOVERNED_MUTATION"
+  ],
+  "activation_sequence": [
+    "CALL_BOS_CONNECT_AND_VERIFY_SERVICE_VERSION",
+    "VERIFY_PLATFORM_IDENTITY_AND_EXACT_APP_BINDING",
+    "READ_AICONTROL_AND_GOVERNANCE_MANIFEST",
+    "VERIFY_MANIFEST_HASHES_CURRENTNESS_AND_DRIFT_STATE",
+    "READ_PROJECT_STATE_AND_ACCEPTED_PROJECT_SPEC",
+    "READ_ACTIVE_BUILD_INTENTION_AND_EXCLUSIONS",
+    "READ_CAPABILITY_MANIFEST_AND_BUILD_GATES_WHEN_PRESENT",
+    "READ_ONLY_LATEST_BOUNDED_EVIDENCE_REFERENCES",
+    "RECONCILE_CURRENT_USER_REQUEST_WITH_DURABLE_PROJECT_STATE",
+    "EMIT_ACTIVATION_STATUS_BEFORE_CONTINUATION_OR_MUTATION"
+  ],
+  "durable_project_memory": {
+    "required_profile": "LEAN_MEMORY_CORE_OR_STRONGER",
+    "authoritative_artifacts": [
+      "documents/AICONTROL.md",
+      "documents/PROJECT_SPEC.md",
+      "governance/PROJECT_STATE.json",
+      "governance/BUILD_INTENTIONS.md",
+      "governance/CAPABILITY_MANIFEST.json",
+      "governance/EVIDENCE_LEDGER.jsonl",
+      "governance/GOVERNANCE_MANIFEST.json"
+    ],
+    "conditional_artifacts": [
+      "governance/BUILD_GATES.json",
+      "governance/SECURITY_BASELINE.md"
+    ],
+    "chat_memory_is_authority": false,
+    "cloud_service_reachability_is_project_currentness": false,
+    "speaker_envelope_is_activation_proof": false
+  },
+  "currentness_authority": {
+    "expected_identity_source": "INDEPENDENT_CURRENT_CLOUD_BINDING_AND_PROVIDER_READBACK",
+    "governance_manifest_sha256": "EXACT_SERVER_ANCHORED_APPROVED_MANIFEST_HASH",
+    "projection_base_revision": "PREWRITE_REVISION_FROM_THE_APPROVED_PROJECTION_PLAN",
+    "expected_app_revision": "POSTWRITE_PROVIDER_REVISION_FROM_INDEPENDENT_VERIFIED_READBACK",
+    "base_revision_equals_installed_revision": false,
+    "active_build_intention_id_source": "HASH_VERIFIED_governance/PROJECT_STATE.json",
+    "caller_supplied_intention_is_authority": false,
+    "host_readback_adapter_integration": "LIVE_VERIFICATION_REQUIRED"
+  },
+  "activation_statuses": [
+    "ACTIVE_CURRENT_NEW_REQUEST",
+    "ACTIVE_CURRENT_RESUME_EXACT_INTENTION",
+    "BLOCKED_UNBOUND",
+    "BLOCKED_STALE_OR_DRIFTED",
+    "BLOCKED_MEMORY_INCOMPLETE",
+    "BLOCKED_INTENTION_CONFLICT",
+    "BLOCKED_READBACK_UNVERIFIED"
+  ],
+  "fail_closed_rules": [
+    "NEVER_RESUME_FROM_CHAT_SUMMARY_ALONE",
+    "NEVER_INFER_CURRENT_BUILD_INTENTION_FROM_PRIOR_CONVERSATION",
+    "NEVER_TREAT_PLATFORM_INSTALLATION_AS_PROJECT_ACTIVATION",
+    "NEVER_MUTATE_WHEN_BINDING_MANIFEST_OR_REQUIRED_MEMORY_READBACK_IS_MISSING",
+    "NEVER_HIDE_DRIFT_AS_AN_UPDATE_OR_REPAIR",
+    "EXTERNAL_OR_BACKGROUND_BUILD_REQUIRES_FRESH_DURABLE_READBACK_BEFORE_CONTINUATION"
+  ],
+  "privacy_boundary": {
+    "cloud_payload": "COMPACT_HASH_STATUS_BINDING_AND_RECEIPT_REFERENCES_ONLY",
+    "raw_project_source_to_cloudbos": false,
+    "raw_logs_to_cloudbos": false,
+    "customer_data_to_cloudbos": false,
+    "ldp_full_or_private_bos_in_project": false,
+    "historic_full_receipt_replay_required": false
+  },
+  "recovery": {
+    "stale_or_drifted": "REQUEST_FRESH_EXACT_REPAIR_OR_UPDATE_PLAN",
+    "missing_memory_artifact": "RETURN_GOVERNANCE_PLAN_READY_OR_BLOCKED_NOT_GOVERNED_ACTIVE",
+    "conflicting_intention": "STOP_AND_REQUEST_OWNER_RECONCILIATION",
+    "cloud_unavailable": "ALLOW_READ_ONLY_LOCAL_ORIENTATION_ONLY_WHEN_LOCAL_MANIFEST_AND_MEMORY_ARE_CURRENT"
+  },
+  "acceptance_evidence_required": [
+    "FRESH_CHAT_RELOADS_EXACT_DURABLE_INTENTION",
+    "CONTEXT_COMPACTION_DOES_NOT_CHANGE_PROJECT_STATE",
+    "STALE_CHECKSUM_FAILS_CLOSED",
+    "BACKGROUND_BUILD_REQUIRES_FRESH_READBACK",
+    "CROSS_APP_MEMORY_AND_BINDINGS_REMAIN_ISOLATED",
+    "REMOVAL_PRESERVES_APPLICATION_SOURCE_DATA_AND_RUNTIME"
+  ],
+  "private_bos_material_included": false
+}

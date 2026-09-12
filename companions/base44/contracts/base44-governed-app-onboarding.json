@@ -1,0 +1,158 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNED_APP_ONBOARDING_V1",
+  "version": "1.4.0",
+  "status": "PUBLIC_SAFE_DETERMINISTIC_PLANNER_LOCAL_VERIFIED_LIVE_BASE44_MUTATION_PENDING",
+  "purpose": "Turn one Base44 account MCP connection and one workspace skill installation into a repeatable, separately authorised governance activation for each selected app.",
+  "installation_cardinality": {
+    "account_mcp": "ONCE_PER_BASE44_ACCOUNT",
+    "workspace_skill": "ONCE_PER_SELECTED_WORKSPACE",
+    "app_governance": "ONCE_PER_SEPARATELY_AUTHORISED_APP_WITH_RECURRING_VERIFICATION_AND_UPDATES"
+  },
+  "ordered_stages": [
+    "ACCOUNT_MCP_CONNECTION",
+    "WORKSPACE_SKILL_INSTALLATION",
+    "APP_DISCOVERY_READ_ONLY",
+    "PROJECT_BASELINE_READBACK_AND_ACCEPTANCE",
+    "APP_GOVERNANCE_PLAN",
+    "APP_GOVERNANCE_ACTIVATE_AND_READBACK",
+    "DETERMINISTIC_GOVERNOR_CURRENTNESS",
+    "AI_CONTROLS_POINTER_PLAN_INSTALL_AND_READBACK",
+    "CONNECTION_PLUG_PLAN_INSTALL_AND_READBACK",
+    "GOVERNED_APP_READY",
+    "ENTITLED_GOVERNANCE_CAPABILITY_UPGRADES"
+  ],
+  "default_app_profile": "LEAN_CORE_WITH_BUILD_GATES",
+  "default_app_profile_meaning": "BASE44_LEAN_DETERMINISTIC_GOVERNOR",
+  "project_baseline": {
+    "runtime": "scripts/project-baseline.mjs",
+    "enforcement": "ADVISORY_HOST_HELPER",
+    "required_before": [
+      "APP_GOVERNANCE_PLAN",
+      "GOVERNED_APP_READY"
+    ],
+    "read_existing_before_questions": true,
+    "ask_material_gaps_only": true,
+    "requires": [
+      "PUBLIC_SPECIFICATION",
+      "DEVELOPMENT_HOST",
+      "EXECUTION_DEVICES_OS_BROWSER_OFFLINE_BACKGROUND",
+      "EXCLUSIONS",
+      "ACTIVE_INTENTION",
+      "EXACT_PROJECT_OWNER_ACCEPTANCE",
+      "ACCEPTED_BASELINE_SHA256",
+      "CURRENT_PROVIDER_REVISION_READBACK"
+    ],
+    "baseline_guidance_tier": "STANDARD_FREE",
+    "unknown_feasibility_is_impossibility": false,
+    "notice_cooldown_hours": 24,
+    "notice_dismissal_scope": "EXACT_PROJECT_BASELINE_AND_WARNINGS",
+    "host_input_is_authentication_proof": false,
+    "server_or_host_write_interception_proven": false,
+    "live_durable_baseline_delivery": "PENDING_NATIVE_READBACK"
+  },
+  "baseline_rules": [
+    "THE_BASELINE_EIGHT_ARTIFACT_GOVERNOR_IS_NOT_PAYWALLED",
+    "MCP_AND_SKILL_INSTALLATION_NEVER_IMPLY_APP_GOVERNANCE",
+    "ONE_APP_ONE_BINDING_ONE_EXACT_PLAN_ONE_READBACK",
+    "ONE_MATERIAL_MUTATION_ACTION_PER_RUN",
+    "NO_BULK_APP_MUTATION",
+    "NO_LDP_FULL_DOT_BOS_MASTER_BOS_DEVPACK_PRIVATE_PROMPTS_OR_PRIVATE_SCAN_ENGINES_IN_BASE44",
+    "APPLICATION_SOURCE_DATA_AND_RUNTIME_SURVIVE_GOVERNANCE_REMOVAL"
+  ],
+  "connection_plug": {
+    "action_id": "install_cloud_bos_connection_plug_indicator",
+    "stage": "AFTER_APP_GOVERNANCE_ACTIVATE_AND_READBACK",
+    "upgrade_category": "app_surface",
+    "separate_plan_required": true,
+    "owner_admin_only": true,
+    "connected_state": "CONNECTED",
+    "non_connected_states": [
+      "DISCONNECTED",
+      "DEGRADED",
+      "BLOCKED",
+      "UNKNOWN_VISIBLE"
+    ],
+    "opens_existing_connection_view": true,
+    "second_launcher_allowed": false,
+    "exact_source_and_ui_readback_required": true
+  },
+  "ai_controls_pointer": {
+    "action_id": "alter_base44_ai_controls_pointer_via_assist",
+    "stage": "AFTER_APP_GOVERNANCE_ACTIVATE_AND_READBACK",
+    "execution_surface": "HOST_COMPUTER_CONTROL_AFTER_ASSIST_SELECTION",
+    "assist_is_execution_surface_not_slash_command": true,
+    "assist_role": "ENTITLEMENT_AWARE_ACTION_SELECTION_ONLY",
+    "host_execution_contract": "OS/PLATFORM/BASE44_HOST_AI_CONTROLS_ONBOARDING_CONTRACT.json",
+    "canonical_pointer_source": "OS/TEMPLATES/BASE44_NATIVE_AI_CONTROLS_CANONICAL_REDIRECT.md",
+    "supported_host_executors": [
+      "CODEX",
+      "CLAUDE_CODE"
+    ],
+    "computer_control_required": true,
+    "target_surface": "BASE44_NATIVE_AI_CONTROLS_CUSTOM_INSTRUCTIONS",
+    "separate_plan_required": true,
+    "exact_pointer_readback_required": true,
+    "save_then_reopen_ui_readback_required": true,
+    "documents_aicontrol_readback_required_before_pointer_change": true,
+    "governed_app_ready_requires_current_pointer_for_buildai": true,
+    "pointer_text": "# AI CONTROL — CANONICAL REDIRECT (CLOUD BOS GOVERNED APP)\n\n## CANONICAL AUTHORITY\nThe only valid app-governance AI control source is `documents/AICONTROL.md`. If that path is unavailable, use `src/documents/AICONTROL.md` only when the current `governance/GOVERNANCE_MANIFEST.json` declares it as a compatibility path and exact readback matches the canonical artifact. All app-governance rules, constraints, scope, routing and verification requirements are defined there.\n\n## HARD RULE\nBefore substantive app work, load and obey `documents/AICONTROL.md` in full and treat it as the single app-governance control source. Apply it to analysis and advice; health checks and scans; specifications and prompt generation; planning; building, adding, changing, fixing, improving, generating, refactoring and configuring; code, pages, UI and features; entities, data, schema, storage, auth, RBAC and permissions; backend functions and integrations; billing, payments and entitlements; tests and verification; onboarding, updates and upgrades; publishing, launch and deployment; and governance artifacts. The phrase `governed work` never narrows this list.\n\n## NO PARALLEL AUTHORITY\nDo not invent, extend, ignore, merge or replace control rules, and do not fall back to generic behaviour. Do not infer authority from chat history, summaries, this pointer, the MCP connection or workspace-skill availability. If a rule is missing, do less, not more.\n\n## FAIL-CLOSED BEHAVIOUR\nIf the canonical AICONTROL or Governance Manifest cannot be read, is empty, stale, ambiguous, conflicting, or not bound to this app: stop; perform no generation or mutation; and report `OWNER_AICONTROL_REQUIRED`.\n\n## OUTPUT REQUIREMENT\nAll substantive app outputs must comply with the canonical AICONTROL, remain inside the current stage and approved scope, avoid drift and hidden systems, and produce visible, auditable changes with exact readback where required.",
+    "fail_closed_status": "OWNER_AICONTROL_REQUIRED",
+    "customer_route": {
+      "execution_surface": "CUSTOMER_NATIVE_BASE44_UI",
+      "navigation": [
+        "Models",
+        "AI Controls",
+        "Custom Instructions"
+      ],
+      "independent_saved_reopened_ui_readback_required": true,
+      "customer_assertion_is_verification": false,
+      "unavailable_readback_status": "NATIVE_AI_CONTROLS_READBACK_REQUIRED",
+      "historical_manifest_marker_is_current_ui_status": false
+    },
+    "readback_max_age_ms": 900000,
+    "readback_enforcement": "ADVISORY_HOST_HELPER_NOT_AUTHENTICATED_SETTINGS_API"
+  },
+  "paid_governance_upgrades": {
+    "tiers": [
+      "STANDARD",
+      "PLUS",
+      "PRO",
+      "ENTERPRISE"
+    ],
+    "authority": "CLOUD_BOS_D1_SERVER_RESOLVED_AFTER_VERIFIED_BILLING_EVENT",
+    "payment_grants_mutation_authority": false,
+    "checkout_redirect_grants_entitlement": false,
+    "client_tier_claim_grants_entitlement": false,
+    "server_only_enablement_preferred": true,
+    "app_file_update_condition": "CAPABILITY_DECLARES_REQUIRED_LOCAL_PROJECTION",
+    "app_file_update_rule": "SEPARATE_EXACT_PER_APP_PLAN_APPROVAL_READBACK_RECEIPT_AND_ROLLBACK",
+    "baseline_security_compatibility_and_integrity_updates_paywalled": false,
+    "tier_change_requires_plugin_reinstall": false
+  },
+  "deferred_acceptance": {
+    "matched_lane_trial": "BASE44_FULL_VS_LEAN_MATCHED_LANE_EFFICACY",
+    "status": "DEFERRED_NOT_WAIVED",
+    "blocks": [
+      "GOVERNANCE_EQUIVALENCE_CLAIM",
+      "FLEET_COMPLETION_CLAIM"
+    ],
+    "does_not_block": [
+      "LOCAL_CONTRACT_VERIFICATION",
+      "ONE_REPRESENTATIVE_CANARY",
+      "SEPARATELY_APPROVED_APP_BY_APP_ADOPTION"
+    ]
+  },
+  "runtime": "scripts/base44-governed-app-onboarding.mjs",
+  "customer_entry": {
+    "existing_commands": [
+      "/onboard",
+      "/onboard auto"
+    ],
+    "explicit_skill_prompt": "Use the cloudbos-governed-build skill. /onboard.",
+    "new_command_or_installer": false,
+    "customer_execution": "BASE44_BROWSER_ONLY",
+    "independent_observer_role": "READ_ONLY_EVIDENCE_ONLY",
+    "hidden_external_completion_allowed": false,
+    "acceptance_before_calibration": true
+  }
+}
