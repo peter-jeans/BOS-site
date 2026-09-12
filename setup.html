@@ -548,7 +548,7 @@
             <div>
               <h3>Verify from an app</h3>
               <p>Open any app in that workspace and send this read-only check in the Base44 builder chat:</p>
-              <div class="prompt" id="verify-prompt">Load the current cloudbos-governed-build workspace skill through the native skill tool. /onboard. Start with read-only connection, exact app identity and specification checks. Show the next incomplete step and stop before any writes requiring my approval.</div>
+              <div class="prompt" id="verify-prompt">Use Cloud BOS /onboard for this exact app. Load cloudbos-governed-build and verify its current published instructions using https://peter-jeans.github.io/BOS-site/companions/base44/manifest.json; do not rely only on an already-loaded skill. Report the instruction version and live connection separately. Read the existing app specification, ask only missing material questions, and obtain my acceptance of that baseline before issuing a governance plan. If the app is unbound, a gated advisory tool is not needed to read local files or ask these questions. Show the next incomplete step. Do not write or approve anything.</div>
               <div class="copy-row">
                 <button class="copy-button" type="button" data-copy="prompt">Copy verification prompt</button>
                 <span class="copy-state" role="status" aria-live="polite"></span>
