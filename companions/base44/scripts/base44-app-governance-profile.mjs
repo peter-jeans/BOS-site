@@ -178,6 +178,14 @@ export async function verifyBase44AppGovernanceProfile({ plan, store, verified_a
 export async function activateBase44AppGovernanceProfile({ plan, approval, store, now = new Date().toISOString() }) {
   validateApproval(plan, approval, now);
   if (!["ACTIVATE", "ROLLBACK"].includes(plan.requested_operation)) fail("BASE44_PROFILE_OPERATION_INVALID");
+  if (plan.resume_mode) {
+    if (plan.resume_mode.type !== "BIND_EXISTING_EXACT_ARTIFACTS" || plan.resume_mode.app_writes !== false
+      || plan.artifacts.some((item) => item.operation !== "READ" || item.expected_prior_sha256 !== item.proposed_sha256)) fail("BASE44_PROFILE_RESUME_INVALID");
+    if (typeof store.getRevision !== "function" || await store.getRevision() !== plan.expected_app_revision) fail("BASE44_PROFILE_PREWRITE_DRIFT");
+    const result = await verifyBase44AppGovernanceProfile({ plan, store, verified_at: now });
+    if (result.acceptance_status !== "COMPLETE_VERIFIED") fail("BASE44_PROFILE_PREWRITE_DRIFT");
+    return result;
+  }
   await requireLifecycleRevision(plan, store);
   const priorValues = [];
   for (const item of plan.artifacts) {
