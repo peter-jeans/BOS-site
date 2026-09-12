@@ -1,19 +1,19 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.14.0",
+  "workspace_skill_version": "1.15.0",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 18959,
-      "sha256": "db55b0da4108c21ca8ba8fb500062f20728bcfc5c36875b1e879b722b789c8c6"
+      "bytes": 19359,
+      "sha256": "652e879b7ae5b892e102c19d81f4b9a66863e77c009cd2aecd2c04e80328021d"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
-      "bytes": 8996,
-      "sha256": "fb75350202b036f1ecbc660bc1870999fde8dc93fc277e9183472a4435ef9662"
+      "bytes": 9413,
+      "sha256": "9c507176ee1d3fd431f9f6208482c1af5d99a626502bf6395a51267eb63c99a1"
     },
     {
       "path": "contracts/base44-session-memory-activation.json",
