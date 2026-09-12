@@ -548,13 +548,13 @@
             <div>
               <h3>Verify from an app</h3>
               <p>Open any app in that workspace and send this read-only check in the Base44 builder chat:</p>
-              <div class="prompt" id="verify-prompt">Use the cloudbos-governed-build skill. /onboard. Start with read-only connection, exact app identity and specification checks. Show the next incomplete step and stop before any writes requiring my approval.</div>
+              <div class="prompt" id="verify-prompt">Load the current cloudbos-governed-build workspace skill through the native skill tool. /onboard. Start with read-only connection, exact app identity and specification checks. Show the next incomplete step and stop before any writes requiring my approval.</div>
               <div class="copy-row">
                 <button class="copy-button" type="button" data-copy="prompt">Copy verification prompt</button>
                 <span class="copy-state" role="status" aria-live="polite"></span>
               </div>
               <p>A successful sign-in only proves the connection. Each app also needs an approved setup plan and a check of the changes actually saved.</p>
-              <p><code>/onboard</code> continues the existing BOS setup flow. If Base44 asks about building an onboarding screen, use the full prompt above. Confirm that it names this app, checks the live connection and asks only for missing specification decisions. An available skill alone does not prove it ran.</p><p>Continue with <a href="#project-setup">Approve and check setup for your app</a>. After setup, start a fresh chat and ask BOS to restore the approved purpose and current intention from saved app files. Keep testing paused if binding, memory or native settings cannot be verified.</p>
+              <p><code>/onboard</code> continues the existing BOS setup flow. If Base44 asks about building an onboarding screen, use the full prompt above. Confirm that it names this app, checks the live connection and asks only for missing specification decisions. An available skill alone does not prove it ran. After updating an existing skill, reload it explicitly using the prompt above: reloading the browser alone may leave the chat using its previous copy.</p><p>Continue with <a href="#project-setup">Approve and check setup for your app</a>. After setup, start a fresh chat and ask BOS to restore the approved purpose and current intention from saved app files. Keep testing paused if binding, memory or native settings cannot be verified.</p>
             </div>
           </article>
         </div>
