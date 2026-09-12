@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNED_APP_ONBOARDING_V1",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "status": "PUBLIC_SAFE_DETERMINISTIC_PLANNER_LOCAL_VERIFIED_LIVE_BASE44_MUTATION_PENDING",
   "purpose": "Turn one Base44 account MCP connection and one workspace skill installation into a repeatable, separately authorised governance activation for each selected app.",
   "installation_cardinality": {
@@ -153,6 +153,24 @@
     "customer_execution": "BASE44_BROWSER_ONLY",
     "independent_observer_role": "READ_ONLY_EVIDENCE_ONLY",
     "hidden_external_completion_allowed": false,
-    "acceptance_before_calibration": true
+    "acceptance_before_calibration": true,
+    "decision_prompts": {
+      "enforcement": "HOST_GUIDANCE_NOT_SERVER_AUTHORIZATION",
+      "visible_label": "Your action required",
+      "required_fields": [
+        "EXACT_APP",
+        "DECISION_AND_SCOPE",
+        "EXACT_REPLY",
+        "WAITING_STATE",
+        "CORRECTIONS_OR_LATER"
+      ],
+      "baseline_reply": "Accept baseline",
+      "baseline_effect": "CONFIRM_DISPLAYED_REQUIREMENTS_AND_PREPARE_PLAN_ONLY",
+      "plan_reply": "Approve plan <full-plan-hash>",
+      "plan_effect": "ONLY_VERIFIED_DISPLAYED_CURRENT_PLAN_WRITES",
+      "baseline_acceptance_grants_installation": false,
+      "silence_or_continue_grants_installation": false,
+      "repeat_unambiguous_existing_approval": false
+    }
   }
 }
