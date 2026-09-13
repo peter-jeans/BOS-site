@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { isDurablePlan, planIsCurrent, validPlanWindow } from "./approval-lifecycle.mjs";
 import profileContract from "../contracts/base44-app-governance-profiles.json" with { type: "json" };
 
 const PROFILE_SCHEMA = "BOS_CLOUDBOS_PUBLIC_BASE44_APP_GOVERNANCE_PLAN_V1";
@@ -128,7 +129,7 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
   const { definitions, triggers } = selectedArtifacts(profileId, input.security_triggers ?? []);
   const now = new Date(input.created_at);
   const expires = new Date(input.expires_at);
-  if (!Number.isFinite(now.valueOf()) || !Number.isFinite(expires.valueOf()) || expires <= now) fail("BASE44_PROFILE_PLAN_WINDOW_INVALID");
+  if (!validPlanWindow(input)) fail("BASE44_PROFILE_PLAN_WINDOW_INVALID");
   let artifacts;
   if (operation === "ACTIVATE") {
     const contents = buildContents(input, profileId, contract.version, definitions, triggers);
@@ -141,12 +142,13 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
     const owned = [...manifest.artifacts, { artifact_id: "governance_governance_manifest_json", target: "governance/GOVERNANCE_MANIFEST.json", role: "GOVERNANCE_MANIFEST" }];
     artifacts = owned.map(({ artifact_id, target, role }) => ({ ...artifact(target, role, null, input.expected_prior_sha256?.[target], "DELETE"), artifact_id }));
   }
-  const plan = { schema: PROFILE_SCHEMA, plan_id: `b44p_${sha256(`${input.project_binding_id}:${now.toISOString()}:${operation}`).slice(0, 24)}`, plan_hash: null, platform_installation_id: input.platform_installation_id, project_id: input.project_id, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision, resource_uri: input.resource_uri, environment: input.environment, adapter_id: input.adapter_id, profile_id: profileId, requested_operation: operation, created_at: now.toISOString(), expires_at: expires.toISOString(), zero_write: true, requires_approval: true, runtime_dependency: false, artifacts, artifact_manifest_hash: sha256(artifacts.map(({ target, role, proposed_sha256, expected_prior_sha256 }) => ({ target, role, proposed_sha256, expected_prior_sha256 }))), permissions: artifacts.map(({ target, operation: action }) => ({ action, target })), forbidden_content_check: "PASS" };
+  const plan = { schema: PROFILE_SCHEMA, plan_id: `b44p_${sha256(`${input.project_binding_id}:${now.toISOString()}:${operation}`).slice(0, 24)}`, plan_hash: null, platform_installation_id: input.platform_installation_id, project_id: input.project_id, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision, resource_uri: input.resource_uri, environment: input.environment, adapter_id: input.adapter_id, profile_id: profileId, requested_operation: operation, created_at: now.toISOString(), expires_at: isDurablePlan(input) ? input.expires_at : expires.toISOString(), ...(isDurablePlan(input) ? { approval_lifecycle: input.approval_lifecycle } : {}), zero_write: true, requires_approval: true, runtime_dependency: false, artifacts, artifact_manifest_hash: sha256(artifacts.map(({ target, role, proposed_sha256, expected_prior_sha256 }) => ({ target, role, proposed_sha256, expected_prior_sha256 }))), permissions: artifacts.map(({ target, operation: action }) => ({ action, target })), forbidden_content_check: "PASS" };
   plan.plan_hash = planHash(plan);
   return plan;
 }
 
 export function validateBase44AppGovernanceProfilePlan(plan) {
+  if (!validPlanWindow(plan)) fail("BASE44_PROFILE_PLAN_WINDOW_INVALID");
   if (plan?.schema !== PROFILE_SCHEMA || plan.plan_hash !== planHash(plan) || plan.environment !== "BASE44_GOVERNED_APP" || plan.adapter_id !== "base44_app_governance" || !Array.isArray(plan.artifacts) || plan.artifacts.length < 7) fail("BASE44_PROFILE_PLAN_INVALID");
   for (const item of plan.artifacts) {
     targetSafe(item.target);
@@ -160,7 +162,7 @@ const validatePlan = validateBase44AppGovernanceProfilePlan;
 
 function validateApproval(plan, approval, now) {
   validatePlan(plan);
-  if (approval?.approved !== true || approval.plan_hash !== plan.plan_hash || approval.project_binding_id !== plan.project_binding_id || new Date(now) > new Date(plan.expires_at)) fail("BASE44_PROFILE_APPROVAL_INVALID");
+  if (approval?.approved !== true || approval.plan_hash !== plan.plan_hash || approval.project_binding_id !== plan.project_binding_id || !planIsCurrent(plan, now) || (isDurablePlan(plan) && (approval.platform_installation_id !== plan.platform_installation_id || approval.project_ref !== plan.project_ref))) fail("BASE44_PROFILE_APPROVAL_INVALID");
 }
 
 export async function verifyBase44AppGovernanceProfile({ plan, store, verified_at = new Date().toISOString() }) {
@@ -265,12 +267,12 @@ export async function verifyBase44AppGovernanceLifecycle({ plan, store, applicat
   return result;
 }
 
-export async function verifyBase44AppGovernanceLifecycleRemoval({ plan, store, application_source_before_sha256, application_source_after_sha256 }) {
+export async function verifyBase44AppGovernanceLifecycleRemoval({ plan, store, application_source_before_sha256, application_source_after_sha256, verified_at = new Date().toISOString() }) {
   validatePlan(plan);
   if (plan.requested_operation !== "REMOVE") fail("BASE44_PROFILE_OPERATION_INVALID");
   const beforeRevision = typeof store.getRevision === "function" ? await store.getRevision() : null;
   for (const item of plan.artifacts) if (await store.read(item.target) !== null) fail("BASE44_PROFILE_REMOVAL_READBACK_FAILED");
   const evidence = await lifecycleEvidence(plan, store, application_source_before_sha256, application_source_after_sha256);
   if (evidence.version_ref !== beforeRevision) fail("BASE44_PROFILE_READBACK_REVISION_CHANGED");
-  return { schema: "BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_REMOVAL_V1", removal_id: `b44rm_${plan.plan_hash.slice(0, 24)}`, approved_plan_hash: plan.plan_hash, project_ref: plan.project_ref, project_binding_id: plan.project_binding_id, adapter_id: plan.adapter_id, manifest_owned_targets: plan.artifacts.map(({ target }) => target), removed_targets: plan.artifacts.map(({ target }) => target), preserved_application_targets: [], binding_status: "DETACHED", post_removal_state: "DETACHED_OR_REMOVED", application_preservation_check: "PASS", acceptance_status: "COMPLETE_VERIFIED" };
+  return { schema: "BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_REMOVAL_V1", removal_id: `b44rm_${plan.plan_hash.slice(0, 24)}`, ...(isDurablePlan(plan) ? { verified_at, evidence } : {}), approved_plan_hash: plan.plan_hash, project_ref: plan.project_ref, project_binding_id: plan.project_binding_id, adapter_id: plan.adapter_id, manifest_owned_targets: plan.artifacts.map(({ target }) => target), removed_targets: plan.artifacts.map(({ target }) => target), preserved_application_targets: [], binding_status: "DETACHED", post_removal_state: "DETACHED_OR_REMOVED", application_preservation_check: "PASS", acceptance_status: "COMPLETE_VERIFIED" };
 }
