@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.18.0",
+  "workspace_skill_version": "1.19.0",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 19313,
-      "sha256": "f0a92e42eb2cb82ab61cf06f7b6174453acd4eae9abb70f13d63ae9045a152c8"
+      "bytes": 19293,
+      "sha256": "6859d3c4dbfb8a103b82b040e32f2415bb2cd073bec1026dc50fbe064bfa442d"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
