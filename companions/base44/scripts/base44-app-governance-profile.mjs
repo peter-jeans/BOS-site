@@ -117,6 +117,20 @@ function buildContents(input, profileId, profileVersion, definitions, triggers) 
   return contents;
 }
 
+// Some native MCP hosts omit generic object inputs from their tool interface.
+// UPDATE already carries the exact manifest inside its typed raw-file map;
+// deriving its parsed representation does not change the prior hash gate.
+export function normalizeBase44UpdateInput(input) {
+  const path = "governance/GOVERNANCE_MANIFEST.json";
+  const raw = input.installed_artifacts?.[path];
+  if (typeof raw !== "string") fail("BASE44_PROFILE_UPDATE_PRIOR_INVALID");
+  contentSafe(raw, path);
+  if (input.installed_manifest_content !== undefined && input.installed_manifest_content !== raw) fail("BASE44_PROFILE_INSTALLED_MANIFEST_HASH_MISMATCH");
+  const manifest = JSON.parse(raw);
+  if (input.installed_manifest !== undefined && canonical(input.installed_manifest) !== canonical(manifest)) fail("BASE44_PROFILE_INSTALLED_MANIFEST_HASH_MISMATCH");
+  return { ...input, installed_manifest: manifest, installed_manifest_content: raw };
+}
+
 // Forward updates retain the complete prior governance projection. Only the
 // reviewed specification, active intention and optional maturity may change;
 // capability results, security rules, AI control and evidence history survive.
@@ -190,6 +204,7 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
   if (typeof input.resource_uri !== "string" || !input.resource_uri.startsWith("cloudbos://projects/")) fail("BASE44_PROFILE_RESOURCE_URI_INVALID");
   const operation = input.requested_operation ?? "ACTIVATE";
   if (!["ACTIVATE", "UPDATE", "REMOVE"].includes(operation)) fail("BASE44_PROFILE_OPERATION_UNSUPPORTED");
+  if (operation === "UPDATE") input = normalizeBase44UpdateInput(input);
   const contract = loadBase44AppGovernanceProfiles();
   const profileId = input.profile_id ?? contract.default_onboarding_profile ?? "LEAN_CORE_WITH_BUILD_GATES";
   const { definitions, triggers } = selectedArtifacts(profileId, input.security_triggers ?? []);
