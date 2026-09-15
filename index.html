@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cloud BOS — Keep your AI build on track</title>
-  <meta name="description" content="Help your coding AI remember the plan, spot risky changes and check its work. Explore the Early Warning System, Project Memory and BOS tiers for Base44, Codex and Claude Code.">
+  <title>Cloud BOS — Tame the AI beast.</title>
+  <meta name="description" content="BOS helps keep AI responsible as it builds, tackling drift, amnesia, hallucination and breakage with project memory, alignment checks and evidence.">
   <meta name="robots" content="index,follow">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/bos-icon-192.png">
@@ -148,6 +148,19 @@
       color: #34443e;
       font-size: clamp(18px, 2.4vw, 23px);
     }
+
+    .ai-issues {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 24px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ai-issues li { border-top: 1px solid var(--line); padding-top: 12px; }
+    .ai-issues strong { display: block; margin-bottom: 6px; color: var(--ink); }
+    .ai-issues span { display: block; color: var(--muted); font-size: 16px; }
 
     .hero-actions, .copy-row {
       display: flex;
@@ -445,7 +458,7 @@
       .nav-context { display: none; }
       .step, .field-grid { grid-template-columns: 1fr; }
       .hero-actions .button { width: 100%; }
-      .benefit-grid { grid-template-columns: 1fr; }
+      .benefit-grid, .ai-issues { grid-template-columns: 1fr; }
       .nav-actions { gap: 10px; font-size: 13px; }
       .brand { font-size: 14px; }
     }
@@ -474,9 +487,15 @@
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow">BOS for AI-assisted app development</span>
-          <h1>Keep your AI build<br>on track.</h1>
-          <p class="lede">BOS helps your coding AI remember the plan, spot risky changes and check its work—so you can make clearer decisions about what to build next.</p>
-          <p>AI can build quickly, but it can also forget decisions, change more than you asked, or declare a fix finished too soon.</p><p><strong>Remember the plan · Catch problems earlier · Check the result</strong></p>
+          <h1>Tame the<br>AI beast.</h1>
+          <p class="lede">With great power comes a greater need for responsibility.</p>
+          <p>BOS helps keep AI responsible as it builds, tackling four recurring problems:</p>
+          <ul class="ai-issues" role="list" aria-label="Four AI development problems BOS helps tackle">
+            <li><strong>Drift</strong><span>Going off-plan. BOS checks changes against your agreed intentions.</span></li>
+            <li><strong>Amnesia</strong><span>Forgetting decisions. BOS helps preserve project context between sessions.</span></li>
+            <li><strong>Hallucination</strong><span>Making things up—or saying “done” too soon. BOS asks for evidence.</span></li>
+            <li><strong>Breakage</strong><span>Breaking what already worked. BOS helps check for regressions as your app changes.</span></li>
+          </ul>
           <nav class="hero-actions" aria-label="Explore BOS">
             <a class="button primary" href="#benefits">What BOS helps you do</a>
             <a class="button" href="#environments">Find your coding tool</a>
