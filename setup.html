@@ -458,10 +458,10 @@
     }
   </style>
 </head>
-<body><header><div class="wrap nav"><a class="brand" href="index.html">Cloud BOS</a><nav class="nav-actions" aria-label="Main navigation"><a href="index.html#benefits">Capabilities</a><a href="index.html#tiers">Tiers</a><a href="support.html">Support</a></nav></div></header><main id="top"><section class="hero"><div class="wrap"><span class="eyebrow">Setup preview</span><h1>Connect BOS.<br>Then check your app.</h1><p class="lede">Sign in through your coding tool, approve a setup plan for the specific app, and check the saved result before relying on BOS.</p><p class="release-note"><strong>Production connection pending.</strong> Public installation is not open yet. Invited beta testers should use the instructions supplied with their access. These guides preview the public setup process.</p><nav class="setup-nav" aria-label="Setup guides"><a class="button" href="#setup">Base44</a><a class="button" href="#codex">Codex</a><a class="button" href="#claude-code">Claude Code</a><a class="button" href="#project-setup">Approve app setup</a></nav><p>First connect your tool. Then follow the shared app-setup step below. Connecting alone does not activate BOS in every app.</p></div></section>    <section id="setup">
+<body><header><div class="wrap nav"><a class="brand" href="index.html">Cloud BOS</a><nav class="nav-actions" aria-label="Main navigation"><a href="index.html#benefits">Capabilities</a><a href="index.html#tiers">Tiers</a><a href="support.html">Support</a></nav></div></header><main id="top"><section class="hero"><div class="wrap"><span class="eyebrow">BOS onboarding</span><h1>Set up BOS<br>for your app.</h1><p class="lede">Sign in through your coding tool, approve a setup plan for the specific app, and check the saved result before relying on BOS.</p><p class="release-note"><strong>Private beta · Invitation required.</strong> Start at the <a href="https://bos-client-portal.base44.app/">BOS Client Portal</a> for onboarding help and access instructions. Already invited? Use your supplied connection URL with the steps below.</p><nav class="setup-nav" aria-label="Setup guides"><a class="button" href="#setup">Base44</a><a class="button" href="#codex">Codex</a><a class="button" href="#claude-code">Claude Code</a><a class="button" href="#project-setup">Approve app setup</a></nav><p>First connect your tool. Then follow the shared app-setup step below. Connecting alone does not activate BOS in every app.</p></div></section>    <section id="setup">
       <div class="wrap">
         <div class="section-intro">
-          <h2>Set up Base44</h2>
+          <h2>Set up BOS in Base44</h2>
           <p>For the Base44 AI app builder. The connection is account-wide; add the skill separately to each workspace where you want it.</p>
           <p>You need a Base44 Builder plan or higher, room for another MCP connection and room for a skill in the selected workspace. Confirm the app belongs to that workspace before setup.</p>
           <p><a href="https://docs.base44.com/documentation/account-and-billing/setting-up-a-custom-mcp">Base44 connection guide</a> · <a href="https://docs.base44.com/documentation/using-your-workspaces/adding-workspace-skills">Base44 workspace skills guide</a></p>
@@ -471,16 +471,17 @@
           <article class="step">
             <div class="step-number" aria-hidden="true">1</div>
             <div>
-              <h3>Add the account connection</h3>
+              <h3>Get access and connect Cloud BOS</h3>
+              <p>Open the <a href="https://bos-client-portal.base44.app/">BOS Client Portal</a> to get help onboarding your app and obtain the approved Cloud BOS connection URL. The portal address opens the onboarding app; use the separate MCP connection URL supplied with your access in Base44.</p>
               <p>In Base44, open your profile menu and choose <strong>Settings → MCP connections → Add custom MCP</strong>.</p>
               <div class="field-grid" aria-label="MCP connection values">
                 <div class="field"><span class="field-label">Name</span><span class="field-value">Cloud BOS</span></div>
                 <div class="field"><span class="field-label">Authentication</span><span class="field-value">OAuth</span></div>
-                <div class="field"><span class="field-label">URL</span><span class="field-value pending">Available here after public release</span></div>
+                <div class="field"><span class="field-label">URL</span><span class="field-value">Your approved Cloud BOS MCP URL — <a href="https://bos-client-portal.base44.app/">get onboarding access</a></span></div>
                 <div class="field"><span class="field-label">Custom headers</span><span class="field-value">None</span></div>
               </div>
-              <p><strong>Do not use a static token or copy a test endpoint.</strong> The production URL will use Base44-managed OAuth.</p>
-              <p>Once the production URL is available, click <strong>Test</strong>, then <strong>Test &amp; add</strong>, and complete the browser sign-in. Check that the Cloud BOS connection is enabled.</p>
+              <p>Choose <strong>OAuth</strong> and leave custom headers empty. Use the connection URL supplied for your access; no token needs to be pasted.</p>
+              <p>With your supplied connection URL entered, click <strong>Test</strong>, then <strong>Test &amp; add</strong>, and complete the browser sign-in. Check that the Cloud BOS connection is enabled.</p>
             </div>
           </article>
 
@@ -548,11 +549,11 @@
           <article class="step">
             <div class="step-number" aria-hidden="true">3</div>
             <div>
-              <h3>Verify from an app</h3>
-              <p>Open any app in that workspace and send this read-only check in the Base44 builder chat:</p>
+              <h3>Start onboarding your app</h3>
+              <p>Open the app you want to onboard in that workspace. Paste this prompt into its Base44 builder chat to begin with read-only checks:</p>
               <div class="prompt" id="verify-prompt">Use Cloud BOS /onboard for this exact app. Load cloudbos-governed-build and verify its current published instructions using https://peter-jeans.github.io/BOS-site/companions/base44/manifest.json; do not rely only on an already-loaded skill. Report the instruction version and live connection separately. Read the existing app specification, ask only missing material questions, and obtain my acceptance of that baseline before issuing a governance plan. If the app is unbound, a gated advisory tool is not needed to read local files or ask these questions. Show the next incomplete step. Do not write or approve anything.</div>
               <div class="copy-row">
-                <button class="copy-button" type="button" data-copy="prompt">Copy verification prompt</button>
+                <button class="copy-button" type="button" data-copy="prompt">Copy onboarding prompt</button>
                 <span class="copy-state" role="status" aria-live="polite"></span>
               </div>
               <p id="onboard-decision-prompts"><strong>Your action required.</strong> BOS will clearly tell you when it is waiting. First, reply <code>Accept baseline</code> to confirm the requirements shown and let BOS prepare a setup plan. Later, review the exact changes and reply <code>Approve plan</code> followed by the full hash BOS supplies. Before asking, BOS must show where the plan preserves each requirement you accepted and stop if anything is missing. Only that second decision authorizes those changes. You can ask for corrections or reply <code>Later</code> at either stage.</p>
