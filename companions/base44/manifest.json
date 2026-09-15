@@ -37,8 +37,8 @@
     },
     {
       "path": "scripts/base44-app-governance-profile.mjs",
-      "bytes": 25946,
-      "sha256": "850484517089ea77c70dfa88a810ac751d5181b727ff36883b358eacb37cfcb8"
+      "bytes": 33262,
+      "sha256": "abbd6f2fbb73f8dbf6ae1e9d806a0e2f720dd644e2cfef00da14ff0eff06d436"
     },
     {
       "path": "contracts/base44-app-governance-profiles.json",

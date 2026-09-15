@@ -117,13 +117,79 @@ function buildContents(input, profileId, profileVersion, definitions, triggers) 
   return contents;
 }
 
+// Forward updates retain the complete prior governance projection. Only the
+// reviewed specification, active intention and optional maturity may change;
+// capability results, security rules, AI control and evidence history survive.
+function forwardUpdate(input, profileId, profileVersion) {
+  const manifestPath = "governance/GOVERNANCE_MANIFEST.json";
+  const statePath = "governance/PROJECT_STATE.json";
+  const ledgerPath = "governance/EVIDENCE_LEDGER.jsonl";
+  const prior = input.installed_artifacts;
+  const manifest = input.installed_manifest;
+  if (!prior || Array.isArray(prior) || typeof prior !== "object" || !manifest
+      || prior[manifestPath] !== input.installed_manifest_content
+      || manifest.schema !== "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNANCE_MANIFEST_V1"
+      || manifest.app_id !== input.app_id || manifest.project_ref !== input.project_ref
+      || manifest.project_binding_id !== input.project_binding_id || manifest.profile !== profileId
+      || manifest.environment !== input.environment || manifest.adapter_id !== input.adapter_id
+      || !Array.isArray(manifest.artifacts)) fail("BASE44_PROFILE_UPDATE_PRIOR_INVALID");
+  contentSafe(prior[manifestPath], manifestPath);
+  if (canonical(JSON.parse(prior[manifestPath])) !== canonical(manifest)) fail("BASE44_PROFILE_INSTALLED_MANIFEST_HASH_MISMATCH");
+  const { definitions } = selectedArtifacts(profileId, manifest.artifacts.some(x => x.target === "governance/SECURITY_BASELINE.md") ? ["AUTHENTICATION"] : []);
+  const expected = new Map(definitions.map(x => [x.path, x.role]));
+  expected.set(manifestPath, "GOVERNANCE_MANIFEST");
+  const owned = [...manifest.artifacts, { target: manifestPath, role: "GOVERNANCE_MANIFEST", sha256: sha256(prior[manifestPath]) }];
+  if (owned.length !== expected.size || new Set(owned.map(x => x.target)).size !== expected.size
+      || Object.keys(prior).length !== expected.size || Object.keys(prior).some(x => !expected.has(x))) fail("BASE44_PROFILE_UPDATE_EXACT_ARTIFACTS_REQUIRED");
+  for (const item of owned) {
+    if (expected.get(item.target) !== item.role || (item.target !== manifestPath && item.removable !== true)) fail("BASE44_PROFILE_UPDATE_OWNERSHIP_INVALID");
+    contentSafe(prior[item.target], item.target);
+    if (sha256(prior[item.target]) !== item.sha256 || item.sha256 !== input.expected_prior_sha256?.[item.target]
+        || (item.target !== manifestPath && Buffer.byteLength(prior[item.target]) !== item.bytes)) fail("BASE44_PROFILE_UPDATE_PRIOR_HASH_MISMATCH");
+  }
+  const state = JSON.parse(prior[statePath]);
+  for (const key of ["project_id", "project_ref", "project_binding_id", "platform_installation_id", "app_id", "resource_uri", "environment"]) {
+    if (state[key] !== input[key]) fail("BASE44_PROFILE_UPDATE_IDENTITY_MISMATCH", key);
+  }
+  if (state.schema !== "BOS_CLOUDBOS_PUBLIC_BASE44_PROJECT_STATE_V1" || state.profile !== profileId
+      || state.expected_app_revision !== manifest.expected_app_revision || canonical(state.authority) !== canonical(input.authority)
+      || state.state !== "GOVERNED_ACTIVE" || state.runtime_dependency !== false) fail("BASE44_PROFILE_UPDATE_IDENTITY_MISMATCH");
+  if (!Array.isArray(input.project_spec?.in_scope) || !Array.isArray(input.project_spec?.out_of_scope)
+      || !ID.test(input.build_intentions?.active_id ?? "") || !Array.isArray(input.build_intentions?.current)
+      || !Array.isArray(input.build_intentions?.excluded)) fail("BASE44_PROFILE_UPDATE_COMPLETE_BASELINE_REQUIRED");
+  if ((input.security_triggers?.length ?? 0) > 0 || Object.keys(input.capability_currentness ?? {}).length > 0) fail("BASE44_PROFILE_UPDATE_SCOPE_UNSUPPORTED");
+  const stage = input.maturation_stage ?? state.maturation_stage;
+  const generated = buildContents({ ...input, maturation_stage: stage }, profileId, profileVersion, definitions, []);
+  const next = { ...prior };
+  for (const path of ["documents/PROJECT_SPEC.md", "governance/BUILD_INTENTIONS.md"]) next[path] = generated.get(path);
+  if (next["documents/PROJECT_SPEC.md"] === prior["documents/PROJECT_SPEC.md"]
+      && next["governance/BUILD_INTENTIONS.md"] === prior["governance/BUILD_INTENTIONS.md"]
+      && stage === state.maturation_stage) fail("BASE44_PROFILE_UPDATE_NOT_REQUIRED");
+  next[statePath] = exactJson({ ...state, expected_app_revision: input.expected_app_revision, active_build_intention_id: input.build_intentions.active_id, maturation_stage: stage });
+  // Preserve every original byte, including a missing final newline.
+  next[ledgerPath] = prior[ledgerPath] + (prior[ledgerPath].endsWith("\n") ? "" : "\n") + exactJson({
+    schema: "BOS_CLOUDBOS_PUBLIC_BASE44_EVIDENCE_EVENT_V1", event: "GOVERNANCE_PROFILE_UPDATE_PLANNED",
+    project_binding_id: input.project_binding_id, profile: profileId, created_at: input.created_at,
+    prior_manifest_sha256: sha256(prior[manifestPath]), expected_app_revision: input.expected_app_revision,
+    project_spec_sha256: sha256(next["documents/PROJECT_SPEC.md"]), build_intentions_sha256: sha256(next["governance/BUILD_INTENTIONS.md"]),
+  });
+  const artifacts = manifest.artifacts.map(({ target, role, artifact_id }) => ({
+    ...artifact(target, role, next[target], sha256(prior[target]), "REPLACE"), artifact_id,
+  }));
+  const updatedManifest = { ...manifest, expected_app_revision: input.expected_app_revision,
+    artifacts: artifacts.map(({ artifact_id, target, role, proposed_sha256: hash, proposed_bytes: bytes }) => ({ artifact_id, target, role, sha256: hash, bytes, removable: true })),
+  };
+  artifacts.push(artifact(manifestPath, "GOVERNANCE_MANIFEST", exactJson(updatedManifest), sha256(prior[manifestPath]), "REPLACE"));
+  return artifacts;
+}
+
 export function createBase44AppGovernanceProfilePlan(input = {}) {
   for (const [field, value] of Object.entries({ platform_installation_id: input.platform_installation_id, project_id: input.project_id, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision })) if (!ID.test(value ?? "")) fail("BASE44_PROFILE_IDENTITY_INVALID", field);
   if (input.environment !== "BASE44_GOVERNED_APP" || input.adapter_id !== "base44_app_governance") fail("BASE44_PROFILE_CANONICAL_IDENTITY_REQUIRED");
   if (input.authority?.source !== "BASE44_APP_OWNER" || input.authority?.deployment !== "OWNER_CONTROLLED") fail("BASE44_PROFILE_AUTHORITY_INVALID");
   if (typeof input.resource_uri !== "string" || !input.resource_uri.startsWith("cloudbos://projects/")) fail("BASE44_PROFILE_RESOURCE_URI_INVALID");
   const operation = input.requested_operation ?? "ACTIVATE";
-  if (!["ACTIVATE", "REMOVE"].includes(operation)) fail("BASE44_PROFILE_OPERATION_UNSUPPORTED");
+  if (!["ACTIVATE", "UPDATE", "REMOVE"].includes(operation)) fail("BASE44_PROFILE_OPERATION_UNSUPPORTED");
   const contract = loadBase44AppGovernanceProfiles();
   const profileId = input.profile_id ?? contract.default_onboarding_profile ?? "LEAN_CORE_WITH_BUILD_GATES";
   const { definitions, triggers } = selectedArtifacts(profileId, input.security_triggers ?? []);
@@ -136,6 +202,8 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
     const nonManifest = definitions.filter(({ path }) => path !== "governance/GOVERNANCE_MANIFEST.json").map(({ path, role }) => artifact(path, role, contents.get(path), input.expected_prior_sha256?.[path] ?? null));
     const manifest = { schema: "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNANCE_MANIFEST_V1", version: contract.version, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision, profile: profileId, governor_kernel: profileId === "LEAN_CORE_WITH_BUILD_GATES" ? "BASE44_LEAN_DETERMINISTIC_GOVERNOR" : "DURABLE_MEMORY_ONLY", ai_controls_pointer: { included_in_projection: false, status: "PENDING_SEPARATE_ASSIST_ACTION", next_action: "alter_base44_ai_controls_pointer_via_assist" }, connection_plug: { included_in_projection: false, next_action: "install_cloud_bos_connection_plug_indicator" }, environment: input.environment, adapter_id: input.adapter_id, artifacts: nonManifest.map(({ artifact_id, target, role, proposed_sha256: hash, proposed_bytes: bytes }) => ({ artifact_id, target, role, sha256: hash, bytes, removable: true })), lifecycle: { update: "NEW_EXACT_APPROVED_PLAN", rollback: "RETAINED_VERIFIED_PROFILE", removal: "MANIFEST_OWNED_EXACT_PLAN", drift: "EXACT_HASH_READBACK_FAIL_CLOSED", paid_upgrade: "SERVER_ENTITLEMENT_ELIGIBILITY_THEN_SEPARATE_EXACT_APPROVED_PLAN" } };
     artifacts = [...nonManifest, artifact("governance/GOVERNANCE_MANIFEST.json", "GOVERNANCE_MANIFEST", exactJson(manifest), input.expected_prior_sha256?.["governance/GOVERNANCE_MANIFEST.json"] ?? null)];
+  } else if (operation === "UPDATE") {
+    artifacts = forwardUpdate(input, profileId, contract.version);
   } else {
     const manifest = input.installed_manifest;
     if (manifest?.schema !== "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNANCE_MANIFEST_V1" || manifest.project_ref !== input.project_ref || manifest.project_binding_id !== input.project_binding_id || manifest.profile !== profileId || !Array.isArray(manifest.artifacts)) fail("BASE44_PROFILE_INSTALLED_MANIFEST_INVALID");
@@ -143,6 +211,11 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
     artifacts = owned.map(({ artifact_id, target, role }) => ({ ...artifact(target, role, null, input.expected_prior_sha256?.[target], "DELETE"), artifact_id }));
   }
   const plan = { schema: PROFILE_SCHEMA, plan_id: `b44p_${sha256(`${input.project_binding_id}:${now.toISOString()}:${operation}`).slice(0, 24)}`, plan_hash: null, platform_installation_id: input.platform_installation_id, project_id: input.project_id, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision, resource_uri: input.resource_uri, environment: input.environment, adapter_id: input.adapter_id, profile_id: profileId, requested_operation: operation, created_at: now.toISOString(), expires_at: isDurablePlan(input) ? input.expires_at : expires.toISOString(), ...(isDurablePlan(input) ? { approval_lifecycle: input.approval_lifecycle } : {}), zero_write: true, requires_approval: true, runtime_dependency: false, artifacts, artifact_manifest_hash: sha256(artifacts.map(({ target, role, proposed_sha256, expected_prior_sha256 }) => ({ target, role, proposed_sha256, expected_prior_sha256 }))), permissions: artifacts.map(({ target, operation: action }) => ({ action, target })), forbidden_content_check: "PASS" };
+  if (operation === "UPDATE") plan.update_mode = {
+    type: "FORWARD_SAME_PROFILE_BASELINE_UPDATE",
+    prior_artifacts: structuredClone(input.installed_artifacts),
+    requested_changes: { project_spec: structuredClone(input.project_spec), build_intentions: structuredClone(input.build_intentions), ...(input.maturation_stage === undefined ? {} : { maturation_stage: input.maturation_stage }) },
+  };
   plan.plan_hash = planHash(plan);
   return plan;
 }
@@ -155,6 +228,18 @@ export function validateBase44AppGovernanceProfilePlan(plan) {
     if (item.proposed_content !== null && (sha256(item.proposed_content) !== item.proposed_sha256 || Buffer.byteLength(item.proposed_content) !== item.proposed_bytes)) fail("BASE44_PROFILE_PLAN_TAMPERED");
     if (item.expected_prior_sha256 !== null && !HASH.test(item.expected_prior_sha256)) fail("BASE44_PROFILE_PLAN_INVALID");
   }
+  if (plan.requested_operation === "UPDATE") {
+    if (plan.update_mode?.type !== "FORWARD_SAME_PROFILE_BASELINE_UPDATE" || plan.resume_mode || plan.repair_mode) fail("BASE44_PROFILE_UPDATE_MODE_INVALID");
+    const prior = plan.update_mode.prior_artifacts;
+    const manifestPath = "governance/GOVERNANCE_MANIFEST.json";
+    if (typeof prior?.[manifestPath] !== "string") fail("BASE44_PROFILE_UPDATE_PRIOR_INVALID");
+    const rebuilt = forwardUpdate({ ...plan, ...plan.update_mode.requested_changes,
+      installed_artifacts: prior, installed_manifest_content: prior[manifestPath], installed_manifest: JSON.parse(prior[manifestPath]),
+      expected_prior_sha256: Object.fromEntries(plan.artifacts.map(x => [x.target, x.expected_prior_sha256])),
+      authority: { source: "BASE44_APP_OWNER", deployment: "OWNER_CONTROLLED" },
+    }, plan.profile_id, loadBase44AppGovernanceProfiles().version);
+    if (canonical(rebuilt) !== canonical(plan.artifacts)) fail("BASE44_PROFILE_UPDATE_CONTINUITY_MISMATCH");
+  } else if (plan.update_mode !== undefined) fail("BASE44_PROFILE_UPDATE_MODE_INVALID");
   return plan;
 }
 
@@ -173,13 +258,13 @@ export async function verifyBase44AppGovernanceProfile({ plan, store, verified_a
     const actual = content === null ? null : sha256(content);
     checks.push({ target: item.target, expected_sha256: item.proposed_sha256, actual_sha256: actual, status: actual === item.proposed_sha256 ? "MATCH" : content === null ? "MISSING" : "DRIFTED" });
   }
-  const complete = ["ACTIVATE", "ROLLBACK"].includes(plan.requested_operation) && checks.every(({ status }) => status === "MATCH");
+  const complete = ["ACTIVATE", "UPDATE", "ROLLBACK"].includes(plan.requested_operation) && checks.every(({ status }) => status === "MATCH");
   return { schema: READBACK_SCHEMA, plan_hash: plan.plan_hash, project_ref: plan.project_ref, project_binding_id: plan.project_binding_id, profile_id: plan.profile_id, verified_at: new Date(verified_at).toISOString(), artifact_count: checks.length, checks, governance_state: complete ? "GOVERNED_ACTIVE" : "STALE_OR_DRIFTED", runtime_dependency: false, acceptance_status: complete ? "COMPLETE_VERIFIED" : "FAILED_SYNC_VERIFICATION" };
 }
 
 export async function activateBase44AppGovernanceProfile({ plan, approval, store, now = new Date().toISOString() }) {
   validateApproval(plan, approval, now);
-  if (!["ACTIVATE", "ROLLBACK"].includes(plan.requested_operation)) fail("BASE44_PROFILE_OPERATION_INVALID");
+  if (!["ACTIVATE", "UPDATE", "ROLLBACK"].includes(plan.requested_operation)) fail("BASE44_PROFILE_OPERATION_INVALID");
   if (plan.resume_mode) {
     if (plan.resume_mode.type !== "BIND_EXISTING_EXACT_ARTIFACTS" || plan.resume_mode.app_writes !== false
       || plan.artifacts.some((item) => item.operation !== "READ" || item.expected_prior_sha256 !== item.proposed_sha256)) fail("BASE44_PROFILE_RESUME_INVALID");
@@ -247,7 +332,7 @@ async function lifecycleEvidence(plan, store, sourceBefore, sourceAfter) {
 // envelope. Only metadata and hashes leave the host, never project source.
 export async function verifyBase44AppGovernanceLifecycle({ plan, store, application_source_before_sha256, application_source_after_sha256, verified_at = new Date().toISOString() }) {
   validatePlan(plan);
-  if (!["ACTIVATE", "ROLLBACK"].includes(plan.requested_operation) || !HASH.test(plan.installed_manifest_sha256 ?? "")) fail("BASE44_PROFILE_LIFECYCLE_PLAN_REQUIRED");
+  if (!["ACTIVATE", "UPDATE", "ROLLBACK"].includes(plan.requested_operation) || !HASH.test(plan.installed_manifest_sha256 ?? "")) fail("BASE44_PROFILE_LIFECYCLE_PLAN_REQUIRED");
   const beforeRevision = typeof store.getRevision === "function" ? await store.getRevision() : null;
   const local = await verifyBase44AppGovernanceProfile({ plan, store, verified_at });
   const evidence = await lifecycleEvidence(plan, store, application_source_before_sha256, application_source_after_sha256);
