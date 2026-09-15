@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.27.0",
+  "version": "1.28.0",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -52,10 +52,25 @@
     "Before interpreting app governance, call bos_connect with host base44_build_ai and the exact non-secret project_ref base44:<current app_id>, then bos_capabilities for the same project. An omitted project_ref checks platform availability only; UNBOUND from that unscoped call does not establish that the current app is unbound. If a call omitted it, make one corrected read-only app-bound call before proposing onboarding or repair.",
     "Restore the accepted baseline and existing plan decision from current app-bound evidence. A resumed chat or refreshed instruction version is not a material baseline change. If acceptance evidence is missing, recover it before asking the owner to repeat a decision. Do not fabricate acceptance. Changed requirements still require an explicit review of those changes.",
     "The AI Controls separate plan is the bounded native-settings action, not a new server governance-file plan. Present the exact pointer and app for owner authorization through the existing settings route; an already authorized unchanged action does not need repeated approval. Independent saved-setting verification alone does not mutate settings or governance. Keep the approved manifest byte-identical.",
-    "For bos_health_snapshot, dimensions summarize actual evidence rather than executing tests. Keep scans/build UNKNOWN if unverified. critical_signals contains unresolved hazards only and is empty when none were observed. Positive pointer, revision and artifact checks are evidence, never critical warnings. Report the scope and age of supplied evidence; do not claim the server independently executed those checks."
+    "For bos_health_snapshot, dimensions summarize actual evidence rather than executing tests. Keep scans/build UNKNOWN if unverified. critical_signals contains unresolved hazards only and is empty when none were observed. Positive pointer, revision and artifact checks are evidence, never critical warnings. Report the scope and age of supplied evidence; do not claim the server independently executed those checks.",
+    "The connection-plug step adds or verifies a real owner/admin app-shell component opening the BOS connection view. It is APP_SOURCE_UI_ACTION, not AI Controls, Custom Instructions or a pointer paste. Prepare the exact separate app-surface plan and source/UI readback; existing pointer authorization does not approve app files. If the app lacks a connection page or supported live status adapter, identify that dependency and prepare the separately reviewed owner/admin page/integration plan before installation. Never claim an editor MCP session is an app runtime connection, copy its OAuth credentials, invent live status, or mark completion from metadata alone. Preserve the approved governance files and authentication."
   ],
   "public_companion_readback": [
     "Use native code to download raw public HTTP bytes and compute SHA-256 before trusting companion instructions or importing helpers. A markdown web reader, chat text or internal version field is not exact byte readback. If native byte access is unavailable, report PUBLIC_COMPANION_BYTE_READBACK_REQUIRED; do not claim the current instructions verified.",
     "Fetch the manifest with ?version=<installed workspace skill version>. Verify each required companion against manifest bytes and SHA-256; also require the pinned workspace-reference digest from the installed skill and the onboarding contract digest/version from authenticated bos_connect. For a mismatch, retry once with the expected version in that file URL, then stop the affected stage if still inconsistent. Never normalize bytes or accept an older version silently. Keep downloads in bounded temporary scratch outside app source; they grant no write authority."
-  ]
+  ],
+  "customer_tour_transport": {
+    "tool": "bos_capabilities",
+    "first_request": {
+      "customer_view": "TOUR_1"
+    },
+    "next_requests": [
+      "TOUR_2",
+      "TOUR_3"
+    ],
+    "dismissal_request": {
+      "customer_view": "TOUR_STOP"
+    },
+    "rules": "Use exact app project_ref and host base44_build_ai. Present customer_tour.message, not the available/blocked API-name catalogue. Each request is independent: advance only on explicit user choice; stop on dismissal with the website link. If the live schema lacks customer_view, retrieve and verify this reference and present its approved customer_tour batch. Never invent arguments or describe the API catalogue as a completed customer tour. The server filters items by available supporting tools; these are public advice and host-applied governance guidance, not new specialist-engine entitlements."
+  }
 }

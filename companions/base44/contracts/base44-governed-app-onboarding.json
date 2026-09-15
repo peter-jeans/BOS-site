@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNED_APP_ONBOARDING_V1",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "status": "PUBLIC_SAFE_DETERMINISTIC_PLANNER_LOCAL_VERIFIED_LIVE_BASE44_MUTATION_PENDING",
   "purpose": "Turn one Base44 account MCP connection and one workspace skill installation into a repeatable, separately authorised governance activation for each selected app.",
   "installation_cardinality": {
@@ -74,7 +74,11 @@
     ],
     "opens_existing_connection_view": true,
     "second_launcher_allowed": false,
-    "exact_source_and_ui_readback_required": true
+    "exact_source_and_ui_readback_required": true,
+    "action_kind": "APP_SOURCE_UI_ACTION",
+    "target_surface": "OWNER_ADMIN_APPLICATION_CONNECTION_VIEW",
+    "uses_native_ai_controls_paste": false,
+    "customer_instruction": "The connection-plug step adds or verifies a real owner/admin app-shell component opening the BOS connection view. It is APP_SOURCE_UI_ACTION, not AI Controls, Custom Instructions or a pointer paste. Prepare the exact separate app-surface plan and source/UI readback; existing pointer authorization does not approve app files. If the app lacks a connection page or supported live status adapter, identify that dependency and prepare the separately reviewed owner/admin page/integration plan before installation. Never claim an editor MCP session is an app runtime connection, copy its OAuth credentials, invent live status, or mark completion from metadata alone. Preserve the approved governance files and authentication."
   },
   "ai_controls_pointer": {
     "action_id": "alter_base44_ai_controls_pointer_via_assist",
