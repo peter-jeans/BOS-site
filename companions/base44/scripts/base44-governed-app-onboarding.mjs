@@ -104,7 +104,7 @@ function validate(input) {
   return { entitlement, pack, pointerStatus };
 }
 
-export function planBase44GovernedAppOnboarding(input = {}) {
+function selectBase44GovernedAppOnboardingAction(input = {}) {
   const contract = loadBase44GovernedAppOnboardingContract();
   const { entitlement, pack, pointerStatus: declaredPointerStatus } = validate(input);
   const pointerVerified = pointerReadbackCurrent(input, contract);
@@ -205,6 +205,98 @@ export function planBase44GovernedAppOnboarding(input = {}) {
     governance_equivalence_claim_allowed: false,
     governance_equivalence_blocker: contract.deferred_acceptance.matched_lane_trial,
   };
+}
+
+// Advisory host projection. Persistence is owned by the host's existing approved
+// evidence writer; this helper neither writes the app nor authenticates claims.
+export function planBase44GovernedAppOnboarding(input = {}) {
+  const contract = loadBase44GovernedAppOnboardingContract();
+  const copy = renderBase44PointerCopyInstructions();
+  const prior = input.onboarding_progress;
+  const bound = (record) => record?.app_ref === input.app_ref
+    && record?.project_binding_id === input.project_binding_id
+    && ID.test(String(input.project_binding_id || ""))
+    && /^[a-f0-9]{64}$/.test(input.governance_manifest_sha256 || "")
+    && record?.governance_manifest_sha256 === input.governance_manifest_sha256
+    && record?.pointer_sha256 === copy.pointer_sha256;
+  const priorUsable = prior?.schema === "BOS_BASE44_POINTER_PROGRESS_V1" && bound(prior);
+  const confirmation = input.ai_controls_user_confirmation;
+  const userConfirmed = (bound(confirmation) && confirmation.saved === true)
+    || (priorUsable && prior.user_confirmation === "REPORTED_SAVED");
+  const self = input.ai_controls_buildai_self_check;
+  // Source attribution here is a host claim, not platform attestation. In
+  // particular, repeating the expected text from chat cannot verify settings.
+  const selfCheck = !bound(self) || self.source !== "CURRENT_TURN_AI_CONTROLS"
+    ? "NOT_OBSERVED"
+    : typeof self.pointer_text !== "string" ? "UNAVAILABLE"
+      : self.pointer_text === contract.ai_controls_pointer.pointer_text ? "MATCH_REPORTED"
+        : self.pointer_text === "" ? "MISSING_REPORTED" : "DIFFERENT_REPORTED";
+  const conflictingSelfCheck = ["MISSING_REPORTED", "DIFFERENT_REPORTED"].includes(selfCheck);
+  const effective = conflictingSelfCheck
+    ? { ...input, ai_controls_pointer_status: "CURRENT", ai_controls_pointer_readback: undefined }
+    : userConfirmed || selfCheck === "MATCH_REPORTED"
+      ? { ...input, ai_controls_pointer_status: "CURRENT" } : input;
+  const result = selectBase44GovernedAppOnboardingAction(effective);
+  const verified = !conflictingSelfCheck && pointerReadbackCurrent(input, contract);
+  const pointerStage = result.stage === "AI_CONTROLS_POINTER_PLAN_INSTALL_AND_READBACK";
+  const passedPointerStage = ["CONNECTION_PLUG_PLAN_INSTALL_AND_READBACK", "GOVERNED_APP_READY", "ENTITLED_GOVERNANCE_CAPABILITY_UPGRADES"].includes(result.stage);
+  const beforeInstall = !pointerStage && !passedPointerStage;
+  const state = beforeInstall ? "WAITING_FOR_GOVERNANCE_PREREQUISITES"
+    : verified ? "VERIFIED"
+      : userConfirmed ? "SAVED_REPORTED_VERIFICATION_PENDING"
+        : selfCheck === "MATCH_REPORTED" ? "BUILDAI_MATCH_VERIFICATION_PENDING"
+          : result.next_action?.action_id === "verify_base44_native_ai_controls_pointer" ? "VERIFICATION_PENDING"
+            : "PASTE_OR_REPAIR_PENDING";
+  const progress = {
+    schema: "BOS_BASE44_POINTER_PROGRESS_V1",
+    app_ref: input.app_ref,
+    project_binding_id: input.project_binding_id ?? null,
+    governance_manifest_sha256: input.governance_manifest_sha256 ?? null,
+    pointer_sha256: copy.pointer_sha256,
+    state,
+    user_confirmation: userConfirmed ? "REPORTED_SAVED" : "NOT_RECORDED",
+    buildai_self_check: selfCheck,
+    saved_setting_verification: verified ? "INDEPENDENT_NATIVE_UI_READBACK" : "NOT_VERIFIED",
+    previous_verification: priorUsable && prior.saved_setting_verification === "INDEPENDENT_NATIVE_UI_READBACK"
+      ? "HISTORICAL_ONLY" : "NONE",
+    current_stage_source: "CURRENT_APP_BOUND_ONBOARDING_EVIDENCE",
+    storage_written: false,
+    grants_mutation_authority: false,
+  };
+  const output = { ...result, onboarding_progress: progress };
+  if (pointerStage) {
+    output.can_continue_governed_mutation = false;
+    output.pointer_handoff = {
+      ...copy,
+      app_ref: input.app_ref,
+      app_name: typeof input.app_name === "string" ? input.app_name : input.app_ref,
+      navigation: contract.ai_controls_pointer.customer_route.navigation,
+      visible_label: "Your action required",
+      state,
+      display_in_current_chat: true,
+      repeat_on_resume_while_pending: true,
+      primary_action: result.next_action.mutation ? "COPY_PASTE_SAVE" : "CHECK_SAVED_SETTING",
+      message: result.next_action.mutation
+        ? "Governance files are installed and verified. Copy the block below into this app's AI Controls Custom Instructions and Save. Reply Saved when done. Waiting for your action."
+        : "The saved setting is not yet verified. Check AI Controls for this app; the full expected text is repeated below for comparison or correction. Do not reinstall or repeat plan approval. Waiting for verification.",
+      independent_verification_required: true,
+      customer_confirmation_is_verification: false,
+      buildai_self_check_is_independent_verification: false,
+    };
+  }
+  if (beforeInstall && (input.ai_controls_pointer_status === "CURRENT" || input.ai_controls_pointer_status === "STALE"
+    || input.ai_controls_pointer_readback || userConfirmed || selfCheck === "MATCH_REPORTED")) {
+    output.early_pointer_recovery = {
+      status: "SETUP_PREREQUISITES_REQUIRED",
+      app_ref: input.app_ref,
+      next_stage: result.stage,
+      copy_block_presented: false,
+      product_work_allowed: false,
+      grants_mutation_authority: false,
+      message: "AI Controls may have been pasted before setup was ready. Resume the displayed prerequisite for this exact app. Read-only discovery and setup guidance are allowed; governance writes still require the complete current server plan and its exact owner approval. Do not remove instructions, replace existing governance, restart approvals or build product features automatically.",
+    };
+  }
+  return output;
 }
 
 export const BASE44_ONBOARDING_TIERS = TIERS;

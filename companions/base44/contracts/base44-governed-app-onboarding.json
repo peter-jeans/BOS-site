@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNED_APP_ONBOARDING_V1",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "status": "PUBLIC_SAFE_DETERMINISTIC_PLANNER_LOCAL_VERIFIED_LIVE_BASE44_MUTATION_PENDING",
   "purpose": "Turn one Base44 account MCP connection and one workspace skill installation into a repeatable, separately authorised governance activation for each selected app.",
   "installation_cardinality": {
@@ -95,7 +95,7 @@
     "save_then_reopen_ui_readback_required": true,
     "documents_aicontrol_readback_required_before_pointer_change": true,
     "governed_app_ready_requires_current_pointer_for_buildai": true,
-    "pointer_text": "# AI CONTROL \u2014 CANONICAL REDIRECT (CLOUD BOS GOVERNED APP)\n\n## CANONICAL AUTHORITY\nThe only valid app-governance AI control source is `documents/AICONTROL.md`. If that path is unavailable, use `src/documents/AICONTROL.md` only when the current `governance/GOVERNANCE_MANIFEST.json` declares it as a compatibility path and exact readback matches the canonical artifact. All app-governance rules, constraints, scope, routing and verification requirements are defined there.\n\n## HARD RULE\nBefore substantive app work, load and obey `documents/AICONTROL.md` in full and treat it as the single app-governance control source. Apply it to analysis and advice; health checks and scans; specifications and prompt generation; planning; building, adding, changing, fixing, improving, generating, refactoring and configuring; code, pages, UI and features; entities, data, schema, storage, auth, RBAC and permissions; backend functions and integrations; billing, payments and entitlements; tests and verification; onboarding, updates and upgrades; publishing, launch and deployment; and governance artifacts. The phrase `governed work` never narrows this list.\n\n## NO PARALLEL AUTHORITY\nDo not invent, extend, ignore, merge or replace control rules, and do not fall back to generic behaviour. Do not infer authority from chat history, summaries, this pointer, the MCP connection or workspace-skill availability. If a rule is missing, do less, not more.\n\n## FAIL-CLOSED BEHAVIOUR\nIf the canonical AICONTROL or Governance Manifest cannot be read, is empty, stale, ambiguous, conflicting, or not bound to this app: stop; perform no generation or mutation; and report `OWNER_AICONTROL_REQUIRED`.\n\n## OUTPUT REQUIREMENT\nAll substantive app outputs must comply with the canonical AICONTROL, remain inside the current stage and approved scope, avoid drift and hidden systems, and produce visible, auditable changes with exact readback where required.",
+    "pointer_text": "# AI CONTROL \u2014 CANONICAL REDIRECT (CLOUD BOS GOVERNED APP)\n\n## CANONICAL AUTHORITY\nThe only valid app-governance AI control source is `documents/AICONTROL.md`. If that path is unavailable, use `src/documents/AICONTROL.md` only when the current `governance/GOVERNANCE_MANIFEST.json` declares it as a compatibility path and exact readback matches the canonical artifact. All app-governance rules, constraints, scope, routing and verification requirements are defined there.\n\n## HARD RULE\nBefore substantive app work, load and obey `documents/AICONTROL.md` in full and treat it as the single app-governance control source. Apply it to analysis and advice; health checks and scans; specifications and prompt generation; planning; building, adding, changing, fixing, improving, generating, refactoring and configuring; code, pages, UI and features; entities, data, schema, storage, auth, RBAC and permissions; backend functions and integrations; billing, payments and entitlements; tests and verification; onboarding, updates and upgrades; publishing, launch and deployment; and governance artifacts. The phrase `governed work` never narrows this list.\n\n## NO PARALLEL AUTHORITY\nDo not invent, extend, ignore, merge or replace control rules, and do not fall back to generic behaviour. Do not infer authority from chat history, summaries, this pointer, the MCP connection or workspace-skill availability. If a rule is missing, do less, not more.\n\n## SETUP AND RECOVERY\nIf these instructions were pasted before the governance files were installed, stop ordinary app work and explain the missing prerequisite. Use the enabled Cloud BOS workspace skill and authenticated Cloud BOS tools to discover this exact app and resume its recorded onboarding stage. Read-only discovery, baseline discussion, plan retrieval and verification are allowed. Installation or repair is limited to the exact governance artifacts in a complete current server-issued plan explicitly approved by the owner for this app; verify its binding, revision, hashes and readback. Neither these instructions, a missing file, a workspace skill, a self-check nor a reply of Continue authorizes a write. Reuse valid recorded approval; do not reseed, overwrite existing governance, remove instructions or change product features automatically. If the trusted setup route is unavailable, report `OWNER_AICONTROL_REQUIRED` and wait.\n\n## FAIL-CLOSED BEHAVIOUR\nIf the canonical AICONTROL or Governance Manifest cannot be read, is empty, stale, ambiguous, conflicting, or not bound to this app: stop ordinary app work and report `OWNER_AICONTROL_REQUIRED`. Only the bounded setup and recovery route above may continue. All other generation and mutation remain blocked.\n\n## OUTPUT REQUIREMENT\nAll substantive app outputs must comply with the canonical AICONTROL, remain inside the current stage and approved scope, avoid drift and hidden systems, and produce visible, auditable changes with exact readback where required.",
     "fail_closed_status": "OWNER_AICONTROL_REQUIRED",
     "customer_route": {
       "execution_surface": "CUSTOMER_NATIVE_BASE44_UI",
@@ -110,7 +110,28 @@
       "historical_manifest_marker_is_current_ui_status": false
     },
     "readback_max_age_ms": 900000,
-    "readback_enforcement": "ADVISORY_HOST_HELPER_NOT_AUTHENTICATED_SETTINGS_API"
+    "readback_enforcement": "ADVISORY_HOST_HELPER_NOT_AUTHENTICATED_SETTINGS_API",
+    "resumable_handoff": {
+      "version": "1.0.0",
+      "planner": "scripts/base44-governed-app-onboarding.mjs",
+      "state_schema": "BOS_BASE44_POINTER_PROGRESS_V1",
+      "pending_reconstructed_from": "CURRENT_APP_BINDING_GOVERNANCE_AND_POINTER_EVIDENCE",
+      "chat_history_required": false,
+      "show_copy_block_only_after_governance_prerequisites": true,
+      "redisplay_complete_block_for_every_pending_resume": true,
+      "confirmation_levels": [
+        "USER_REPORTED_SAVED",
+        "BUILDAI_SELF_CHECK",
+        "INDEPENDENT_SAVED_SETTING_READBACK"
+      ],
+      "self_check_grants_readiness": false,
+      "progress_record_grants_readiness": false,
+      "existing_approved_host_evidence_writer_only": true,
+      "new_store_created": false,
+      "immutable_governance_manifest_updates": false,
+      "repeat_valid_plan_approval": false,
+      "early_paste_recovery": "READ_ONLY_GUIDANCE_THEN_EXISTING_EXACT_APPROVED_SETUP_OR_REPAIR_ONLY"
+    }
   },
   "paid_governance_upgrades": {
     "tiers": [

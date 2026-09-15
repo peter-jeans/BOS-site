@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_SESSION_MEMORY_ACTIVATION_V1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "PUBLIC_SAFE_LOCAL_CONTRACT_LIVE_VERIFICATION_PENDING",
   "purpose": "Prevent a new, resumed or context-compacted Base44 BuildAI chat from continuing governed work from chat memory alone.",
   "triggers": [
@@ -91,5 +91,13 @@
     "CROSS_APP_MEMORY_AND_BINDINGS_REMAIN_ISOLATED",
     "REMOVAL_PRESERVES_APPLICATION_SOURCE_DATA_AND_RUNTIME"
   ],
-  "private_bos_material_included": false
+  "private_bos_material_included": false,
+  "onboarding_resume": {
+    "pending_setup_route": "contracts/base44-governed-app-onboarding.json",
+    "planner": "scripts/base44-governed-app-onboarding.mjs",
+    "before_normal_build_continuation": "Reconcile the exact app onboarding stage; if AI Controls is pending, render the complete current pointer_handoff in this chat. Never infer completion from chat history or a historical manifest marker.",
+    "missing_governance_during_initial_setup": "Normal build activation remains blocked. The canonical pointer bounded setup/recovery route may retrieve and verify the existing exact app plan; mutations require its recorded owner approval.",
+    "progress_is_authority": false,
+    "self_check_is_independent_settings_readback": false
+  }
 }
