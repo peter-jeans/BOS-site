@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.25.0",
+  "version": "1.26.0",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -47,5 +47,11 @@
       "cross-app record rejected",
       "verified unchanged no repeat install"
     ]
-  }
+  },
+  "connection_and_resume": [
+    "Before interpreting app governance, call bos_connect with host base44_build_ai and the exact non-secret project_ref base44:<current app_id>, then bos_capabilities for the same project. An omitted project_ref checks platform availability only; UNBOUND from that unscoped call does not establish that the current app is unbound. If a call omitted it, make one corrected read-only app-bound call before proposing onboarding or repair.",
+    "Restore the accepted baseline and existing plan decision from current app-bound evidence. A resumed chat or refreshed instruction version is not a material baseline change. If acceptance evidence is missing, recover it before asking the owner to repeat a decision. Do not fabricate acceptance. Changed requirements still require an explicit review of those changes.",
+    "The AI Controls separate plan is the bounded native-settings action, not a new server governance-file plan. Present the exact pointer and app for owner authorization through the existing settings route; an already authorized unchanged action does not need repeated approval. Independent saved-setting verification alone does not mutate settings or governance. Keep the approved manifest byte-identical.",
+    "For bos_health_snapshot, dimensions summarize actual evidence rather than executing tests. Keep scans/build UNKNOWN if unverified. critical_signals contains unresolved hazards only and is empty when none were observed. Positive pointer, revision and artifact checks are evidence, never critical warnings. Report the scope and age of supplied evidence; do not claim the server independently executed those checks."
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNED_APP_ONBOARDING_V1",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "status": "PUBLIC_SAFE_DETERMINISTIC_PLANNER_LOCAL_VERIFIED_LIVE_BASE44_MUTATION_PENDING",
   "purpose": "Turn one Base44 account MCP connection and one workspace skill installation into a repeatable, separately authorised governance activation for each selected app.",
   "installation_cardinality": {
@@ -131,7 +131,9 @@
       "immutable_governance_manifest_updates": false,
       "repeat_valid_plan_approval": false,
       "early_paste_recovery": "READ_ONLY_GUIDANCE_THEN_EXISTING_EXACT_APPROVED_SETUP_OR_REPAIR_ONLY"
-    }
+    },
+    "separate_plan_kind": "NATIVE_SETTINGS_ACTION_NOT_SERVER_GOVERNANCE_PLAN",
+    "native_settings_authorization": "Review the exact pointer and app with the owner. Use the existing authorized native settings route or the owner manual save. Reuse valid authorization for the unchanged action. Pointer-only saving or verification does not call bos_project_governance_plan, repeat accepted baseline approval or modify the immutable Governance Manifest."
   },
   "paid_governance_upgrades": {
     "tiers": [
