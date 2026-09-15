@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.28.0",
+  "version": "1.29.0",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -71,6 +71,6 @@
     "dismissal_request": {
       "customer_view": "TOUR_STOP"
     },
-    "rules": "Use exact app project_ref and host base44_build_ai. Present customer_tour.message, not the available/blocked API-name catalogue. Each request is independent: advance only on explicit user choice; stop on dismissal with the website link. If the live schema lacks customer_view, retrieve and verify this reference and present its approved customer_tour batch. Never invent arguments or describe the API catalogue as a completed customer tour. The server filters items by available supporting tools; these are public advice and host-applied governance guidance, not new specialist-engine entitlements."
+    "rules": "Use exact app project_ref and host base44_build_ai. Deliver customer_tour.message verbatim after the authenticated speaker and compact app/step/status header. Preserve its label explanation, every offered item and final website link. Do not paraphrase, shorten, replace its ending with pending tasks, or treat a link elsewhere in chat as this turn's handoff. The API-name catalogue is not the customer tour. Each request is independent: advance only on explicit user choice; stop on dismissal with the website link. If the live schema lacks customer_view, retrieve and verify this reference and present its approved customer_tour batch. Never invent arguments or describe the API catalogue as a completed customer tour. The server filters items by available supporting tools; these are public advice and host-applied governance guidance, not new specialist-engine entitlements."
   }
 }
