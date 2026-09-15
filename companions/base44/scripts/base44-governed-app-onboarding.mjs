@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import { evaluatePublicProjectBaseline } from "./project-baseline.mjs";
 
 const contractUrl = new URL("../contracts/base44-governed-app-onboarding.json", import.meta.url);
@@ -17,6 +18,19 @@ function fail(code) {
 
 export function loadBase44GovernedAppOnboardingContract() {
   return JSON.parse(fs.readFileSync(contractUrl, "utf8"));
+}
+
+// Presentation only: neither a server plan nor permission to change settings.
+export function renderBase44PointerCopyInstructions() {
+  const pointer = loadBase44GovernedAppOnboardingContract().ai_controls_pointer.pointer_text;
+  return {
+    pointer_text: pointer,
+    pointer_sha256: createHash("sha256").update(pointer, "utf8").digest("hex"),
+    copy_block: "```markdown\n" + pointer + "\n```",
+    instructions: "Copy only the text inside this block, preserving the literal heading markers and backticks. Paste into this app's Custom Instructions, save, then reopen for independent exact-text verification.",
+    server_plan_issued: false,
+    grants_mutation_authority: false,
+  };
 }
 
 function action(input, stage, actionId, {
@@ -46,6 +60,7 @@ function action(input, stage, actionId, {
       execution_surface: executionSurface,
       reason,
     },
+    ...(actionId === "alter_base44_ai_controls_pointer_via_assist" ? { pointer_handoff: renderBase44PointerCopyInstructions() } : {}),
     bulk_mutation_allowed: false,
     private_bos_material_allowed: false,
   };
