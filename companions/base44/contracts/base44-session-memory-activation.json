@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_SESSION_MEMORY_ACTIVATION_V1",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "status": "PUBLIC_SAFE_LOCAL_CONTRACT_LIVE_VERIFICATION_PENDING",
   "purpose": "Prevent a new, resumed or context-compacted Base44 BuildAI chat from continuing governed work from chat memory alone.",
   "triggers": [
@@ -98,6 +98,7 @@
     "before_normal_build_continuation": "Reconcile the exact app onboarding stage; if AI Controls is pending, render the complete current pointer_handoff in this chat. Never infer completion from chat history or a historical manifest marker.",
     "missing_governance_during_initial_setup": "Normal build activation remains blocked. The canonical pointer bounded setup/recovery route may retrieve and verify the existing exact app plan; mutations require its recorded owner approval.",
     "progress_is_authority": false,
-    "self_check_is_independent_settings_readback": false
+    "self_check_is_independent_settings_readback": false,
+    "saved_app_snapshot": "After current activation readback, execute contracts/base44-workspace-reference.json saved_app_snapshot.resume_steps when the optional separately approved snapshot exists. Its dated display history never grants readiness or build authority. During approved work that changes its inputs, execute saved_app_snapshot.approved_update_steps. This is host-executed guidance; no automatic background writer is claimed."
   }
 }
