@@ -1,6 +1,6 @@
 {
   "schema": "BOS_PUBLIC_COMMERCIAL_MODEL_V1",
-  "version": "2026-09-16.2",
+  "version": "2026-09-16.3",
   "effective_from": "2026-09-16",
   "currency": "AUD",
   "model_status": "OWNER_APPROVED",
@@ -10,7 +10,7 @@
   "grants_access": false,
   "account_usage_included": false,
   "headline": "Build trust first. Keep your project continuity.",
-  "summary": "Beta users have free BOS access until beta ends, within their verified capabilities. After beta, a generous starter and limited ongoing help will sit alongside optional Standard passes or a monthly subscription. We will give advance notice; nobody is charged automatically.",
+  "summary": "Beta users have free BOS access until beta ends, within their verified capabilities. BOS stabilisation stays with your app. Installed build rules, existing checks and saved project knowledge remain in place. After beta, a generous starter and limited ongoing help sit alongside optional passes or a subscription for additional active governance. We will give advance notice; nobody is charged automatically.",
   "plans": [
     {
       "id": "BETA",
@@ -34,7 +34,7 @@
       "amount_minor": 0,
       "period": "LIMITED_ONGOING",
       "availability": "PLANNED",
-      "description": "Keep readable and exportable project records with a small defined allowance of fresh help. Allowances and retention terms are still being scoped."
+      "description": "Keep your installed BOS stabilisation foundations: build rules, existing checks, decisions and project memory. A small defined allowance provides fresh active help. Local checks depend on the host; cloud retention and service terms will be published."
     },
     {
       "id": "BUILD_PASS",
@@ -60,7 +60,7 @@
     "interrupt_started_workflow_for_payment": false,
     "automatic_paid_conversion": false,
     "records_are_payment_leverage": false,
-    "notice": "You will see your allowance and options before the introduction ends. A defined wrap-up reserve will cover an already-started bounded workflow. Your existing project records remain readable and exportable under the published retention terms."
+    "notice": "Your installed BOS stabilisation foundations and saved project context stay with your app. Payment funds additional active governance. You will see allowances and options in advance, with a defined wrap-up reserve for an already-started bounded workflow. Cloud-powered help and hosted records remain subject to published service and retention terms."
   },
   "value_evidence": {
     "verified_contributions_separate_from_estimates": true,
