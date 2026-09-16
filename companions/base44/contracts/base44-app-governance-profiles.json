@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_APP_GOVERNANCE_PROFILES_V1",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "status": "PUBLIC_SAFE_PROFILE_ENGINE_ACTIVATION_DRIFT_AND_REMOVAL_LOCAL_VERIFIED_LIVE_PENDING",
   "default_onboarding_profile": "LEAN_CORE_WITH_BUILD_GATES",
   "canonical_identity": {

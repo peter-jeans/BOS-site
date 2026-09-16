@@ -9,6 +9,22 @@ const HASH = /^[a-f0-9]{64}$/;
 const SAFE_STAGE = /^[A-Z][A-Z0-9_]{1,63}$/;
 const SECURITY_TRIGGERS = new Set(["AUTHENTICATION", "CUSTOMER_DATA", "MULTI_TENANCY", "PAYMENTS", "EXTERNAL_INTEGRATIONS"]);
 
+// Public host instructions only. Keep this revision immutable so an approved
+// stored plan reconstructs identically after later service releases.
+export const PUBLIC_ROUTING_V1 = `
+## Plain-language routing — PUBLIC_ROUTING_V1
+
+Apply this route to ordinary requests, follow-ups and slash commands alike. The owner need not name BOS or a skill. At the start of each new or resumed app request, use the enabled cloudbos-governed-build workspace skill and call bos_connect with host base44_build_ai and this exact Project reference. Check platform connection and app governance separately, then call bos_capabilities for the same app. Restore the current app files and pending stage before continuing; a context reset never creates new approval.
+
+Match the requested outcome to available public tool descriptions. For example, a request to check problems may call for a health snapshot or scan plan; checking requirements calls for a specification check; asking what to do next calls for maturity guidance. Check only relevant capability_ids before invoking the selected tool. Send compact, non-secret facts or controlled identifiers, never the full chat, private source, raw logs or credentials. Resolve entitlement and capability availability from authenticated Cloud BOS results. This file contains no private intent engine, scan library, specialist prompts or local entitlement grants. If the outcome is ambiguous, clarify the material choice before acting. A suggested scan is not an executed scan; report the tool actually used and its limitations.
+
+## Visible guidance and decisions
+
+After verified Cloud BOS consultation, begin EVERY substantive progress update and final response with BOS<authenticated-major.minor>> Base44> user>, replacing the version placeholder from the current bos_connect result. Include all three speakers; the app name belongs in the following header, not in place of user>. Before verified consultation use Base44> user> and say the connection is not yet verified. Never invent a BOS identity or imply that a speaker label proves governance.
+
+After the speaker chain show App, Step and observed Status. End with the result, any gap and the next action. Before sending, check the speaker chain and decision state. At an owner decision, prominently say Your action required, name this exact app and scope, explain what the reply authorizes, give the exact reply and say Reply here in this Base44 chat; I am waiting. For a verified governance plan display the full hash and ask Approve plan <full-plan-hash>, or changes / Later. Replace every placeholder before displaying it. A review or recovery-copy permission is not installation approval. When independent review is still pending, say Review pending — no approval is requested yet, and do not silently interpret an unrelated approval as permission to install. Bind a clear existing approval to its exact reviewed proposal without making the owner repeat it. Silence, Continue, a tour choice and baseline acceptance never authorize installation.
+`;
+
 function fail(code, message = code) {
   const error = new Error(message);
   error.code = code;
@@ -114,6 +130,7 @@ function buildContents(input, profileId, profileVersion, definitions, triggers) 
   contents.set("governance/BUILD_GATES.json", exactJson({ schema: "BOS_CLOUDBOS_PUBLIC_BASE44_BUILD_GATES_V1", governor_kernel: "BASE44_LEAN_DETERMINISTIC_GOVERNOR", kernel_version: "1.0.0", deterministic: true, alignment: "REQUIRED", early_warning: "REQUIRED", build_verification: "REQUIRED", last_result: "PENDING_FIRST_GOVERNED_BUILD" }));
   contents.set("governance/EVIDENCE_LEDGER.jsonl", `${canonical({ schema: "BOS_CLOUDBOS_PUBLIC_BASE44_EVIDENCE_EVENT_V1", event: "GOVERNANCE_PROFILE_ACTIVATION_PLANNED", project_binding_id: input.project_binding_id, profile: profileId })}\n`);
   contents.set("governance/SECURITY_BASELINE.md", `# Security Baseline\n\nApplicable triggers: ${triggers.join(", ")}\n\nAuthentication, authorization, tenant isolation, sensitive data, payment and integration changes require explicit review and exact readback. No credentials or customer data belong in this file.\n`);
+  contents.set("documents/AICONTROL.md", contents.get("documents/AICONTROL.md") + PUBLIC_ROUTING_V1);
   return contents;
 }
 
@@ -132,8 +149,9 @@ export function normalizeBase44UpdateInput(input) {
 }
 
 // Forward updates retain the complete prior governance projection. Only the
-// reviewed specification, active intention and optional maturity may change;
-// capability results, security rules, AI control and evidence history survive.
+// reviewed specification, active intention and optional maturity may change.
+// AI control changes only through the explicit, versioned public routing update;
+// capability results, security rules and evidence history survive.
 function forwardUpdate(input, profileId, profileVersion) {
   const manifestPath = "governance/GOVERNANCE_MANIFEST.json";
   const statePath = "governance/PROJECT_STATE.json";
@@ -175,9 +193,17 @@ function forwardUpdate(input, profileId, profileVersion) {
   const stage = input.maturation_stage ?? state.maturation_stage;
   const generated = buildContents({ ...input, maturation_stage: stage }, profileId, profileVersion, definitions, []);
   const next = { ...prior };
+  if (input.aicontrol_revision !== undefined) {
+    if (input.aicontrol_revision !== "PUBLIC_ROUTING_V1") fail("BASE44_PROFILE_ROUTING_REVISION_UNSUPPORTED");
+    const control = generated.get("documents/AICONTROL.md");
+    const legacy = control.slice(0, -PUBLIC_ROUTING_V1.length);
+    if (prior["documents/AICONTROL.md"] !== legacy && prior["documents/AICONTROL.md"] !== control) fail("BASE44_PROFILE_ROUTING_PRIOR_UNRECOGNIZED");
+    next["documents/AICONTROL.md"] = control;
+  }
   for (const path of ["documents/PROJECT_SPEC.md", "governance/BUILD_INTENTIONS.md"]) next[path] = generated.get(path);
   if (next["documents/PROJECT_SPEC.md"] === prior["documents/PROJECT_SPEC.md"]
       && next["governance/BUILD_INTENTIONS.md"] === prior["governance/BUILD_INTENTIONS.md"]
+      && next["documents/AICONTROL.md"] === prior["documents/AICONTROL.md"]
       && stage === state.maturation_stage) fail("BASE44_PROFILE_UPDATE_NOT_REQUIRED");
   next[statePath] = exactJson({ ...state, expected_app_revision: input.expected_app_revision, active_build_intention_id: input.build_intentions.active_id, maturation_stage: stage });
   // Preserve every original byte, including a missing final newline.
@@ -186,6 +212,7 @@ function forwardUpdate(input, profileId, profileVersion) {
     project_binding_id: input.project_binding_id, profile: profileId, created_at: input.created_at,
     prior_manifest_sha256: sha256(prior[manifestPath]), expected_app_revision: input.expected_app_revision,
     project_spec_sha256: sha256(next["documents/PROJECT_SPEC.md"]), build_intentions_sha256: sha256(next["governance/BUILD_INTENTIONS.md"]),
+    ...(input.aicontrol_revision === undefined ? {} : { aicontrol_revision: input.aicontrol_revision, aicontrol_sha256: sha256(next["documents/AICONTROL.md"]) }),
   });
   const artifacts = manifest.artifacts.map(({ target, role, artifact_id }) => ({
     ...artifact(target, role, next[target], sha256(prior[target]), "REPLACE"), artifact_id,
@@ -204,6 +231,7 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
   if (typeof input.resource_uri !== "string" || !input.resource_uri.startsWith("cloudbos://projects/")) fail("BASE44_PROFILE_RESOURCE_URI_INVALID");
   const operation = input.requested_operation ?? "ACTIVATE";
   if (!["ACTIVATE", "UPDATE", "REMOVE"].includes(operation)) fail("BASE44_PROFILE_OPERATION_UNSUPPORTED");
+  if (input.aicontrol_revision !== undefined && operation !== "UPDATE") fail("BASE44_PROFILE_ROUTING_UPDATE_ONLY");
   if (operation === "UPDATE") input = normalizeBase44UpdateInput(input);
   const contract = loadBase44AppGovernanceProfiles();
   const profileId = input.profile_id ?? contract.default_onboarding_profile ?? "LEAN_CORE_WITH_BUILD_GATES";
@@ -229,7 +257,7 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
   if (operation === "UPDATE") plan.update_mode = {
     type: "FORWARD_SAME_PROFILE_BASELINE_UPDATE",
     prior_artifacts: structuredClone(input.installed_artifacts),
-    requested_changes: { project_spec: structuredClone(input.project_spec), build_intentions: structuredClone(input.build_intentions), ...(input.maturation_stage === undefined ? {} : { maturation_stage: input.maturation_stage }) },
+    requested_changes: { project_spec: structuredClone(input.project_spec), build_intentions: structuredClone(input.build_intentions), ...(input.maturation_stage === undefined ? {} : { maturation_stage: input.maturation_stage }), ...(input.aicontrol_revision === undefined ? {} : { aicontrol_revision: input.aicontrol_revision }) },
   };
   plan.plan_hash = planHash(plan);
   return plan;

@@ -1,0 +1,15 @@
+{
+  "schema": "BOS_PUBLIC_BETA_PRICE_LIST_V1",
+  "version": "2026-07-28.1",
+  "effective_from": "2026-07-28",
+  "currency": "AUD",
+  "availability": "INVITE_ONLY_PRIVATE_BETA",
+  "checkout_live": false,
+  "grants_access": false,
+  "plans": [
+    { "id": "STANDARD", "amount_minor": 0, "period": "ONGOING", "availability": "CURRENT_CAPABILITIES" },
+    { "id": "PLUS", "amount_minor": 3900, "period": "MONTH", "availability": "INVITE_ONLY" },
+    { "id": "PRO", "amount_minor": 9900, "period": "MONTH", "availability": "INVITE_ONLY_ATTENDED_LIMITS" },
+    { "id": "ENTERPRISE", "amount_minor": null, "period": null, "availability": "CUSTOM_NOT_PRICED" }
+  ]
+}

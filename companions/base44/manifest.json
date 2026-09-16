@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.30.0",
+  "workspace_skill_version": "1.31.0",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 19310,
-      "sha256": "57ab5006d049c7e39084ca81fe50da7e61954fcc496e062e73ebe5612fb38a2a"
+      "bytes": 19081,
+      "sha256": "410ec69dc6c0bc79df182291f131976364692973be5f63dd47d8640cf59fb4c7"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -37,13 +37,13 @@
     },
     {
       "path": "scripts/base44-app-governance-profile.mjs",
-      "bytes": 34268,
-      "sha256": "7baec6c72bafa33a11fcf88dddd1a3e1824d078e367f5f6d325714f7fb3578f2"
+      "bytes": 38419,
+      "sha256": "fb56410c8758dcd313888c24d5d2d5794f53592d04efb405d519e2d14c23c1bd"
     },
     {
       "path": "contracts/base44-app-governance-profiles.json",
       "bytes": 5230,
-      "sha256": "daee55c60120cf5aa3a074ecaaadb5afe355da2c31610dac4c9228f93b88425d"
+      "sha256": "50f6b5fedd265985069ed4e316a8c8b188ffbb9227ed95f1afb05c7b4edb60e5"
     },
     {
       "path": "scripts/approval-lifecycle.mjs",
@@ -52,8 +52,8 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 24765,
-      "sha256": "70964e72f823c9930c2403100c3e74fe8a73f252eb7efd643cc98f9ed87fa270"
+      "bytes": 27937,
+      "sha256": "8e92daaee6714a8aa55bd2922e2f3cc9703d33455bd3735ac974f9b6efc70047"
     }
   ]
 }
