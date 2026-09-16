@@ -13,8 +13,8 @@
   <style>
     :root {
       --ink: #13201c;
-      --muted: #5a6862;
-      --paper: #f7f8f4;
+      --muted: #4e5b54;
+      --paper: #f3ebd9;
       --card: #fff;
       --line: #d7dfda;
       --green: #116b56;
@@ -32,9 +32,13 @@
     body {
       margin: 0;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 88% 4%, rgba(17, 107, 86, .13), transparent 28rem),
-        var(--paper);
+      background-color: var(--paper);
+      background-image:
+        url("assets/parchment-grain.svg"),
+        radial-gradient(ellipse at 12% 8%, rgba(255, 253, 242, .72), transparent 42rem),
+        radial-gradient(ellipse at 88% 22%, rgba(160, 112, 54, .08), transparent 48rem);
+      background-size: 180px 180px, 100% 100%, 100% 100%;
+      background-repeat: repeat, no-repeat, no-repeat;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.55;
     }
@@ -53,7 +57,7 @@
       top: 0;
       z-index: 10;
       border-bottom: 1px solid rgba(19, 32, 28, .10);
-      background: rgba(247, 248, 244, .92);
+      background: rgba(243, 235, 217, .94);
       backdrop-filter: blur(14px);
     }
 
@@ -553,12 +557,33 @@
       </div>
     </section>
 
+    <section id="access-model" aria-labelledby="access-model-title">
+      <div class="wrap">
+        <div class="section-intro"><h2 id="access-model-title">Build trust first. Keep your continuity.</h2>
+          <p><strong>Beta users have free access until beta ends.</strong> Try the BOS capabilities verified for your project. Your coding platform, hosting and AI usage remain separate.</p>
+          <p>After beta, the approved direction is a generous introduction, a gradual transition to limited ongoing help, and optional passes or membership when you want more active assistance. Standard pricing is set below. Usage allowances and the beta end date will be announced before paid access begins.</p>
+        </div>
+        <div class="tier-table-wrap" role="region" aria-label="Planned BOS access options" tabindex="0"><table class="tier-table">
+          <caption>After beta — planned access model, not yet for sale</caption>
+          <thead><tr><th scope="col">Stage</th><th scope="col">What it means</th><th scope="col">Price and availability</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Generous start</th><td>Useful help across several sessions, including returning to your project. See the allowance and next options from the beginning.</td><td>Included introduction · allowance to be confirmed</td></tr>
+            <tr><th scope="row">Keep your continuity</th><td>Readable and exportable decisions, intentions and completed reviews, with a small defined allowance of fresh help.</td><td>Included limited help · limits and retention terms to be confirmed</td></tr>
+            <tr><th scope="row">Standard pass</th><td>A bounded stretch of active help when you are building. A one-off purchase with no automatic renewal.</td><td>A$15 · 7 days from activation · usage allowance to be confirmed</td></tr>
+            <tr><th scope="row">Standard subscription</th><td>An optional recurring allowance for regular builders across supported environments, with terms shown before purchase.</td><td>A$29/month · usage allowance to be confirmed</td></tr>
+          </tbody></table></div>
+        <p><strong>A gradual handover.</strong> See your options before the starter allowance ends. A reserved wrap-up allowance will cover an already-started bounded workflow. Existing project records remain readable and exportable under the published retention terms.</p>
+        <p>BOS will show verified contributions separately from estimates. Payment will not depend on an invented savings figure or a trust score. Self-service guidance and structured plugin-defect reporting are included; personal support is not.</p>
+        <p class="release-note">Post-beta transitions and usage meters are not active. No automatic paid conversion or checkout is enabled. Current server access checks and existing account commitments remain in place. <a href="policies/trial-billing.html">Read the access and billing draft</a>.</p>
+      </div>
+    </section>
+
     <section id="tiers" aria-labelledby="tiers-title">
       <div class="wrap">
         <div class="section-intro">
-          <h2 id="tiers-title">Choose the depth of help you need</h2>
-          <p>Start with guidance for the current task. Add lasting project history, then coordinated work and reviewed learning across projects. Each tier includes the one before it.</p>
-          <p class="release-note"><strong>Public release pending.</strong> Access is by invitation. A tier describes the help you may access; it does not mean every capability is ready in every coding tool. Check the availability below. <a href="policies/trial-billing.html">See private-beta pricing and access conditions</a>. Self-service checkout is not live.</p>
+          <h2 id="tiers-title">Capability depth and availability</h2>
+          <p>The tiers below describe capability depth, not the new pass or membership prices. Your actual access depends on verified entitlement, installed components and platform readiness. Retaining existing project records is part of the planned continuity model above.</p>
+          <p class="release-note"><strong>Public release pending.</strong> Access is by invitation. A tier describes the help you may access; it does not mean every capability is ready in every coding tool. Check the availability below. <a href="policies/trial-billing.html">See free beta and planned access options</a>. Self-service checkout is not live.</p>
         </div>
         <div class="tier-table-wrap" role="region" aria-label="BOS tier comparison" tabindex="0">
           <table class="tier-table">

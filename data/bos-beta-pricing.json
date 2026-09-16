@@ -1,15 +1,86 @@
 {
-  "schema": "BOS_PUBLIC_BETA_PRICE_LIST_V1",
-  "version": "2026-07-28.1",
-  "effective_from": "2026-07-28",
+  "schema": "BOS_PUBLIC_COMMERCIAL_MODEL_V1",
+  "version": "2026-09-16.2",
+  "effective_from": "2026-09-16",
   "currency": "AUD",
-  "availability": "INVITE_ONLY_PRIVATE_BETA",
+  "model_status": "OWNER_APPROVED",
+  "current_phase": "FREE_INVITED_BETA",
+  "pricing_status": "STANDARD_PRICES_APPROVED_NOT_LIVE",
   "checkout_live": false,
   "grants_access": false,
+  "account_usage_included": false,
+  "headline": "Build trust first. Keep your project continuity.",
+  "summary": "Beta users have free BOS access until beta ends, within their verified capabilities. After beta, a generous starter and limited ongoing help will sit alongside optional Standard passes or a monthly subscription. We will give advance notice; nobody is charged automatically.",
   "plans": [
-    { "id": "STANDARD", "amount_minor": 0, "period": "ONGOING", "availability": "CURRENT_CAPABILITIES" },
-    { "id": "PLUS", "amount_minor": 3900, "period": "MONTH", "availability": "INVITE_ONLY" },
-    { "id": "PRO", "amount_minor": 9900, "period": "MONTH", "availability": "INVITE_ONLY_ATTENDED_LIMITS" },
-    { "id": "ENTERPRISE", "amount_minor": null, "period": null, "availability": "CUSTOM_NOT_PRICED" }
-  ]
+    {
+      "id": "BETA",
+      "name": "Invited beta",
+      "amount_minor": 0,
+      "period": "BETA",
+      "availability": "CURRENT",
+      "description": "Free BOS access until beta ends, within enabled capabilities. No pass or subscription is needed during beta. An invitation and current access checks are still required."
+    },
+    {
+      "id": "STARTER",
+      "name": "Generous start",
+      "amount_minor": 0,
+      "period": "BOUNDED_INTRODUCTION",
+      "availability": "PLANNED",
+      "description": "Experience useful help across several sessions, including returning to your project. The exact allowance will be published before launch."
+    },
+    {
+      "id": "LIGHT",
+      "name": "Keep your continuity",
+      "amount_minor": 0,
+      "period": "LIMITED_ONGOING",
+      "availability": "PLANNED",
+      "description": "Keep readable and exportable project records with a small defined allowance of fresh help. Allowances and retention terms are still being scoped."
+    },
+    {
+      "id": "BUILD_PASS",
+      "name": "Standard pass",
+      "amount_minor": 1500,
+      "period": "ONE_OFF",
+      "availability": "PLANNED",
+      "description": "A$15 for seven consecutive days from activation. A one-off purchase with no automatic renewal. The usage allowance and activation terms will be published before sales begin."
+    },
+    {
+      "id": "MEMBERSHIP",
+      "name": "Standard subscription",
+      "amount_minor": 2900,
+      "period": "RECURRING",
+      "availability": "PLANNED",
+      "description": "A$29 per month for regular builders. Renews only with your consent; cancellation stops future renewal. Included usage and full terms will be published before sales begin."
+    }
+  ],
+  "transition": {
+    "advance_notice": true,
+    "bounded_workflow_wrap_up": true,
+    "wrap_up_reserved_within_allowance": true,
+    "interrupt_started_workflow_for_payment": false,
+    "automatic_paid_conversion": false,
+    "records_are_payment_leverage": false,
+    "notice": "You will see your allowance and options before the introduction ends. A defined wrap-up reserve will cover an already-started bounded workflow. Your existing project records remain readable and exportable under the published retention terms."
+  },
+  "value_evidence": {
+    "verified_contributions_separate_from_estimates": true,
+    "invented_savings_allowed": false,
+    "trust_score_used_for_billing": false,
+    "repeat_warnings_or_bos_defects_count_as_new_value": false
+  },
+  "support": {
+    "included": "Self-service guidance and a structured channel for plugin-defect reports.",
+    "personal_support_included": false,
+    "guaranteed_response_time": false
+  },
+  "limits": {
+    "status": "NOT_YET_APPROVED",
+    "starter_allowance": null,
+    "ongoing_help_allowance": null,
+    "pass_duration": "P7D",
+    "paid_usage_allowance": null,
+    "enforcement_enabled": false
+  },
+  "access_boundary": "This public programme describes the offer, not your account entitlement. Current authenticated server capability and project checks remain authoritative. Existing account commitments are preserved; a new installation does not create a new free allowance.",
+  "external_costs": "Development-platform subscriptions, hosting, AI usage and credits are separate. Any applicable taxes and payment charges will be disclosed before purchase."
 }
