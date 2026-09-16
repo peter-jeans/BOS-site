@@ -1,6 +1,6 @@
 {
   "schema": "BOS_PUBLIC_COMMERCIAL_MODEL_V1",
-  "version": "2026-09-16.3",
+  "version": "2026-09-16.4",
   "effective_from": "2026-09-16",
   "currency": "AUD",
   "model_status": "OWNER_APPROVED",
@@ -10,7 +10,7 @@
   "grants_access": false,
   "account_usage_included": false,
   "headline": "Build trust first. Keep your project continuity.",
-  "summary": "Beta users have free BOS access until beta ends, within their verified capabilities. BOS stabilisation stays with your app. Installed build rules, existing checks and saved project knowledge remain in place. After beta, a generous starter and limited ongoing help sit alongside optional passes or a subscription for additional active governance. We will give advance notice; nobody is charged automatically.",
+  "summary": "Beta users have free BOS access until beta ends, within their verified capabilities. BOS stabilisation stays with your app. Installed build rules, existing checks and saved project knowledge remain. After active access ends, there are seven days to finish already-started workflows, followed by stabilisation-only access. New active governance needs an active plan. We will give advance notice; nobody is charged automatically.",
   "plans": [
     {
       "id": "BETA",
@@ -30,11 +30,11 @@
     },
     {
       "id": "LIGHT",
-      "name": "Keep your continuity",
+      "name": "Stabilisation stays",
       "amount_minor": 0,
       "period": "LIMITED_ONGOING",
       "availability": "PLANNED",
-      "description": "Keep your installed BOS stabilisation foundations: build rules, existing checks, decisions and project memory. A small defined allowance provides fresh active help. Local checks depend on the host; cloud retention and service terms will be published."
+      "description": "After active access ends, finish already-started workflows during a seven-day wind-down. Then active governance stops. Installed build rules, existing checks, decisions and project memory remain. Start a pass or subscription when you want fresh active help. Cloud retention terms will be published."
     },
     {
       "id": "BUILD_PASS",
@@ -60,7 +60,10 @@
     "interrupt_started_workflow_for_payment": false,
     "automatic_paid_conversion": false,
     "records_are_payment_leverage": false,
-    "notice": "Your installed BOS stabilisation foundations and saved project context stay with your app. Payment funds additional active governance. You will see allowances and options in advance, with a defined wrap-up reserve for an already-started bounded workflow. Cloud-powered help and hosted records remain subject to published service and retention terms."
+    "notice": "BOS stabilisation stays with your app. After active access ends, you have seven days to finish already-started workflows. Then active governance stops until you activate a plan. Installed rules, checks and saved records remain. Allowances and options are shown in advance; no automatic paid conversion.",
+    "wind_down_duration": "P7D",
+    "wind_down_new_workflows": false,
+    "after_wind_down": "STABILISATION_ONLY"
   },
   "value_evidence": {
     "verified_contributions_separate_from_estimates": true,
@@ -82,5 +85,14 @@
     "enforcement_enabled": false
   },
   "access_boundary": "This public programme describes the offer, not your account entitlement. Current authenticated server capability and project checks remain authoritative. Existing account commitments are preserved; a new installation does not create a new free allowance.",
-  "external_costs": "Development-platform subscriptions, hosting, AI usage and credits are separate. Any applicable taxes and payment charges will be disclosed before purchase."
+  "external_costs": "Development-platform subscriptions, hosting, AI usage and credits are separate. Any applicable taxes and payment charges will be disclosed before purchase.",
+  "provisional_test_limits": {
+    "test_only": true,
+    "standard_pass_workflows": 10,
+    "standard_monthly_workflows": 50,
+    "unit": "one agreed review or change plan with bounded follow-up; not individual messages"
+  },
+  "wire_compatibility": {
+    "LIGHT_period": "Legacy wire identifier only; the description and transition define seven-day wind-down then stabilisation only."
+  }
 }
