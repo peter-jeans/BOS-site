@@ -487,10 +487,53 @@
         transition: none !important;
       }
     }
+
+    /* BOS DGS: focused entry, grouped problems, clear actions and reachable navigation. */
+    .hero { padding: clamp(36px, 5vw, 64px) 0 42px; }
+    .hero-grid { grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr); gap: clamp(28px, 4vw, 52px); }
+    h1 { font-size: clamp(44px, 5.5vw, 68px); margin: 18px 0 24px; }
+    .hero .lede { max-width: 34em; font-size: clamp(18px, 2vw, 21px); }
+    .overview { padding: 28px; border-radius: 14px; box-shadow: 0 12px 32px rgba(75,48,21,.08); }
+    .overview h2 { font-size: 32px; margin: 12px 0 16px; }
+    .overview p { font-size: 16px; line-height: 1.6; }
+    .overview .hero-actions { display: grid; gap: 14px; }
+    .onboarding-help { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-underline-offset: 4px; }
+    .overview .beta-note { margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+    .section-kicker { display: block; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green-dark); }
+    .section-intro .section-kicker { margin-bottom: 12px; }
+    .section-intro h2 { font-size: clamp(28px, 3.5vw, 40px); line-height: 1.15; max-width: 24ch; }
+    .section-intro p { font-size: 17px; max-width: 65ch; color: var(--muted); }
+    section { padding: clamp(40px, 6vw, 64px) 0; }
+    .problems-section { background: rgba(244,231,204,.3); }
+    .ai-issues { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 0; }
+    .ai-issues li { padding-top: 16px; }
+    .ai-issues strong { font-size: 19px; }
+    .problem-art { height: 140px; margin-bottom: 18px; }
+    .section-links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 24px; }
+    .section-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 700; text-underline-offset: 5px; }
+    .nav-actions a { display: inline-flex; align-items: center; min-height: 44px; }
+    .skip-link { position: fixed; left: 16px; top: -100px; z-index: 30; padding: 12px 18px; background: var(--card); color: var(--ink); border: 2px solid var(--ink); }
+    .skip-link:focus { top: 12px; }
+    #main-content { scroll-margin-top: 90px; }
+    @media (max-width: 820px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .ai-issues { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview { max-width: none; }
+    }
+    @media (max-width: 620px) {
+      .hero { padding-top: 28px; }
+      .overview { padding: 22px; }
+      .overview h2 { font-size: 28px; }
+      .ai-issues { grid-template-columns: 1fr; gap: 18px; }
+      .ai-issues li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; align-items: center; }
+      .problem-art { height: auto; margin: 0; }
+      .section-intro { margin-bottom: 22px; }
+    }
   </style>
   <link rel="stylesheet" href="assets/branding.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header>
     <div class="wrap nav">
       <a class="brand" href="#top" aria-label="Cloud BOS — Build Operating System home">
@@ -501,7 +544,7 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="top"><div id="main-content" tabindex="-1"></div>
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
@@ -509,29 +552,31 @@
           <h1>Tame the<br>AI beast.</h1>
           <div class="hero-animation-wrap"><iframe class="hero-animation" src="assets/bos-spaghetti-animation.html" title="BOS turns spaghetti code into organised intentions, decisions, checks and memory" loading="eager"></iframe></div>
           <p class="lede">With great power comes a greater need for responsibility.</p>
-          <p>BOS helps keep AI responsible as it builds, tackling four recurring problems:</p>
-          <ul class="ai-issues" role="list" aria-label="Four AI development problems BOS helps tackle">
+
+        </div>
+
+        <aside class="overview" aria-labelledby="onboarding-title">
+          <span class="section-kicker">Start here</span><h2 id="onboarding-title">Build with BOS.</h2>
+          <p>Follow the setup guide for your coding tool, or get help onboarding your app through the BOS Client Portal.</p>
+          <nav class="hero-actions" aria-label="Choose how to onboard">
+            <a class="button primary" href="setup.html">Choose your setup guide</a>
+            <a class="onboarding-help" href="https://bos-client-portal.base44.app/">Get help in the BOS Client Portal ↗</a>
+          </nav>
+          <p class="beta-note"><strong>Private beta · Invitation required</strong><br>Use the connection details supplied with your invitation.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="problems-section" id="problems" aria-labelledby="problems-title">
+      <div class="wrap">
+        <div class="section-intro"><span class="section-kicker">The problems</span><h2 id="problems-title">Four ways AI builds go off track.</h2><p>BOS helps keep AI responsible as it builds.</p></div>
+        <ul class="ai-issues" role="list" aria-label="Four AI development problems BOS helps tackle">
             <li><img class="problem-art" src="assets/problems/drift.svg" alt="A steam train leaves the planned railway and veers toward a field" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Drift</strong><span>Going off-plan. BOS checks changes against your agreed intentions.</span></div></li>
             <li><img class="problem-art" src="assets/problems/amnesia.svg" alt="An anatomical brain loses its archive cards into the breeze" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Amnesia</strong><span>Forgetting decisions. BOS helps preserve project context between sessions.</span></div></li>
             <li><img class="problem-art" src="assets/problems/hallucination.svg" alt="A confident engineer imagines a finished bridge across a real gap" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Hallucination</strong><span>Making things up—or saying “done” too soon. BOS asks for evidence.</span></div></li>
             <li><img class="problem-art" src="assets/problems/breakage.svg" alt="A cracked cog and snapped drive belt stop a once-working mechanism" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Breakage</strong><span>Breaking what already worked. BOS helps check for regressions as your app changes.</span></div></li>
           </ul>
-          <nav class="hero-actions" aria-label="Explore BOS">
-            <a class="button primary" href="#benefits">What BOS helps you do</a>
-            <a class="button" href="#environments">Find your coding tool</a>
-          </nav>
-          <p><a href="#tiers">Compare tiers</a> · Setup guides: <a href="setup.html#setup">Base44</a>, <a href="setup.html#codex">Codex</a>, <a href="setup.html#claude-code">Claude Code</a></p>
-        </div>
-
-        <aside class="overview" aria-labelledby="onboarding-title">
-          <h2 id="onboarding-title">Get started with BOS</h2>
-          <p>Follow the setup guide for your coding tool, or get help onboarding your app through the BOS Client Portal.</p>
-          <nav class="hero-actions" aria-label="Choose how to onboard">
-            <a class="button primary" href="setup.html#setup">Set up BOS</a>
-            <a class="button" href="https://bos-client-portal.base44.app/">Get onboarding help</a>
-          </nav>
-          <p class="release-note">Private beta access is currently by invitation.</p>
-        </aside>
+        <nav class="section-links" aria-label="Explore BOS"><a href="#benefits">See how BOS helps <span aria-hidden="true">↓</span></a><a href="#environments">Find your coding tool</a></nav>
       </div>
     </section>
 
