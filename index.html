@@ -403,6 +403,8 @@
     .static-note strong { color: var(--green-dark); }
 
     section[id] { scroll-margin-top: 90px; }
+    .bos-levels { list-style: none; padding: 0; margin: 24px 0; }
+    .bos-levels li { padding: 12px 0; border-bottom: 1px solid var(--line); }
     .setup-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
     .setup-nav .button { flex: 1 1 180px; }
     .release-note { padding: 16px 20px; border-radius: 12px; background: var(--amber-soft); color: var(--amber); }
@@ -644,31 +646,17 @@
     <section id="tiers" aria-labelledby="tiers-title">
       <div class="wrap">
         <div class="section-intro">
-          <h2 id="tiers-title">Capability depth and availability</h2>
-          <p>The tiers below describe capability depth, not the new pass or membership prices. Your actual access depends on verified entitlement, installed components and platform readiness. Retaining existing project records is part of the planned continuity model above.</p>
-          <p class="release-note"><strong>Public release pending.</strong> Access is by invitation. A tier describes the help you may access; it does not mean every capability is ready in every coding tool. Check the availability below. <a href="policies/trial-billing.html">See free beta and planned access options</a>. Self-service checkout is not live.</p>
+          <h2 id="tiers-title">Cloud BOS has levels.</h2>
+          <p>From everyday build guidance to deeper project support.</p>
         </div>
-        <div class="tier-table-wrap" role="region" aria-label="BOS tier comparison" tabindex="0">
-          <table class="tier-table">
-            <caption>What each tier includes in its scope</caption>
-            <thead><tr><th scope="col">Tier</th><th scope="col">What it helps you do</th><th scope="col">When it becomes useful</th></tr></thead>
-            <tbody>
-              <tr data-tier="STANDARD" data-profile="STANDARD_PROFILE"><th scope="row">Standard<span class="tier-label">Available in private beta</span></th><td><p><strong>Guidance for the task.</strong></p><p>Understand your app, spot gaps, review risky changes and decide what to build and test next.</p><a href="#tier-standard-details">Explore Standard</a></td><td>“Before changing login, show what could break and how we will check the fix.”</td></tr>
-              <tr data-tier="PLUS" data-profile="PLUS_PROFILE"><th scope="row">Plus<span class="tier-label">Available in private beta</span></th><td><p><strong>Continuity across the project.</strong></p><p>Remember decisions and unfinished work, keep test history, check changes against the project plan and prepare for recovery.</p><a href="#tier-plus-details">Explore Plus</a></td><td>“Resume the app next week, keep our decisions in view and show what remains unfinished.”</td></tr>
-              <tr data-tier="PRO" data-profile="PRO_PROFILE"><th scope="row">Pro<span class="tier-label">In active testing</span></th><td><p><strong>Help with complex development.</strong></p><p>Get specialist AI perspectives, plan work across coding tools, learn from reviewed fixes and assess difficult repairs or platform moves.</p><a href="#tier-pro-details">Explore Pro</a></td><td>“Plan a complex change, flag developing risks, get specialist review and apply relevant verified lessons.”</td></tr>
-              <tr data-tier="ENTERPRISE" data-profile="ENTERPRISE_PROFILE"><th scope="row">Enterprise<span class="tier-label">Planned</span></th><td><p><strong>Planned oversight across teams.</strong></p><p>Help teams follow shared rules, organise reviews and see which projects still need checks before release, as these planned features become available.</p><a href="#tier-enterprise-details">Explore Enterprise</a></td><td>“Show which projects meet our release policy, what proof is missing and who can review it.”</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="table-help">On a small screen, scroll the table sideways. Open a tier below for its detailed scope.</p>
-        <details class="tier-details" id="tier-standard-details" data-tier-detail="STANDARD"><summary>Standard — guidance for the task</summary><div class="detail-body"><p>Describe the app, find gaps, prepare a project brief and turn the next task into focused instructions for your coding AI. Agree how the result will be tested before calling it complete.</p><p>Get guidance on design, usability, security, platform limits and code structure. Your installed tools determine which checks can run. Basic checks of the target app, access and test results apply at every tier.</p><p>You can use BOS manually on different projects. Standard does not include long-term cloud history, automatic coordination of scans or lessons drawn across projects.</p></div></details>
-        <details class="tier-details" id="tier-plus-details" data-tier-detail="PLUS"><summary>Plus — keep the project’s history and direction</summary><div class="detail-body"><p>Keep requirements, accepted decisions, unfinished work, changes and test results across sessions and projects. Saved preferences help BOS explain things in the way you need.</p><p>Deeper checks look for conflicting records, missed setup or review steps, and changes that depart from approved decisions. Reports show progress and gaps in how the project is being managed.</p><p>Recovery planning and backups of BOS project records require additional setup. Remembering a project does not back up its database or restore it on another computer. Plus does not include continuous work without human supervision.</p></div></details>
-        <details class="tier-details" id="tier-pro-details" data-tier-detail="PRO"><summary>Pro — help with more complex development</summary><div class="detail-body"><p>Get specialist AI perspectives, plan work across available coding tools and use advanced warnings and checks during a build. Current specialist work is supervised by a person.</p><p>Use reviewed lessons from verified repairs, with private information excluded. Assess what ties an app to its platform, plan a move or investigate a broken app.</p><p>Pro’s scope also includes syncing and restoring project records across computers, dashboards, timelines, automatic suggestions for scans and scheduled snapshots. <strong>These are not all delivered by the current public plugin.</strong> Rebuilding project memory from saved records is being tested locally. Restore across computers, work without supervision and equivalent support in each coding tool still need verification.</p></div></details>
-        <details class="tier-details" id="tier-enterprise-details" data-tier-detail="ENTERPRISE"><summary>Enterprise — planned oversight across teams</summary><div class="detail-body"><p>Planned features include shared project rules, reviewer permissions, review history, team administration, reporting across projects and private integrations.</p><p>The current plugin can help plan checks against company policies. It does not enforce those policies across an organisation or certify compliance. These broader features still need to be built and verified. Project reporting is separate from scoring individual developers.</p></div></details>
-        <details class="tier-details" id="tier-access">
-          <summary>Does connecting the plugin turn everything on?</summary>
-          <div class="detail-body"><p>No. BOS checks your access, the features supported by your coding tool and the setup of the specific project. A capability included in your tier may still be in testing or unavailable in your tool.</p><p>There is one public plugin. Changing tiers does not require reinstalling the plugin or your project’s BOS setup. A recommendation to upgrade does not change your access. No tier grants permission to change or publish an app automatically.</p><p>Platform subscriptions, hosting and model usage remain separate. The setup guides will provide public installation destinations when released.</p></div>
-        </details>
+        <ul class="bos-levels">
+          <li><strong>Standard</strong> — guidance for everyday tasks.</li>
+          <li><strong>Plus</strong> — continuity and project history.</li>
+          <li><strong>Pro</strong> — help with more complex development.</li>
+          <li><strong>Enterprise</strong> — planned support across teams.</li>
+        </ul>
+        <p class="availability">Standard and Plus are in private beta. Pro is in testing; Enterprise is planned.</p>
+        <p><a class="button primary" href="https://bos-client-portal.base44.app/">Explore Cloud BOS in the Portal</a></p>
       </div>
     </section>
 
