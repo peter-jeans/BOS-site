@@ -1,44 +1,44 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The BOS spaghetti-code machine</title>
 <style>
-:root{color-scheme:light;--ink:#24211c;--paper:#f0e5ce}
-*{box-sizing:border-box}body{margin:0;background:transparent;color:var(--ink);font-family:Georgia,serif}.film{position:relative;overflow:hidden;border:1px solid #8e79513b;border-radius:3px;background:#f0e5ce}.film:after{content:"";position:absolute;inset:0;pointer-events:none;background:url('parchment-grain.svg');opacity:.48;mix-blend-mode:multiply}svg{display:block;width:100%;height:auto}svg *{vector-effect:non-scaling-stroke}.outline{stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.fine{stroke-width:1}.label{font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px}.mono{font-family:monospace;font-size:17px;font-weight:bold}.caption{font-size:24px;font-style:italic}.controls{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 11px;font:11px/1.4 Arial,sans-serif;color:#494239}.controls span{max-width:75%}button{font:inherit;color:#24211c;background:transparent;border:1px solid #8e79516b;border-radius:20px;padding:5px 12px;cursor:pointer;min-height:32px}button:hover{background:#e2d5b6}button:focus-visible{outline:2px solid #24211c;outline-offset:2px}.spark{opacity:0}.pen{fill:none;stroke:var(--ink);stroke-width:.75;stroke-linecap:round;opacity:.65}.ink-art{filter:url(#ink-edge)}
+:root{color-scheme:light;--ink:#503620;--paper:#f0e5ce}
+*{box-sizing:border-box}body{margin:0;background:transparent;color:var(--ink);font-family:Georgia,serif}.film{position:relative;overflow:hidden;border:1px solid #8e79513b;border-radius:3px;background:#f0e5ce}.film:after{content:"";position:absolute;inset:0;pointer-events:none;background:url('parchment-grain.svg');opacity:.48;mix-blend-mode:multiply}svg{display:block;width:100%;height:auto}svg *{vector-effect:non-scaling-stroke}.outline{stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.fine{stroke-width:1}.label{font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px}.mono{font-family:monospace;font-size:17px;font-weight:bold}.caption{font-size:24px;font-style:italic}.controls{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 11px;font:11px/1.4 Arial,sans-serif;color:#494239}.controls span{max-width:75%}button{font:inherit;color:#503620;background:transparent;border:1px solid #8e79516b;border-radius:20px;padding:5px 12px;cursor:pointer;min-height:32px}button:hover{background:#e2d5b6}button:focus-visible{outline:2px solid #503620;outline-offset:2px}.spark{opacity:0}.pen{fill:none;stroke:var(--ink);stroke-width:.75;stroke-linecap:round;opacity:.65}.ink-art{filter:url(#ink-edge)}
 </style></head><body>
 <div class="film">
 <svg id="scene" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
-<title id="title">From spaghetti code to a little more order, with BOS</title><desc id="desc">A 1960s black-ink drawing on aged paper. A typist feeds a vintage pasta machine. A wild tangle of code flies into the air and loops across the typewriter and the typist, whose hair stands on end. A clearly visible BOS device plugs in; the hair relaxes and the strands settle into orderly rows.</desc>
+<title id="title">From spaghetti code to a little more order, with BOS</title><desc id="desc">A 1960s dark-brown pen-and-ink drawing on aged paper. A typist feeds a vintage pasta machine. A wild tangle of code flies into the air and loops across the typewriter and the typist, whose hair stands on end. A clearly visible BOS device plugs in; the hair relaxes and the strands settle into orderly rows.</desc>
 <defs>
 <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="#544832" opacity=".2"/></pattern>
-<pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)"><path d="M0 0V5" stroke="#24211c" stroke-width=".65" opacity=".4"/></pattern>
+<pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)"><path d="M0 0V5" stroke="#503620" stroke-width=".65" opacity=".4"/></pattern>
 <filter id="ink-edge" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".045 .13" numOctaves="2" seed="12" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale=".65" xChannelSelector="R" yChannelSelector="G"/></filter>
 </defs>
-<!-- Black printer’s ink, cross-hatching and a warm paper field. -->
-<path d="M40 366 Q410 349 859 365 L852 378 Q410 368 39 380Z" fill="#24211c" opacity=".24"/>
+<!-- Dark-brown printer’s ink, cross-hatching and a warm paper field. -->
+<path d="M40 366 Q410 349 859 365 L852 378 Q410 368 39 380Z" fill="#503620" opacity=".24"/>
 <path d="M48 52h116M736 52h115" stroke="#847660" stroke-width="1"/>
 <text id="scene-heading" x="450" y="57" text-anchor="middle" class="label" fill="#514a3e">THE LITTLE MACHINE WITH BIG IDEAS</text>
 <g class="outline ink-art">
 <!-- Chair and wonderfully long mid-century legs. -->
-<path d="M75 232Q64 223 59 243L70 316 158 316" fill="none" stroke="#24211c" stroke-width="7"/>
+<path d="M75 232Q64 223 59 243L70 316 158 316" fill="none" stroke="#503620" stroke-width="3"/>
 <path d="M85 318L73 361M142 318L153 362" fill="none" stroke-width="4"/>
-<path d="M110 276L162 279Q178 279 174 297L154 342 176 346 177 355 137 355 132 343 146 309 109 312Z" fill="#24211c"/>
+<path d="M110 276L162 279Q178 279 174 297L154 342 176 346 177 355 137 355 132 343 146 309 109 312Z" fill="url(#hatch)"/>
 <path d="M133 280L189 280 201 344 224 349 225 356 188 356 174 310 139 312" fill="#f0e5ce"/>
-<path d="M137 347L174 347 181 357 136 357ZM189 347L220 349 232 360 190 360Z" fill="#24211c"/>
+<path d="M137 347L174 347 181 357 136 357ZM189 347L220 349 232 360 190 360Z" fill="#503620"/>
 <!-- Shirt and tie. -->
 <path d="M108 186Q84 200 89 248L101 286 150 287 153 211 139 188Z" fill="#f0e5ce"/>
 <path d="M97 224L106 278 134 282 127 225" fill="url(#dots)" stroke="none"/>
 <path d="M110 182L121 206 143 189" fill="#f0e5ce"/>
-<path d="M124 200L130 209 124 246 116 235 123 209 120 202Z" fill="#24211c"/>
+<path d="M124 200L130 209 124 246 116 235 123 209 120 202Z" fill="#503620"/>
 <!-- Hair tufts lift individually as the spaghetti escapes. -->
 <g id="head">
 <path d="M111 180L111 157 131 149 143 191 124 201Z" fill="#f0e5ce"/>
 <path d="M98 126Q100 102 125 104Q151 105 150 135L164 149 151 154Q154 178 134 183L116 171 107 147Z" fill="#f0e5ce"/>
-<path d="M98 147Q87 127 99 114Q114 104 135 108L151 112 143 122 117 120 113 141 106 132 104 152Z" fill="#24211c"/>
-<path id="hair" fill="#24211c" d="M97 121L94 105 105 111 104 96 116 109 121 94 128 109 139 98 141 112 154 107 148 120Z"/>
+<path d="M98 147Q87 127 99 114Q114 104 135 108L151 112 143 122 117 120 113 141 106 132 104 152Z" fill="url(#hatch)"/>
+<path id="hair" fill="url(#hatch)" d="M97 121L94 105 105 111 104 96 116 109 121 94 128 109 139 98 141 112 154 107 148 120Z"/>
 <g id="alarm" class="pen" opacity="0"><path d="M81 100l-9-9m10-12-5-12m65-5 4-11m14 27 10-8"/><path d="M161 169q8 8 4 13-8 0-4-13Z" fill="#f0e5ce"/></g>
 <path d="M108 143Q98 133 98 144Q99 154 110 153" fill="#f0e5ce"/>
 <path d="M123 137L153 134M122 139L113 140" fill="none"/>
 <rect x="124" y="134" width="14" height="14" rx="4" fill="#f0e5ce"/><path d="M140 138L149 136" fill="none"/>
-<circle cx="133" cy="141" r="1.8" fill="#24211c" stroke="none"/>
+<circle cx="133" cy="141" r="1.8" fill="#503620" stroke="none"/>
 <path id="mouth" d="M139 166q7 2 11-3" fill="none"/>
 </g>
 <!-- Etched folds give the pale jacket and trousers an editorial pen-and-ink feel. -->
@@ -52,54 +52,54 @@
 <!-- Typewriter paper and carriage. -->
 <g id="carriage">
 <path d="M204 206L207 151Q235 145 267 153L270 208Z" fill="#f0e5ce"/>
-<path d="M217 165h37m-37 9h27m-27 9h36m-36 9h22" stroke="#24211c" stroke-width="1.5"/>
-<rect x="191" y="204" width="100" height="14" rx="5" fill="#24211c"/>
+<path d="M217 165h37m-37 9h27m-27 9h36m-36 9h22" stroke="#503620" stroke-width="1.5"/>
+<rect x="191" y="204" width="100" height="14" rx="5" fill="#503620"/>
 <circle cx="188" cy="211" r="7" fill="#f0e5ce"/><path d="M284 210h12v-15" fill="none"/>
 </g>
 <path d="M204 218L280 218 305 262Q307 271 297 272H190Q181 272 185 262Z" fill="#f0e5ce"/>
-<path d="M208 220h68l4 14h-76Z" fill="#24211c"/>
-<path d="M200 241h80l13 23h-104Z" fill="#24211c"/>
+<path d="M208 220h68l4 14h-76Z" fill="#503620"/>
+<path d="M200 241h80l13 23h-104Z" fill="#503620"/>
 <g fill="#f0e5ce" stroke-width="1" id="keys"></g>
 <path d="M214 267h60" stroke="#f0e5ce" stroke-width="3"/>
 <!-- Hands move independently, for a proper clattery rhythm. -->
-<g id="arm1"><path d="M110 211Q111 235 143 244L195 248" fill="none" stroke="#24211c" stroke-width="15"/><path d="M110 211Q111 235 143 244L195 248" fill="none" stroke="#f0e5ce" stroke-width="12"/><path d="M188 245l15-4 16 7m-18-4 13 8" fill="none" stroke="#f0e5ce" stroke-width="6"/></g>
-<g id="arm2"><path d="M140 211L164 231 212 231" fill="none" stroke="#24211c" stroke-width="11"/><path d="M209 230l16-4 17 8m-18-4 12 7" fill="none" stroke="#f0e5ce" stroke-width="5"/></g>
+<g id="arm1"><path d="M110 211Q111 235 143 244L195 248" fill="none" stroke="#503620" stroke-width="15"/><path d="M110 211Q111 235 143 244L195 248" fill="none" stroke="#f0e5ce" stroke-width="12"/><path d="M188 245l15-4 16 7m-18-4 13 8" fill="none" stroke="#f0e5ce" stroke-width="6"/></g>
+<g id="arm2"><path d="M140 211L164 231 212 231" fill="none" stroke="#503620" stroke-width="11"/><path d="M140 211L164 231 212 231" fill="none" stroke="#f0e5ce" stroke-width="8"/><path d="M209 230l16-4 17 8m-18-4 12 7" fill="none" stroke="#f0e5ce" stroke-width="5"/></g>
 <!-- Cast iron pasta machine, rollers, rivets, feet and crank. -->
 <g id="machine">
 <path d="M410 171L493 165 514 188 508 263 400 263 402 191Z" fill="#f0e5ce"/>
 <path d="M410 171L492 165 486 183 402 191Z" fill="#f0e5ce"/>
 <path d="M493 165L514 188 508 263 491 252Z" fill="url(#hatch)"/>
-<rect x="411" y="194" width="84" height="20" rx="9" fill="#24211c"/>
+<rect x="411" y="194" width="84" height="20" rx="9" fill="#503620"/>
 <rect x="414" y="195" width="77" height="8" rx="4" fill="#f0e5ce"/>
-<path d="M418 205h67" stroke="#24211c" stroke-width="3"/>
+<path d="M418 205h67" stroke="#503620" stroke-width="3"/>
 <rect x="413" y="227" width="70" height="20" rx="3" fill="#f0e5ce"/><text x="448" y="241" text-anchor="middle" font-size="10" font-family="Arial" font-weight="bold" stroke="none">IDEA-MATIC</text>
 <g class="pen"><path d="M405 218l-1 31m5-30-1 28m80-57 3 59m4-54 2 42M425 174l42-3m-44 6 30-2M417 252h63m-53 3h49"/></g>
-<path d="M401 259h110v12H396Z" fill="#24211c"/><circle cx="407" cy="221" r="2" fill="#f0e5ce"/><circle cx="493" cy="249" r="2" fill="#f0e5ce"/>
-<path d="M512 207h13v30h14" fill="none" stroke-width="5"/><g id="crank"><rect x="534" y="228" width="17" height="17" rx="6" fill="#24211c"/></g>
-<path d="M491 205h17v22h-16" fill="#24211c"/>
+<path d="M401 259h110v12H396Z" fill="#503620"/><circle cx="407" cy="221" r="2" fill="#f0e5ce"/><circle cx="493" cy="249" r="2" fill="#f0e5ce"/>
+<path d="M512 207h13v30h14" fill="none" stroke-width="5"/><g id="crank"><rect x="534" y="228" width="17" height="17" rx="6" fill="#503620"/></g>
+<path d="M491 205h17v22h-16" fill="#503620"/>
 <!-- The BOS socket is intentionally visible. -->
-<rect x="445" y="154" width="34" height="15" rx="3" fill="#24211c"/><path d="M454 157v7m14-7v7" stroke="#f0e5ce" stroke-width="3"/>
+<rect x="445" y="154" width="34" height="15" rx="3" fill="#503620"/><path d="M454 157v7m14-7v7" stroke="#f0e5ce" stroke-width="3"/>
 </g>
 </g>
 <!-- Continuous strands morph from tangled cubic paths into ordered code lines. -->
 <g id="strands" class="ink-art" fill="none" stroke-width="1.6" stroke-linecap="round"></g>
-<g id="code" fill="#24211c" class="mono" opacity="0">
+<g id="code" fill="#503620" class="mono" opacity="0">
 <text x="580" y="142">{</text><text x="602" y="174">intentions</text><text x="602" y="206">decisions</text><text x="602" y="238">checks</text><text x="602" y="270">memory</text><text x="580" y="302">}</text>
-<path d="M585 154v132" stroke="#24211c" stroke-width="1" opacity=".3"/>
-<g fill="none" stroke="#24211c" stroke-width="2"><path d="M793 169l5 5 10-12M793 201l5 5 10-12M793 233l5 5 10-12M793 265l5 5 10-12"/></g>
+<path d="M585 154v132" stroke="#503620" stroke-width="1" opacity=".3"/>
+<g fill="none" stroke="#503620" stroke-width="2"><path d="M793 169l5 5 10-12M793 201l5 5 10-12M793 233l5 5 10-12M793 265l5 5 10-12"/></g>
 </g>
-<g id="loose-code" fill="#24211c" class="mono"><text x="661" y="161" transform="rotate(-18 661 161)">if ( ? )</text><text x="739" y="290" transform="rotate(22 739 290)">}};</text><text x="590" y="329" transform="rotate(-12 590 329)">TODO…</text></g>
+<g id="loose-code" fill="#503620" class="mono"><text x="661" y="161" transform="rotate(-18 661 161)">if ( ? )</text><text x="739" y="290" transform="rotate(22 739 290)">}};</text><text x="590" y="329" transform="rotate(-12 590 329)">TODO…</text></g>
 <!-- Foreground plug-in: its light face stays readable above the tangle. -->
 <g id="bos" class="outline ink-art" transform="translate(0,-150)">
-<path d="M454 142v19m15-19v19" stroke="#24211c" stroke-width="5"/>
-<path d="M423 93Q422 82 434 82H490Q501 82 501 94V141H423Z" fill="#24211c"/>
+<path d="M454 142v19m15-19v19" stroke="#503620" stroke-width="5"/>
+<path d="M423 93Q422 82 434 82H490Q501 82 501 94V141H423Z" fill="#503620"/>
 <path d="M429 88h67v12h-67Z" fill="#f0e5ce" stroke="none"/>
 <rect x="433" y="101" width="48" height="29" rx="3" fill="#f0e5ce"/>
-<text x="457" y="122" text-anchor="middle" font-family="Arial" font-size="21" font-weight="900" letter-spacing="2" fill="#24211c" stroke="none">BOS</text>
+<text x="457" y="122" text-anchor="middle" font-family="Arial" font-size="21" font-weight="900" letter-spacing="2" fill="#503620" stroke="none">BOS</text>
 <circle cx="490" cy="116" r="5" fill="#f0e5ce"/><path d="M490 113v4" stroke-width="1"/>
-<circle id="lamp" cx="435" cy="91" r="3" fill="#24211c" stroke="none"/>
+<circle id="lamp" cx="435" cy="91" r="3" fill="#503620" stroke="none"/>
 </g>
-<g id="spark" class="spark" stroke="#24211c" stroke-width="2"><path d="M408 113l-12-6m15-10-7-12m104 15 10-10m-9 24 15-2"/></g>
+<g id="spark" class="spark" stroke="#503620" stroke-width="2"><path d="M408 113l-12-6m15-10-7-12m104 15 10-10m-9 24 15-2"/></g>
 <text id="caption" x="450" y="415" text-anchor="middle" class="caption">Big ideas. A little spaghetti.</text>
 <text x="450" y="442" text-anchor="middle" font-family="Arial" font-size="11" letter-spacing="1.6" fill="#514a3e">A LITTLE MORE ORDER. A LOT MORE INTENTION.</text>
 </svg></div>
@@ -110,7 +110,7 @@ const $=id=>document.getElementById(id), ns='http://www.w3.org/2000/svg';
 for(let row=0;row<3;row++)for(let col=0;col<9;col++){const k=document.createElementNS(ns,'circle');k.setAttribute('cx',202+col*9+row*-3);k.setAttribute('cy',244+row*7);k.setAttribute('r',2.6);$('keys').appendChild(k);}
 // Each strand has its own loops; three thin flyaways cross the actors without hiding them.
 const strandCount=10,flyawayCount=3,curveCount=8;
-const paths=Array.from({length:strandCount+flyawayCount},(_,i)=>{const p=document.createElementNS(ns,'path');p.setAttribute('stroke','#24211c');p.setAttribute('stroke-width',i<strandCount?1.1+(i%3)*.35:1.15);$('strands').appendChild(p);return p;});
+const paths=Array.from({length:strandCount+flyawayCount},(_,i)=>{const p=document.createElementNS(ns,'path');p.setAttribute('stroke','#503620');p.setAttribute('stroke-width',i<strandCount?1.1+(i%3)*.35:1.15);$('strands').appendChild(p);return p;});
 const random=(i,k)=>{const v=Math.sin((i+1)*127.1+(k+1)*311.7)*43758.5453;return v-Math.floor(v);};
 const tangles=paths.map((_,i)=>{
  const v=[508,208+i%5*2];
@@ -127,7 +127,7 @@ const tangles=paths.map((_,i)=>{
  }
  return v;
 });
-const hairRest=[97,121,94,105,105,111,104,96,116,109,121,94,128,109,139,98,141,112,154,107,148,120];
+const hairRest=[97,121,98,110,105,111,107,105,116,109,121,103,128,109,139,106,141,112,151,111,148,120];
 const hairPanic=[97,121,83,76,104,108,100,60,116,105,124,52,129,105,148,63,142,109,166,83,148,120];
 const clamp=v=>Math.max(0,Math.min(1,v)),ease=v=>{v=clamp(v);return v*v*(3-2*v)},mix=(a,b,t)=>a+(b-a)*t;
 const preference=matchMedia('(prefers-reduced-motion: reduce)');let playing=!preference.matches,elapsed=preference.matches?10500:0,previous=null,raf;
@@ -136,7 +136,7 @@ function draw(ms){
  $('bos').setAttribute('transform',`translate(0,${-157*(1-insert)}) rotate(${(1-insert)*-9} 461 142)`);
  $('bos').style.opacity=clamp(insert*8);
  $('scene-heading').style.opacity=1-ease((insert-.32)/.12)*(1-ease((insert-.9)/.1));
- $('lamp').setAttribute('fill',insert>.99?'#f0e5ce':'#24211c');$('spark').style.opacity=(t>5.9&&t<6.5)?Math.sin((t-5.9)/.6*Math.PI):0;
+ $('lamp').setAttribute('fill',insert>.99?'#f0e5ce':'#503620');$('spark').style.opacity=(t>5.9&&t<6.5)?Math.sin((t-5.9)/.6*Math.PI):0;
  $('code').style.opacity=ease((neat-.65)/.35);$('loose-code').style.opacity=1-ease(neat*2);
  $('caption').textContent=t<4.2?'Big ideas. A little spaghetti.':t<8.8?'Enter BOS. Plug in a little perspective.':t<13.8?'Same imagination. A little more order.':'And so, the next bright idea…';
  const panic=ease((t-.7)/1.7)*(1-ease((neat-.05)/.65))*(1-reset);

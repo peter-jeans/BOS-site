@@ -378,7 +378,7 @@
 
     .static-note strong { color: var(--green-dark); }
 
-    section[id] { scroll-margin-top: 90px; }
+    section[id], #backup-first { scroll-margin-top: 90px; }
     .setup-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
     .setup-nav .button { flex: 1 1 180px; }
     .release-note { padding: 16px 20px; border-radius: 12px; background: var(--amber-soft); color: var(--amber); }
@@ -458,10 +458,10 @@
     }
   </style>
 </head>
-<body><header><div class="wrap nav"><a class="brand" href="index.html">Cloud BOS</a><nav class="nav-actions" aria-label="Main navigation"><a href="index.html#benefits">Capabilities</a><a href="index.html#tiers">Tiers</a><a href="support.html">Support</a></nav></div></header><main id="top"><section class="hero"><div class="wrap"><span class="eyebrow">BOS onboarding</span><h1>Set up BOS<br>for your app.</h1><p class="lede">Sign in through your coding tool, approve a setup plan for the specific app, and check the saved result before relying on BOS.</p><p class="release-note"><strong>Private beta · Invitation required.</strong> Start at the <a href="https://bos-client-portal.base44.app/">BOS Client Portal</a> for onboarding help and access instructions. Already invited? Use your supplied connection URL with the steps below.</p><nav class="setup-nav" aria-label="Setup guides"><a class="button" href="#setup">Base44</a><a class="button" href="#codex">Codex</a><a class="button" href="#claude-code">Claude Code</a><a class="button" href="#project-setup">Approve app setup</a></nav><p>First connect your tool. Then follow the shared app-setup step below. Connecting alone does not activate BOS in every app.</p></div></section>    <section id="setup">
+<body><header><div class="wrap nav"><a class="brand" href="index.html">Cloud BOS</a><nav class="nav-actions" aria-label="Main navigation"><a href="index.html#benefits">Capabilities</a><a href="index.html#tiers">Tiers</a><a href="support.html">Support</a></nav></div></header><main id="top"><section class="hero"><div class="wrap"><span class="eyebrow">BOS onboarding</span><h1>Set up BOS<br>for your app.</h1><p class="lede">Sign in through your coding tool, approve a setup plan for the specific app, and check the saved result before relying on BOS.</p><p class="release-note"><strong>Private beta · Invitation required.</strong> Start at the <a href="https://bos-client-portal.base44.app/">BOS Client Portal</a> for onboarding help and access instructions. Already invited? Use your supplied connection URL with the steps below.</p><aside class="release-note" id="backup-first" aria-labelledby="backup-title"><h2 id="backup-title">Before you start: back up your project</h2><p>Create a current, restorable backup before installing the BOS plugin or applying BOS setup to an existing project. Include your app files and any database or uploaded files that need a separate backup. Check how you would restore it before continuing.</p><p>For a local project, save uncommitted work as well as the latest commit. For a hosted app, use the backup, export or snapshot tools available in your platform. BOS project memory is not a backup of your app or its data.</p></aside><nav class="setup-nav" aria-label="Setup guides"><a class="button" href="#setup">Base44</a><a class="button" href="#codex">Codex</a><a class="button" href="#claude-code">Claude Code</a><a class="button" href="#project-setup">Approve app setup</a></nav><p>First connect your tool. Then follow the shared app-setup step below. Connecting alone does not activate BOS in every app.</p></div></section>    <section id="setup">
       <div class="wrap">
         <div class="section-intro">
-          <h2>Set up BOS in Base44</h2>
+          <h2>Set up BOS in Base44</h2><p class="release-note"><strong>Back up your project first.</strong> Have a current backup and know how to restore it before installation or project changes. <a href="#backup-first">Read the backup checklist</a>.</p>
           <p>For the Base44 AI app builder. The connection is account-wide; add the skill separately to each workspace where you want it.</p>
           <p>You need a Base44 Builder plan or higher, room for another MCP connection and room for a skill in the selected workspace. Confirm the app belongs to that workspace before setup.</p>
           <p><a href="https://docs.base44.com/documentation/account-and-billing/setting-up-a-custom-mcp">Base44 connection guide</a> · <a href="https://docs.base44.com/documentation/using-your-workspaces/adding-workspace-skills">Base44 workspace skills guide</a></p>
@@ -571,7 +571,7 @@
     <section id="codex" aria-labelledby="codex-title">
       <div class="wrap">
         <div class="section-intro">
-          <h2 id="codex-title">Set up Codex</h2>
+          <h2 id="codex-title">Set up Codex</h2><p class="release-note"><strong>Back up your project first.</strong> Have a current backup and know how to restore it before installation or project changes. <a href="#backup-first">Read the backup checklist</a>.</p>
           <p>Use the Codex desktop app or CLI with a local project you can inspect and edit. The public package includes the Cloud BOS skill and its MCP connection.</p>
           <p><a href="https://learn.chatgpt.com/docs/plugins">Official Codex plugin guide</a></p>
         </div>
@@ -599,7 +599,7 @@
     <section id="claude-code" aria-labelledby="claude-title">
       <div class="wrap">
         <div class="section-intro">
-          <h2 id="claude-title">Set up Claude Code</h2>
+          <h2 id="claude-title">Set up Claude Code</h2><p class="release-note"><strong>Back up your project first.</strong> Have a current backup and know how to restore it before installation or project changes. <a href="#backup-first">Read the backup checklist</a>.</p>
           <p>For Claude Code and its VS Code extension, using a local project. This guide does not cover ordinary Claude web chats.</p>
           <p><a href="https://code.claude.com/docs/en/discover-plugins">Official Claude Code plugin guide</a> · <a href="https://code.claude.com/docs/en/ide-integrations">Claude Code in VS Code</a></p>
         </div>
@@ -627,14 +627,14 @@
     <section id="project-setup" aria-labelledby="project-title">
       <div class="wrap">
         <div class="section-intro">
-          <h2 id="project-title">Approve and check setup for your app</h2>
+          <h2 id="project-title">Approve and check setup for your app</h2><p class="release-note"><strong>Back up your project first.</strong> Have a current backup and know how to restore it before installation or project changes. <a href="#backup-first">Read the backup checklist</a>.</p>
           <p>Do this separately for each app or repository, after connecting your development tool. Cloud BOS prepares a plan first; you decide whether to apply it.</p>
           <p>Once setup is approved, you should not need to remember a rebind command. Each new or resumed session checks your connection, the exact project and its saved working records before continuing.</p>
           <details><summary>What does a complete connection check restore?</summary><div class="detail-body"><p>The check confirms current access, verifies the installed project setup and reloads the accepted plan, active intention and available project records. Being signed in alone does not prove that all of this is ready.</p><p>A rebind preserves the existing project and connection. It reports missing files, changed records or unresolved memory clearly; it does not invent decisions or silently accept changes. Connection checks run before questions about missing product requirements.</p><p>The customer plugin restores its approved public project records. The original private owner connection, called privatecloudBOS or foundercloudBOS, uses its existing private project framework. Installing the customer plugin does not switch a private project to that route.</p><p>One-time host trust, sign-in and approval of the initial project setup still apply. If automatic checks are unavailable, the host must report that gap. This preview is not evidence that every host has passed live verification.</p></div></details>
         </div>
         <article class="boundary-card">
           <h3>Ask for a plan before changes</h3>
-          <div class="prompt" id="project-plan-prompt">Use Cloud BOS to discover this exact app or repository with bos_project_discover, read any existing specification and ask only for missing decisions. Explicitly ask me to accept the displayed baseline before preparing its current setup plan with bos_project_governance_plan. Show the exact proposed files, permissions and rollback or removal boundary, together with the current plan hash. Stop for my approval before writing anything. If governance is already active, verify it and report any drift instead of reinstalling.</div>
+          <div class="prompt" id="project-plan-prompt">Before applying any setup changes, remind me to back up this project and its data and confirm I know how to restore them. Use Cloud BOS to discover this exact app or repository with bos_project_discover, read any existing specification and ask only for missing decisions. Explicitly ask me to accept the displayed baseline before preparing its current setup plan with bos_project_governance_plan. Show the exact proposed files, permissions and rollback or removal boundary, together with the current plan hash. Stop for my approval before writing anything. If governance is already active, verify it and report any drift instead of reinstalling.</div>
           <div class="copy-row">
             <button class="copy-button" type="button" data-copy-target="project-plan-prompt">Copy project setup request</button>
             <span class="copy-state" role="status" aria-live="polite"></span>
