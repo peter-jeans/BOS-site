@@ -1,0 +1,8 @@
+.brand-lockup { display: flex; flex-direction: column; line-height: 1.2; gap: 3px; }
+.brand-name { font-size: inherit; font-weight: 850; }
+.brand .brand-expansion { display: block; font-size: 11px; font-weight: 550; letter-spacing: .02em; white-space: nowrap; }
+.brand img { flex-shrink: 0; }
+@media (max-width: 440px) {
+  header .nav { flex-wrap: wrap; gap: 8px 14px; padding-top: 10px; padding-bottom: 10px; }
+  header .nav > nav { flex-wrap: wrap; }
+}

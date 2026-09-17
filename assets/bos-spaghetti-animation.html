@@ -33,7 +33,7 @@
 <path d="M111 180L111 157 131 149 143 191 124 201Z" fill="#f0e5ce"/>
 <path d="M98 126Q100 102 125 104Q151 105 150 135L164 149 151 154Q154 178 134 183L116 171 107 147Z" fill="#f0e5ce"/>
 <path d="M98 147Q87 127 99 114Q114 104 135 108L151 112 143 122 117 120 113 141 106 132 104 152Z" fill="url(#hatch)"/>
-<path id="hair" fill="url(#hatch)" d="M97 121L94 105 105 111 104 96 116 109 121 94 128 109 139 98 141 112 154 107 148 120Z"/>
+<path id="hair" fill="none" stroke-width="1.5" d="M100 117Q103 109 112 112 M108 113Q112 104 122 108 M117 110Q121 101 131 107 M126 110Q130 102 140 109 M135 113Q140 104 149 112"/>
 <g id="alarm" class="pen" opacity="0"><path d="M81 100l-9-9m10-12-5-12m65-5 4-11m14 27 10-8"/><path d="M161 169q8 8 4 13-8 0-4-13Z" fill="#f0e5ce"/></g>
 <path d="M108 143Q98 133 98 144Q99 154 110 153" fill="#f0e5ce"/>
 <path d="M123 137L153 134M122 139L113 140" fill="none"/>
@@ -72,10 +72,10 @@
 <rect x="411" y="194" width="84" height="20" rx="9" fill="#503620"/>
 <rect x="414" y="195" width="77" height="8" rx="4" fill="#f0e5ce"/>
 <path d="M418 205h67" stroke="#503620" stroke-width="3"/>
-<rect x="413" y="227" width="70" height="20" rx="3" fill="#f0e5ce"/><text x="448" y="241" text-anchor="middle" font-size="10" font-family="Arial" font-weight="bold" stroke="none">IDEA-MATIC</text>
+<rect x="413" y="227" width="70" height="20" rx="3" fill="#f0e5ce"/><text x="448" y="241" text-anchor="middle" font-size="10" font-family="Arial" font-weight="bold" stroke="none">AI-Omatic</text>
 <g class="pen"><path d="M405 218l-1 31m5-30-1 28m80-57 3 59m4-54 2 42M425 174l42-3m-44 6 30-2M417 252h63m-53 3h49"/></g>
 <path d="M401 259h110v12H396Z" fill="#503620"/><circle cx="407" cy="221" r="2" fill="#f0e5ce"/><circle cx="493" cy="249" r="2" fill="#f0e5ce"/>
-<path d="M512 207h13v30h14" fill="none" stroke-width="5"/><g id="crank"><rect x="534" y="228" width="17" height="17" rx="6" fill="#503620"/></g>
+<g id="crank"><path d="M512 207h13v30h14" fill="none" stroke-width="5"/><rect x="534" y="228" width="17" height="17" rx="6" fill="#503620"/></g><circle cx="512" cy="207" r="3" fill="#f0e5ce"/>
 <path d="M491 205h17v22h-16" fill="#503620"/>
 <!-- The BOS socket is intentionally visible. -->
 <rect x="445" y="154" width="34" height="15" rx="3" fill="#503620"/><path d="M454 157v7m14-7v7" stroke="#f0e5ce" stroke-width="3"/>
@@ -127,8 +127,10 @@ const tangles=paths.map((_,i)=>{
  }
  return v;
 });
-const hairRest=[97,121,98,110,105,111,107,105,116,109,121,103,128,109,139,106,141,112,151,111,148,120];
-const hairPanic=[97,121,83,76,104,108,100,60,116,105,124,52,129,105,148,63,142,109,166,83,148,120];
+// Independent open pen strokes: roots stay anchored while each tip stands up.
+const hairRoots=[[100,117],[108,113],[117,110],[126,110],[135,113],[143,116]];
+const hairRest=[[103,109,112,112],[112,104,122,108],[121,101,131,107],[130,102,140,109],[140,104,149,112],[147,109,154,116]];
+const hairPanic=[[92,98,88,80],[104,87,102,66],[116,80,115,57],[129,81,130,59],[140,88,146,69],[153,99,160,84]];
 const clamp=v=>Math.max(0,Math.min(1,v)),ease=v=>{v=clamp(v);return v*v*(3-2*v)},mix=(a,b,t)=>a+(b-a)*t;
 const preference=matchMedia('(prefers-reduced-motion: reduce)');let playing=!preference.matches,elapsed=preference.matches?10500:0,previous=null,raf;
 function draw(ms){
@@ -140,12 +142,12 @@ function draw(ms){
  $('code').style.opacity=ease((neat-.65)/.35);$('loose-code').style.opacity=1-ease(neat*2);
  $('caption').textContent=t<4.2?'Big ideas. A little spaghetti.':t<8.8?'Enter BOS. Plug in a little perspective.':t<13.8?'Same imagination. A little more order.':'And so, the next bright idea…';
  const panic=ease((t-.7)/1.7)*(1-ease((neat-.05)/.65))*(1-reset);
- const hair=hairRest.map((n,j)=>mix(n,hairPanic[j]+(j%2===0?Math.sin(t*6+j)*1.2:0),panic));
- $('hair').setAttribute('d',`M${hair[0]} ${hair[1]} L${hair.slice(2).join(' ')}Z`);
+ const hair=hairRoots.map(([x,y],i)=>{const curve=hairRest[i].map((n,j)=>mix(n,hairPanic[i][j]+(j%2===0?Math.sin(t*6+i)*.8:0),panic));return `M${x} ${y} Q${curve.join(' ')}`;}).join(' ');
+ $('hair').setAttribute('d',hair);
  $('alarm').style.opacity=panic*.8;
  $('mouth').setAttribute('d',panic>.5?'M139 171q4-9 10-3':'M139 166q7 2 11-3');
  const speed=neat>.8?7:16,beat=Math.sin(t*speed);
- $('arm1').setAttribute('transform',`translate(0 ${beat*2})`);$('arm2').setAttribute('transform',`translate(0 ${-beat*2})`);$('head').setAttribute('transform',`rotate(${Math.sin(t*speed/2)*.8} 120 190)`);$('carriage').setAttribute('transform',`translate(${(t*9%12)-6} 0)`);$('crank').setAttribute('transform',`translate(0 ${Math.sin(t*5)*4})`);
+ $('arm1').setAttribute('transform',`translate(0 ${beat*2})`);$('arm2').setAttribute('transform',`translate(0 ${-beat*2})`);$('head').setAttribute('transform',`rotate(${Math.sin(t*speed/2)*.8} 120 190)`);$('carriage').setAttribute('transform',`translate(${(t*9%12)-6} 0)`);$('crank').setAttribute('transform',`rotate(${t*192} 512 207)`);
  paths.forEach((p,i)=>{
   const fly=i>=strandCount,target=141+(i%strandCount)*18,growth=mix(.28+.72*ease(t/2.1),.28,reset);
   // Flyaways withdraw during the plug's entrance, leaving its approach legible.
