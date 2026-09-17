@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 190" width="300" height="190" role="img" aria-labelledby="title"><title id="title">A cracked cog and snapped drive belt stop a once-working mechanism</title>
+<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(12)"><path d="M0 5L5 0" stroke="#503620" stroke-width=".6" opacity=".3"/></pattern></defs>
+<g fill="none" stroke="#503620" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+
+<path fill="url(#hatch)" d="M35 52h231v107H35Z"/>
+<path fill="#f3e5c8" d="M41 58h219v95H41Z"/>
+<g stroke-width="1"><path d="M43 44h215M48 40v8m205-8v8M24 59v93m-4-88h8m-8 83h8"/><circle cx="48" cy="65" r="2"/><circle cx="251" cy="65" r="2"/><circle cx="48" cy="145" r="2"/><circle cx="251" cy="145" r="2"/></g>
+<!-- Irregular tooth silhouette and an actual missing wedge. -->
+<path fill="url(#hatch)" d="M90 65h14l2 11 11 5 10-6 9 10-7 10 4 10 12 2v14l-12 2-5 10 6 10-10 9-10-7-10 4-2 11H88l-2-12-10-4-10 6-9-10 7-10-4-11-11-2v-14l12-2 4-10-6-10 10-9 10 6 10-4Z"/>
+<circle cx="97" cy="113" r="23" fill="#f3e5c8"/><circle cx="97" cy="113" r="7"/>
+<path d="M96 89l-5 14m-16 18 15-5m16 15-6-11m15-22-12 10"/>
+<path fill="#f3e5c8" stroke="none" d="M112 72l11 4 22 30-14 8-16-14Z"/>
+<path d="M111 77l6 10-2 10 13 9m10 11-9 3-3 11"/>
+<g transform="translate(210 106)"><circle r="31" fill="url(#hatch)"/><circle r="23" fill="#f3e5c8"/><circle r="6"/><path d="M0-23v17m0 12v17m-23-23h17m12 0h17m-39-16 12 12m8 8 12 12m0-32-12 12m-8 8-12 12"/></g>
+<!-- Broken belt ends curl apart. -->
+<path stroke-width="3" d="M103 79l45-7q12-1 11 10M182 76q-5-12 7-13l24 12M102 146l47 5q13 0 12-10M186 144q-9 14 8 15l28-24"/>
+<path stroke-width="1" d="M168 65v-9m7 13 6-7m-15 80 3 11m7-12 6 5M60 173h177"/>
+<path fill="url(#hatch)" d="M152 164l12-5 9 8-4 12-13-2Z"/>
+</g></svg>
