@@ -1,0 +1,45 @@
+/* Public-page visual continuity with the BOS Portal, inspected 2026-09-17. */
+:root {
+  --ink: #100f0d; --muted: #51483e; --paper: #f5efe4; --card: #fffaf2;
+  --line: #bfb4a3; --green: #8e171b; --green-dark: #711216;
+  --green-soft: #eee3d2; --amber: #6c351e; --amber-soft: #eee2cf;
+  --shadow: 7px 7px 0 #100f0d;
+}
+body { background-color: var(--paper); background-image: url('parchment-grain.svg'), repeating-linear-gradient(0deg, transparent 0 5px, rgba(72,48,23,.025) 5px 6px); background-size: 180px 180px, auto; }
+header { background: rgba(245,239,228,.97); border-bottom: 2px solid var(--ink); backdrop-filter: none; }
+.nav { min-height: 82px; }
+.brand-name { font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 28px; text-transform: uppercase; letter-spacing: .025em; font-weight: 400; }
+.brand .brand-expansion { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.brand .mark { width: 48px; height: 48px; border-radius: 12px; }
+.nav-actions a { color: var(--ink); }
+h1, h2, h3, .benefit-title { font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .015em; }
+h1 { font-size: clamp(58px,7.8vw,94px); line-height: .98; }
+.section-intro h2 { font-size: clamp(34px,4vw,46px); line-height: 1.08; }
+.eyebrow { padding: 0; background: none; border: 0; border-radius: 0; color: var(--green); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+.section-kicker { color: var(--green); font-family: 'Arial Narrow', Arial, sans-serif; }
+.lede { font-family: Georgia, serif; }
+.overview { background: var(--card); border: 2px solid var(--ink); border-radius: 22px; box-shadow: var(--shadow); padding: 30px; }
+.overview h2 { font-size: clamp(38px,4.2vw,54px); line-height: 1; margin: 14px 0 18px; }
+.overview > p:not(.beta-note) { font-family: Georgia, serif; font-size: 18px; }
+.button { border: 2px solid var(--ink); border-radius: 8px; min-height: 48px; }
+.button.primary { background: #a51418; color: #fffaf2; box-shadow: 3px 4px 0 var(--ink); }
+.button.primary:hover { background: #821014; }
+.portal-cta { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 15px; line-height: 1.45; text-align: center; padding: 13px 16px; }
+.onboarding-help { color: var(--ink); }
+.hero-animation-wrap { border: 2px solid var(--ink); border-radius: 18px; overflow: hidden; background: #f0e5ce; }
+.problems-section { background: #eee4d5; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.ai-issues li { border-top: 1px solid #766958; }
+.ai-issues strong { font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .035em; font-size: 25px; }
+.benefit { border: 2px solid var(--ink); border-radius: 16px; box-shadow: 4px 4px 0 var(--ink); }
+.benefit-grid { gap: 24px; }
+.benefit-title { font-size: 27px; }
+.detail-hint { color: var(--green); }
+@media(max-width:620px) {
+  .nav { min-height: 76px; }
+  .brand-name { font-size: 22px; }
+  .brand .brand-expansion { font-size: 9px; letter-spacing: .035em; }
+  .brand .mark { width: 38px; height: 38px; }
+  .overview { margin-right: 6px; padding: 24px; }
+  .overview h2 { font-size: 44px; }
+  .nav-actions { gap: 12px; }
+}
