@@ -12,17 +12,17 @@
   <link rel="manifest" href="site.webmanifest">
   <style>
     :root {
-      --ink: #13201c;
-      --muted: #4e5b54;
-      --paper: #f3ebd9;
-      --card: #fff;
-      --line: #d7dfda;
-      --green: #116b56;
-      --green-dark: #0a4438;
-      --green-soft: #e6f1ec;
-      --amber: #875d1a;
-      --amber-soft: #f8efdc;
-      --shadow: 0 20px 60px rgba(19, 32, 28, .10);
+      --ink: #38291d;
+      --muted: #665340;
+      --paper: #e9d7b4;
+      --card: #f4e7cc;
+      --line: #cbb48b;
+      --green: #76512c;
+      --green-dark: #52391f;
+      --green-soft: #e4cfaa;
+      --amber: #78501f;
+      --amber-soft: #f0dfbd;
+      --shadow: 0 20px 60px rgba(75, 48, 21, .13);
       color-scheme: light;
     }
 
@@ -35,8 +35,8 @@
       background-color: var(--paper);
       background-image:
         url("assets/parchment-grain.svg"),
-        radial-gradient(ellipse at 12% 8%, rgba(255, 253, 242, .72), transparent 42rem),
-        radial-gradient(ellipse at 88% 22%, rgba(160, 112, 54, .08), transparent 48rem);
+        radial-gradient(ellipse at 12% 8%, rgba(255, 242, 213, .40), transparent 42rem),
+        radial-gradient(ellipse at 88% 22%, rgba(141, 84, 28, .18), transparent 48rem);
       background-size: 180px 180px, 100% 100%, 100% 100%;
       background-repeat: repeat, no-repeat, no-repeat;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -56,8 +56,8 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid rgba(19, 32, 28, .10);
-      background: rgba(243, 235, 217, .94);
+      border-bottom: 1px solid rgba(75, 48, 21, .13);
+      background: rgba(233, 215, 180, .95);
       backdrop-filter: blur(14px);
     }
 
@@ -121,7 +121,7 @@
       padding: 7px 11px;
       color: var(--green-dark);
       background: var(--green-soft);
-      border: 1px solid rgba(17, 107, 86, .18);
+      border: 1px solid rgba(117, 78, 35, .25);
     }
 
     h1, h2, h3 {
@@ -152,7 +152,7 @@
     .lede {
       max-width: 720px;
       margin: 0;
-      color: #34443e;
+      color: #59432e;
       font-size: clamp(18px, 2.4vw, 23px);
     }
 
@@ -201,16 +201,18 @@
     }
 
     .button:hover {
-      color: inherit;
+      color: var(--ink);
       text-decoration: none;
       transform: translateY(-1px);
     }
+
+    .button.primary:hover { color: #fff; background: #52391f; }
 
     .overview {
       padding: 25px;
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: rgba(255, 255, 255, .9);
+      background: rgba(246, 230, 198, .91);
       box-shadow: var(--shadow);
     }
 
@@ -302,7 +304,7 @@
       padding: 14px;
       border: 1px solid var(--line);
       border-radius: 11px;
-      background: #f8faf7;
+      background: #efdfbf;
     }
 
     .field-label {
@@ -346,7 +348,7 @@
       margin-top: 18px;
       border: 1px solid var(--line);
       border-radius: 11px;
-      background: #f8faf7;
+      background: #efdfbf;
     }
 
     summary {
@@ -364,8 +366,8 @@
       overflow-wrap: anywhere;
       border: 1px solid var(--line);
       border-radius: 11px;
-      color: #24352f;
-      background: #f4f7f4;
+      color: #483623;
+      background: #f2e4c8;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 14px;
     }
@@ -391,7 +393,7 @@
       align-items: flex-start;
       margin-top: 22px;
       padding: 18px;
-      border: 1px solid rgba(17, 107, 86, .20);
+      border: 1px solid rgba(117, 78, 35, .25);
       border-radius: 12px;
       background: var(--green-soft);
     }
