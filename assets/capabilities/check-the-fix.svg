@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 190" width="300" height="190" role="img" aria-labelledby="title"><title id="title">A magnifying glass inspecting a repaired mechanism and a ticked test sheet</title>
+<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5L5 0" stroke="#76512c" stroke-width=".5" opacity=".17"/></pattern></defs>
+<style>.wash{fill:#d9bc80;opacity:.32;stroke:none}.paper{fill:#f3e5c8}.ochre{fill:#d8b877}.ink-fill{fill:#5c422c}.fine{stroke-width:1.1}.faint{opacity:.5}</style>
+<g fill="none" stroke="#61462f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path class="wash" d="M36 70Q50 17 137 27T246 67Q280 144 201 156H76Q27 142 36 70Z"/>
+<g transform="rotate(-8 109 101)"><path class="paper" d="M60 40h99l17 18v97H60Z"/><path d="M158 41v20h17"/><path class="fine" d="M75 61h61m-61 8h39M91 92h23m-23 20h34m-34 20h37"/><path d="M73 88l5 5 9-12m-14 27 5 5 9-12m-14 27 5 5 9-12"/></g>
+<circle class="paper" cx="180" cy="82" r="41"/><circle class="fine" cx="180" cy="82" r="34"/>
+<path class="ochre" d="M177 61h8l2 7 7 4 8-1 4 7-5 6 1 8 5 6-4 7-8-2-7 4-2 7h-8l-2-7-7-4-8 2-4-7 5-6-1-8-5-6 4-7 8 1 7-4Z" transform="translate(0,-5) scale(1 1)"/>
+<circle class="paper" cx="181" cy="81" r="10"/>
+<path class="ink-fill" d="M207 113l9-8 37 41q5 7-1 12t-11-1Z"/>
+<path class="fine" d="M224 127l7-6m-3 11 7-6"/>
+<path class="fine faint" d="M35 164h229M233 63l15-7m-15-11 7-9"/>
+</g>
+</svg>

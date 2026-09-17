@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 190" width="300" height="190" role="img" aria-labelledby="title"><title id="title">A vintage vernier caliper checking whether a plug fits its socket</title>
+<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5L5 0" stroke="#76512c" stroke-width=".5" opacity=".17"/></pattern></defs>
+<style>.wash{fill:#d9bc80;opacity:.32;stroke:none}.paper{fill:#f3e5c8}.ochre{fill:#d8b877}.ink-fill{fill:#5c422c}.fine{stroke-width:1.1}.faint{opacity:.5}</style>
+<g fill="none" stroke="#61462f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path class="wash" d="M53 32Q98 8 151 36T246 57Q270 135 205 152H71Q29 128 53 32Z"/>
+<g transform="rotate(-12 145 94)"><path class="paper" d="M53 40h184v16H53Z"/><path d="M62 40V25h10v15m135 0V25h10v15"/><path class="ochre" d="M63 55h16v62H63ZM200 55h16v62h-16Z"/><path d="M78 109h17v8H78m121-8h-16v8h16"/><path class="fine" d="M89 41v8m9-8v5m9-5v8m9-8v5m9-5v8m9-8v5m9-5v8m9-8v5m9-5v8m9-8v5m9-5v8"/>
+<rect class="paper" x="103" y="78" width="29" height="48" rx="7"/><path d="M132 88h18m-18 23h18"/><path class="paper" d="M162 77h25v51h-25Z"/><path d="M169 89v7m0 11v7"/><path d="M103 100H84q-24 0-24 25v18m127-40h21q20 0 20 28"/>
+</g><path class="fine faint" d="M42 164h224"/>
+<path class="fine" d="M112 158h65m-59-4-6 4 6 4m53-8 6 4-6 4"/>
+</g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 190" width="300" height="190" role="img" aria-labelledby="title"><title id="title">Three mid-century specialists around a round table comparing a plan</title>
+<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5L5 0" stroke="#76512c" stroke-width=".5" opacity=".17"/></pattern></defs>
+<style>.wash{fill:#d9bc80;opacity:.32;stroke:none}.paper{fill:#f3e5c8}.ochre{fill:#d8b877}.ink-fill{fill:#5c422c}.fine{stroke-width:1.1}.faint{opacity:.5}</style>
+<g fill="none" stroke="#61462f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path class="wash" d="M55 44Q110 12 178 28T260 111Q257 160 158 156T38 109Q24 65 55 44Z"/>
+<!-- Three distinct silhouettes, all facing the shared plan. -->
+<path class="ochre" d="M115 80q-1-31 30-31t33 31l-9 29h-45Z"/><path class="paper" d="M132 48v13l14 12 11-12V47Z"/><ellipse class="paper" cx="145" cy="34" rx="16" ry="21"/><path class="ink-fill" d="M129 32q-5-25 17-23 20-2 18 19l-8-5-5-7-22 16Z"/><path class="fine" d="M135 35h9m4 0h10m-14 0h4m-5 12h9"/>
+<path class="paper" d="M40 109q0-35 26-36t36 38l-14 41H47Z"/><path class="ochre" d="M53 72v13l13 10 12-11V68Z"/><path class="paper" d="M49 48q-6 27 10 31 15 3 22-14l6-3-8-8V42Z"/><path class="ink-fill" d="M49 65q-15-24 0-34 18-12 32 7l-2 15-14-15-11 4v21Z"/>
+<path class="paper" d="M199 106q3-36 31-33 30 0 29 45l-9 36h-44Z"/><path class="ochre" d="M217 66v17l14 11 11-12V66Z"/><path class="paper" d="M213 42h31l4 24q-11 23-27 9l-7-12-7-3 6-8Z"/><path class="ink-fill" d="M210 43q-7-28 18-27 24-3 23 24l-4 26-8-7-1-22-15-6Z"/>
+<ellipse class="ochre" cx="148" cy="121" rx="92" ry="30"/><path d="M88 141l-6 25m128-25 7 25m-68-16v21"/>
+<path class="paper" d="M117 105l57-5 24 26-60 9Z"/><path class="fine" d="M135 109l28-3m-20 12 32-4m-20 13 28-4M84 94l30 15m89-16-19 17m-41-33 1 25"/>
+<path class="paper" d="M100 104l17 3 5 6-18-2Zm88 3-13 5 1 5 16-6Z"/>
+<path class="fine faint" d="M31 172h238"/>
+</g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 190" width="300" height="190" role="img" aria-labelledby="title"><title id="title">An old anatomical line drawing of a brain, with a bookmarked archive card</title>
+<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5L5 0" stroke="#76512c" stroke-width=".5" opacity=".17"/></pattern></defs>
+<style>.wash{fill:#d9bc80;opacity:.32;stroke:none}.paper{fill:#f3e5c8}.ochre{fill:#d8b877}.ink-fill{fill:#5c422c}.fine{stroke-width:1.1}.faint{opacity:.5}</style>
+<g fill="none" stroke="#61462f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path class="wash" d="M58 46Q107 12 177 30T245 94Q243 145 184 152H72Q37 141 42 96Z"/>
+<path class="paper" d="M153 142q8 5 10 20h20l-8-24q34-4 51-24 24-30 4-55-5-23-29-27-23-18-45-8-29-9-46 8-26-1-39 23-27 11-20 41-4 22 16 31 20 18 43 7 21 19 43 8Z"/>
+<path d="M151 29q-15 15-6 34-14 8-8 23-17 11-4 26-12 15 2 25M118 40q-20-5-27 15 5 10 19 6m-29 9q-20 8-12 24 3 8 15 5-3 20 16 20m18 7q7-15-6-23-13 1-17-13 7-17 23-8m-6-19q17-1 16-15M166 40q17-10 26 5 18-1 20 17m-55 3q12-12 22 1 10 9-2 19m20-16q24-1 22 19 6 13-10 22m-51-19q-13 13 2 24 13 0 13 14m10-31q17-6 18 9-3 14-19 14M79 113q-7 10 4 15"/>
+<g class="fine faint"><path d="M56 86l-7-2m5 14-8 1m24-40-6-5m48-25-2-8m79 5 3-8m29 27 8-6m5 57 10 3M151 153l-27 17H70"/><circle cx="151" cy="153" r="2"/></g>
+<g transform="translate(222 116) rotate(9)"><path class="ochre" d="M0 0h43v52H0Z"/><path class="paper" d="M8 9h23v34H8Z"/><path class="fine" d="M12 21h15m-15 7h15m-15 7h10"/><path class="ink-fill" d="M27 0h8v15l-4-3-4 3Z"/></g>
+</g>
+</svg>

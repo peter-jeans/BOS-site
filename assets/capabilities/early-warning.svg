@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 190" width="300" height="190" role="img" aria-labelledby="title"><title id="title">A mid-century radar screen detecting a signal before trouble arrives</title>
+<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5L5 0" stroke="#76512c" stroke-width=".5" opacity=".17"/></pattern></defs>
+<style>.wash{fill:#d9bc80;opacity:.32;stroke:none}.paper{fill:#f3e5c8}.ochre{fill:#d8b877}.ink-fill{fill:#5c422c}.fine{stroke-width:1.1}.faint{opacity:.5}</style>
+<g fill="none" stroke="#61462f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path class="wash" d="M37 56Q63 18 121 28L212 26Q263 61 246 128T103 159Q42 158 37 56Z"/>
+<path class="paper" d="M62 43h162q10 0 10 10v93H52V53q0-10 10-10Z"/>
+<path class="ochre" d="M58 146h170l12 12H46Z"/>
+<circle class="paper" cx="126" cy="95" r="43"/><circle class="fine" cx="126" cy="95" r="29"/><circle class="fine" cx="126" cy="95" r="15"/>
+<path class="fine" d="M83 95h86m-43-43v86"/>
+<path class="ochre" d="M126 95l31-30q17 19 12 30Z" opacity=".5"/><path d="M126 95l31-30"/>
+<circle class="ink-fill" cx="148" cy="76" r="3"/><circle class="ink-fill" cx="112" cy="114" r="2"/>
+<g class="fine"><path d="M187 104h25m-25 5h25m-25 5h25m-25 5h25m-25 5h25"/></g>
+<circle class="ochre" cx="199" cy="78" r="11"/><path d="M199 69v8"/>
+<path class="paper" d="M189 42V31q10-21 20 0v11Z"/><path class="fine" d="M198 14V5m-19 15-7-6m43 6 8-6"/>
+<path d="M80 43L65 18m138 25 21-24"/><circle class="ink-fill" cx="65" cy="18" r="3"/>
+<path class="fine faint" d="M43 169h201m-181 5h20m107 0h32"/>
+</g>
+</svg>
