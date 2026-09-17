@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The BOS spaghetti-code machine</title>
+<style>
+:root{color-scheme:light;--ink:#343b30;--paper:#eee3c9;--green:#386754;--red:#b85238;--gold:#c39a48}
+*{box-sizing:border-box}body{margin:0;background:transparent;color:var(--ink);font-family:Georgia,serif}.film{position:relative;overflow:hidden;border:1px solid #8e79513b;border-radius:12px;background:radial-gradient(ellipse at 60% 25%,#f9efd9,transparent 75%),#eee3c9}.film:after{content:"";position:absolute;inset:0;pointer-events:none;background:url('parchment-grain.svg');opacity:.48;mix-blend-mode:multiply}svg{display:block;width:100%;height:auto}svg *{vector-effect:non-scaling-stroke}.outline{stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.fine{stroke-width:1}.label{font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px}.mono{font-family:monospace;font-size:17px;font-weight:bold}.caption{font-size:24px;font-style:italic}.controls{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 11px;font:11px/1.4 Arial,sans-serif;color:#586052}.controls span{max-width:75%}button{font:inherit;color:#344b3b;background:transparent;border:1px solid #8e79516b;border-radius:20px;padding:5px 12px;cursor:pointer;min-height:32px}button:hover{background:#e2d5b6}button:focus-visible{outline:2px solid #386754;outline-offset:2px}.spark{opacity:0}
+</style></head><body>
+<div class="film">
+<svg id="scene" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+<title id="title">From spaghetti code to a little more order, with BOS</title><desc id="desc">A mid-century cartoon. A person types at a vintage typewriter connected to a hand-cranked pasta machine. Tangled strands of code spill out. A little BOS device plugs into the machine and the strands settle into orderly rows.</desc>
+<defs>
+<pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="#544832" opacity=".2"/></pattern>
+<linearGradient id="steel" x2="0" y2="1"><stop stop-color="#e1dfcf"/><stop offset=".45" stop-color="#a8b5a0"/><stop offset="1" stop-color="#6f8273"/></linearGradient>
+<linearGradient id="brass" x2="0" y2="1"><stop stop-color="#e1b95e"/><stop offset="1" stop-color="#ac753b"/></linearGradient>
+</defs>
+<!-- Offset print, tiny stars and a warm paper field. -->
+<path d="M40 366 Q410 349 859 365 L852 378 Q410 368 39 380Z" fill="#b8a47b" opacity=".24"/>
+<path d="M48 52h116M736 52h115" stroke="#a89265" stroke-width="1"/>
+<text x="450" y="57" text-anchor="middle" class="label" fill="#786b51">THE LITTLE MACHINE WITH BIG IDEAS</text>
+<g class="outline">
+<!-- Chair and wonderfully long mid-century legs. -->
+<path d="M75 232Q64 223 59 243L70 316 158 316" fill="none" stroke="#a76d3f" stroke-width="7"/>
+<path d="M85 318L73 361M142 318L153 362" fill="none" stroke-width="4"/>
+<path d="M110 276L162 279Q178 279 174 297L154 342 176 346 177 355 137 355 132 343 146 309 109 312Z" fill="#475a50"/>
+<path d="M133 280L189 280 201 344 224 349 225 356 188 356 174 310 139 312" fill="#5c6f5b"/>
+<path d="M137 347L174 347 181 357 136 357ZM189 347L220 349 232 360 190 360Z" fill="#343b30"/>
+<!-- Shirt and tie. -->
+<path d="M108 186Q84 200 89 248L101 286 150 287 153 211 139 188Z" fill="#b9553d"/>
+<path d="M97 224L106 278 134 282 127 225" fill="url(#dots)" stroke="none"/>
+<path d="M110 182L121 206 143 189" fill="#f7edd5"/>
+<path d="M124 200L130 209 124 246 116 235 123 209 120 202Z" fill="#d3a54c"/>
+<!-- Character head: quiff, big nose, spectacles. -->
+<g id="head">
+<path d="M111 180L111 157 131 149 143 191 124 201Z" fill="#d6a173"/>
+<path d="M98 126Q100 102 125 104Q151 105 150 135L164 149 151 154Q154 178 134 183L116 171 107 147Z" fill="#e4b88b"/>
+<path d="M98 147Q86 123 99 113Q91 102 107 99Q116 84 128 99Q150 91 157 111L143 122 117 120 113 141 106 132 104 152Z" fill="#384338"/>
+<path d="M108 143Q98 133 98 144Q99 154 110 153" fill="#e4b88b"/>
+<path d="M123 137L153 134M122 139L113 140" fill="none"/>
+<rect x="124" y="134" width="14" height="14" rx="4" fill="#ede1c4"/><path d="M140 138L149 136" fill="none"/>
+<circle cx="133" cy="141" r="1.8" fill="#343b30" stroke="none"/>
+<path id="mouth" d="M139 166q7 2 11-3" fill="none"/>
+</g>
+<!-- Desk. -->
+<path d="M162 276H512L517 288H158Z" fill="#b08549"/>
+<path d="M178 290L168 362M491 289L501 362" fill="none" stroke-width="5"/>
+<!-- Cable between typewriter and machine. -->
+<path d="M307 258C359 258 334 314 380 313S413 271 430 260" fill="none" stroke-width="5"/>
+<path d="M313 258C360 261 340 309 380 309" fill="none" stroke="#9b9e80" stroke-width="1"/>
+<!-- Typewriter paper and carriage. -->
+<g id="carriage">
+<path d="M204 206L207 151Q235 145 267 153L270 208Z" fill="#f9f1db"/>
+<path d="M217 165h37m-37 9h27m-27 9h36m-36 9h22" stroke="#7b856a" stroke-width="1.5"/>
+<rect x="191" y="204" width="100" height="14" rx="5" fill="#394b3e"/>
+<circle cx="188" cy="211" r="7" fill="#bb8d45"/><path d="M284 210h12v-15" fill="none"/>
+</g>
+<path d="M204 218L280 218 305 262Q307 271 297 272H190Q181 272 185 262Z" fill="#52705e"/>
+<path d="M208 220h68l4 14h-76Z" fill="#293c31"/>
+<path d="M200 241h80l13 23h-104Z" fill="#34463a"/>
+<g fill="#e1d8b9" stroke-width="1" id="keys"></g>
+<path d="M214 267h60" stroke="#e4d8b7" stroke-width="3"/>
+<!-- Hands move independently, for a proper clattery rhythm. -->
+<g id="arm1"><path d="M110 211Q111 235 143 244L195 248" fill="none" stroke="#b9553d" stroke-width="14"/><path d="M188 245l15-4 16 7m-18-4 13 8" fill="none" stroke="#e4b88b" stroke-width="6"/></g>
+<g id="arm2"><path d="M140 211L164 231 212 231" fill="none" stroke="#c46d4d" stroke-width="11"/><path d="M209 230l16-4 17 8m-18-4 12 7" fill="none" stroke="#e4b88b" stroke-width="5"/></g>
+<!-- Cast iron pasta machine, rollers, rivets, feet and crank. -->
+<g id="machine">
+<path d="M410 171L493 165 514 188 508 263 400 263 402 191Z" fill="url(#steel)"/>
+<path d="M410 171L492 165 486 183 402 191Z" fill="#dae0c9"/>
+<path d="M493 165L514 188 508 263 491 252Z" fill="#687f6c"/>
+<rect x="411" y="194" width="84" height="20" rx="9" fill="#2f493a"/>
+<rect x="414" y="195" width="77" height="8" rx="4" fill="#c9d2b9"/>
+<path d="M418 205h67" stroke="#b4ba9e" stroke-width="3"/>
+<rect x="413" y="227" width="70" height="20" rx="3" fill="#e5d1a2"/><text x="448" y="241" text-anchor="middle" font-size="10" font-family="Arial" font-weight="bold" stroke="none">IDEA-MATIC</text>
+<path d="M401 259h110v12H396Z" fill="#476450"/><circle cx="407" cy="221" r="2" fill="#eee3c9"/><circle cx="493" cy="249" r="2" fill="#eee3c9"/>
+<path d="M512 207h13v30h14" fill="none" stroke-width="5"/><g id="crank"><rect x="534" y="228" width="17" height="17" rx="6" fill="#b95839"/></g>
+<path d="M491 205h17v22h-16" fill="#2e3e31"/>
+<!-- The BOS socket is intentionally visible. -->
+<rect x="445" y="154" width="34" height="15" rx="3" fill="#394939"/><path d="M454 157v7m14-7v7" stroke="#bca375" stroke-width="3"/>
+</g>
+</g>
+<!-- Continuous strands morph from tangled cubic paths into ordered code lines. -->
+<g id="strands" fill="none" stroke-width="3" stroke-linecap="round"></g>
+<g id="code" fill="#386754" class="mono" opacity="0">
+<text x="580" y="142">{</text><text x="602" y="174">intentions</text><text x="602" y="206">decisions</text><text x="602" y="238">checks</text><text x="602" y="270">memory</text><text x="580" y="302">}</text>
+<path d="M585 154v132" stroke="#386754" stroke-width="1" opacity=".3"/>
+<g fill="none" stroke="#386754" stroke-width="2"><path d="M793 169l5 5 10-12M793 201l5 5 10-12M793 233l5 5 10-12M793 265l5 5 10-12"/></g>
+</g>
+<g id="loose-code" fill="#955139" class="mono"><text x="661" y="161" transform="rotate(-18 661 161)">if ( ? )</text><text x="739" y="290" transform="rotate(22 739 290)">}};</text><text x="590" y="329" transform="rotate(-12 590 329)">TODO…</text></g>
+<!-- An old-fashioned plug-in, complete with brass pins and a bakelite dial. -->
+<g id="bos" class="outline" transform="translate(0,-150)">
+<path d="M454 142v19m15-19v19" stroke="url(#brass)" stroke-width="5"/>
+<path d="M423 93Q422 82 434 82H490Q501 82 501 94V141H423Z" fill="#386754"/>
+<path d="M429 88h67v12h-67Z" fill="#547a62" stroke="none"/>
+<rect x="433" y="101" width="48" height="29" rx="3" fill="#f1ddb1"/>
+<text x="457" y="122" text-anchor="middle" font-family="Arial" font-size="21" font-weight="900" letter-spacing="2" fill="#344b3b" stroke="none">BOS</text>
+<circle cx="490" cy="116" r="5" fill="#d7aa54"/><path d="M490 113v4" stroke-width="1"/>
+<circle id="lamp" cx="435" cy="91" r="3" fill="#b89c69" stroke="none"/>
+</g>
+<g id="spark" class="spark" stroke="#bc8b34" stroke-width="2"><path d="M408 113l-12-6m15-10-7-12m104 15 10-10m-9 24 15-2"/></g>
+<text id="caption" x="450" y="415" text-anchor="middle" class="caption">Big ideas. A little spaghetti.</text>
+<text x="450" y="442" text-anchor="middle" font-family="Arial" font-size="11" letter-spacing="1.6" fill="#746a53">A LITTLE MORE ORDER. A LOT MORE INTENTION.</text>
+</svg></div>
+<div class="controls"><span>An illustrated take on keeping AI development on track.</span><button id="toggle" type="button" aria-label="Pause animation">Pause</button></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id), ns='http://www.w3.org/2000/svg';
+for(let row=0;row<3;row++)for(let col=0;col<9;col++){const k=document.createElementNS(ns,'circle');k.setAttribute('cx',202+col*9+row*-3);k.setAttribute('cy',244+row*7);k.setAttribute('r',2.6);$('keys').appendChild(k);}
+const palettes=['#af593b','#b98a39','#516c4c','#c17b41','#a15038','#8c7043'];
+const paths=palettes.map((color,i)=>{const p=document.createElementNS(ns,'path');p.setAttribute('stroke',color);$('strands').appendChild(p);return p;});
+const clamp=v=>Math.max(0,Math.min(1,v)),ease=v=>{v=clamp(v);return v*v*(3-2*v)},mix=(a,b,t)=>a+(b-a)*t;
+const preference=matchMedia('(prefers-reduced-motion: reduce)');let playing=!preference.matches,elapsed=preference.matches?10500:0,previous=null,raf;
+function draw(ms){
+ const t=(ms%15000)/1000,order=ease((t-6.4)/2.6),reset=ease((t-13.8)/1.2),neat=order*(1-reset),insert=ease((t-4.2)/1.7)*(1-reset);
+ $('bos').setAttribute('transform',`translate(0,${-157*(1-insert)}) rotate(${(1-insert)*-9} 461 142)`);
+ $('bos').style.opacity=clamp(insert*8);
+ $('lamp').setAttribute('fill',insert>.99?'#f6cf68':'#b89c69');$('spark').style.opacity=(t>5.9&&t<6.5)?Math.sin((t-5.9)/.6*Math.PI):0;
+ $('code').style.opacity=ease((neat-.65)/.35);$('loose-code').style.opacity=1-ease(neat*2);
+ $('caption').textContent=t<4.2?'Big ideas. A little spaghetti.':t<8.8?'Enter BOS. Plug in a little perspective.':t<13.8?'Same imagination. A little more order.':'And so, the next bright idea…';
+ const speed=neat>.8?7:16,beat=Math.sin(t*speed);
+ $('arm1').setAttribute('transform',`translate(0 ${beat*2})`);$('arm2').setAttribute('transform',`translate(0 ${-beat*2})`);$('head').setAttribute('transform',`rotate(${Math.sin(t*speed/2)*.8} 120 190)`);$('carriage').setAttribute('transform',`translate(${(t*9%12)-6} 0)`);$('crank').setAttribute('transform',`translate(0 ${Math.sin(t*5)*4})`);
+ paths.forEach((p,i)=>{
+  const wiggle=Math.sin(t*2+i)*5*(1-neat), y=204+i*3, target=150+i*32;
+  const messy=[508,y,555,175+i*7,566,245-i*8,617,218+i*9,710,140+i*16,811,154+i*25,779,242+i*14,750,328-i*8,563,339-i*12,601,257+i*8,646,209+i*9,833,315-i*10,804,337-i*3];
+  const tidy=[508,y,536,y,541,target,564,target,610,target,660,target,699,target,732,target,766,target,798,target,805,target,811,target,818,target];
+  const v=messy.map((n,j)=>mix(n+(j>2&&j%2?wiggle:0),tidy[j],neat));
+  p.setAttribute('d',`M${v[0]} ${v[1]} C${v.slice(2,8).join(' ')} C${v.slice(8,14).join(' ')} C${v.slice(14,20).join(' ')} C${v.slice(20).join(' ')}`);
+  // Lines become quiet guides behind the labelled, organised output.
+  p.setAttribute('opacity',1-neat*.8);p.setAttribute('stroke',neat>.85?'#386754':palettes[i]);
+ });
+}
+function tick(now){if(previous!==null)elapsed+=Math.min(now-previous,100);previous=now;draw(elapsed);if(playing)raf=requestAnimationFrame(tick);}
+function update(){cancelAnimationFrame(raf);previous=null;$('toggle').textContent=playing?'Pause':'Play';$('toggle').setAttribute('aria-label',playing?'Pause animation':'Play animation');draw(elapsed);if(playing)raf=requestAnimationFrame(tick);}
+$('toggle').addEventListener('click',()=>{playing=!playing;update();});
+preference.addEventListener('change',e=>{playing=!e.matches;if(e.matches)elapsed=10500;update();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);previous=null;}else if(playing){previous=null;raf=requestAnimationFrame(tick);}});
+update();
+</script></body></html>
