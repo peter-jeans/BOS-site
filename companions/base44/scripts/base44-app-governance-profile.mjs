@@ -224,6 +224,72 @@ function forwardUpdate(input, profileId, profileVersion) {
   return artifacts;
 }
 
+// Clone import is explicit first activation, never an UPDATE identity exception.
+// The control plane separately verifies the source binding for this platform.
+function cloneRebind(input, profileId, profileVersion) {
+  const manifestPath = "governance/GOVERNANCE_MANIFEST.json";
+  const statePath = "governance/PROJECT_STATE.json";
+  const ledgerPath = "governance/EVIDENCE_LEDGER.jsonl";
+  const prior = input.installed_artifacts;
+  const manifest = input.installed_manifest;
+  if (!manifest || !prior || manifest.schema !== "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNANCE_MANIFEST_V1"
+      || manifest.profile !== profileId || manifest.environment !== input.environment || manifest.adapter_id !== input.adapter_id
+      || !ID.test(manifest.app_id ?? "") || manifest.project_ref !== `base44:${manifest.app_id}`
+      || !ID.test(manifest.project_binding_id ?? "") || manifest.app_id === input.app_id
+      || manifest.project_binding_id === input.project_binding_id || !Array.isArray(manifest.artifacts)) fail("BASE44_CLONE_SOURCE_IDENTITY_INVALID");
+  const state = JSON.parse(prior[statePath]);
+  if (state.schema !== "BOS_CLOUDBOS_PUBLIC_BASE44_PROJECT_STATE_V1"
+      || state.app_id !== manifest.app_id || state.project_ref !== manifest.project_ref
+      || state.project_binding_id !== manifest.project_binding_id || state.platform_installation_id !== input.platform_installation_id
+      || state.profile !== profileId || state.environment !== input.environment
+      || state.expected_app_revision !== manifest.expected_app_revision
+      || canonical(state.authority) !== canonical(input.authority)
+      || state.state !== "GOVERNED_ACTIVE" || state.runtime_dependency !== false) fail("BASE44_CLONE_SOURCE_IDENTITY_INVALID");
+  const { definitions, triggers } = selectedArtifacts(profileId, manifest.artifacts.some(x => x.target === "governance/SECURITY_BASELINE.md") ? ["AUTHENTICATION"] : []);
+  const expected = new Map(definitions.map(x => [x.path, x.role]));
+  expected.set(manifestPath, "GOVERNANCE_MANIFEST");
+  const owned = [...manifest.artifacts, { target: manifestPath, role: "GOVERNANCE_MANIFEST", sha256: sha256(prior[manifestPath]) }];
+  if (owned.length !== expected.size || new Set(owned.map(x => x.target)).size !== expected.size
+      || Object.keys(prior).length !== expected.size || Object.keys(prior).some(x => !expected.has(x))
+      || Object.keys(input.expected_prior_sha256 ?? {}).length !== expected.size) fail("BASE44_CLONE_EXACT_ARTIFACTS_REQUIRED");
+  for (const item of owned) {
+    if (expected.get(item.target) !== item.role || (item.target !== manifestPath && item.removable !== true)) fail("BASE44_CLONE_OWNERSHIP_INVALID");
+    contentSafe(prior[item.target], item.target);
+    if (sha256(prior[item.target]) !== item.sha256 || item.sha256 !== input.expected_prior_sha256[item.target]
+        || (item.target !== manifestPath && Buffer.byteLength(prior[item.target]) !== item.bytes)) fail("BASE44_CLONE_PRIOR_HASH_MISMATCH");
+  }
+  if (!Array.isArray(input.project_spec?.in_scope) || !Array.isArray(input.project_spec?.out_of_scope)
+      || !ID.test(input.build_intentions?.active_id ?? "") || !Array.isArray(input.build_intentions?.current)
+      || !Array.isArray(input.build_intentions?.excluded)) fail("BASE44_CLONE_COMPLETE_BASELINE_REQUIRED");
+  if (input.aicontrol_revision !== undefined || (input.security_triggers?.length ?? 0) > 0
+      || Object.keys(input.capability_currentness ?? {}).length > 0) fail("BASE44_CLONE_SCOPE_UNSUPPORTED");
+  const generated = buildContents({ ...input, maturation_stage: input.maturation_stage ?? "DISCOVERY" }, profileId, profileVersion, definitions, triggers);
+  const oldControl = buildContents({ ...input, project_ref: manifest.project_ref }, profileId, profileVersion, definitions, triggers).get("documents/AICONTROL.md");
+  if (prior["documents/AICONTROL.md"] !== oldControl) fail("BASE44_CLONE_CANONICAL_ROUTER_REQUIRED");
+  const contents = new Map(generated);
+  // Preserve safety policy, but reset capability results and build status for the clone.
+  if (expected.has("governance/SECURITY_BASELINE.md")) contents.set("governance/SECURITY_BASELINE.md", prior["governance/SECURITY_BASELINE.md"]);
+  if (expected.has("governance/BUILD_GATES.json")) {
+    const gates = JSON.parse(prior["governance/BUILD_GATES.json"]);
+    contents.set("governance/BUILD_GATES.json", exactJson({ ...gates, last_result: "PENDING_FIRST_GOVERNED_BUILD" }));
+  }
+  contents.set(ledgerPath, prior[ledgerPath] + (prior[ledgerPath].endsWith("\n") ? "" : "\n") + exactJson({
+    schema: "BOS_CLOUDBOS_PUBLIC_BASE44_EVIDENCE_EVENT_V1", event: "CLONE_REBIND_PLANNED",
+    source_project_ref: manifest.project_ref, source_project_binding_id: manifest.project_binding_id,
+    source_manifest_sha256: sha256(prior[manifestPath]), project_ref: input.project_ref,
+    project_binding_id: input.project_binding_id, prior_events_are_source_provenance_only: true,
+    approvals_transferred: false, created_at: input.created_at,
+  }));
+  const artifacts = definitions.filter(x => x.path !== manifestPath).map(({ path, role }) => artifact(path, role, contents.get(path), sha256(prior[path]), "REPLACE"));
+  const nextManifest = { ...manifest, project_ref: input.project_ref, project_binding_id: input.project_binding_id,
+    app_id: input.app_id, expected_app_revision: input.expected_app_revision,
+    ai_controls_pointer: { included_in_projection: false, status: "PENDING_SEPARATE_ASSIST_ACTION", next_action: "verify_inherited_native_pointer_for_exact_clone" },
+    artifacts: artifacts.map(({ artifact_id, target, role, proposed_sha256, proposed_bytes }) => ({ artifact_id, target, role, sha256: proposed_sha256, bytes: proposed_bytes, removable: true })),
+  };
+  artifacts.push(artifact(manifestPath, "GOVERNANCE_MANIFEST", exactJson(nextManifest), sha256(prior[manifestPath]), "REPLACE"));
+  return artifacts;
+}
+
 export function createBase44AppGovernanceProfilePlan(input = {}) {
   for (const [field, value] of Object.entries({ platform_installation_id: input.platform_installation_id, project_id: input.project_id, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision })) if (!ID.test(value ?? "")) fail("BASE44_PROFILE_IDENTITY_INVALID", field);
   if (input.environment !== "BASE44_GOVERNED_APP" || input.adapter_id !== "base44_app_governance") fail("BASE44_PROFILE_CANONICAL_IDENTITY_REQUIRED");
@@ -232,7 +298,8 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
   const operation = input.requested_operation ?? "ACTIVATE";
   if (!["ACTIVATE", "UPDATE", "REMOVE"].includes(operation)) fail("BASE44_PROFILE_OPERATION_UNSUPPORTED");
   if (input.aicontrol_revision !== undefined && operation !== "UPDATE") fail("BASE44_PROFILE_ROUTING_UPDATE_ONLY");
-  if (operation === "UPDATE") input = normalizeBase44UpdateInput(input);
+  if (operation === "UPDATE" || input.clone_rebind === true) input = normalizeBase44UpdateInput(input);
+  if (input.clone_rebind !== undefined && (input.clone_rebind !== true || operation !== "ACTIVATE")) fail("BASE44_CLONE_ACTIVATION_ONLY");
   const contract = loadBase44AppGovernanceProfiles();
   const profileId = input.profile_id ?? contract.default_onboarding_profile ?? "LEAN_CORE_WITH_BUILD_GATES";
   const { definitions, triggers } = selectedArtifacts(profileId, input.security_triggers ?? []);
@@ -240,7 +307,9 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
   const expires = new Date(input.expires_at);
   if (!validPlanWindow(input)) fail("BASE44_PROFILE_PLAN_WINDOW_INVALID");
   let artifacts;
-  if (operation === "ACTIVATE") {
+  if (input.clone_rebind === true) {
+    artifacts = cloneRebind(input, profileId, contract.version);
+  } else if (operation === "ACTIVATE") {
     const contents = buildContents(input, profileId, contract.version, definitions, triggers);
     const nonManifest = definitions.filter(({ path }) => path !== "governance/GOVERNANCE_MANIFEST.json").map(({ path, role }) => artifact(path, role, contents.get(path), input.expected_prior_sha256?.[path] ?? null));
     const manifest = { schema: "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNANCE_MANIFEST_V1", version: contract.version, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision, profile: profileId, governor_kernel: profileId === "LEAN_CORE_WITH_BUILD_GATES" ? "BASE44_LEAN_DETERMINISTIC_GOVERNOR" : "DURABLE_MEMORY_ONLY", ai_controls_pointer: { included_in_projection: false, status: "PENDING_SEPARATE_ASSIST_ACTION", next_action: "alter_base44_ai_controls_pointer_via_assist" }, connection_plug: { included_in_projection: false, next_action: "install_cloud_bos_connection_plug_indicator" }, environment: input.environment, adapter_id: input.adapter_id, artifacts: nonManifest.map(({ artifact_id, target, role, proposed_sha256: hash, proposed_bytes: bytes }) => ({ artifact_id, target, role, sha256: hash, bytes, removable: true })), lifecycle: { update: "NEW_EXACT_APPROVED_PLAN", rollback: "RETAINED_VERIFIED_PROFILE", removal: "MANIFEST_OWNED_EXACT_PLAN", drift: "EXACT_HASH_READBACK_FAIL_CLOSED", paid_upgrade: "SERVER_ENTITLEMENT_ELIGIBILITY_THEN_SEPARATE_EXACT_APPROVED_PLAN" } };
@@ -258,6 +327,14 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
     type: "FORWARD_SAME_PROFILE_BASELINE_UPDATE",
     prior_artifacts: structuredClone(input.installed_artifacts),
     requested_changes: { project_spec: structuredClone(input.project_spec), build_intentions: structuredClone(input.build_intentions), ...(input.maturation_stage === undefined ? {} : { maturation_stage: input.maturation_stage }), ...(input.aicontrol_revision === undefined ? {} : { aicontrol_revision: input.aicontrol_revision }) },
+  };
+  if (input.clone_rebind === true) plan.clone_mode = {
+    type: "EXACT_SAME_PLATFORM_CLONE_REBIND_V1",
+    source_project_ref: input.installed_manifest.project_ref,
+    source_project_binding_id: input.installed_manifest.project_binding_id,
+    source_manifest_sha256: sha256(input.installed_manifest_content),
+    prior_artifacts: structuredClone(input.installed_artifacts),
+    requested_changes: { project_spec: structuredClone(input.project_spec), build_intentions: structuredClone(input.build_intentions), ...(input.maturation_stage === undefined ? {} : { maturation_stage: input.maturation_stage }) },
   };
   plan.plan_hash = planHash(plan);
   return plan;
@@ -283,6 +360,20 @@ export function validateBase44AppGovernanceProfilePlan(plan) {
     }, plan.profile_id, loadBase44AppGovernanceProfiles().version);
     if (canonical(rebuilt) !== canonical(plan.artifacts)) fail("BASE44_PROFILE_UPDATE_CONTINUITY_MISMATCH");
   } else if (plan.update_mode !== undefined) fail("BASE44_PROFILE_UPDATE_MODE_INVALID");
+  if (plan.clone_mode !== undefined) {
+    const mode = plan.clone_mode;
+    if (plan.requested_operation !== "ACTIVATE" || mode.type !== "EXACT_SAME_PLATFORM_CLONE_REBIND_V1"
+        || plan.resume_mode || plan.repair_mode || plan.update_mode) fail("BASE44_CLONE_MODE_INVALID");
+    const normalized = normalizeBase44UpdateInput({ installed_artifacts: mode.prior_artifacts });
+    if (mode.source_project_ref !== normalized.installed_manifest.project_ref
+        || mode.source_project_binding_id !== normalized.installed_manifest.project_binding_id
+        || mode.source_manifest_sha256 !== sha256(normalized.installed_manifest_content)) fail("BASE44_CLONE_SOURCE_IDENTITY_INVALID");
+    const rebuilt = cloneRebind({ ...plan, ...mode.requested_changes, ...normalized,
+      expected_prior_sha256: Object.fromEntries(plan.artifacts.map(x => [x.target, x.expected_prior_sha256])),
+      authority: { source: "BASE44_APP_OWNER", deployment: "OWNER_CONTROLLED" },
+    }, plan.profile_id, loadBase44AppGovernanceProfiles().version);
+    if (canonical(rebuilt) !== canonical(plan.artifacts)) fail("BASE44_CLONE_RECONSTRUCTION_MISMATCH");
+  }
   return plan;
 }
 
