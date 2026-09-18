@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.31.0",
+  "version": "1.32.0",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -125,5 +125,18 @@
     "prices": "Fixed public website data/bos-beta-pricing.json; validated AUD list prices and periods. Invite-only private-beta options; no checkout or entitlement changes. Show list-date, exclusions, website link and prices-unavailable fallback.",
     "authority": "CLOUD_BOS_SERVER_RESOLVED_ENTITLEMENT",
     "grants_access_or_mutation": false
+  },
+  "plan_request_recovery": {
+    "scope": "READ_ONLY_REQUEST_PREPARATION_AND_NEW_EXACT_UPDATE_PROPOSAL",
+    "steps": [
+      "For an existing governed Base44 app, call bos_connect with its exact project_ref. Prefer installed_plan_source only when returned by that authenticated current app-bound result, and only when the live bos_project_governance_plan schema exposes base44_profile.installed_plan_ref. REFERENCE_AVAILABLE describes a binding reference, not proof the stored bytes or current app bytes are available. Never infer it from chat, another app or a local manifest.",
+      "Read a clean complete current provider revision and the exact raw bytes of the current manifest and its allowlisted artifacts in native code. Compare the manifest to installed_plan_source.installed_manifest_sha256 and every artifact to its indexed hash/byte count. Never reconstruct file text, normalize whitespace, transcribe hashes or read unrelated files. Source drift requires reconciliation against the bound plan, not automatic overwrite or a changed expected hash.",
+      "Use checksum-verified scripts/base44-update-request.mjs prepareBase44UpdateRequest with store.readBytes(path) returning Uint8Array and store.readProviderState() returning {revision,clean}. Build binding from the authenticated installed_plan_source (approved_plan_hash is its plan_hash, manifest_sha256 its installed_manifest_sha256), exact app/ref/binding, verified project-state identity fields and fresh expected_app_revision. Provide baseline:{project_ref,accepted:true,project_spec,build_intentions,accepted_baseline_sha256} only after restoring actual owner acceptance. In native code the last digest is SHA-256 of UTF-8 JSON.stringify({project_spec,build_intentions}) preserving that accepted object; this is a host continuity check, never authenticated acceptance proof or plan approval. Default transport is INSTALLED_PLAN_REFERENCE.",
+      "The generated request carries installed_plan_ref plus current expected_prior_sha256, complete accepted requirements and current revision. No governance file contents need to pass through chat or MCP request transcription. The service loads the exact applied-plan source tied to the current binding and validates it, checks current supplied hashes, then issues a NEW proposal. Existing security, evidence, control and capability files are preserved. Omit installed_artifacts, installed_manifest_content, top-level installed_manifest, restore_artifacts and security_triggers on this route. An UPDATE does not redeclare security triggers.",
+      "Download the new original plan via PLAN_DOWNLOAD_V1, verify bytes/hash/identity/requirements, show the exact change and obtain its required approval before installation. The old applied plan remains consumed and cannot be reapproved or executed. Existing unchanged pending-plan decisions still use the separate durable READ/plan_ref route; do not conflate applied source with pending approval.",
+      "When Cloud BOS identifies a malformed request field, rebuild the input from the same fresh verified evidence once; retain a non-secret correlation/error record and preserve the interrupted stage. Do not repeat an unchanged failing request, guess field names, inspect SDK credential internals or require Codex. Missing stored original source, revoked access, wrong binding or real source drift is not repaired by changing permissions or suppressing checks. Explain the exact gap inside Base44 and the smallest evidence or owner decision needed. Service downtime preserves current files and decisions for reconnect; it is not a reason to reseed."
+    ],
+    "grants_mutation_authority": false,
+    "native_acceptance": "PENDING_DEPLOYMENT_AND_BASE44_ONLY_TEST"
   }
 }
