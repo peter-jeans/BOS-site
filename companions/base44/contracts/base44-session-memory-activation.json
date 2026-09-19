@@ -48,6 +48,8 @@
     "projection_base_revision": "PREWRITE_REVISION_FROM_THE_APPROVED_PROJECTION_PLAN",
     "expected_app_revision": "POSTWRITE_PROVIDER_REVISION_FROM_INDEPENDENT_VERIFIED_READBACK",
     "base_revision_equals_installed_revision": false,
+    "revision_comparison_rule": "The Governance Manifest and Project State retain the projection_base_revision as immutable installation provenance. They must never be compared to the current provider revision as a drift test. Compare manifest and artifact hashes to their server anchor; compare the current provider revision only to expected_identity.expected_app_revision from fresh independent binding and provider readback.",
+    "post_build_rule": "After an approved governed build changes the provider revision, obtain fresh independent source and live readback, then continue with the verified post-build provider revision. Do not rewrite the immutable governance projection or request an UPDATE solely to make its historical projection_base_revision equal the new provider revision.",
     "active_build_intention_id_source": "HASH_VERIFIED_governance/PROJECT_STATE.json",
     "caller_supplied_intention_is_authority": false,
     "host_readback_adapter_integration": "LIVE_VERIFICATION_REQUIRED"
