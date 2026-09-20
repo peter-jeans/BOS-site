@@ -53,6 +53,17 @@ export async function prepareBase44UpdateRequest({ store, binding, baseline, tra
       || typeof accepted.build_intentions?.active_id !== 'string') {
     fail('COMPLETE_BASELINE_REQUIRED', 'baseline', 'RESTORE_MISSING_ACCEPTED_REQUIREMENTS');
   }
+  // Baseline acceptance covers the original object, including its maturity
+  // field. Only after verifying that hash, map this known field to the service
+  // schema. Never rewrite the accepted object or silently discard other fields.
+  const wireIntentions = structuredClone(accepted.build_intentions);
+  const hasAcceptedStage = Object.hasOwn(wireIntentions, 'maturation_stage');
+  const acceptedStage = wireIntentions.maturation_stage;
+  if (hasAcceptedStage && (typeof acceptedStage !== 'string'
+      || acceptedStage.length < 1 || acceptedStage.length > 64)) {
+    fail('ACCEPTED_MATURATION_STAGE_INVALID', 'baseline.build_intentions.maturation_stage', 'REVIEW_INVALID_ACCEPTED_REQUIREMENTS');
+  }
+  delete wireIntentions.maturation_stage;
   const before = await store.readProviderState();
   if (before.revision !== binding.expected_app_revision || before.clean !== true) {
     fail('PROVIDER_STATE_CHANGED', 'provider', 'REFRESH_REVISION_AND_RECONCILE_CURRENT_WORK');
@@ -139,7 +150,8 @@ export async function prepareBase44UpdateRequest({ store, binding, baseline, tra
     expected_prior_sha256: Object.fromEntries([...originals].map(([path, bytes]) => [path, hash(bytes)])),
     base44_profile: { profile_id: manifest.profile, ...priorInput,
       ...(aicontrol_revision === undefined ? {} : { aicontrol_revision }),
-      ...structuredClone(accepted), maturation_stage: state.maturation_stage },
+      project_spec: structuredClone(accepted.project_spec), build_intentions: wireIntentions,
+      maturation_stage: hasAcceptedStage ? acceptedStage : state.maturation_stage },
     response_format: 'PLAN_DOWNLOAD_V1',
   };
 }
