@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { PUBLIC_BUILD_DISCIPLINE_V1 } from "./base44-build-discipline.mjs";
 import { isDurablePlan, planIsCurrent, validPlanWindow } from "./approval-lifecycle.mjs";
 import profileContract from "../contracts/base44-app-governance-profiles.json" with { type: "json" };
 
@@ -194,11 +195,13 @@ function forwardUpdate(input, profileId, profileVersion) {
   const generated = buildContents({ ...input, maturation_stage: stage }, profileId, profileVersion, definitions, []);
   const next = { ...prior };
   if (input.aicontrol_revision !== undefined) {
-    if (input.aicontrol_revision !== "PUBLIC_ROUTING_V1") fail("BASE44_PROFILE_ROUTING_REVISION_UNSUPPORTED");
+    if (!["PUBLIC_ROUTING_V1", "PUBLIC_BUILD_DISCIPLINE_V1"].includes(input.aicontrol_revision)) fail("BASE44_PROFILE_ROUTING_REVISION_UNSUPPORTED");
     const control = generated.get("documents/AICONTROL.md");
     const legacy = control.slice(0, -PUBLIC_ROUTING_V1.length);
-    if (prior["documents/AICONTROL.md"] !== legacy && prior["documents/AICONTROL.md"] !== control) fail("BASE44_PROFILE_ROUTING_PRIOR_UNRECOGNIZED");
-    next["documents/AICONTROL.md"] = control;
+    const strengthened = control + PUBLIC_BUILD_DISCIPLINE_V1;
+    if (![legacy, control, strengthened].includes(prior["documents/AICONTROL.md"])) fail("BASE44_PROFILE_ROUTING_PRIOR_UNRECOGNIZED");
+    if (prior["documents/AICONTROL.md"] === strengthened && input.aicontrol_revision === "PUBLIC_ROUTING_V1") fail("BASE44_PROFILE_CONTROL_DOWNGRADE_BLOCKED");
+    next["documents/AICONTROL.md"] = input.aicontrol_revision === "PUBLIC_BUILD_DISCIPLINE_V1" ? strengthened : control;
   }
   for (const path of ["documents/PROJECT_SPEC.md", "governance/BUILD_INTENTIONS.md"]) next[path] = generated.get(path);
   if (next["documents/PROJECT_SPEC.md"] === prior["documents/PROJECT_SPEC.md"]
@@ -265,8 +268,9 @@ function cloneRebind(input, profileId, profileVersion) {
       || Object.keys(input.capability_currentness ?? {}).length > 0) fail("BASE44_CLONE_SCOPE_UNSUPPORTED");
   const generated = buildContents({ ...input, maturation_stage: input.maturation_stage ?? "DISCOVERY" }, profileId, profileVersion, definitions, triggers);
   const oldControl = buildContents({ ...input, project_ref: manifest.project_ref }, profileId, profileVersion, definitions, triggers).get("documents/AICONTROL.md");
-  if (prior["documents/AICONTROL.md"] !== oldControl) fail("BASE44_CLONE_CANONICAL_ROUTER_REQUIRED");
+  if (![oldControl, oldControl + PUBLIC_BUILD_DISCIPLINE_V1].includes(prior["documents/AICONTROL.md"])) fail("BASE44_CLONE_CANONICAL_ROUTER_REQUIRED");
   const contents = new Map(generated);
+  if (prior["documents/AICONTROL.md"] === oldControl + PUBLIC_BUILD_DISCIPLINE_V1) contents.set("documents/AICONTROL.md", generated.get("documents/AICONTROL.md") + PUBLIC_BUILD_DISCIPLINE_V1);
   // Preserve safety policy, but reset capability results and build status for the clone.
   if (expected.has("governance/SECURITY_BASELINE.md")) contents.set("governance/SECURITY_BASELINE.md", prior["governance/SECURITY_BASELINE.md"]);
   if (expected.has("governance/BUILD_GATES.json")) {
@@ -311,6 +315,7 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
     artifacts = cloneRebind(input, profileId, contract.version);
   } else if (operation === "ACTIVATE") {
     const contents = buildContents(input, profileId, contract.version, definitions, triggers);
+    contents.set("documents/AICONTROL.md", contents.get("documents/AICONTROL.md") + PUBLIC_BUILD_DISCIPLINE_V1);
     const nonManifest = definitions.filter(({ path }) => path !== "governance/GOVERNANCE_MANIFEST.json").map(({ path, role }) => artifact(path, role, contents.get(path), input.expected_prior_sha256?.[path] ?? null));
     const manifest = { schema: "BOS_CLOUDBOS_PUBLIC_BASE44_GOVERNANCE_MANIFEST_V1", version: contract.version, project_ref: input.project_ref, project_binding_id: input.project_binding_id, app_id: input.app_id, expected_app_revision: input.expected_app_revision, profile: profileId, governor_kernel: profileId === "LEAN_CORE_WITH_BUILD_GATES" ? "BASE44_LEAN_DETERMINISTIC_GOVERNOR" : "DURABLE_MEMORY_ONLY", ai_controls_pointer: { included_in_projection: false, status: "PENDING_SEPARATE_ASSIST_ACTION", next_action: "alter_base44_ai_controls_pointer_via_assist" }, connection_plug: { included_in_projection: false, next_action: "install_cloud_bos_connection_plug_indicator" }, environment: input.environment, adapter_id: input.adapter_id, artifacts: nonManifest.map(({ artifact_id, target, role, proposed_sha256: hash, proposed_bytes: bytes }) => ({ artifact_id, target, role, sha256: hash, bytes, removable: true })), lifecycle: { update: "NEW_EXACT_APPROVED_PLAN", rollback: "RETAINED_VERIFIED_PROFILE", removal: "MANIFEST_OWNED_EXACT_PLAN", drift: "EXACT_HASH_READBACK_FAIL_CLOSED", paid_upgrade: "SERVER_ENTITLEMENT_ELIGIBILITY_THEN_SEPARATE_EXACT_APPROVED_PLAN" } };
     artifacts = [...nonManifest, artifact("governance/GOVERNANCE_MANIFEST.json", "GOVERNANCE_MANIFEST", exactJson(manifest), input.expected_prior_sha256?.["governance/GOVERNANCE_MANIFEST.json"] ?? null)];

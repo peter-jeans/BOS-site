@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.34.0",
+  "version": "1.35.0",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -112,7 +112,7 @@
       "Activate the workspace skill for ordinary build requests, fixes, scans, reviews and follow-ups, including Continue; no slash command or BOS keyword is required. Resolve the exact current app through bos_connect and bos_capabilities and follow the existing durable session-memory route before mutating.",
       "Use authenticated capability IDs and available public tool descriptions to route the request. Call only relevant read-only checks with privacy-minimal project facts. A scan plan is not an executed scan. Explain unavailable capability or missing evidence without claiming a check ran.",
       "Keep the intent engine, private decision rules, scan implementation and entitlement resolution in Cloud BOS. The app needs only the public AICONTROL pointer and public workspace skill instructions; do not add a tenth governance file, copied intent engine or runtime intent function.",
-      "Existing apps retain their approved AICONTROL bytes. Upgrade them only when the current authenticated governance-plan schema advertises base44_profile.aicontrol_revision PUBLIC_ROUTING_V1: use UPDATE, the same exact baseline and active intention, current revision, and complete verified installed artifacts. Obtain a new server plan, map its exact changes, review its full hash and obtain the required exact approval before installing. An unsupported schema or customized control is not permission to rewrite it locally.",
+      "Existing apps retain approved AICONTROL bytes. The advertised aicontrol_revision PUBLIC_BUILD_DISCIPLINE_V1 explicitly adds the existing knowledge/alignment/readback workflow; PUBLIC_ROUTING_V1 is retained for old plans. Use UPDATE with the exact accepted baseline, active intention, current revision and all verified prior artifacts; obtain and verify a new exact plan and approval before installation. Customized control or unsupported schema stops reconciliation; never overwrite or downgrade. New activation plans include the build discipline.",
       "After a verified Cloud BOS consultation, render the literal chain BOS<major.minor>> Base44> user> as inline code before every substantive progress and final reply. Keep the exact user> audience; put the app name in the next App/Step/Status line. Before consultation use Base44> user> and say verification is pending. Speakers report provenance, not governance or entitlement.",
       "Every required decision ends with Your action required, the exact app, displayed scope, full real plan hash when applicable, exact reply and Reply here in this Base44 chat; I am waiting. When a proposal is awaiting independent review, say Review pending; no approval is requested yet. Never confuse permission to inspect or copy bytes with installation approval. Preserve an unambiguous existing decision bound to the exact displayed proposal."
     ],
@@ -141,5 +141,30 @@
     ],
     "grants_mutation_authority": false,
     "native_acceptance": "LOCAL_TRANSPORT_VERIFIED_NATIVE_ACCEPTANCE_PENDING"
+  },
+  "build_checks": {
+    "scope": "EXISTING_ALIGNMENT_AND_ARTIFACT_READBACK_HOST_ENFORCEMENT",
+    "helper": "scripts/base44-build-discipline.mjs",
+    "native_commonjs": "scripts/base44-build-discipline.cjs",
+    "canonical_rules": [
+      "BUILD_ALIGNMENT_CHECK",
+      "BOS_ARTIFACT_READBACK_REQUIRED",
+      "BUILD_VERIFICATION_CHECK"
+    ],
+    "steps": [
+      "Before first material write and every source-to-runtime/data transition, emit a source-grounded Build Alignment Check bound to exact app, current revision, accepted intention, operation, complete transitive effect set and actual environment. Read the relevant project evidence and implementation first. Compilation and hashes cannot replace this check.",
+      "Require five concise builder answers with current references: purpose/users/workflow; implementation/dependencies; direct and indirect effects/environment; invariants/exclusions; falsifiable verification. Check each answer against fresh source. On contradiction STOP the affected mutation, reread relevant LDP or authorised app-owned projection plus source, correct and retest with a fresh application question. Two unsuccessful retries leave a visible unresolved gap. Do not ask for approval for read-only remediation or invent missing evidence.",
+      "Use verified base44-build-discipline.mjs evaluateBase44BuildPreflight, or the generated CommonJS companion in a native code host. Supply scope:{app_id,revision,intention_ref,operation_ref,environment,evidence_sha256,stage:SOURCE_ONLY|BOUNDED_EFFECTS,effects:[SOURCE_EDIT|RESOURCE_DEPLOY|RUNTIME_DATA_WRITE|EXTERNAL_EFFECT|PUBLISH]}. Current host evidence supplies {app_id,revision,scope_sha256:buildScopeHash(scope),effects_resolved,environment_verified,authorised}. The evidence digest binds the current relevant LDP/app-owned evidence and dependency readback; obtain it from bytes, never guess. Knowledge has purpose_workflow, implementation_dependencies, effects_environment, invariants_exclusions, verification_falsifier, each with answer_ref and evidence_refs. Keep detailed answers app-local.",
+      "Populate review from an actual source-grounded review: reviewer_ref,evidence_ref,scope_sha256,knowledge_sha256:buildScopeHash(knowledge),source_readback_verified,origin:SOURCE_GROUNDED_REVIEW,findings:{each_topic:SUPPORTED|CONTRADICTED|UNKNOWN}. A failed knowledge check additionally requires remediation_required:true,retest_ref,retest_result:SUPPORTED after a fresh application question. Flags alone do not prove review; do not let the builder self-certify missing evidence. The helper checks consistency, not semantic truth. Only PASS_CONGRUENT opens this workflow gate; other results stop that action and name the gap. Missing native execution/read/review capability does not permit fabricated execution or a pass.",
+      "SOURCE_ONLY excludes data fixtures, runtime mutations, external effects and publication. Trace helper-triggered writes before the first operation. A test tenant, preview, branch or synthetic records do not establish isolation. Classify auto-synced resource effects explicitly. Recheck on changed revision/dependencies/environment/scope; reuse current unchanged evidence and approvals. Do not evade a rejected operation through another route.",
+      "After each batch reopen saved artifacts. List exact file paths, revision, observed changed lines, symbol, actual before/after diff or excerpt, requirement and actual tests/results. Record old locations for deletions and both paths for renames; represent non-file resources by ID/field path. If unavailable say LINES_UNAVAILABLE with precise locator. Never estimate lines, reconstruct code from memory, or count files merely read as edited. Retain excerpts only in authorised local app evidence, excluding secrets/customer data.",
+      "Where an independent host reader exists, verifyBase44ChangeEvidence({app_id,revision,builder_ref,claims,reader}) compares saved bytes/hashes and exact claimed lines. Claims:{path,kind:ADDED|MODIFIED|DELETED,before_sha256,after_sha256,start_line,end_line,symbol,excerpt,requirement_ref}. reader.readState returns {app_id,revision,baseline_revision,clean,independent,verifier_ref,evidence_ref}; reader.readFile(path) and reader.readBaselineFile(path,baseline_revision) return saved/current and baseline Uint8Array or null. Only an existing authorised provider/export adapter may supply this reader; do not invent APIs or label the builder an independent verifier. The helper proves only the declared saved locations, not omitted changes, semantics or live behaviour. Separately compare the complete baseline/current changes, including unexpected files.",
+      "Emit BUILDER_CLAIM separately from INDEPENDENT_VALIDATOR_SIGNAL. No independent reader means Builder reports these changes; completion not independently verified. A contradiction is FAILED_SYNC_VERIFICATION. Passing source locations yields at most PARTIAL_VERIFIED, never full acceptance; require the applicable independent baseline, behaviour and live-parity evidence before COMPLETE_VERIFIED. Observe relevant safe behaviour within existing scope; do not perform unauthorised live tests to satisfy the check.",
+      "Persist compact references/results through the existing authorised evidence route. Never modify manifest-owned ledger/control bytes outside their lifecycle. Keep raw source, explanations and tests app-local; Cloud BOS accepts only the privacy-safe fields of its existing contract. These rules cover the plugin workflow, not arbitrary native write interception. No new entitlement or app runtime dependency is created."
+    ],
+    "existing_app_upgrade": "When advertised by the authenticated schema, request exact UPDATE with aicontrol_revision PUBLIC_BUILD_DISCIPLINE_V1 using the byte-safe helper; preserve approved existing controls unless the new exact plan is approved. Customized controls stop for reconciliation, not overwrite.",
+    "native_write_interception": false,
+    "semantic_truth_from_field_presence": false,
+    "grants_mutation_authority": false
   }
 }
