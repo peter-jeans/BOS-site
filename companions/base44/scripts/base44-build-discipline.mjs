@@ -126,3 +126,41 @@ export async function verifyBase44ChangeEvidence({ app_id, revision, builder_ref
   return { ...out, acceptance_status: 'PARTIAL_VERIFIED', source_verified: true,
     evidence_ref: start.evidence_ref, reason: 'CLAIMED_SAVED_LOCATIONS_VERIFIED_ONLY' };
 }
+
+// Completion must come from the authorised host/provider observer AFTER the
+// builder's write turn and final save have finished. Repeated equal git hashes,
+// a quiet timer, or the builder saying "done" are not a completion event.
+// Like the reader above, this adapter is trusted host input, not authentication
+// supplied by this library. Unknown provider completion remains pending.
+export async function verifyBase44FinalChangeEvidence(input = {}) {
+  const pending = reason => ({ schema: 'BOS_BASE44_FINAL_CHANGE_READBACK_V1',
+    acceptance_status: 'BLOCKED', source_verified: false, behaviour_verified: false,
+    live_parity_verified: false, final_save_verified: false, grants_authority: false, reason });
+  const { reader, app_id, revision, builder_ref } = input;
+  if (typeof reader?.readCompletion !== 'function') return pending('FINAL_SAVE_OBSERVER_REQUIRED');
+  const valid = c => c?.app_id === app_id && c.revision === revision
+    && c.status === 'COMPLETE' && c.pending_writes === false
+    && c.origin === 'PROVIDER_FINAL_SAVE' && c.independent === true
+    && token(c.verifier_ref) && c.verifier_ref !== builder_ref
+    && token(c.completion_ref) && token(c.operation_ref);
+  let first;
+  try { first = structuredClone(await reader.readCompletion()); }
+  catch { return pending('FINAL_SAVE_READBACK_UNAVAILABLE'); }
+  if (!valid(first)) return pending('FINAL_SAVE_PENDING_OR_REVISION_CHANGED');
+  // Snapshot claims once; never silently rewrite them to a newer revision/hash.
+  const frozenInput = { ...input, claims: structuredClone(input.claims) };
+  const one = await verifyBase44ChangeEvidence(frozenInput);
+  if (!one.source_verified) return { ...one, final_save_verified: false };
+  let second;
+  try { second = await reader.readCompletion(); }
+  catch { return pending('FINAL_SAVE_READBACK_UNAVAILABLE'); }
+  if (!valid(second) || canonical(first) !== canonical(second)) return pending('FINAL_SAVE_CHANGED_DURING_READBACK');
+  const two = await verifyBase44ChangeEvidence(frozenInput);
+  if (!two.source_verified) return { ...two, final_save_verified: false };
+  let last;
+  try { last = await reader.readCompletion(); }
+  catch { return pending('FINAL_SAVE_READBACK_UNAVAILABLE'); }
+  if (!valid(last) || canonical(first) !== canonical(last)) return pending('FINAL_SAVE_CHANGED_DURING_READBACK');
+  return { ...two, final_save_verified: true, completion_ref: first.completion_ref,
+    operation_ref: first.operation_ref, reason: 'FINAL_SAVED_LOCATIONS_VERIFIED_ONLY' };
+}

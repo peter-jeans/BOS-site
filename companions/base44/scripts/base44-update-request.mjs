@@ -169,27 +169,94 @@ function freeze(value) {
 // sends this exact prepared object over HTTPS, then the assistant processes the
 // opaque reference over MCP. No BOS account credential is needed in code.
 export async function uploadBase44UpdateRequest({ ticket, serviceOrigin, fetchImpl = globalThis.fetch, ...input }) {
+  const request = await prepareBase44UpdateRequest({ ...input, transport: 'INSTALLED_PLAN_REFERENCE' });
+  return uploadPreparedRequest({ ticket, serviceOrigin, fetchImpl, request, binding: input.binding, transport: input.transport, activation: false });
+}
+
+// Preserve the canonical helper's original readback bytes and hash. This does
+// not produce provider evidence or owner approval: both must already exist.
+export async function prepareBase44ActivationRequest({ binding, plan_ref, approval, readback_bytes, store } = {}) {
+  const exactKeys = (v, keys) => v && typeof v === 'object' && !Array.isArray(v)
+    && Object.keys(v).length === keys.length && keys.every(k => Object.hasOwn(v, k));
+  const canonical = v => JSON.stringify(v, (_, x) => x && !Array.isArray(x) && typeof x === 'object'
+    ? Object.fromEntries(Object.keys(x).sort().map(k => [k, x[k]])) : x);
+  if (!(readback_bytes instanceof Uint8Array) || readback_bytes.byteLength > 65536
+    || !exactKeys(plan_ref, ['plan_hash', 'project_binding_id'])
+    || !exactKeys(approval, ['approved', 'plan_hash', 'platform_installation_id', 'project_ref', 'project_binding_id'])
+    || typeof store?.readProviderState !== 'function' || typeof store?.readCompletion !== 'function') {
+    fail('ACTIVATION_HANDOFF_INPUT_REQUIRED', 'readback_bytes', 'USE_CANONICAL_HELPER_BYTES_AND_FINAL_SAVE_OBSERVER');
+  }
+  // Copy before asynchronous reads so caller mutation cannot change the proof.
+  binding = structuredClone(binding); plan_ref = structuredClone(plan_ref); approval = structuredClone(approval);
+  let readback;
+  try { readback = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(readback_bytes)); }
+  catch { fail('ACTIVATION_READBACK_INVALID', 'readback_bytes', 'REGENERATE_CANONICAL_READBACK'); }
+  const keys = ['schema','readback_id','approved_plan_hash','project_ref','project_binding_id','adapter_id','verified_at','projection_hash','artifact_manifest_hash','installed_manifest_sha256','artifact_count','evidence','manifest_checks','binding_check','forbidden_content_check','application_preservation_check','governance_state','acceptance_status','readback_hash'];
+  const unsigned = { ...readback }; delete unsigned.readback_hash;
+  if (!exactKeys(readback, keys) || !hex(readback.readback_hash) || hash(canonical(unsigned)) !== readback.readback_hash
+    || !exactKeys(readback.evidence, ['evidence_class','verifier','evidence_ref','version_ref','independent'])
+    || readback.schema !== 'BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_READBACK_V1'
+    || readback.adapter_id !== 'base44_app_governance' || readback.evidence.evidence_class !== 'BASE44_AICONTROL_API_READBACK'
+    || readback.evidence.independent !== true || readback.acceptance_status !== 'COMPLETE_VERIFIED'
+    || readback.binding_check !== 'VERIFIED' || readback.governance_state !== 'GOVERNED_ACTIVE'
+    || readback.forbidden_content_check !== 'PASS' || readback.application_preservation_check !== 'PASS'
+    || readback.project_ref !== binding?.project_ref || readback.project_binding_id !== binding?.project_binding_id
+    || approval.approved !== true || approval.project_ref !== binding?.project_ref
+    || approval.project_binding_id !== binding?.project_binding_id || approval.platform_installation_id !== binding?.platform_installation_id
+    || plan_ref.project_binding_id !== binding?.project_binding_id || !hex(plan_ref.plan_hash)
+    || approval.plan_hash !== plan_ref.plan_hash || readback.approved_plan_hash !== plan_ref.plan_hash
+    || !Array.isArray(readback.manifest_checks) || readback.artifact_count !== readback.manifest_checks.length
+    || !readback.manifest_checks.length || readback.manifest_checks.length > 20
+    || new Set(readback.manifest_checks.map(x => x.target)).size !== readback.manifest_checks.length
+    || readback.manifest_checks.some(x => !exactKeys(x,['target','expected_sha256','actual_sha256','status'])
+      || x.status !== 'MATCH' || !hex(x.expected_sha256) || x.actual_sha256 !== x.expected_sha256)) {
+    fail('ACTIVATION_READBACK_INVALID', 'readback', 'REGENERATE_CANONICAL_READBACK_NO_TRANSCRIPTION');
+  }
+  const fresh = () => { const at = Date.parse(readback.verified_at); return Number.isFinite(at) && at <= Date.now() && Date.now() - at <= 300000; };
+  const state = await store.readProviderState(), completion = await store.readCompletion();
+  if (!fresh() || state?.clean !== true || state.revision !== readback.evidence.version_ref
+    || completion?.app_id !== binding.app_id || completion.revision !== state.revision
+    || completion.status !== 'COMPLETE' || completion.pending_writes !== false
+    || completion.origin !== 'PROVIDER_FINAL_SAVE' || completion.independent !== true
+    || !completion.completion_ref || !completion.verifier_ref) {
+    fail('FINAL_SAVE_PENDING_OR_READBACK_STALE', 'store', 'WAIT_FOR_PROVIDER_FINAL_SAVE_THEN_REGENERATE_READBACK');
+  }
+  const again = await store.readProviderState(), final = await store.readCompletion();
+  if (!fresh() || canonical(state) !== canonical(again) || canonical(completion) !== canonical(final)) {
+    fail('FINAL_SAVE_CHANGED_DURING_READBACK', 'store', 'REFRESH_SAME_APPROVED_SCOPE_NO_REHASHING_OLD_PROOF');
+  }
+  return freeze({ project_ref: binding.project_ref, plan_ref, approval, readback });
+}
+
+export async function uploadBase44ActivationReadback({ ticket, serviceOrigin, fetchImpl = globalThis.fetch, ...input }) {
+  if (!ticket?.accepted_payloads?.includes('BASE44_ACTIVATION_READBACK_V1')) {
+    fail('ACTIVATION_HANDOFF_UNAVAILABLE', 'ticket', 'REFRESH_ADVERTISED_HOST_SUPPORT_NO_TRANSCRIPTION');
+  }
+  const request = await prepareBase44ActivationRequest(input);
+  return uploadPreparedRequest({ ticket, serviceOrigin, fetchImpl, request, binding: input.binding, activation: true });
+}
+
+async function uploadPreparedRequest({ ticket, serviceOrigin, fetchImpl, request, binding, transport, activation }) {
   ticket = structuredClone(ticket);
   let origin;
   try { origin = new URL(serviceOrigin); } catch { fail('UPLOAD_TICKET_INVALID', 'serviceOrigin', 'RESTORE_VERIFIED_SERVICE_ORIGIN'); }
   if (origin.protocol !== 'https:' || origin.origin !== serviceOrigin
       || ticket?.schema !== 'BASE44_UPDATE_UPLOAD_V1' || !hex(ticket.request_id)
-      || ticket.project_ref !== input.binding?.project_ref || ticket.project_binding_id !== input.binding?.project_binding_id
+      || ticket.project_ref !== binding?.project_ref || ticket.project_binding_id !== binding?.project_binding_id
       || ticket.url !== `${serviceOrigin}/mcp/request-upload` || ticket.method !== 'POST'
       || !/^BOS-Request [a-f0-9]{64}$/.test(ticket.headers?.Authorization ?? '')
       || ticket.headers?.['Content-Type'] !== 'application/json' || Object.keys(ticket.headers ?? {}).length !== 2
       || ticket.max_bytes !== 65536 || ticket.immutable_payload !== true
       || ticket.grants_approval !== false || ticket.grants_project_write !== false
       || !Number.isFinite(Date.parse(ticket.upload_expires_at)) || Date.parse(ticket.upload_expires_at) <= Date.now()
-      || typeof fetchImpl !== 'function' || (input.transport && input.transport !== 'INSTALLED_PLAN_REFERENCE')) {
+      || typeof fetchImpl !== 'function' || (transport && transport !== 'INSTALLED_PLAN_REFERENCE')) {
     fail('UPLOAD_TICKET_INVALID', 'ticket', 'REFRESH_EXACT_APP_UPLOAD_TICKET');
   }
-  const request = await prepareBase44UpdateRequest({ ...input, transport: 'INSTALLED_PLAN_REFERENCE' });
   const body = JSON.stringify(request), request_sha256 = hash(body), request_bytes = Buffer.byteLength(body);
   if (request_bytes > ticket.max_bytes || Date.parse(ticket.upload_expires_at) <= Date.now()) {
     fail('UPLOAD_REQUEST_UNAVAILABLE', 'request', 'RECONCILE_SIZE_OR_REFRESH_EXPIRED_TICKET');
   }
-  const scope = { project_ref: request.project_ref, project_binding_id: request.project_binding_id,
+  const scope = { project_ref: request.project_ref, project_binding_id: activation ? request.plan_ref.project_binding_id : request.project_binding_id,
     uploaded_request: { request_id: ticket.request_id } };
   const uncertain = () => ({ status: 'UPLOAD_OUTCOME_UNKNOWN', ...scope,
     grants_approval: false, app_files_written: false, next_action: 'RECONCILE_SAME_REFERENCE_NO_NEW_TICKET_OR_HIDDEN_RETRY' });
@@ -214,11 +281,12 @@ export async function uploadBase44UpdateRequest({ ticket, serviceOrigin, fetchIm
     const receipt = JSON.parse(Buffer.concat(chunks).toString('utf8'));
     if (receipt.schema !== 'BASE44_UPDATE_UPLOADED_V1' || receipt.status !== 'UPLOADED'
       || receipt.request_id !== ticket.request_id || receipt.project_ref !== request.project_ref
-      || receipt.project_binding_id !== request.project_binding_id || receipt.request_sha256 !== request_sha256
+      || receipt.project_binding_id !== scope.project_binding_id || receipt.request_sha256 !== request_sha256
       || receipt.request_bytes !== request_bytes || receipt.grants_approval !== false || receipt.grants_project_write !== false) return uncertain();
     // Safe chat output: only the opaque reference, no bearer token or payload.
     return { status: 'UPLOAD_VERIFIED', ...scope, grants_approval: false, app_files_written: false,
-      next_action: 'CALL_AUTHENTICATED_PLAN_TOOL_WITH_THIS_SCOPE_AND_UPLOADED_REQUEST_ONLY' };
+      next_action: activation ? 'CALL_AUTHENTICATED_ACTIVATE_TOOL_WITH_THIS_SCOPE_AND_UPLOADED_REQUEST_ONLY'
+        : 'CALL_AUTHENTICATED_PLAN_TOOL_WITH_THIS_SCOPE_AND_UPLOADED_REQUEST_ONLY' };
   } catch { return uncertain(); }
 }
 

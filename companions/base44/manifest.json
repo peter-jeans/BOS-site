@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.35.1",
+  "workspace_skill_version": "1.36.0",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 19349,
-      "sha256": "785d1f8f01b1f279063d0b2c7c4a6fa4957680f630e33ea89be415edffc4f1e2"
+      "bytes": 19308,
+      "sha256": "ba5afdae7338b3246dfa71bc4f4d6744f2be2f8fa69656994efb9844a438ce76"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -52,28 +52,28 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 40408,
-      "sha256": "056d99ba41f05d9f7ac428e373a9c1904e48051914c48aee5b2d97dc956b9e01"
+      "bytes": 43214,
+      "sha256": "21e3f61df8c4772c91aee00689d4f5aa422f857dffafb66ec5b6500cf3a559a7"
     },
     {
       "path": "scripts/base44-update-request.mjs",
-      "bytes": 17293,
-      "sha256": "b3373c10a45bc6639385211fb7031827827f32a8cb248a5766752ec212037bc0"
+      "bytes": 23198,
+      "sha256": "56300381d5272bd162e49100634d65d2bfdb028c89cda009d8998681cab73ad5"
     },
     {
       "path": "scripts/base44-update-request.cjs",
-      "bytes": 17548,
-      "sha256": "6a234c8c3866dec6939f41162385c513372b3c970c5acd6a352fe242e25aa036"
+      "bytes": 23503,
+      "sha256": "1578c73b55c766184c0b69baba49def5fc64cf3c35cda3dd5ba695b290d4d54f"
     },
     {
       "path": "scripts/base44-build-discipline.mjs",
-      "bytes": 12739,
-      "sha256": "315077eb15954793d78c9a0b084e70710244ca09354186c337c99bd24aef6d58"
+      "bytes": 15240,
+      "sha256": "3f5e32a306e59e7d02b4a6da70783a3ef07a0e32bfa91217db0e8abef75311e6"
     },
     {
       "path": "scripts/base44-build-discipline.cjs",
-      "bytes": 12997,
-      "sha256": "b76eb1559833d38ecf02b62e198c4bd513a1ebdaa60e592614fc460a88ebc017"
+      "bytes": 15524,
+      "sha256": "f3ec1ad99a65ddfb5aa9e146dfc7829840a5276e2503dbe03fda7201d31097f2"
     }
   ]
 }
