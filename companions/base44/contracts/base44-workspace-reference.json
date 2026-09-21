@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.39.0",
+  "version": "1.40.0",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -218,13 +218,30 @@
     "function": "evaluateGuidanceActivation",
     "steps": [
       "Preserve the selected app route. PUBLIC: exact-project bos_connect then bos_capabilities, even when Connect says READY. Classify ordinary language locally into intent_categories using the live schema. Never transmit raw prompts. PRIVATE/DIRECT/local: use the existing bound kernel discovery and guidance retrieval equivalents, not public fallback.",
-      "Follow guidance_activation from the authenticated result. Capability discovery is not use. Select relevant capabilities, fetch their actual guidance using the current tool schemas, read applicable app contracts, and map each recommendation/blocking rule to the current operation. Do not invent ids, deeper-advice endpoints or entitlements. Public scan planning does not expose the full archetype library or GUI contracts; if required guidance is unavailable report the exact gap before dependent work.",
+      "Follow guidance_activation from the authenticated result. Capability discovery is not use. Select relevant capabilities, fetch their actual guidance using the current tool schemas, read applicable app contracts, and map each recommendation/blocking rule to the current operation. Do not invent ids, deeper-advice endpoints or entitlements. For UI_UX retrieve bos_scan_plan with locally classified ui_context.page_job and app_type. Follow gui_guidance: explain relevant archetype alternatives, record owner selection or reuse a valid accepted contract, then repeat with selected_template_id for contract draft requirements. Bind the contract to the exact local page, data owners, routes, accepted intention and desktop/mobile/accessibility acceptance. Guidance retrieval is not installation or verification. The full private library remains private; unsupported context stops dependent work.",
       "Bind local evidence to buildScopeHash(scope), including exact app, revision, intention and operation. guidance_activation packet schema BOS_GUIDANCE_ACTIVATION_V1 requires scope_sha256, request_ref, project_ref, route PUBLIC/PRIVATE/DIRECT/LOCAL, connection_ref, discovery_ref, current_readback_ref, required_capability_ids, guidance and blocking_rules. Each guidance item carries capability_id, authenticated decision AVAILABLE, result_ref of actual retrieval and application_ref of its application to the plan. Each blocking rule has rule_id, decision SATISFIED or evidence-supported NOT_APPLICABLE, and evidence_ref. Missing/blocked/unknown is not a pass.",
       "Source-grounded review must check selection completeness, correct route/app/request, actual results, applicable rules, accepted intention and guidance application. Set review.guidance_sha256 from the exact activation packet and guidance_findings SUPPORTED only after that review. Call evaluateGuidanceActivation with phase PLAN, scope_sha256, activation and review before BOS-informed advice. evaluateBase44BuildPreflight also requires this packet as guidance_activation before PASS_CONGRUENT. These are evidence consistency checks, not authentication or independent truth by field presence. Supply current_context {project_ref, request_ref, route} from the current host binding/request independently of the candidate packet. The build preflight receives it as current.guidance_context; wrong app, request or route rejects reuse.",
       "After actual use record every capability/spine and actual outcome through the selected route. Set each item outcome_ref and recording_status only from its acknowledgement, update the reviewed packet hash, and evaluate phase CLOSEOUT. Missing acknowledgement remains NOT_RECORDED. Do not record mere availability as execution; blocked attempts remain blocked outcomes. Never claim independent readback from builder self-report.",
       "Reevaluate on changed request, app, revision, dependency or effect scope. Reuse only unchanged valid evidence and approved scope. Show missing step rather than Gap: none. No native editor interception or universal activation guarantee is claimed."
     ],
     "native_write_interception": false,
-    "grants_authority": false
+    "grants_authority": false,
+    "gui_application": {
+      "instruction": "For page-affecting implementation, set current_context.page_affecting=true from independently reviewed effects. activation.gui_application must bind actual retrieved guidance, owner selection or valid existing contract, local contract and its plan application. Helper PLAN rejects missing bindings; CLOSEOUT additionally requires artifact and behavior readback. A read-only shortlist is advice, not an implementation-ready plan.",
+      "required_fields": [
+        "guidance_result_ref",
+        "selected_template_id",
+        "selection_evidence_ref",
+        "local_contract_ref",
+        "plan_application_ref",
+        "platform_evidence_ref",
+        "gate_verdict"
+      ],
+      "gate_verdict": "RELEVANT",
+      "closeout_fields": [
+        "artifact_readback_ref",
+        "behavior_verification_ref"
+      ]
+    }
   }
 }

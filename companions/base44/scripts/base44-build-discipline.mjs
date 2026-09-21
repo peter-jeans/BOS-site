@@ -72,6 +72,15 @@ export function evaluateGuidanceActivation(input = {}) {
       || review.scope_sha256 !== scope_sha256 || !token(review.evidence_ref)
       || review.guidance_sha256 !== buildScopeHash(activation) || review.guidance_findings !== 'SUPPORTED')
     return fail('GUIDANCE_APPLICABILITY_REVIEW_REQUIRED');
+  if (current_context.page_affecting === true) {
+    const gui = activation.gui_application;
+    if (!gui || !token(gui.guidance_result_ref) || !token(gui.selected_template_id)
+        || !token(gui.selection_evidence_ref) || !token(gui.local_contract_ref)
+        || !token(gui.plan_application_ref) || !token(gui.platform_evidence_ref)
+        || gui.gate_verdict !== 'RELEVANT') return fail('GUI_GUIDANCE_SELECTION_AND_LOCAL_CONTRACT_REQUIRED');
+    if (input.phase === 'CLOSEOUT' && (!token(gui.artifact_readback_ref)
+        || !token(gui.behavior_verification_ref))) return fail('GUI_IMPLEMENTATION_READBACK_REQUIRED');
+  }
   if (input.phase === 'CLOSEOUT' && activation.guidance.some(x => !token(x.outcome_ref)
       || !['RECORDED', 'ALREADY_RECORDED'].includes(x.recording_status)))
     return fail('GUIDANCE_OUTCOME_NOT_RECORDED');
