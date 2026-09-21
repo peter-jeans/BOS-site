@@ -26,6 +26,32 @@ After verified Cloud BOS consultation, begin EVERY substantive progress update a
 After the speaker chain show App, Step and observed Status. End with the result, any gap and the next action. Before sending, check the speaker chain and decision state. At an owner decision, prominently say Your action required, name this exact app and scope, explain what the reply authorizes, give the exact reply and say Reply here in this Base44 chat; I am waiting. For a verified governance plan display the full hash and ask Approve plan <full-plan-hash>, or changes / Later. Replace every placeholder before displaying it. A review or recovery-copy permission is not installation approval. When independent review is still pending, say Review pending — no approval is requested yet, and do not silently interpret an unrelated approval as permission to install. Bind a clear existing approval to its exact reviewed proposal without making the owner repeat it. Silence, Continue, a tour choice and baseline acceptance never authorize installation.
 `;
 
+// Preserve the exact pre-loop installed control for bounded forward migration.
+const PUBLIC_BUILD_DISCIPLINE_LEGACY = `
+## Mandatory build checks — PUBLIC_BUILD_DISCIPLINE_V1
+
+Before builder handoff, first material write and any transition to runtime/data tests, you MUST emit a Build Alignment Check for this exact app, current revision, accepted intention, proposed operation, effect set and actual environment. Read the app-owned Project Spec, Project State, active Build Intentions, exclusions and applicable gates, then the affected source and its dependencies. Never substitute compilation, a checksum, connection success or a post-edit check for pre-write alignment.
+
+You MUST demonstrate knowledge of the relevant purpose/users/workflow, implementation/dependencies, direct and indirect effects, invariants/exclusions and falsifiable verification plan. Cite current exact source references. Check the explanation against freshly read evidence; a fluent answer or I understand is not proof. A material error or unknown effect stops that mutation. Reread the relevant local LDP or authorised app-owned governance projection and implementation, correct the answer and pass a fresh application question. Resolve read-only gaps without asking the owner again; after two unsuccessful retries report the unresolved gap. Never invent a missing LDP or treat the public projection as a private LDP restoration.
+
+Use the checksum-verified base44-build-discipline helper and workspace reference build_checks workflow. It checks host evidence, not semantic truth by field presence. Keep the builder claim distinct from the source-grounded review. Only PASS_CONGRUENT permits this workflow's declared gate; missing, contradictory or stale evidence stops it. A host without the required evidence/review path reports the exact gap and continues read-only, never fabricates a pass. No baseline gate requires a paid upgrade.
+
+Trace the WHOLE operation before its first write, including helper-triggered changes to existing records and permissions. SOURCE_ONLY never authorises runtime/data writes, fixtures, external side effects or publication. A disposable tenant, preview, branch, unpublished app or synthetic record does not establish isolation. Backend/schema edits may auto-sync: classify and authorise those effects explicitly. A changed operation, dependency, environment or revision requires reassessment; reuse unchanged valid evidence. A denied operation MUST NOT be retried through another tool to bypass it. Preserve existing approval only within its unchanged scope.
+
+After each coherent batch, you MUST reopen the saved artifacts and report EVERY exact file path, added/modified/deleted status, final revision and observed line ranges, enclosing symbol, actual diff/excerpt, requirement addressed, and exact tests/results. Use baseline locations for deletions and both paths for renames. If a host does not expose lines, say LINES_UNAVAILABLE and give a precise symbol/resource locator; NEVER guess. Distinguish files edited from files merely read. Include entities, functions, routes and config, including non-file resources by exact ID/field path. Do not expose credentials or customer data.
+
+Use fresh provider/export readback to compare claimed edits with saved bytes. BUILDER_CLAIM and INDEPENDENT_VALIDATOR_SIGNAL are separate: the same builder's report, generated receipt, hash or pasted transcript cannot independently verify its work. An external verifier must obtain its own current readback through an authorised route. Missing independent access means Builder reports these changes; completion not independently verified. Missing claimed saved edits means FAILED_SYNC_VERIFICATION. Source verification alone does not prove deployment or behaviour. Never emit COMPLETE_VERIFIED without the applicable independent source, behaviour and live-parity evidence.
+
+Persist compact app-bound check/result references in the existing authorised evidence route; never rewrite checksum-owned governance files outside their update lifecycle. Keep raw source and detailed explanations in the authorised local app context, not Cloud BOS payloads. Emit check, evidence origin, observed result and remaining gap in chat. These host rules do not lock files or intercept native writes outside the workflow. No claims of universal enforcement.
+`;
+
+export const PUBLIC_GUIDANCE_ACTIVATION_V2 = "## REQUIRED BEFORE ANSWERING — PUBLIC_GUIDANCE_ACTIVATION_V2\n\nThese instructions apply to EVERY substantive app request, including read-only advice. The user does not need to mention BOS. You MUST complete the following sequence before giving recommendations, proposing implementation or editing:\n\n1. READ this app's current manifest, Project Spec, Project State, active Build Intentions and applicable gates. Identify the exact app and current request. Preserve accepted constraints.\n2. CONNECT with bos_connect for this exact app. A successful connection verifies the connection ONLY. If guidance_activation.activation_complete is false, activation is INCOMPLETE. Follow its next_tool; do not treat transport PASS or GOVERNED_ACTIVE as completed consultation.\n3. ACTIVATE cloudbos-governed-build and CALL bos_capabilities for this app and the relevant controlled intent categories. Read actual tool availability and entitlement results. Never assume a capability from its name or a previous conversation.\n4. RETRIEVE the available guidance selected for this request. A catalogue entry is not guidance; a scan plan is not an executed scan. If the response identifies deeper available guidance, retrieve it before proposing dependent work. If needed guidance is unavailable, name that specific gap and limit the proposal accordingly.\n5. APPLY the retrieved guidance to the current app evidence. State the recommendation it changes and review applicable blocking rules. Resolve readable gaps yourself. A failed applicable blocking rule stops dependent work.\n6. CHECK the PLAN evidence with the checksum-verified helper named by the authenticated host_workflow. evaluateGuidanceActivation is an exported JavaScript function in that helper, not an MCP tool name: use an available authorised script runner. If no runner is available, say HELPER_NOT_EXECUTABLE; never invent a pass. Source reading and diagnosis may continue, but do not claim the required gate passed.\n7. RECORD actually used capabilities and their actual outcomes through the selected route. Require acknowledgement; a planned call or unacknowledged report is not recorded. Run CLOSEOUT when the helper can execute.\n\nBefore final advice, emit a compact Activation Check: app/request; connection; discovery; retrieved guidance/result reference; concrete application; blocking-rule result; helper result; outcome acknowledgement; remaining gap. Each entry MUST describe observed evidence or say MISSING/UNAVAILABLE. Do not fill fields from intention or memory. Do not say Gap:none, governance complete or implementation ready when any required step is missing. Correct a skipped step before continuing; if impossible, report the exact incomplete step. Do not ask the user to repeat a BOS command.\n\nThis is a mandatory builder instruction, not a claim that the platform intercepts every native action. It adds no entitlement, mutation permission or authority. Existing exact-plan approval and artifact-readback rules continue to apply.\n";
+
+function controlVersions(control) {
+  return [control, control + PUBLIC_BUILD_DISCIPLINE_LEGACY, control + PUBLIC_BUILD_DISCIPLINE_V1,
+    (control + PUBLIC_BUILD_DISCIPLINE_V1).replace("## Activation and scope", PUBLIC_GUIDANCE_ACTIVATION_V2 + "\n## Activation and scope")];
+}
+
 function fail(code, message = code) {
   const error = new Error(message);
   error.code = code;
@@ -195,13 +221,15 @@ function forwardUpdate(input, profileId, profileVersion) {
   const generated = buildContents({ ...input, maturation_stage: stage }, profileId, profileVersion, definitions, []);
   const next = { ...prior };
   if (input.aicontrol_revision !== undefined) {
-    if (!["PUBLIC_ROUTING_V1", "PUBLIC_BUILD_DISCIPLINE_V1"].includes(input.aicontrol_revision)) fail("BASE44_PROFILE_ROUTING_REVISION_UNSUPPORTED");
+    if (!["PUBLIC_ROUTING_V1", "PUBLIC_BUILD_DISCIPLINE_V1", "PUBLIC_GUIDANCE_ACTIVATION_V2"].includes(input.aicontrol_revision)) fail("BASE44_PROFILE_ROUTING_REVISION_UNSUPPORTED");
     const control = generated.get("documents/AICONTROL.md");
     const legacy = control.slice(0, -PUBLIC_ROUTING_V1.length);
-    const strengthened = control + PUBLIC_BUILD_DISCIPLINE_V1;
-    if (![legacy, control, strengthened].includes(prior["documents/AICONTROL.md"])) fail("BASE44_PROFILE_ROUTING_PRIOR_UNRECOGNIZED");
-    if (prior["documents/AICONTROL.md"] === strengthened && input.aicontrol_revision === "PUBLIC_ROUTING_V1") fail("BASE44_PROFILE_CONTROL_DOWNGRADE_BLOCKED");
-    next["documents/AICONTROL.md"] = input.aicontrol_revision === "PUBLIC_BUILD_DISCIPLINE_V1" ? strengthened : control;
+    const versions = controlVersions(control);
+    const priorIndex = versions.indexOf(prior["documents/AICONTROL.md"]);
+    if (priorIndex < 0 && prior["documents/AICONTROL.md"] !== legacy) fail("BASE44_PROFILE_ROUTING_PRIOR_UNRECOGNIZED");
+    const targetIndex = { PUBLIC_ROUTING_V1: 0, PUBLIC_BUILD_DISCIPLINE_V1: 2, PUBLIC_GUIDANCE_ACTIVATION_V2: 3 }[input.aicontrol_revision];
+    if (priorIndex > targetIndex) fail("BASE44_PROFILE_CONTROL_DOWNGRADE_BLOCKED");
+    next["documents/AICONTROL.md"] = versions[targetIndex];
   }
   for (const path of ["documents/PROJECT_SPEC.md", "governance/BUILD_INTENTIONS.md"]) next[path] = generated.get(path);
   if (next["documents/PROJECT_SPEC.md"] === prior["documents/PROJECT_SPEC.md"]
@@ -268,9 +296,10 @@ function cloneRebind(input, profileId, profileVersion) {
       || Object.keys(input.capability_currentness ?? {}).length > 0) fail("BASE44_CLONE_SCOPE_UNSUPPORTED");
   const generated = buildContents({ ...input, maturation_stage: input.maturation_stage ?? "DISCOVERY" }, profileId, profileVersion, definitions, triggers);
   const oldControl = buildContents({ ...input, project_ref: manifest.project_ref }, profileId, profileVersion, definitions, triggers).get("documents/AICONTROL.md");
-  if (![oldControl, oldControl + PUBLIC_BUILD_DISCIPLINE_V1].includes(prior["documents/AICONTROL.md"])) fail("BASE44_CLONE_CANONICAL_ROUTER_REQUIRED");
+  const sourceControlIndex = controlVersions(oldControl).indexOf(prior["documents/AICONTROL.md"]);
+  if (sourceControlIndex < 0) fail("BASE44_CLONE_CANONICAL_ROUTER_REQUIRED");
   const contents = new Map(generated);
-  if (prior["documents/AICONTROL.md"] === oldControl + PUBLIC_BUILD_DISCIPLINE_V1) contents.set("documents/AICONTROL.md", generated.get("documents/AICONTROL.md") + PUBLIC_BUILD_DISCIPLINE_V1);
+  contents.set("documents/AICONTROL.md", controlVersions(generated.get("documents/AICONTROL.md"))[sourceControlIndex]);
   // Preserve safety policy, but reset capability results and build status for the clone.
   if (expected.has("governance/SECURITY_BASELINE.md")) contents.set("governance/SECURITY_BASELINE.md", prior["governance/SECURITY_BASELINE.md"]);
   if (expected.has("governance/BUILD_GATES.json")) {

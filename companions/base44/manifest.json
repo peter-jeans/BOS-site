@@ -37,8 +37,8 @@
     },
     {
       "path": "scripts/base44-app-governance-profile.mjs",
-      "bytes": 47079,
-      "sha256": "34600fb4048188a774aefa326d5a2bb2c8a48292a4ed393bb38b4e17029b5407"
+      "bytes": 54801,
+      "sha256": "7dcc48325bba381013df4b0464d18f2b87d62fe5cfbf667f7523afece1d2b97b"
     },
     {
       "path": "contracts/base44-app-governance-profiles.json",
@@ -57,13 +57,13 @@
     },
     {
       "path": "scripts/base44-update-request.mjs",
-      "bytes": 23198,
-      "sha256": "56300381d5272bd162e49100634d65d2bfdb028c89cda009d8998681cab73ad5"
+      "bytes": 23231,
+      "sha256": "2df039acf8b5c8bf49e7762bd55ce312262453d0cf8753c9c14bdf8013afee87"
     },
     {
       "path": "scripts/base44-update-request.cjs",
-      "bytes": 23503,
-      "sha256": "1578c73b55c766184c0b69baba49def5fc64cf3c35cda3dd5ba695b290d4d54f"
+      "bytes": 23536,
+      "sha256": "413c5aae4b89fd622f4c357e58ee2879637b83b1d4834ed0c56b2c456a467838"
     },
     {
       "path": "scripts/base44-build-discipline.mjs",

@@ -26,7 +26,7 @@ function fail(code, path, action) {
 function same(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
 
 export async function prepareBase44UpdateRequest({ store, binding, baseline, transport = 'INSTALLED_PLAN_REFERENCE', aicontrol_revision }) {
-  if (aicontrol_revision !== undefined && !['PUBLIC_ROUTING_V1', 'PUBLIC_BUILD_DISCIPLINE_V1'].includes(aicontrol_revision)) fail('CONTROL_REVISION_UNSUPPORTED', 'aicontrol_revision', 'USE_ADVERTISED_VERSIONED_UPDATE');
+  if (aicontrol_revision !== undefined && !['PUBLIC_ROUTING_V1', 'PUBLIC_BUILD_DISCIPLINE_V1', 'PUBLIC_GUIDANCE_ACTIVATION_V2'].includes(aicontrol_revision)) fail('CONTROL_REVISION_UNSUPPORTED', 'aicontrol_revision', 'USE_ADVERTISED_VERSIONED_UPDATE');
   // Capture owner-accepted inputs before the first asynchronous provider read.
   // Caller edits during readback must not silently change the requested scope.
   binding = structuredClone(binding);
