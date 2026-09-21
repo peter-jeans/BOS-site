@@ -179,7 +179,7 @@ export function normalizeBase44UpdateInput(input) {
 // reviewed specification, active intention and optional maturity may change.
 // AI control changes only through the explicit, versioned public routing update;
 // capability results, security rules and evidence history survive.
-function forwardUpdate(input, profileId, profileVersion) {
+function forwardUpdate(input, profileId, profileVersion, legacyDiscipline = false) {
   const manifestPath = "governance/GOVERNANCE_MANIFEST.json";
   const statePath = "governance/PROJECT_STATE.json";
   const ledgerPath = "governance/EVIDENCE_LEDGER.jsonl";
@@ -229,7 +229,7 @@ function forwardUpdate(input, profileId, profileVersion) {
     if (priorIndex < 0 && prior["documents/AICONTROL.md"] !== legacy) fail("BASE44_PROFILE_ROUTING_PRIOR_UNRECOGNIZED");
     const targetIndex = { PUBLIC_ROUTING_V1: 0, PUBLIC_BUILD_DISCIPLINE_V1: 2, PUBLIC_GUIDANCE_ACTIVATION_V2: 3 }[input.aicontrol_revision];
     if (priorIndex > targetIndex) fail("BASE44_PROFILE_CONTROL_DOWNGRADE_BLOCKED");
-    next["documents/AICONTROL.md"] = versions[targetIndex];
+    next["documents/AICONTROL.md"] = versions[legacyDiscipline && targetIndex === 2 ? 1 : targetIndex];
   }
   for (const path of ["documents/PROJECT_SPEC.md", "governance/BUILD_INTENTIONS.md"]) next[path] = generated.get(path);
   if (next["documents/PROJECT_SPEC.md"] === prior["documents/PROJECT_SPEC.md"]
@@ -387,12 +387,19 @@ export function validateBase44AppGovernanceProfilePlan(plan) {
     const prior = plan.update_mode.prior_artifacts;
     const manifestPath = "governance/GOVERNANCE_MANIFEST.json";
     if (typeof prior?.[manifestPath] !== "string") fail("BASE44_PROFILE_UPDATE_PRIOR_INVALID");
-    const rebuilt = forwardUpdate({ ...plan, ...plan.update_mode.requested_changes,
+    const rebuildInput = { ...plan, ...plan.update_mode.requested_changes,
       installed_artifacts: prior, installed_manifest_content: prior[manifestPath], installed_manifest: JSON.parse(prior[manifestPath]),
       expected_prior_sha256: Object.fromEntries(plan.artifacts.map(x => [x.target, x.expected_prior_sha256])),
       authority: { source: "BASE44_APP_OWNER", deployment: "OWNER_CONTROLLED" },
-    }, plan.profile_id, loadBase44AppGovernanceProfiles().version);
-    if (canonical(rebuilt) !== canonical(plan.artifacts)) fail("BASE44_PROFILE_UPDATE_CONTINUITY_MISMATCH");
+    };
+    const rebuilt = forwardUpdate(rebuildInput, plan.profile_id, loadBase44AppGovernanceProfiles().version);
+    if (canonical(rebuilt) !== canonical(plan.artifacts)) {
+      // Only the exact historical V1 bytes are eligible; every artifact, hash,
+      // ledger event and continuity field must still reconstruct identically.
+      if (plan.update_mode.requested_changes.aicontrol_revision !== "PUBLIC_BUILD_DISCIPLINE_V1"
+          || canonical(forwardUpdate(rebuildInput, plan.profile_id, loadBase44AppGovernanceProfiles().version, true)) !== canonical(plan.artifacts))
+        fail("BASE44_PROFILE_UPDATE_CONTINUITY_MISMATCH");
+    }
   } else if (plan.update_mode !== undefined) fail("BASE44_PROFILE_UPDATE_MODE_INVALID");
   if (plan.clone_mode !== undefined) {
     const mode = plan.clone_mode;
