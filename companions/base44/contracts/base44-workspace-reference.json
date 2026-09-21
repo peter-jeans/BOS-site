@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.40.0",
+  "version": "1.41.0",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -243,5 +243,30 @@
         "behavior_verification_ref"
       ]
     }
+  },
+  "existing_page_review": {
+    "trigger": "Existing pages including apps built before onboarding; set independently read current_context.existing_page=true for page-affecting work.",
+    "steps": [
+      "Read existing routes, page source with exact file/line references, contracts, dependencies and real user journeys before proposing repairs. Missing readback means assessment incomplete.",
+      "Classify each page separately: accepted contract present, contract missing, contract drift, interaction defect, or business/data/permission ownership risk. A missing contract is not proof of poor design.",
+      "Keep rendering and temporary interaction state in UI. Inspect duplicated business rules, competing save paths and permission decisions in page components; identify the authoritative owner before changing them.",
+      "Rank retain and document, bounded repair, then owner-reviewed redesign. Preserve working behaviour and accepted contracts; do not automatically replace an existing page.",
+      "Explain the observed problem, user impact, proposed change, what stays the same, dependencies, uncertainty and rollback in plain language. Offer up to three relevant options without padding.",
+      "Bind the accepted local contract, repair one bounded area, independently read changed artifacts and test affected journeys, mobile, accessibility and data persistence. Record actual outcome separately from advice."
+    ],
+    "evidence_path": "gui_application.existing_page_review",
+    "required_evidence": [
+      "inventory_ref",
+      "logic_ownership_ref",
+      "user_explanation_ref",
+      "decision_ref",
+      "rollback_ref"
+    ],
+    "dispositions": [
+      "RETAIN_AND_DOCUMENT",
+      "BOUNDED_REPAIR",
+      "OWNER_APPROVED_REDESIGN"
+    ],
+    "boundary": "Host evidence consistency only; no native interception, no automatic redesign, no false implementation claim."
   }
 }

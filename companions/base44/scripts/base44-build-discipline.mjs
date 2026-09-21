@@ -78,6 +78,11 @@ export function evaluateGuidanceActivation(input = {}) {
         || !token(gui.selection_evidence_ref) || !token(gui.local_contract_ref)
         || !token(gui.plan_application_ref) || !token(gui.platform_evidence_ref)
         || gui.gate_verdict !== 'RELEVANT') return fail('GUI_GUIDANCE_SELECTION_AND_LOCAL_CONTRACT_REQUIRED');
+    if (current_context.existing_page === true) {
+      const assessment = gui.existing_page_review;
+      if (!assessment || !['inventory_ref', 'logic_ownership_ref', 'user_explanation_ref', 'decision_ref', 'rollback_ref'].every(k => token(assessment[k]))
+          || !['RETAIN_AND_DOCUMENT', 'BOUNDED_REPAIR', 'OWNER_APPROVED_REDESIGN'].includes(assessment.disposition)) return fail('EXISTING_PAGE_REVIEW_AND_EXPLANATION_REQUIRED');
+    }
     if (input.phase === 'CLOSEOUT' && (!token(gui.artifact_readback_ref)
         || !token(gui.behavior_verification_ref))) return fail('GUI_IMPLEMENTATION_READBACK_REQUIRED');
   }
