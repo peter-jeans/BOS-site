@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 export const PUBLIC_BUILD_DISCIPLINE_V1 = `
 ## Mandatory build checks — PUBLIC_BUILD_DISCIPLINE_V1
 
+For every relevant request, including read-only design advice, complete the selected-route connection -> capability discovery -> guidance retrieval -> applicability/blocking-rule review -> plan application loop. Connection success is not capability use. Use evaluateGuidanceActivation before a BOS-informed plan and its CLOSEOUT phase after recording actual outcomes. Missing or unavailable required guidance blocks dependent work; never invent a grant, source or acknowledgement. Preserve private/direct/local routes and use their existing equivalent mechanisms.
+
 Before builder handoff, first material write and any transition to runtime/data tests, you MUST emit a Build Alignment Check for this exact app, current revision, accepted intention, proposed operation, effect set and actual environment. Read the app-owned Project Spec, Project State, active Build Intentions, exclusions and applicable gates, then the affected source and its dependencies. Never substitute compilation, a checksum, connection success or a post-edit check for pre-write alignment.
 
 You MUST demonstrate knowledge of the relevant purpose/users/workflow, implementation/dependencies, direct and indirect effects, invariants/exclusions and falsifiable verification plan. Cite current exact source references. Check the explanation against freshly read evidence; a fluent answer or I understand is not proof. A material error or unknown effect stops that mutation. Reread the relevant local LDP or authorised app-owned governance projection and implementation, correct the answer and pass a fresh application question. Resolve read-only gaps without asking the owner again; after two unsuccessful retries report the unresolved gap. Never invent a missing LDP or treat the public projection as a private LDP restoration.
@@ -31,6 +33,51 @@ const classes = new Set(['SOURCE_EDIT', 'RESOURCE_DEPLOY', 'RUNTIME_DATA_WRITE',
 const baseResult = () => ({ schema: 'BOS_BASE44_BUILD_PREFLIGHT_RESULT_V1', status: 'CLARIFICATION_REQUIRED',
   ready_for_declared_gate: false, reasons: [], enforcement: 'HOST_WORKFLOW_ONLY',
   authenticates_evidence: false, intercepts_native_writes: false, grants_authority: false });
+
+// Evidence consistency gate shared by advice and prewrite workflows. This is
+// deliberately not an authenticator: a host must verify the referenced results.
+export function evaluateGuidanceActivation(input = {}) {
+  const out = { schema: 'BOS_GUIDANCE_ACTIVATION_RESULT_V1', status: 'GUIDANCE_ACTIVATION_REQUIRED',
+    ready_for_plan: false, grants_authority: false, authenticates_evidence: false,
+    intercepts_native_writes: false, enforcement: 'HOST_WORKFLOW_ONLY', reasons: [] };
+  const fail = reason => ({ ...out, reasons: [reason] });
+  const { scope_sha256, activation, review, current_context } = input;
+  if (!digest(scope_sha256) || !activation || activation.schema !== 'BOS_GUIDANCE_ACTIVATION_V1')
+    return fail('GUIDANCE_ACTIVATION_EVIDENCE_MISSING');
+  if (activation.scope_sha256 !== scope_sha256 || !token(activation.request_ref)
+      || !token(activation.project_ref) || !['PUBLIC', 'PRIVATE', 'DIRECT', 'LOCAL'].includes(activation.route))
+    return fail('GUIDANCE_SCOPE_OR_ROUTE_MISMATCH');
+  if (!current_context || ['project_ref', 'request_ref', 'route'].some(k => current_context[k] !== activation[k]))
+    return fail('CURRENT_PROJECT_REQUEST_ROUTE_REQUIRED');
+  if (!token(activation.connection_ref) || !token(activation.discovery_ref)
+      || !token(activation.current_readback_ref)) return fail('CONNECT_DISCOVERY_READBACK_REQUIRED');
+  if (!Array.isArray(activation.required_capability_ids) || !activation.required_capability_ids.length
+      || !activation.required_capability_ids.every(token)
+      || new Set(activation.required_capability_ids).size !== activation.required_capability_ids.length)
+    return fail('REQUIRED_CAPABILITY_SELECTION_MISSING');
+  if (!Array.isArray(activation.guidance) || activation.guidance.length !== activation.required_capability_ids.length)
+    return fail('GUIDANCE_RETRIEVAL_COVERAGE_MISSING');
+  for (const id of activation.required_capability_ids) {
+    const matches = activation.guidance.filter(x => x?.capability_id === id);
+    if (matches.length !== 1) return fail('GUIDANCE_RETRIEVAL_COVERAGE_MISSING');
+    const item = matches[0];
+    if (item.decision !== 'AVAILABLE') return fail('REQUIRED_GUIDANCE_BLOCKED_OR_UNAVAILABLE');
+    if (!token(item.result_ref) || !token(item.application_ref)) return fail('RETRIEVED_AND_APPLIED_GUIDANCE_REQUIRED');
+  }
+  if (!Array.isArray(activation.blocking_rules) || !activation.blocking_rules.length
+      || activation.blocking_rules.some(x => !token(x?.rule_id) || !token(x?.evidence_ref)
+        || !['SATISFIED', 'NOT_APPLICABLE'].includes(x?.decision)))
+    return fail('BLOCKING_RULE_REVIEW_UNRESOLVED');
+  if (!review || review.origin !== 'SOURCE_GROUNDED_REVIEW' || review.source_readback_verified !== true
+      || review.scope_sha256 !== scope_sha256 || !token(review.evidence_ref)
+      || review.guidance_sha256 !== buildScopeHash(activation) || review.guidance_findings !== 'SUPPORTED')
+    return fail('GUIDANCE_APPLICABILITY_REVIEW_REQUIRED');
+  if (input.phase === 'CLOSEOUT' && activation.guidance.some(x => !token(x.outcome_ref)
+      || !['RECORDED', 'ALREADY_RECORDED'].includes(x.recording_status)))
+    return fail('GUIDANCE_OUTCOME_NOT_RECORDED');
+  if (!['PLAN', 'CLOSEOUT'].includes(input.phase)) return fail('GUIDANCE_PHASE_REQUIRED');
+  return { ...out, status: 'GUIDANCE_APPLIED', ready_for_plan: true };
+}
 
 // Facts/review MUST be populated from the host's independent reads and actual
 // semantic review. This evaluator cannot authenticate an arbitrary JSON packet.
@@ -64,6 +111,8 @@ export function evaluateBase44BuildPreflight(input = {}) {
     return stop('CLARIFICATION_REQUIRED', 'UNRESOLVED_KNOWLEDGE_GAP');
   if (review.remediation_required === true && (!token(review.retest_ref) || review.retest_result !== 'SUPPORTED'))
     return stop('CLARIFICATION_REQUIRED', 'FRESH_APPLICATION_RETEST_REQUIRED');
+  const guidance = evaluateGuidanceActivation({ scope_sha256: out.scope_sha256, activation: input.guidance_activation, current_context: current.guidance_context, review, phase: 'PLAN' });
+  if (!guidance.ready_for_plan) return stop('CLARIFICATION_REQUIRED', guidance.reasons[0]);
   return { ...out, status: 'PASS_CONGRUENT', ready_for_declared_gate: true, review_ref: review.evidence_ref };
 }
 
