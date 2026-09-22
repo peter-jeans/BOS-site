@@ -7,6 +7,8 @@ export const PUBLIC_BUILD_DISCIPLINE_V1 = `
 
 For every relevant request, including read-only design advice, complete the selected-route connection -> capability discovery -> guidance retrieval -> applicability/blocking-rule review -> plan application loop. Connection success is not capability use. Use evaluateGuidanceActivation before a BOS-informed plan and its CLOSEOUT phase after recording actual outcomes. Missing or unavailable required guidance blocks dependent work; never invent a grant, source or acknowledgement. Preserve private/direct/local routes and use their existing equivalent mechanisms.
 
+When preflight finds an issue, retain its issue ID across retries and resolve it through MITIGATION_REVIEW_V1 before dependent advice or writes. Read current environment evidence and the accepted long-term requirements. Propose three genuinely distinct mitigations; if fewer are credible, record which alternatives were considered and why they were rejected rather than padding the list. Rank them by effectiveness, long-term architecture/data/customer outcomes, execution feasibility, reversibility and maintenance burden. Select the highest-ranked permitted option, retaining current owner decisions and scope; changed authority/scope requires the existing owner approval. Re-run the original failed checks for the chosen option against the current app/revision/environment. A tool switch cannot bypass a prohibition. No viable permitted option means remain blocked. Record the implemented result and actual outcome at closeout. The builder supplies environment-grounded proposals; BOS requirements and accepted app outcomes constrain selection.
+
 Before builder handoff, first material write and any transition to runtime/data tests, you MUST emit a Build Alignment Check for this exact app, current revision, accepted intention, proposed operation, effect set and actual environment. Read the app-owned Project Spec, Project State, active Build Intentions, exclusions and applicable gates, then the affected source and its dependencies. Never substitute compilation, a checksum, connection success or a post-edit check for pre-write alignment.
 
 You MUST demonstrate knowledge of the relevant purpose/users/workflow, implementation/dependencies, direct and indirect effects, invariants/exclusions and falsifiable verification plan. Cite current exact source references. Check the explanation against freshly read evidence; a fluent answer or I understand is not proof. A material error or unknown effect stops that mutation. Reread the relevant local LDP or authorised app-owned governance projection and implementation, correct the answer and pass a fresh application question. Resolve read-only gaps without asking the owner again; after two unsuccessful retries report the unresolved gap. Never invent a missing LDP or treat the public projection as a private LDP restoration.
@@ -33,6 +35,53 @@ const classes = new Set(['SOURCE_EDIT', 'RESOURCE_DEPLOY', 'RUNTIME_DATA_WRITE',
 const baseResult = () => ({ schema: 'BOS_BASE44_BUILD_PREFLIGHT_RESULT_V1', status: 'CLARIFICATION_REQUIRED',
   ready_for_declared_gate: false, reasons: [], enforcement: 'HOST_WORKFLOW_ONLY',
   authenticates_evidence: false, intercepts_native_writes: false, grants_authority: false });
+
+// The host supplies issues from the original preflight, including on retries.
+// References bind review evidence; this does not authenticate builder claims.
+export function evaluateBuildMitigations({scope_sha256, current_context, mitigation, review, phase = 'PLAN'} = {}) {
+  const fail = reason => ({ready:false, reason, grants_authority:false});
+  const ids = current_context?.preflight_issue_ids;
+  if (!Array.isArray(ids) || ids.length > 32 || !ids.every(token) || new Set(ids).size !== ids.length)
+    return fail('PREFLIGHT_ISSUE_INVENTORY_REQUIRED');
+  if (!ids.length && mitigation?.issues?.length) return fail('MITIGATION_ISSUE_COVERAGE_REQUIRED');
+  if (!ids.length) return review?.remediation_required === true
+    ? fail('REMEDIATION_ISSUE_MUST_BE_RETAINED') : {ready:true, status:'NO_PREFLIGHT_ISSUES', grants_authority:false};
+  if (!mitigation || mitigation.schema !== 'BOS_MITIGATION_REVIEW_V1'
+      || mitigation.scope_sha256 !== scope_sha256 || !Array.isArray(mitigation.issues)
+      || mitigation.issues.length !== ids.length) return fail('RANKED_MITIGATIONS_REQUIRED');
+  const criteria = ['effectiveness_ref','long_term_fit_ref','feasibility_ref','reversibility_ref','burden_ref','evidence_ref'];
+  for (const id of ids) {
+    const matches = mitigation.issues.filter(issue => issue?.issue_id === id);
+    if (matches.length !== 1) return fail('MITIGATION_ISSUE_COVERAGE_REQUIRED');
+    const issue = matches[0], options = issue.options;
+    if (!token(issue.original_check_ref) || !token(issue.environment_readback_ref)
+        || !token(issue.long_term_requirements_ref) || !token(issue.ranking_rationale_ref)
+        || !Array.isArray(options) || options.length < 1 || options.length > 3)
+      return fail('THREE_CREDIBLE_MITIGATIONS_OR_JUSTIFIED_SHORTLIST_REQUIRED');
+    if (options.length < 3 && (!token(issue.alternatives_considered_ref) || !token(issue.shortlist_reason_ref)))
+      return fail('SHORTLIST_JUSTIFICATION_REQUIRED');
+    if (new Set(options.map(o => o?.option_id)).size !== options.length
+        || new Set(options.map(o => o?.rank)).size !== options.length
+        || options.some(o => !token(o?.option_id) || !Number.isInteger(o.rank) || o.rank < 1 || o.rank > options.length
+          || criteria.some(k => !token(o[k])) || typeof o.permitted !== 'boolean'))
+      return fail('MITIGATION_COMPARISON_AND_RANKING_REQUIRED');
+    const best = [...options].filter(o => o.permitted).sort((a,b) => a.rank-b.rank)[0];
+    if (!best) return fail('NO_PERMITTED_MITIGATION');
+    if (issue.selected_option_id !== best.option_id) return fail('BEST_PERMITTED_MITIGATION_REQUIRED');
+    if (best.owner_approval_required === true && !token(best.owner_approval_ref))
+      return fail('MITIGATION_OWNER_APPROVAL_REQUIRED');
+    const check = issue.recheck;
+    if (!check || check.scope_sha256 !== scope_sha256 || check.selected_option_id !== best.option_id
+        || check.original_check_ref !== issue.original_check_ref || check.result !== 'PASS'
+        || !token(check.evidence_ref) || check.authorised !== true || check.resolves_original_issue !== true)
+      return fail('ORIGINAL_CHECK_REASSESSMENT_REQUIRED');
+    if (phase === 'CLOSEOUT' && (!token(issue.outcome_ref) || !['RECORDED','ALREADY_RECORDED'].includes(issue.recording_status)))
+      return fail('MITIGATION_OUTCOME_ACKNOWLEDGEMENT_REQUIRED');
+  }
+  if (review?.mitigation_sha256 !== buildScopeHash(mitigation) || review.mitigation_findings !== 'SUPPORTED')
+    return fail('SOURCE_GROUNDED_MITIGATION_REVIEW_REQUIRED');
+  return {ready:true, status:'MITIGATIONS_RECHECKED', grants_authority:false};
+}
 
 // Evidence consistency gate shared by advice and prewrite workflows. This is
 // deliberately not an authenticator: a host must verify the referenced results.
@@ -72,6 +121,8 @@ export function evaluateGuidanceActivation(input = {}) {
       || review.scope_sha256 !== scope_sha256 || !token(review.evidence_ref)
       || review.guidance_sha256 !== buildScopeHash(activation) || review.guidance_findings !== 'SUPPORTED')
     return fail('GUIDANCE_APPLICABILITY_REVIEW_REQUIRED');
+  const mitigation = evaluateBuildMitigations({scope_sha256, current_context, mitigation: activation.mitigation_review, review, phase: input.phase});
+  if (!mitigation.ready) return fail(mitigation.reason);
   if (current_context.page_affecting === true) {
     const gui = activation.gui_application;
     if (!gui || !token(gui.guidance_result_ref) || !token(gui.selected_template_id)
