@@ -1,0 +1,284 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
+  "version": "1.42.2",
+  "authority": "PUBLIC_GUIDANCE_ONLY",
+  "grants_mutation_authority": false,
+  "plan_transport_and_recovery": [
+    "For Base44 discovery, classify the exact app: local_repository_visible=false and github_remote_verified=false unless verified for this host. Discovery does not fetch provider revision. Read a clean full 40-hex Git HEAD using native read-only bash in the verified app root; locate the workspace before using git -C. Never infer or truncate revision, inspect credentials, Git remotes, SDK internals or preview/private authentication APIs. If unavailable, report CURRENT_PROVIDER_REVISION_READBACK_REQUIRED and the failed check. Use resource_uri cloudbos://projects/<project_id>. project_ref MUST equal base44:<adapter_context.app_id>; adapter_context.app_id is the bare app ID and expected_app_revision is the fresh full revision. Preserve exact accepted project_spec, in_scope, out_of_scope, build_intentions and active_id; never rewrite scope to fit memory.",
+    "Prefer response_format PLAN_DOWNLOAD_V1 for initial issuance and reference-only recovery. In a native code tool validate the returned service HTTPS origin, /mcp/plan-download path, POST method and exact project/binding. Disable redirects; bound request time and size. Use the descriptor header verbatim; do not add another authentication scheme. Never log or save its single-use credential. Verify raw byte count, json_sha256, canonical plan_hash (excluding plan_hash), approval policy and every artifact checksum. Recover using only project_ref, project_binding_id, recover_plan:{plan_hash}, response_format:PLAN_DOWNLOAD_V1. An expired download credential can be renewed for the same current unconsumed proposal without another approval. Keep scratch files outside the app repository; retain originals inside the app only at an explicitly approved path, with independent checkpoint readback. Download permission is not install approval. Chat-transcribed BASE44_PLAN_CHUNK_V1 is not a qualified fallback; never reconstruct truncated or mismatched bytes. Report PLAN_TRANSPORT_VERIFICATION_REQUIRED if native byte access is unavailable. Extra app paths block completion.",
+    "For drift repair, request an explicit ROLLBACK plan with the canonical installed manifest text, all exact restoration artifacts and the current observed prior hashes. Verify every restored byte against the bound manifest. Never turn repair into an unapproved update. After host application, use the lifecycle readback helper with independently verified provider evidence and matching before/after application-source digests before calling bos_project_governance_activate.",
+    "Never reconstruct a plan, manifest, binding or proof hash. For an unapplied pending proposal, use bos_project_governance_decision with exact project_ref, project_binding_id, plan_hash and decision READ to restore durable approval. An already applied plan uses current binding plus exact installed-artifact verification; do not READ, recover, approve or replay it as a pending proposal. PLAN_NOT_CURRENT on that pending-plan route is not proof that installed governance or stored history was lost. Only explicit owner approval authorizes APPROVE; only explicit cancellation authorizes CANCEL. Before writes, recheck the stored decision, live binding, revision and prior hashes. For an already approved durable plan, prefer activation with plan_ref:{plan_hash,project_binding_id}, project_ref, the server-returned approval and fresh canonical readback; omit plan. Confirm plan_ref is in the live schema. Never transcribe the full plan or stage it in app files to call MCP. Missing scratch/helpers: re-fetch the public manifest and byte-verified helper dependencies in the same native code surface. Do not guess algorithms. Refresh evidence within five minutes, retaining unchanged approval. Changed target, permissions, baseline, binding or relevant prior state requires a revised proposal. Cancelled or consumed plans cannot be reapproved; interrupted executing claims require reconciliation, not replay.",
+    "For interrupted first activation, use resume_plan:{plan_hash,readback} with fresh canonical proof of the original artifacts. If original bytes were lost and legacy recovery returns PLAN_EXPIRED, request recover_plan:{plan_hash,purpose:ACTIVATION_RESUME_SOURCE}, response_format:PLAN_DOWNLOAD_V1. Verify raw historical bytes; their old deadline remains. Then obtain a NEW durable READ/BIND plan and exact owner approval. Never reconstruct, reseed, replay expired approval or write app files. If unavailable report PLAN_RESUME_UNAVAILABLE.",
+    "For pre-approval canonical plan integrity, import validateBase44AppGovernanceProfilePlan from the checksum-verified scripts/base44-app-governance-profile.mjs companion and call it on the unmodified downloaded plan. This validates the canonical plan hash (excluding plan_hash) and every proposed content checksum/byte count. Fetch its declared relative dependencies from the same verified manifest. approval-lifecycle.mjs checks lifecycle/currentness only; it is not the canonical plan-hash validator. Also compare exact server descriptor identity, whole-document hash, manifest membership, permissions and accepted requirements. A matching plan_hash field alone is not an independent recomputation, and helper success grants no approval."
+  ],
+  "customer_tour": [
+    "After verified onboarding, offer a short optional tour: BOS can help you plan clearly, spot risks, investigate faults and check results. Keep chatting normally; no special commands are needed. Ask whether the user wants a quick tour, help with an issue, or to start building, then wait for their reply. Do not delay their requested work for a tour or repeat a completed or declined introduction. For symptoms, ask only what happens, where and what was expected; select the smallest relevant available scan, explain why, and keep diagnosis separate from approval to repair.",
+    "When the user asks to learn more, use the three approved tour batches below, at most five capabilities in one response. Present each as capability name \u2014 concrete descriptor/example \u2014 benefit, using a short numbered list rather than a wide table. Show only capabilities whose availability for this exact app and host is supported by current authenticated Cloud BOS results and applicable verified build gates; a local catalogue, tier label or example is not an entitlement grant. Explain the actual advisory or execution scope. Basic required safety, Early Warning and Build Verification gates must not be advertised as exclusively paid enhanced reviews. Skip unavailable items without inventing replacements to fill five slots or promoting an upgrade. Tailor examples to the app when useful, retaining the concrete situation and benefit. Reorder intake/triage first for a fragile existing app, or intent/alignment first for a new app. Never send all batches together. A request for the next batch authorizes explanation only, not tool execution, a scan, installation or repair. Route a request to try a capability through its usual checks.",
+    "Before the first tour batch, briefly explain the visible response labels: The speaker label identifies the source of guidance, the builder handling it and you as the audience. The header shows the current situation; the footer shows the outcome and next action. Use the authenticated current version in an actual example, never a fixed version. Explain that labels alone do not prove checks passed. During substantive governed work, put a compact evidence-derived header after the speaker chain: App: <verified app name> | Step: <current activity> | Status: <observed status or Not verified>. End with a brief outcome footer showing what was checked, any remaining gap and the next action. Omit empty or redundant fields and keep tour footers to the batch choice. Never print unresolved placeholders or invent green/active status. At a decision point use the existing prominent Your action required approval message; a tour choice never replaces exact plan approval.",
+    "Optional tour batch 1 \u2014 Help me build without making a mess:\n1. Build Alignment Check \u2014 Checks that a request such as \u201cadd appointment reminders\u201d stays focused on reminders rather than redesigning the booking system \u2014 helps prevent unwanted changes.\n2. Early Warning System \u2014 Flags risks such as changing a shared login component that several pages depend on \u2014 helps catch possible knock-on problems before work proceeds.\n3. App Health Check \u2014 Guides checks of journeys such as signing in, saving a form and reopening the saved record \u2014 helps find an app that looks finished but does not work reliably.\n4. Focused Problem Triage \u2014 If a booking disappears after saving, investigates the save, storage and display steps before proposing a rewrite \u2014 helps fix the cause without disturbing unrelated features.\n5. Build Verification \u2014 Looks for evidence that a claimed fix works, for example whether a saved booking survives a page refresh \u2014 helps prevent accepting \u201cfixed\u201d on the AI\u2019s word alone.\nEnd: Would you like five ways BOS can improve your app, try one of these, or finish the tour? Stop and wait for the user.",
+    "Optional tour batch 2 \u2014 Help me make a better app:\n1. Intent Clarification \u2014 Turns \u201cadd reminders\u201d into clear choices: who receives them, when, and by email or notification \u2014 helps the AI build what you actually meant.\n2. Design Guidance \u2014 Reviews problems such as a booking button hidden below a long form or controls too small to tap on a phone \u2014 helps users complete tasks with less confusion.\n3. Customer and Market Fit \u2014 Questions whether your intended users need another dashboard or would benefit more from a simple daily reminder \u2014 helps focus development on something people will use.\n4. Security Guidance \u2014 Prompts checks such as whether one customer can view another customer\u2019s records or access an administrator\u2019s page \u2014 helps identify privacy and access weaknesses before launch.\n5. Maintainable Code Guidance \u2014 Encourages separating bookings, payments and notifications when the AI starts putting everything into one large file \u2014 helps make later changes easier to test and less likely to break other features.\nEnd: Would you like five ways BOS keeps development on track, explore one of these, or finish the tour? Stop and wait for the user.",
+    "Optional tour batch 3 \u2014 Help me stay in control:\n1. Project and Permission Checks \u2014 Checks that a proposed change targets your test app rather than the live app, and that you approved the relevant work \u2014 helps prevent changes in the wrong place or beyond your instructions.\n2. Device and Platform Checks \u2014 Before building a walking tracker, checks whether your chosen app setup can record GPS with the screen locked on iOS and Android, including permissions and background restrictions \u2014 helps avoid building a feature that only works while the app is open.\n3. Clear Builder Handoffs \u2014 Carries instructions such as \u201cadd reminders, preserve existing bookings, and test cancellation\u201d into the next build step \u2014 helps prevent important conditions being forgotten.\n4. Progress and Next-Step Guidance \u2014 Distinguishes \u201cthe booking screen is built\u201d from \u201csaving, cancellation and reminders are tested\u201d \u2014 helps you see what remains before inviting users.\n5. Recovery Guidance \u2014 When the AI loses its working context, checks for stored plans, project instructions and verified records before continuing \u2014 helps resume agreed work without inventing missing decisions.\nEnd: That covers the essentials. Tell me about an idea or problem, and I\u2019ll suggest where to start. You can explore more on the public BOS website: https://peter-jeans.github.io/BOS-site/ .",
+    "At any point the user declines or ends the tour, stop immediately and offer https://peter-jeans.github.io/BOS-site/ once, then return to their requested task. Do not automatically start another batch, pitch a paid tier or require an exit confirmation. If some items were unavailable, adapt \u201cfive ways\u201d or \u201ccovers the essentials\u201d to the actual coverage. Device and Platform Checks must distinguish the development host from the execution device, OS and browser/native packaging. Verify current platform facts before recommending implementation; background GPS is an investigation example, not a universal supported/unsupported claim. Recovery examples promise only recovery supported by retained evidence, never restoration of all chat history. On resume, use trustworthy available tour position or ask whether to continue; never create app files or replay onboarding solely to remember tour progress."
+  ],
+  "ai_controls_resume": {
+    "sequence": [
+      "Rebind exact app and recover current onboarding stage from Cloud BOS plus governance artifacts, never old chat.",
+      "Before governance activation and required artifact readback, continue the prerequisite; do not invite an early paste. If already pasted, use only the pointer bounded setup/recovery route.",
+      "At the pointer stage invoke planBase44GovernedAppOnboarding with current evidence. Always render its full pointer_handoff copy_block and exact app name/ID in this chat, including on resume and while verification is pending. Never merely refer to an earlier message.",
+      "When the user says Saved, bind ai_controls_user_confirmation to this app, project_binding_id, governance_manifest_sha256 and canonical pointer_sha256; saved=true is only a user report. Pass any compact progress record from the existing authorized host evidence writer as onboarding_progress. Do not change the immutable manifest or create an unapproved store.",
+      "If BuildAI can distinguish the actual current-turn AI Controls input from chat or retrieved files, compare verbatim and supply ai_controls_buildai_self_check with source CURRENT_TURN_AI_CONTROLS and exact text, bound like the confirmation. Otherwise report unavailable. This remains an attributed self-check, never independent settings evidence.",
+      "Saved-setting verification uses the existing independently verified native UI readback. Do not invent an API adapter, source label or verification. A valid record suppresses reinstallation; stale or unavailable readback requests verification rather than new approval.",
+      "If progress storage is unavailable, reconstruct the pending stage from fresh durable governance evidence and re-display the full handoff. Do not infer saved or verified state from a missing record. Persist compact observations only through an already-authorized evidence writer; retain their provenance and app identity.",
+      "After verified unchanged setup, continue the existing stage without repeat paste, installation or approval."
+    ],
+    "evidence_boundaries": {
+      "user_report": "Confirmation only",
+      "buildai_self_check": "Model-attributed comparison only; provenance may be unavailable",
+      "independent_readback": "Exact saved setting evidence checked by existing verifier"
+    },
+    "acceptance_cases": [
+      "uninterrupted onboarding",
+      "pause then resume",
+      "app switch and return",
+      "early paste",
+      "missing or changed text",
+      "user save report without proof",
+      "self-check without independent proof",
+      "cross-app record rejected",
+      "verified unchanged no repeat install"
+    ]
+  },
+  "connection_and_resume": [
+    "Before interpreting app governance, call bos_connect with host base44_build_ai and the exact non-secret project_ref base44:<current app_id>, then bos_capabilities for the same project. An omitted project_ref checks platform availability only; UNBOUND from that unscoped call does not establish that the current app is unbound. If a call omitted it, make one corrected read-only app-bound call before proposing onboarding or repair.",
+    "Restore the accepted baseline and existing plan decision from current app-bound evidence. A resumed chat or refreshed instruction version is not a material baseline change. If acceptance evidence is missing, recover it before asking the owner to repeat a decision. Do not fabricate acceptance. Changed requirements still require an explicit review of those changes.",
+    "The AI Controls separate plan is the bounded native-settings action, not a new server governance-file plan. Present the exact pointer and app for owner authorization through the existing settings route; an already authorized unchanged action does not need repeated approval. Independent saved-setting verification alone does not mutate settings or governance. Keep the approved manifest byte-identical.",
+    "For bos_health_snapshot, dimensions summarize actual evidence rather than executing tests. Keep scans/build UNKNOWN if unverified. critical_signals contains unresolved hazards only and is empty when none were observed. Positive pointer, revision and artifact checks are evidence, never critical warnings. Report the scope and age of supplied evidence; do not claim the server independently executed those checks.",
+    "The connection-plug step adds or verifies a real owner/admin app-shell component opening the BOS connection view. It is APP_SOURCE_UI_ACTION, not AI Controls, Custom Instructions or a pointer paste. Prepare the exact separate app-surface plan and source/UI readback; existing pointer authorization does not approve app files. If the app lacks a connection page or supported live status adapter, identify that dependency and prepare the separately reviewed owner/admin page/integration plan before installation. Never claim an editor MCP session is an app runtime connection, copy its OAuth credentials, invent live status, or mark completion from metadata alone. Preserve the approved governance files and authentication."
+  ],
+  "public_companion_readback": [
+    "Use native code to download raw public HTTP bytes and compute SHA-256 before trusting companion instructions or importing helpers. A markdown web reader, chat text or internal version field is not exact byte readback. If native byte access is unavailable, report PUBLIC_COMPANION_BYTE_READBACK_REQUIRED; do not claim the current instructions verified.",
+    "Fetch the immutable versions/<installed workspace skill version>/manifest.json path. Fetch its listed companions from that same versioned directory and verify each byte count and SHA-256; also require the pinned workspace-reference digest from the installed skill and the onboarding contract digest/version from authenticated bos_connect. For a mismatch, retry the same immutable URL once, then stop the affected stage if still inconsistent. Never normalize bytes, fall back to the moving latest path or accept an older version silently. Keep downloads in bounded temporary scratch outside app source; they grant no write authority."
+  ],
+  "customer_tour_transport": {
+    "tool": "bos_capabilities",
+    "first_request": {
+      "customer_view": "TOUR_1"
+    },
+    "next_requests": [
+      "TOUR_2",
+      "TOUR_3"
+    ],
+    "dismissal_request": {
+      "customer_view": "TOUR_STOP"
+    },
+    "rules": "Use exact app project_ref and host base44_build_ai. Deliver customer_tour.message verbatim after the authenticated speaker and compact app/step/status header. Preserve its label explanation, every offered item and final website link. Do not paraphrase, shorten, replace its ending with pending tasks, or treat a link elsewhere in chat as this turn's handoff. The API-name catalogue is not the customer tour. Each request is independent: advance only on explicit user choice; stop on dismissal with the website link. If the live schema lacks customer_view, retrieve and verify this reference and present its approved customer_tour batch. Never invent arguments or describe the API catalogue as a completed customer tour. The server filters items by available supporting tools; these are public advice and host-applied governance guidance, not new specialist-engine entitlements."
+  },
+  "saved_app_snapshot": {
+    "scope": "HOST_EXECUTED_DISPLAY_PROJECTION_NOT_GOVERNANCE_AUTHORITY",
+    "optional_installed_path": "base44/functions/bosAppSnapshot/reviewed-snapshot.json",
+    "template_bundle": {
+      "url": "https://peter-jeans.github.io/BOS-site/companions/base44/status-surface/v1/bundle.json",
+      "bytes": 174200,
+      "sha256": "e2e07860075fa3ff44829d8a661c012b1402f4b26807d1d30abc0abe43f8f9db"
+    },
+    "resume_steps": [
+      "After the required current connection, exact app binding, provider revision and governance readback, inspect the optional installed snapshot path. A missing optional display snapshot does not mean that governance disappeared. Report snapshot unavailable; do not install or repair it without the separate app-surface approval.",
+      "Verify the snapshot bytes against the exact approved app-surface artifact hash and inspect its schema, exact project_ref, canonical_pointer_sha256, source_revision, captured_at, artifact_sha256 and six attributed stage records. Use the verified snapshot model readSavedSnapshot to validate it. If the approved hash or original proposal is unavailable, report unverified history; never derive the expected hash from the same observed bytes to create a pass.",
+      "Read the retained evidence references and keep original observer identities and observation dates. Treat stage rows as dated history, not fresh authentication, health scans, entitlement, native-setting verification or installation approval. A stale pointer observation requests verification, not repeated paste or approval. Missing or conflicting proof stays unknown.",
+      "Reconcile the snapshot source artifact hashes with the current verified governance artifacts and current user intention before choosing the next incomplete onboarding stage. A later commit containing only the snapshot does not invalidate its earlier source_revision; compare the actual reviewed inputs. Other app-source changes still require the existing independent governance/currentness checks.",
+      "Use direct native source readback for builder reconciliation. The app UI uses authenticated bosAppSnapshot PROGRESS/MEMORY reads; never assume a builder has an app-user credential or use an editor OAuth token as that credential. Do not copy this display schema into the distinct BOS_BASE44_POINTER_PROGRESS_V1 schema or use it to satisfy fresh planner evidence automatically."
+    ],
+    "approved_update_steps": [
+      "After an approved decision, intention or memory/evidence change, the native governed builder checks whether installed snapshot inputs changed. This is a host instruction executed during that work, not a timer, scheduled job or background writer. If the relevant inputs are unchanged, preserve the saved bytes and capture date.",
+      "Use the checksum-verified template bundle in temporary scratch outside the app. Preserve helper imports. Construct BOS_BASE44_SNAPSHOT_SOURCE_REVIEW_V1 from the exact current app/revision, expected hashes from its approved installed governance plan, canonical pointer hash and independently inspected attributed stage evidence. Do not invent decisions, sources, scans or completed stages.",
+      "Invoke node scripts/prepare_base44_app_snapshot.mjs <app-root> <review-packet.json> <independently-reviewed-packet-sha256> <new-output.json-outside-app>. It requires clean stable source, exact reviewed artifact hashes and a new external output path. Inspect the full generated projection and privacy-minimal display fields.",
+      "Include the exact new snapshot bytes/hash in the currently reviewed app-surface change before approval. If that approval did not include this output, prepare the additional bounded projection change and obtain its required approval; never silently expand an approved hash. Keep the original nine governance files and immutable manifest unchanged.",
+      "Only the native authorized writer installs the approved backend JSON, checkpoints it and verifies durable byte readback and authenticated PROGRESS/MEMORY output. Resume must consume this installed saved record. Page refresh only rereads it and cannot refresh evidence dates. Report regeneration, installed persistence and independent currentness as separate results."
+    ],
+    "acceptance_required": [
+      "NATIVE_RESUME_READS_INSTALLED_PACKET",
+      "CHANGED_REVIEWED_INPUTS_TRIGGER_BOUNDED_REGENERATION",
+      "UNCHANGED_INPUTS_DO_NOT_TRIGGER_REWRITE_LOOP",
+      "CROSS_APP_OR_CHANGED_SNAPSHOT_REJECTED",
+      "ORIGINAL_DATES_AND_OBSERVER_ATTRIBUTION_RETAINED",
+      "ORDINARY_AND_SIGNED_OUT_READS_DENIED"
+    ],
+    "live_native_acceptance": "PENDING",
+    "creates_new_store_or_authority": false
+  },
+  "plain_language_activation": {
+    "scope": "PUBLIC_HOST_ROUTING_ONLY",
+    "steps": [
+      "Activate for ordinary build requests, fixes, scans, reviews and Continue; no BOS keyword required. First follow connection_route_selection. Only the selected PUBLIC route uses bos_connect, bos_capabilities and the public durable session-memory contract below.",
+      "Use authenticated capability IDs and available public tool descriptions to route the request. Call only relevant read-only checks with privacy-minimal project facts. A scan plan is not an executed scan. Explain unavailable capability or missing evidence without claiming a check ran.",
+      "Keep the intent engine, private decision rules, scan implementation and entitlement resolution in Cloud BOS. The app needs only the public AICONTROL pointer and public workspace skill instructions; do not add a tenth governance file, copied intent engine or runtime intent function.",
+      "Existing apps retain approved AICONTROL bytes. The advertised aicontrol_revision PUBLIC_BUILD_DISCIPLINE_V1 explicitly adds the existing knowledge/alignment/readback workflow; PUBLIC_ROUTING_V1 is retained for old plans. Use UPDATE with the exact accepted baseline, active intention, current revision and all verified prior artifacts; obtain and verify a new exact plan and approval before installation. Customized control or unsupported schema stops reconciliation; never overwrite or downgrade. New activation plans include the build discipline.",
+      "After a verified Cloud BOS consultation, render the literal chain BOS<major.minor>> Base44> user> as inline code before every substantive progress and final reply. Keep the exact user> audience; put the app name in the next App/Step/Status line. Before consultation use Base44> user> and say verification is pending. Speakers report provenance, not governance or entitlement.",
+      "Every required decision ends with Your action required, the exact app, displayed scope, full real plan hash when applicable, exact reply and Reply here in this Base44 chat; I am waiting. When a proposal is awaiting independent review, say Review pending; no approval is requested yet. Never confuse permission to inspect or copy bytes with installation approval. Preserve an unambiguous existing decision bound to the exact displayed proposal."
+    ],
+    "grants_access_or_mutation": false,
+    "additional_app_artifacts": []
+  },
+  "owner_admin_plan_display": {
+    "source": "PUBLIC_STATUS_SURFACE_SEPARATE_APP_PLAN",
+    "current_plan": "Authenticated app status only; unavailable or mismatched evidence is Not verified, never a default tier.",
+    "prices": "Fixed public website data/bos-beta-pricing.json; validated AUD list prices and periods. Invite-only private-beta options; no checkout or entitlement changes. Show list-date, exclusions, website link and prices-unavailable fallback.",
+    "authority": "CLOUD_BOS_SERVER_RESOLVED_ENTITLEMENT",
+    "grants_access_or_mutation": false
+  },
+  "plan_request_recovery": {
+    "scope": "READ_ONLY_REQUEST_PREPARATION_AND_NEW_EXACT_UPDATE_PROPOSAL",
+    "steps": [
+      "For an existing governed Base44 app, call bos_connect with its exact project_ref. Prefer installed_plan_source only when returned by that authenticated current app-bound result, and only when the live bos_project_governance_plan schema exposes base44_profile.installed_plan_ref. REFERENCE_AVAILABLE describes a binding reference, not proof the stored bytes or current app bytes are available. Never infer it from chat, another app or a local manifest.",
+      "Read a clean complete current provider revision and the exact raw bytes of the current manifest and its allowlisted artifacts in native code. Compare the manifest to installed_plan_source.installed_manifest_sha256 and every artifact to its indexed hash/byte count. The manifest's expected_app_revision is immutable projection provenance, not the current provider revision; never call that expected difference a hash mismatch or governance drift. Never reconstruct file text, normalize whitespace, transcribe hashes or read unrelated files. Actual artifact drift requires reconciliation against the bound plan, not automatic overwrite or a changed expected hash.",
+      "Use checksum-verified scripts/base44-update-request.mjs prepareBase44UpdateRequest with store.readBytes(path) returning Uint8Array and store.readProviderState() returning {revision,clean}. Build binding from the authenticated installed_plan_source (approved_plan_hash is its plan_hash, manifest_sha256 its installed_manifest_sha256), exact app/ref/binding, verified project-state identity fields and fresh expected_app_revision. Provide baseline:{project_ref,accepted:true,project_spec,build_intentions,accepted_baseline_sha256} only after restoring actual owner acceptance. In native code the last digest is SHA-256 of UTF-8 JSON.stringify({project_spec,build_intentions}) preserving that accepted object; this is a host continuity check, never authenticated acceptance proof or plan approval. Default transport is INSTALLED_PLAN_REFERENCE.",
+      "Native BuildAI currently supports CommonJS code execution, not a code-facing authenticated MCP callback. When the live plan-tool schema exposes request_upload, call bos_project_governance_plan with only project_ref, project_binding_id and request_upload:true. This issues a five-minute upload-only ticket for this exact active binding. In native code, load the checksum-verified scripts/base44-update-request.cjs companion in memory (same implementation as .mjs). Call uploadBase44UpdateRequest({store,binding,baseline,ticket,serviceOrigin}) using the verified service HTTPS origin. It prepares and directly uploads the exact computed UPDATE; never print or retype its JSON/hashes. File bytes and current provider revision must come from supported direct code reads. Missing any capability is HOST_CONNECTION_REQUIRED, not permission to invent APIs or extract credentials. The ticket grants no approval or app write; keep it out of logs and files. The route is feature-gated and native acceptance remains pending until demonstrated.",
+      "UPLOAD_VERIFIED returns only the app scope and uploaded_request:{request_id}. Pass those three fields to bos_project_governance_plan through the normal authenticated tool connection. The server independently checks stored bytes and fresh binding, then runs the existing planner and exact approval lifecycle. A retry of that same reference within its fifteen-minute lifetime reproduces the same proposal hash; do not request a replacement ticket after an uncertain result. UPLOAD_OUTCOME_UNKNOWN requires reconciling that same reference, or explicitly retrying identical bytes while the ticket is current. Never silently regenerate a request. Expiry requires fresh machine readback and reconciliation of any existing proposal. For hosts that actually expose a supported authenticated code callback, submitBase44UpdateRequest remains available; a shell alone is not that bridge.",
+      "The request carries installed_plan_ref plus current expected_prior_sha256, complete accepted requirements and current revision. The service loads the applied-plan source tied to this binding and checks the supplied hashes before issuing a new proposal. Existing security, evidence, control and capability files are preserved. Omit installed_artifacts, installed_manifest_content, top-level installed_manifest, restore_artifacts and security_triggers on the reference route. UPDATE_NOT_REQUIRED means the verified requirements are unchanged: continue the existing scope without requesting another plan. A changed provider HEAD alone does not require an UPDATE.",
+      "Download the new original plan via PLAN_DOWNLOAD_V1, verify bytes/hash/identity/requirements, show the exact change and obtain its required approval before installation. The old applied plan remains consumed and cannot be reapproved or executed. Existing unchanged pending-plan decisions still use the separate durable READ/plan_ref route; do not conflate applied source with pending approval.",
+      "The submit helper returns PROPOSAL_DOWNLOAD_READY only for a matching app-bound download descriptor; this is not plan-content verification or approval. Keep the original response in code and never log its download credential. A lost or malformed response returns SUBMISSION_OUTCOME_UNKNOWN: recover the existing app-bound proposal before retrying. SUBMISSION_REJECTED preserves the original service error for diagnosis and never automatically retries. No outcome approves or applies a plan.",
+      "When Cloud BOS identifies a malformed request field, rebuild the input from the same fresh verified evidence once; retain a non-secret correlation/error record and preserve the interrupted stage. Do not repeat an unchanged failing request, guess field names, inspect SDK credential internals or require Codex. Missing stored original source, revoked access, wrong binding or real source drift is not repaired by changing permissions or suppressing checks. Explain the exact gap inside Base44 and the smallest evidence or owner decision needed. Service downtime preserves current files and decisions for reconnect; it is not a reason to reseed."
+    ],
+    "grants_mutation_authority": false,
+    "native_acceptance": "LOCAL_TRANSPORT_VERIFIED_NATIVE_ACCEPTANCE_PENDING"
+  },
+  "build_checks": {
+    "scope": "EXISTING_ALIGNMENT_AND_ARTIFACT_READBACK_HOST_ENFORCEMENT",
+    "helper": "scripts/base44-build-discipline.mjs",
+    "native_commonjs": "scripts/base44-build-discipline.cjs",
+    "canonical_rules": [
+      "BUILD_ALIGNMENT_CHECK",
+      "BOS_ARTIFACT_READBACK_REQUIRED",
+      "BUILD_VERIFICATION_CHECK"
+    ],
+    "steps": [
+      "MANDATORY: complete guidance_activation workflow before the plan. Include its reviewed evidence packet in evaluateBase44BuildPreflight; missing discovery, guidance, application or rule review cannot pass.",
+      "Before first material write and every source-to-runtime/data transition, emit a source-grounded Build Alignment Check bound to exact app, current revision, accepted intention, operation, complete transitive effect set and actual environment. Read the relevant project evidence and implementation first. Compilation and hashes cannot replace this check.",
+      "Require five concise builder answers with current references: purpose/users/workflow; implementation/dependencies; direct and indirect effects/environment; invariants/exclusions; falsifiable verification. Check each answer against fresh source. On contradiction STOP the affected mutation, reread relevant LDP or authorised app-owned projection plus source, correct and retest with a fresh application question. Two unsuccessful retries leave a visible unresolved gap. Do not ask for approval for read-only remediation or invent missing evidence.",
+      "Use verified base44-build-discipline.mjs evaluateBase44BuildPreflight, or the generated CommonJS companion in a native code host. Supply scope:{app_id,revision,intention_ref,operation_ref,environment,evidence_sha256,stage:SOURCE_ONLY|BOUNDED_EFFECTS,effects:[SOURCE_EDIT|RESOURCE_DEPLOY|RUNTIME_DATA_WRITE|EXTERNAL_EFFECT|PUBLISH]}. Current host evidence supplies {app_id,revision,scope_sha256:buildScopeHash(scope),effects_resolved,environment_verified,authorised}. The evidence digest binds the current relevant LDP/app-owned evidence and dependency readback; obtain it from bytes, never guess. Knowledge has purpose_workflow, implementation_dependencies, effects_environment, invariants_exclusions, verification_falsifier, each with answer_ref and evidence_refs. Keep detailed answers app-local.",
+      "Populate review from an actual source-grounded review: reviewer_ref,evidence_ref,scope_sha256,knowledge_sha256:buildScopeHash(knowledge),source_readback_verified,origin:SOURCE_GROUNDED_REVIEW,findings:{each_topic:SUPPORTED|CONTRADICTED|UNKNOWN}. A failed knowledge check additionally requires remediation_required:true,retest_ref,retest_result:SUPPORTED after a fresh application question. Flags alone do not prove review; do not let the builder self-certify missing evidence. The helper checks consistency, not semantic truth. Only PASS_CONGRUENT opens this workflow gate; other results stop that action and name the gap. Missing native execution/read/review capability does not permit fabricated execution or a pass.",
+      "SOURCE_ONLY excludes data fixtures, runtime mutations, external effects and publication. Trace helper-triggered writes before the first operation. A test tenant, preview, branch or synthetic records do not establish isolation. Classify auto-synced resource effects explicitly. Recheck on changed revision/dependencies/environment/scope; reuse current unchanged evidence and approvals. Do not evade a rejected operation through another route.",
+      "After each batch reopen saved artifacts. List exact file paths, revision, observed changed lines, symbol, actual before/after diff or excerpt, requirement and actual tests/results. Record old locations for deletions and both paths for renames; represent non-file resources by ID/field path. If unavailable say LINES_UNAVAILABLE with precise locator. Never estimate lines, reconstruct code from memory, or count files merely read as edited. Retain excerpts only in authorised local app evidence, excluding secrets/customer data.",
+      "After the native builder turn and provider final save finish, use verifyBase44FinalChangeEvidence({app_id,revision,builder_ref,claims,reader}). Preserve original claims; never update their hashes to hide a mismatch. reader.readCompletion must come from an independent authorised host/provider observer and return {app_id,revision,status:COMPLETE,pending_writes:false,origin:PROVIDER_FINAL_SAVE,independent:true,verifier_ref,completion_ref,operation_ref}. A builder statement, clean git tree, repeated equal hashes or elapsed timer cannot establish final save. If the provider/host cannot expose completion, report FINAL_SAVE_OBSERVER_REQUIRED and keep completion pending. Poll only through supported host observations with bounded waits; do not invent an endpoint. The helper checks completion around two fresh byte/line reads. Any late save or changed revision invalidates the old claim and requires fresh evidence under unchanged approval. Never trim or normalize bytes to make a checksum pass.",
+      "The reader also supplies readState:{app_id,revision,baseline_revision,clean,independent,verifier_ref,evidence_ref}; readFile(path) and readBaselineFile(path,baseline_revision) return Uint8Array or null. Claims:{path,kind:ADDED|MODIFIED|DELETED,before_sha256,after_sha256,start_line,end_line,symbol,excerpt,requirement_ref}. verifyBase44ChangeEvidence remains a low-level location checker; its result alone is not final-save acceptance. Only a genuinely independent observer may set independent:true. A builder running the helper is still BUILDER_CLAIM. Separately compare the complete changed-path set. Source verification does not establish omitted edits, semantics or live behaviour.",
+      "Emit BUILDER_CLAIM separately from INDEPENDENT_VALIDATOR_SIGNAL. No independent reader means Builder reports these changes; completion not independently verified. A contradiction is FAILED_SYNC_VERIFICATION. Passing source locations yields at most PARTIAL_VERIFIED, never full acceptance; require the applicable independent baseline, behaviour and live-parity evidence before COMPLETE_VERIFIED. Observe relevant safe behaviour within existing scope; do not perform unauthorised live tests to satisfy the check.",
+      "Persist compact references/results through the existing authorised evidence route. Never modify manifest-owned ledger/control bytes outside their lifecycle. Keep raw source, explanations and tests app-local; Cloud BOS accepts only the privacy-safe fields of its existing contract. These rules cover the plugin workflow, not arbitrary native write interception. No new entitlement or app runtime dependency is created."
+    ],
+    "existing_app_upgrade": "When advertised by the authenticated schema, request exact UPDATE with aicontrol_revision PUBLIC_BUILD_DISCIPLINE_V1 using the byte-safe helper; preserve approved existing controls unless the new exact plan is approved. Customized controls stop for reconciliation, not overwrite.",
+    "native_write_interception": false,
+    "semantic_truth_from_field_presence": false,
+    "grants_mutation_authority": false
+  },
+  "activation_readback_handoff": {
+    "helper": "scripts/base44-update-request.mjs",
+    "native_commonjs": "scripts/base44-update-request.cjs",
+    "scope": "EXISTING_BOUND_BASE44_PROJECT_ONLY",
+    "steps": [
+      "Keep the canonical lifecycle helper readback as raw UTF-8 bytes outside app source. Do not copy its fields or hashes through chat. Preserve the server-returned approval for the exact pending plan.",
+      "For an already-bound app, request the existing plan-tool upload-only ticket with project_ref,project_binding_id,request_upload:true. Require advertised accepted_payloads BASE44_ACTIVATION_READBACK_V1 and uploaded_request in the live activate schema. An older service or unbound first activation reports ACTIVATION_HANDOFF_UNAVAILABLE; no inferred route or credential extraction.",
+      "Call uploadBase44ActivationReadback in native code with ticket, verified serviceOrigin, binding:{app_id,project_ref,project_binding_id,platform_installation_id}, plan_ref:{plan_hash,project_binding_id}, exact server approval, readback_bytes:Uint8Array and store.readProviderState/readCompletion from the authorised independent final-save observer described in build_checks. It checks unchanged fresh proof, final saved revision and exact approval scope before sending. No additional fields, manual rehashing or invented independent evidence.",
+      "Send only the returned project_ref,project_binding_id,uploaded_request to bos_project_governance_activate through authenticated MCP. The server loads the immutable bytes and runs all existing exact-plan approval/freshness/hash checks. Upload does not approve or activate anything. A lost upload response reconciles the same reference; a lost activation response requires current binding reconciliation, never automatic replay. Tokens stay out of files/logs.",
+      "Final save observation is a host adapter obligation, not authentication supplied by JSON flags. If the same native write turn is still running, defer verification/activation to a read-only continuation after provider completion. New byte changes require fresh proof, not relaxed checks."
+    ]
+  },
+  "capability_usage": {
+    "tool": "bos_record_capability_usage",
+    "scope": "All actually used BOS capabilities and spines, not catalogue listings.",
+    "steps": [
+      "For each MCP call supply params._meta.bos_usage with event_id, host and plugin_version when supported; keep event_id stable for identical retries. Service records TOOL result separately.",
+      "After each locally executed capability/helper or spine check, send one compact report through the live tool schema with a stable event_id, exact capability_id, kind, outcome, host, plugin_version, trigger category, evidence_status and intervention. Report failed, blocked, partial and skipped outcomes too.",
+      "Use SPINE only for an explicitly selected canonical spine, not an inferred responsibility. Never count catalogue availability or a tool call as all underlying capabilities executing.",
+      "Use the schema outcomes literally. COMPLETED describes the reported capability step, not app acceptance. Reports remain HOST_REPORTED even when evidence_status says INDEPENDENT_READBACK. Supply an evidence digest only, never content.",
+      "Send no source, prompts, logs, file paths, personal information or credentials. Missing transport/storage stays NOT_PERSISTED; do not claim recorded until acknowledged. Retry the same event only with identical content; a later outcome is a distinct event.",
+      "No historical backfill, automatic entitlement, approval or build acceptance. Native and controller-assisted execution must be distinguished."
+    ],
+    "route_selection": "Apply connection_route_selection first. This MCP recorder section is PUBLIC-only. PRIVATE uses installed bos-capability-usage through the existing app binding; DIRECT_OR_LOCAL uses its own recorder and privacy policy. Never substitute public recording for missing private transport."
+  },
+  "connection_route_selection": {
+    "scope": "ROUTE_SELECTION_BEFORE_SERVICE_CALLS",
+    "steps": [
+      "Resolve the exact current app and its existing non-secret binding from host instructions and app-local governance before any BOS service call. A workspace skill or MCP installation never chooses authority or migrates an app.",
+      "PRIVATE: preserve the verified app-bound project_ref, private kernel, bosProxy transport, session restoration and gates. Record used capabilities and outcomes through installed bos-capability-usage; verify acknowledgement. Do not use public bos_connect, public discovery, public entitlements or public onboarding for this route. Missing or failed private transport requires private repair, not public fallback.",
+      "DIRECT_OR_LOCAL: defer to the verified existing BOS bridge and its activation and local recording policy. No cloud upload or conversion is implied.",
+      "PUBLIC: only an explicitly requested public connection or verified public binding enters the public instructions below. Call bos_connect with host base44_build_ai and exact base44:<app_id>, then bos_capabilities; preserve separate platform and project states.",
+      "UNKNOWN_OR_CONFLICTING: perform bounded read-only diagnosis of non-secret identity and governance metadata; stop service dispatch until the route is resolved. Never inspect credentials to choose a route.",
+      "A public UNBOUND response says nothing about an existing private binding. Do not reseed, migrate, overwrite native AI Controls or request public installation approval to repair a private connection.",
+      "App switch, resume or context loss requires fresh route readback. Tool labels, founder wording, available tools and historical chat are not route or entitlement evidence."
+    ],
+    "private_binding_overridden_by_workspace_skill": false,
+    "private_failure_public_fallback": false,
+    "public_unbound_invalidates_private_binding": false,
+    "unknown_route_service_dispatch": false
+  },
+  "guidance_activation": {
+    "schema": "BOS_GUIDANCE_ACTIVATION_WORKFLOW_V1",
+    "scope": "EVERY_RELEVANT_REQUEST_INCLUDING_READ_ONLY_ADVICE",
+    "helper": "scripts/base44-build-discipline.mjs",
+    "native_commonjs": "scripts/base44-build-discipline.cjs",
+    "function": "evaluateGuidanceActivation",
+    "steps": [
+      "Preserve the selected app route. PUBLIC: exact-project bos_connect then bos_capabilities, even when Connect says READY. Classify ordinary language locally into intent_categories using the live schema. Never transmit raw prompts. PRIVATE/DIRECT/local: use the existing bound kernel discovery and guidance retrieval equivalents, not public fallback.",
+      "Follow guidance_activation from the authenticated result. Capability discovery is not use. Select relevant capabilities, fetch their actual guidance using the current tool schemas, read applicable app contracts, and map each recommendation/blocking rule to the current operation. Do not invent ids, deeper-advice endpoints or entitlements. For UI_UX retrieve bos_scan_plan with locally classified ui_context.page_job and app_type. Follow gui_guidance: explain relevant archetype alternatives, record owner selection or reuse a valid accepted contract, then repeat with selected_template_id for contract draft requirements. Bind the contract to the exact local page, data owners, routes, accepted intention and desktop/mobile/accessibility acceptance. Guidance retrieval is not installation or verification. The full private library remains private; unsupported context stops dependent work.",
+      "Bind local evidence to buildScopeHash(scope), including exact app, revision, intention and operation. guidance_activation packet schema BOS_GUIDANCE_ACTIVATION_V1 requires scope_sha256, request_ref, project_ref, route PUBLIC/PRIVATE/DIRECT/LOCAL, connection_ref, discovery_ref, current_readback_ref, required_capability_ids, guidance and blocking_rules. Each guidance item carries capability_id, authenticated decision AVAILABLE, result_ref of actual retrieval and application_ref of its application to the plan. Each blocking rule has rule_id, decision SATISFIED or evidence-supported NOT_APPLICABLE, and evidence_ref. Missing/blocked/unknown is not a pass.",
+      "Source-grounded review must check selection completeness, correct route/app/request, actual results, applicable rules, accepted intention and guidance application. Set review.guidance_sha256 from the exact activation packet and guidance_findings SUPPORTED only after that review. Call evaluateGuidanceActivation with phase PLAN, scope_sha256, activation and review before BOS-informed advice. evaluateBase44BuildPreflight also requires this packet as guidance_activation before PASS_CONGRUENT. These are evidence consistency checks, not authentication or independent truth by field presence. Supply current_context {project_ref, request_ref, route, preflight_issue_ids} from the current host binding/request independently of the candidate packet. The build preflight receives it as current.guidance_context; wrong app, request or route rejects reuse.",
+      "After actual use record every capability/spine and actual outcome through the selected route. Set each item outcome_ref and recording_status only from its acknowledgement, update the reviewed packet hash, and evaluate phase CLOSEOUT. Missing acknowledgement remains NOT_RECORDED. Do not record mere availability as execution; blocked attempts remain blocked outcomes. Never claim independent readback from builder self-report.",
+      "Reevaluate on changed request, app, revision, dependency or effect scope. Reuse only unchanged valid evidence and approved scope. Show missing step rather than Gap: none. No native editor interception or universal activation guarantee is claimed."
+    ],
+    "native_write_interception": false,
+    "grants_authority": false,
+    "gui_application": {
+      "instruction": "For page-affecting implementation, set current_context.page_affecting=true from independently reviewed effects. activation.gui_application must bind actual retrieved guidance, owner selection or valid existing contract, local contract and its plan application. Helper PLAN rejects missing bindings; CLOSEOUT additionally requires artifact and behavior readback. A read-only shortlist is advice, not an implementation-ready plan.",
+      "required_fields": [
+        "guidance_result_ref",
+        "selected_template_id",
+        "selection_evidence_ref",
+        "local_contract_ref",
+        "plan_application_ref",
+        "platform_evidence_ref",
+        "gate_verdict"
+      ],
+      "gate_verdict": "RELEVANT",
+      "closeout_fields": [
+        "artifact_readback_ref",
+        "behavior_verification_ref"
+      ]
+    },
+    "mitigation_review": {
+      "schema": "BOS_MITIGATION_REVIEW_V1",
+      "trigger": "Any preflight issue; retain original issue IDs across retries. Host supplies current_context.preflight_issue_ids, explicitly [] when none.",
+      "workflow": [
+        "Read current environment and accepted long-term requirements.",
+        "Propose three distinct credible mitigations; document considered/rejected alternatives if fewer are viable.",
+        "Rank effectiveness, long-term fit, feasibility, reversibility and maintenance burden. Select the highest-ranked permitted option, preserving owner authority.",
+        "Re-run the original failed check for the selected option with current scope/revision/environment. Remain blocked if no permitted option passes.",
+        "Attach mitigation_review to activation; source-grounded review binds mitigation_sha256 and mitigation_findings SUPPORTED. Record actual outcome and acknowledgement at CLOSEOUT."
+      ],
+      "packet_contract": "Use evaluateBuildMitigations in the checksum-verified helper. Issue records bind original_check_ref, environment_readback_ref, long_term_requirements_ref, ranking_rationale_ref, ranked options, selected_option_id and recheck. Every option binds effectiveness_ref, long_term_fit_ref, feasibility_ref, reversibility_ref, burden_ref and evidence_ref. Recheck binds current scope_sha256, selected_option_id, original_check_ref, result PASS, evidence_ref, authorised and resolves_original_issue. These are reviewed evidence references, never authentication or native interception."
+    }
+  },
+  "existing_page_review": {
+    "trigger": "Existing pages including apps built before onboarding; set independently read current_context.existing_page=true for page-affecting work.",
+    "steps": [
+      "Read existing routes, page source with exact file/line references, contracts, dependencies and real user journeys before proposing repairs. Missing readback means assessment incomplete.",
+      "Classify each page separately: accepted contract present, contract missing, contract drift, interaction defect, or business/data/permission ownership risk. A missing contract is not proof of poor design.",
+      "Keep rendering and temporary interaction state in UI. Inspect duplicated business rules, competing save paths and permission decisions in page components; identify the authoritative owner before changing them.",
+      "Rank retain and document, bounded repair, then owner-reviewed redesign. Preserve working behaviour and accepted contracts; do not automatically replace an existing page.",
+      "Explain the observed problem, user impact, proposed change, what stays the same, dependencies, uncertainty and rollback in plain language. Offer up to three relevant options without padding.",
+      "Bind the accepted local contract, repair one bounded area, independently read changed artifacts and test affected journeys, mobile, accessibility and data persistence. Record actual outcome separately from advice."
+    ],
+    "evidence_path": "gui_application.existing_page_review",
+    "required_evidence": [
+      "inventory_ref",
+      "logic_ownership_ref",
+      "user_explanation_ref",
+      "decision_ref",
+      "rollback_ref"
+    ],
+    "dispositions": [
+      "RETAIN_AND_DOCUMENT",
+      "BOUNDED_REPAIR",
+      "OWNER_APPROVED_REDESIGN"
+    ],
+    "boundary": "Host evidence consistency only; no native interception, no automatic redesign, no false implementation claim."
+  }
+}
