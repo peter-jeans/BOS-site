@@ -17,3 +17,6 @@
 .capability-highlights-body dt { margin: 0 0 5px; color: var(--ink); font-weight: 800; }
 .capability-highlights-body dd { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
 .capability-highlights-body p { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+.capability-highlights .capability-tier { display: inline-block; padding: 2px 6px; margin: 3px 0 3px 4px; border: 1px solid #9c886b; border-radius: 999px; background: #eee2cb; color: #49361f; font: 700 10px/1.4 Arial, sans-serif; vertical-align: middle; white-space: nowrap; text-transform: none; letter-spacing: .02em; }
+.capability-highlights-tags .capability-tier { margin: 5px 2px 0; }
