@@ -1,0 +1,9 @@
+/* Owner-controlled BOS assistance */
+.owner-controls{padding:64px 0;border-block:1px solid var(--line,#d7dfda)}
+.owner-controls-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.owner-controls h2{font-size:clamp(2rem,4vw,3rem);line-height:1.12;margin:0 0 16px}
+.owner-controls p{max-width:60ch}.owner-controls dl{margin:24px 0}.owner-controls dt{font-weight:750;margin-top:16px}.owner-controls dd{margin:4px 0 0;color:var(--muted,#4e5b54)}
+.owner-controls figure{margin:0}.owner-controls-shot{position:relative;aspect-ratio:547/315;overflow:hidden;border:1px solid var(--line,#d7dfda);border-radius:18px;background:#f3f0e4}
+.owner-controls-shot img{position:absolute;width:110.97%;max-width:none;height:auto;left:-5.85%;top:-94.6%;display:block}
+.owner-controls figcaption{font-size:.85rem;color:var(--muted,#4e5b54);margin-top:12px}.owner-controls .owner-note{font-size:.92rem}
+@media(max-width:720px){.owner-controls-grid{grid-template-columns:1fr;gap:26px}.owner-controls{padding:40px 0}}

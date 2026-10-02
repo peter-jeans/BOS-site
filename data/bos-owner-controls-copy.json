@@ -1,0 +1,29 @@
+{
+  "title": "You are always in control",
+  "subtitle": "Switch BOS on and off as needed.",
+  "website": {
+    "intro": "Choose the help you want from the BOS page in your app. Turn Local BOS and Cloud BOS on or off independently.",
+    "controls": [
+      {
+        "name": "Local BOS",
+        "description": "Build guidance and stability checks stored in your app."
+      },
+      {
+        "name": "Cloud BOS",
+        "description": "Connected scans, specialist knowledge and build guidance."
+      }
+    ],
+    "reassurance": "Pausing BOS does not switch off your app\u2019s login, permissions or data protection.",
+    "timing": "Your builder applies your saved choice on its next request."
+  },
+  "onboarding": {
+    "title": "Choose when BOS helps",
+    "text": "After setup, open the BOS page in your app. Use the Local BOS and Cloud BOS switches to pause or resume either kind of assistance. Your builder applies the change on its next request. Your app\u2019s login, permissions and data protection stay in place.",
+    "access_note": "These controls are available to app administrators."
+  },
+  "image": {
+    "src": "assets/bos-controls/in-app-controls-canary-1.png",
+    "alt": "The BOS page in Canary 1 showing separate Local BOS and Cloud BOS switches, both On.",
+    "caption": "BOS controls in Canary 1."
+  }
+}
