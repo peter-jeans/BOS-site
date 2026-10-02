@@ -1,0 +1,19 @@
+.capability-highlights { margin-top: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.capability-highlights > summary { padding: 18px; cursor: pointer; list-style: none; }
+.capability-highlights > summary::-webkit-details-marker { display: none; }
+.capability-highlights > summary:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; border-radius: 12px; }
+.capability-highlights-title { display: block; color: var(--ink); font-size: 18px; font-weight: 800; line-height: 1.3; }
+.capability-highlights-tags { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+.capability-highlights-tags > span { display: block; padding: 9px 7px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink); font-size: 13px; font-weight: 700; line-height: 1.35; text-align: center; }
+.capability-highlights-toggle { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; color: var(--ink); font-size: 14px; font-weight: 700; }
+.capability-highlights .when-open { display: none; }
+.capability-highlights[open] .when-open { display: inline; }
+.capability-highlights[open] .when-closed { display: none; }
+.capability-highlights-sign::after { content: "+"; font-size: 20px; }
+.capability-highlights[open] .capability-highlights-sign::after { content: "−"; }
+.capability-highlights-body { padding: 0 18px 18px; }
+.capability-highlights-body dl { margin: 0; }
+.capability-highlights-body dl > div { padding: 14px 0; border-top: 1px solid var(--line); }
+.capability-highlights-body dt { margin: 0 0 5px; color: var(--ink); font-weight: 800; }
+.capability-highlights-body dd { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.capability-highlights-body p { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
