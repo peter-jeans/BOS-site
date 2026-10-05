@@ -1,0 +1,282 @@
+{
+  "schema": "BOS_PUBLIC_INSTALL_PACKAGES_V1",
+  "published_at": "2026-10-05T22:52:39.225191Z",
+  "maturity_evidence_at": "2026-08-20T00:00:00Z",
+  "revision": "96c75f8adccf1be82df553763c5fea86a4afddcecbf175206dd7b9a4b94ea0c3",
+  "packages": [
+    {
+      "id": "validation",
+      "name": "App Validation",
+      "description": "Add repeatable health, flow, verification, and artifact-readback checks for an app.",
+      "minimum_tier": "Standard",
+      "tier_label": "Standard and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Health scans",
+        "Flow checks",
+        "Artifact readback",
+        "Verification evidence"
+      ]
+    },
+    {
+      "id": "design-quality",
+      "name": "Design Quality & Accessibility",
+      "description": "Apply design governance, interaction-pattern guidance, mobile checks, and accessibility evidence to an app.",
+      "minimum_tier": "Standard",
+      "tier_label": "Standard and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Design governance",
+        "Navigation clarity",
+        "Mobile usability",
+        "Accessibility checks"
+      ]
+    },
+    {
+      "id": "engineering-correctness",
+      "name": "Engineering Correctness Review",
+      "description": "Review temporal boundaries, recurrence, filesystem patterns, redirects, and semantic listing structures with explicit contracts and targeted evidence before delivery.",
+      "minimum_tier": "Standard",
+      "tier_label": "Standard and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Temporal boundary checks",
+        "Recurrence checks",
+        "Glob semantics",
+        "Canonical redirects",
+        "Semantic item containers",
+        "Contract-to-evidence delivery gate"
+      ]
+    },
+    {
+      "id": "launch-readiness",
+      "name": "Launch Readiness",
+      "description": "Assess private beta, public claims, support, rollback, policy, and release gates before launch.",
+      "minimum_tier": "Standard",
+      "tier_label": "Standard and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Release gates",
+        "Support posture",
+        "Rollback readiness",
+        "Public-claim boundaries"
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Security & Hardening",
+      "description": "Assess exposure, abuse paths, secrets, authentication, limits, and launch hardening before an app reaches users.",
+      "minimum_tier": "Standard",
+      "tier_label": "Standard and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Threat review",
+        "Abuse-surface mapping",
+        "Secret boundaries",
+        "Rate-limit planning"
+      ]
+    },
+    {
+      "id": "subscriptions",
+      "name": "Billing & Subscriptions",
+      "description": "Plan entitlement, billing, checkout, and subscription compatibility for the target app's declared commercial model.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Not currently available",
+      "features": [
+        "Entitlement model",
+        "Billing boundaries",
+        "Store compatibility",
+        "Access gates"
+      ]
+    },
+    {
+      "id": "build-feedback",
+      "name": "Build Feedback & Evidence",
+      "description": "Capture builder handoffs, mutation receipts, source attribution, and post-build verification signals.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Build receipts",
+        "Evidence readback",
+        "Source attribution",
+        "Post-build refresh"
+      ]
+    },
+    {
+      "id": "user-onboarding",
+      "name": "End-User Onboarding",
+      "description": "Design first-run guidance, permissions, recovery cues, and role-appropriate onboarding for app users.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Future exploration",
+      "features": [
+        "First-run guidance",
+        "Permission prompts",
+        "Role-aware setup",
+        "Recovery cues"
+      ]
+    },
+    {
+      "id": "governance",
+      "name": "Governance & Project Memory",
+      "description": "Add durable decisions, build intentions, receipts, authority routing, and continuity across development sessions.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Project memory",
+        "Decision trail",
+        "Build intentions",
+        "Governed receipts"
+      ]
+    },
+    {
+      "id": "llm-access",
+      "name": "Governed AI Access",
+      "description": "Connect app features to replaceable governed LLM adapters through task policies, schemas, privacy gates, and conformance tests.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Future exploration",
+      "features": [
+        "Provider-neutral port",
+        "Replaceable adapters",
+        "Task policies",
+        "Privacy-safe receipts"
+      ]
+    },
+    {
+      "id": "notifications",
+      "name": "Notifications",
+      "description": "Add local notices, phone push, manual admin broadcasts, and governed user-triggered alerts through the right delivery level.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Beta",
+      "maturity_reason": "Registered testing or private pilot; platform limits still apply.",
+      "availability": "Available in private beta",
+      "features": [
+        "Local notices",
+        "Phone push",
+        "Admin broadcasts",
+        "User-configured triggers"
+      ]
+    },
+    {
+      "id": "pwa",
+      "name": "PWA Experience",
+      "description": "Prepare installability, offline behavior, update prompts, pull-to-refresh, icons, and device-safe PWA interaction patterns.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Future exploration",
+      "features": [
+        "Install prompt",
+        "Offline behavior",
+        "Update handling",
+        "Pull-to-refresh"
+      ]
+    },
+    {
+      "id": "recovery",
+      "name": "Recovery & Backup",
+      "description": "Check recoverability, preserve governance and project evidence, and prepare tested restore and rollback paths.",
+      "minimum_tier": "Plus",
+      "tier_label": "Plus and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Recovery checks",
+        "Backup planning",
+        "Restore evidence",
+        "Rollback guidance"
+      ]
+    },
+    {
+      "id": "analytics",
+      "name": "Analytics",
+      "description": "Add privacy-bounded product and operational measurement through an explicit event contract and retention policy.",
+      "minimum_tier": "Pro",
+      "tier_label": "Pro and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Future exploration",
+      "features": [
+        "Event taxonomy",
+        "Consent boundary",
+        "Operational metrics",
+        "Retention policy"
+      ]
+    },
+    {
+      "id": "governed-multi-agent",
+      "name": "Governed Multi-Agent Development",
+      "description": "Use different AI model roles for read-only discovery or attended development while BOS keeps authority, scope, evidence, and stop rules visible.",
+      "minimum_tier": "Pro",
+      "tier_label": "Pro and above",
+      "maturity": "Under development",
+      "maturity_reason": "Current evidence is stale; readiness needs rechecking.",
+      "availability": "In active testing",
+      "features": [
+        "Role-scoped agents",
+        "Model specifications",
+        "Read-only deliberation",
+        "Attended development"
+      ]
+    },
+    {
+      "id": "rescue",
+      "name": "Live App Rescue",
+      "description": "Triage a broken live app, contain risk, recover evidence, and execute a bounded repair path.",
+      "minimum_tier": "Pro",
+      "tier_label": "Pro and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Failure triage",
+        "Scoped repair",
+        "Recovery path",
+        "Readback checks"
+      ]
+    },
+    {
+      "id": "portability",
+      "name": "Portability",
+      "description": "Assess platform dependencies, protect a provider-neutral core, and prepare a staged move or self-hosted proof.",
+      "minimum_tier": "Pro",
+      "tier_label": "Pro and above",
+      "maturity": "Under development",
+      "maturity_reason": "The package is being prepared or its readiness gates remain incomplete.",
+      "availability": "Being prepared",
+      "features": [
+        "Readiness assessment",
+        "Dependency mapping",
+        "Portable-core planning",
+        "Migration evidence"
+      ]
+    }
+  ]
+}
