@@ -1,0 +1,17 @@
+{
+  "schema": "BOS_APP_PAGE_STANDARD_V1",
+  "version": "1.0.0",
+  "scope": "BASE44_OWNER_ADMIN_APP_SURFACE",
+  "required_parts": ["branding", "memory_tabs", "assistance_controls", "connection_status", "builder_activation", "resource_links", "exact_app_access"],
+  "tabs": ["Decisions", "Build intentions", "Memory"],
+  "public_page": "https://peter-jeans.github.io/BOS-site/",
+  "client_portal": "https://bos-client-portal.base44.app/",
+  "connection_routes": ["PUBLIC", "PRIVATE"],
+  "delivery": "FRESH_ONBOARDING_AND_EXISTING_APP_UPGRADE",
+  "automatic_fleet_mutation": false,
+  "connection_alone_installs_page": false,
+  "missing_page_blocks": "FULL_PAGE_INSTALLATION_COMPLETION_CLAIM_ONLY",
+  "credentials_required_for_render": false,
+  "backend_authorization_required": true,
+  "guidance_enforces_native_writes": false
+}

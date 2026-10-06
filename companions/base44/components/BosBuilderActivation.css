@@ -1,0 +1,5 @@
+.bos-builder-activation{box-sizing:border-box;margin:24px 0;padding:26px;background:#fffefa;border:1px solid #dce5de;border-radius:18px;color:#182923;min-width:0}
+.bos-builder-activation h2{margin:0 0 12px}.bos-builder-activation p{margin:12px 0;color:#53685e;line-height:1.6}.bos-builder-activation label{display:block;margin-top:20px;font-weight:600;font-size:14px}
+.bos-builder-activation textarea{display:block;box-sizing:border-box;width:100%;max-width:100%;min-height:180px;resize:vertical;margin:8px 0 16px;padding:14px;border:1px solid #dce5de;border-radius:10px;background:#fcfaf3;color:#182923;font:inherit;font-size:14px;line-height:1.6}
+.bos-builder-activation button{padding:12px 18px;border:0;border-radius:8px;background:#245c45;color:#fffefa;font:inherit;font-weight:600;cursor:pointer}.bos-builder-activation button:focus-visible,.bos-builder-activation textarea:focus-visible{outline:3px solid #245c45;outline-offset:3px}
+@media(max-width:520px){.bos-builder-activation{padding:20px}.bos-builder-activation button{width:100%}}
