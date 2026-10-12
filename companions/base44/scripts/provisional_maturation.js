@@ -1,4 +1,4 @@
-import { MATURATION_POLICY } from './generated_provisional_maturation_policy.js';
+import { MATURATION_POLICY, RESPONSE_CONTINUITY_PROFILE } from './generated_provisional_maturation_policy.js';
 export const MATURATION_FACTS = ['binding_current','context_present','source_readback','workflows_implemented','verification_passed','critical_blockers_clear','release_approved','release_receipt'];
 export const PROVISIONAL_EVIDENCE_SCHEMA = {type:'object',additionalProperties:false,required:['project_id','evidence_hash','facts'],properties:{project_id:{type:'string',pattern:'^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$'},evidence_hash:{type:'string',pattern:'^[a-f0-9]{64}$'},facts:{type:'object',additionalProperties:false,properties:Object.fromEntries(MATURATION_FACTS.map(k=>[k,{type:'boolean'}]))},evidence_basis:{type:'string',enum:['HOST_REPORTED','LOCAL_ARTIFACT_READBACK']}}};
 export function assessProvisionalMaturation(evidence, expectedProject) {
@@ -45,7 +45,34 @@ export async function persistProvisionalAssessment({evidence,projectId,metadataW
   if(after.project_id!==projectId || JSON.stringify(after.state)!==JSON.stringify(state))throw new Error('STATE_READBACK_FAILED');
   return next;
 }
-export const CONTINUITY_GUIDANCE = Object.freeze({schema:'BOS_CONTINUITY_GUIDANCE_V1',version:'1.0.0',header:'Before substantive governed replies, read current exact project binding, relevant capabilities, source revision and effective provisional DBPP state. Emit versioned BOS and host speakers with compact freshness and verification status.',footer:'End substantive responses with next-task model/reasoning advice; show pending release decisions and waiting install work. Use separate orchestrator/target rows for real handoffs.',refresh_triggers:['NEW_SESSION','RESUME','COMPACTION','PROJECT_SWITCH','SOURCE_CHANGE','VERIFIED_CLOSEOUT'],automatic_provisional_progression:'Apply shared phase predicates to current project-bound evidence and persist through the authorized app state owner. Missing routine owner review does not freeze provisional assessment. Never fabricate verification or release approval.',state_owner:'APP_LOCAL_AUTHORIZED_GOVERNANCE_LEDGER',release_checkpoints:['BETA','FINAL'],host_enforcement:'DECLARE_OBSERVED_HOOK_OR_INSTRUCTION_ONLY',claim_boundary:'Instructions and returned guidance do not prove host execution, persisted state or release approval.'});
+export const CONTINUITY_GUIDANCE = Object.freeze({
+  schema: 'BOS_CONTINUITY_GUIDANCE_V1', version: RESPONSE_CONTINUITY_PROFILE.version,
+  header: 'Before substantive governed replies, read current exact project binding, relevant capabilities, source revision and effective provisional DBPP state. Preserve canonical status meanings and emit the current two-line BOS header plus host speaker chain.',
+  header_profile: RESPONSE_CONTINUITY_PROFILE.header_profile,
+  role_policy: RESPONSE_CONTINUITY_PROFILE.role_policy,
+  context_refresh: RESPONSE_CONTINUITY_PROFILE.context_refresh,
+  role_instruction: 'Resolve the current request coding position using the existing Function Activation Layer, then apply its current task duty. Bind project/session/request/source/policy. Emit AI_ROLE:UNKNOWN for missing, stale or low-confidence evidence. Preserve the native Base44 runtime prefix, then the two BOS header lines and speaker chain. Compare every printed value with current evidence. A role label does not prove behaviour or grant authority.',
+  footer: 'End substantive responses with next-task model/reasoning advice; show pending release decisions and waiting install work. Use separate orchestrator/target rows for real handoffs.',
+  refresh_triggers: ['EVERY_SUBSTANTIVE_RESPONSE','BEFORE_DEPENDENT_ACTION','NEW_SESSION','RESUME','COMPACTION','PROJECT_SWITCH','SOURCE_CHANGE','SPECIFICATION_CHANGE','INTENTION_CHANGE','DBPP_CHANGE','VERIFIED_CLOSEOUT'],
+  automatic_provisional_progression: 'Apply shared phase predicates to current project-bound evidence and persist through the authorized app state owner. Missing routine owner review does not freeze provisional assessment. Never fabricate verification or release approval.',
+  state_owner: 'APP_LOCAL_AUTHORIZED_GOVERNANCE_LEDGER', release_checkpoints: ['BETA','FINAL'],
+  host_enforcement: 'DECLARE_OBSERVED_HOOK_OR_INSTRUCTION_ONLY',
+  claim_boundary: 'Instructions and returned guidance do not prove host execution, persisted state or release approval.'
+});
+
+// A mapping of an already selected position, never a second intent selector.
+// Supplied position/confidence are host reports, not observed behaviour.
+export function roleGuidanceForPosition(position, confidence = 'UNKNOWN') {
+  const policy = RESPONSE_CONTINUITY_PROFILE.role_policy;
+  const levels = {UNKNOWN:0, LOW:1, MEDIUM:2, HIGH:3};
+  const id = (levels[confidence] ?? 0) >= (levels[policy.minimum_confidence] ?? 2) ? policy.positions[position] : 'UNKNOWN';
+  const role = policy.roles[id];
+  return {role_id: role ? id : 'UNKNOWN', label: role?.label ?? 'Unknown',
+    duty: role?.duty ?? 'No current role duty is verified; use the ordinary project rules.',
+    coding_position: position ?? 'UNKNOWN', confidence, permission_effect: 'NONE',
+    behaviour_evidence: 'NOT_VERIFIED'};
+}
+
 
 export async function persistReleaseDecision({projectId,checkpoint,decision,decisionId,evidenceHash,revisitCondition=null,ownerConfirmed,readState,readCurrentEvidence,compareAndSet}) {
   if (ownerConfirmed!==true || !decisionId || !['BETA','FINAL'].includes(checkpoint) || !['APPROVE','DEFER','REJECT','REQUEST_CHANGES'].includes(decision))throw new Error('EXPLICIT_OWNER_DECISION_REQUIRED');

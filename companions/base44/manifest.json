@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.43.21",
+  "workspace_skill_version": "1.43.22",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 19353,
-      "sha256": "4c9b7d42f7748be367410901ef2fd490ba581033bf14610a67b839bf032e2233"
+      "bytes": 19464,
+      "sha256": "49a532e5cf4ded3bc2ad97746e02ae605da96663829cedcd95b0058e5461138c"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -37,8 +37,8 @@
     },
     {
       "path": "scripts/base44-app-governance-profile.mjs",
-      "bytes": 77506,
-      "sha256": "910e204956cbfa36e8afb14e558715dba5f0e1068e718a39bb2ad40a2cdb8e11"
+      "bytes": 80163,
+      "sha256": "de97091c1d6818fc7f30e3ef1e3e5e15def8367939e8b1bf3719f8aeb394ac83"
     },
     {
       "path": "contracts/base44-app-governance-profiles.json",
@@ -52,8 +52,8 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 66489,
-      "sha256": "6f03d0c6397dba81c219f5835f660e5836cdb3268a8fc6f36b564887afec23bb"
+      "bytes": 67696,
+      "sha256": "2f89a96981b662b2bdafae3bc27ddc50a8a345d39d388752992535f8bba472b1"
     },
     {
       "path": "scripts/base44-update-request.mjs",
@@ -67,23 +67,23 @@
     },
     {
       "path": "scripts/base44-build-discipline.mjs",
-      "bytes": 30104,
-      "sha256": "9d4dc1c3b275e0b0f1558fd85d6f2253efd62b5fb38e88b265bddfc416f23736"
+      "bytes": 35674,
+      "sha256": "7725d0918c52db1380d76366e56621aad59c60b5c21aa414ef96fb57b6d763d4"
     },
     {
       "path": "scripts/base44-build-discipline.cjs",
-      "bytes": 30454,
-      "sha256": "d5dab968aa0e78defa0ec81e907dddf036cf7c50de522b9f4f1f3654be41a5b9"
+      "bytes": 43348,
+      "sha256": "70613dfded526f237b3916c2784df1a38aa1610481e647278926f10993294fcc"
     },
     {
       "path": "scripts/provisional_maturation.js",
-      "bytes": 9257,
-      "sha256": "21cb524748aad8ada6f608a83aba89c158c58eec930b096fed5bde35078f237f"
+      "bytes": 10915,
+      "sha256": "5a34aa5000104fe727d9224862e3935aec8f1c0bde2a780237ea067b9c774bd4"
     },
     {
       "path": "scripts/generated_provisional_maturation_policy.js",
-      "bytes": 1808,
-      "sha256": "a944954efa2adf0ad970d4c5523c80a076f0a2d218834581648613dc2d07f6e5"
+      "bytes": 9212,
+      "sha256": "dd8879b24e5ec6e9fed0d1909f6c2fbe9be1f6d286293389afe80a2f005b9d63"
     },
     {
       "path": "scripts/bos-page-readback.mjs",

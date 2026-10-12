@@ -1,10 +1,76 @@
 import { createHash } from 'node:crypto';
 import { validateNextStepResponse } from './generated_ai_execution_footer.mjs';
+import { RESPONSE_CONTINUITY_PROFILE } from './generated_provisional_maturation_policy.js';
+
+// The existing host supplies independently read app evidence. This checker
+// compares it; it cannot authenticate a caller or create native host hooks.
+export function validateResponseEnvelope(input = {}) {
+  const record = input.header_evidence, context = input.current_context;
+  const now = input.now ?? Date.now(), age = now - Date.parse(record?.observed_at);
+  if (!record || !context || !['host','project_ref','chat_ref','request_hash','source_revision'].every(k => context[k] && record[k] === context[k])
+      || !(age >= 0 && age <= 3600000) || !record.source_hashes || !Object.keys(record.source_hashes).length
+      || !Object.values(record.source_hashes).every(x => /^[a-f0-9]{64}$/.test(x))
+      || !context.source_hashes || Object.keys(context.source_hashes).length !== Object.keys(record.source_hashes).length
+      || !Object.entries(record.source_hashes).every(([path,hash]) => context.source_hashes[path] === hash))
+    return ['CURRENT_HEADER_READBACK_REQUIRED'];
+  const v = record.value;
+  if (!v?.status_fields || !v.header_fields || !v.ai_role || !/^[a-f0-9]{64}$/.test(v.fingerprint ?? '')
+      || v.project_id !== context.project_ref || !v.host || !v.version || !v.binding || !v.dbpp_phase || !v.assessment_status || !v.verification_status)
+    return ['CURRENT_HEADER_READBACK_INVALID'];
+  const speakers = {CODEX:'Codex',CLAUDE_CODE:'ClaudeCode',BASE44:'Base44',VS_CODE:'Codex',GENERIC_MCP:'Agent'};
+  if (speakers[context.host] !== v.host) return ['HOST_SURFACE_EVIDENCE_MISMATCH'];
+  const policy = RESPONSE_CONTINUITY_PROFILE.role_policy, levels = {UNKNOWN:0,LOW:1,MEDIUM:2,HIGH:3};
+  const role = v.binding === 'CURRENT_PROJECT_READBACK' && v.status_fields.SCOPE === '✓'
+    && (levels[v.ai_role.confidence] ?? 0) >= (levels[policy.minimum_confidence] ?? 2)
+    ? policy.positions[v.ai_role.coding_position] ?? 'UNKNOWN' : 'UNKNOWN';
+  const errors = v.ai_role.role_id === role ? [] : ['ROLE_SELECTION_EVIDENCE_MISMATCH'];
+  let rows = String(input.message ?? '').split('\n').map(x => x.trim()).filter(Boolean);
+  if (v.host === 'Base44') {
+    if (rows[0] === 'RUNTIME HEADER' && /^Mode Used: (OFF|ADVISORY|SAFEGUARDED|BUILD)$/.test(rows[1])
+        && /^Change Intent: (READ_ONLY|PLAN_ONLY|CHANGES_REQUESTED|CHANGES_APPLIED)$/.test(rows[2]) && /^Reason: .+/.test(rows[3])) rows = rows.slice(4);
+    else errors.push('HOST_RUNTIME_HEADER_MISSING_OR_INVALID');
+  }
+  const expected = {...v.status_fields,VER:v.version};
+  const overlay = {...Object.fromEntries([...v.header_fields.matchAll(/(LDP|ACCESS|CONN|GOVSRC):([^\s]+)/g)].map(m => [m[1],m[2]])),
+    BIND:v.binding,PHASE:`${v.dbpp_phase}/${v.assessment_status}`,EVIDENCE:v.verification_status,CTX:v.fingerprint.slice(0,12),AI_ROLE:v.ai_role.role_id};
+  if (v.owner_decision?.status && v.owner_decision.status !== 'NOT_READY') overlay.OWNER = `${v.owner_decision.checkpoint}/${v.owner_decision.status}`;
+  const orders = [['BOS','VER','AUTH','DEV','DBPP','INT','SCOPE','CONF','ROUTE'],['BIND','PHASE','EVIDENCE','CTX','LDP','ACCESS','CONN','GOVSRC','AI_ROLE']];
+  const keys = [...new Set([...Object.keys(expected),...Object.keys(overlay),'TARGET','OWNER','GOV','ST','CRC','HS'])].sort((a,b)=>b.length-a.length).join('|');
+  const pattern = `(?<![A-Za-z0-9_])(${keys})(?:\\s*:\\s*|\\s+)(\\[[|\\-]{5}\\]|[✓!✕]|[A-Za-z0-9_./-]+)`;
+  [expected,overlay].forEach((wanted,i) => {
+    let line = rows[i] ?? ''; if(line.startsWith('**') && line.endsWith('**')) line = line.slice(2,-2);
+    const found = [...line.matchAll(new RegExp(pattern,'g'))], names=found.map(m=>m[1]), values=Object.fromEntries(found.map(m=>[m[1],m[2]]));
+    if (names.length !== Object.keys(values).length) errors.push('HEADER_DUPLICATE_FIELD');
+    if (line.replace(new RegExp(pattern,'g'),'').replace(/[ |\t]/g,'')) errors.push('HEADER_MALFORMED');
+    const alternate = i === 0 && 'TARGET' in values && !('ROUTE' in values);
+    for(const [key,val] of Object.entries(wanted)) {
+      if(alternate && key === 'ROUTE') {if(values.TARGET !== v.project_id) errors.push('HEADER_FIELD_MISMATCH:TARGET');}
+      else if(values[key] !== val) errors.push('HEADER_FIELD_MISMATCH:'+key);
+    }
+    const required = orders[i].map(key=>alternate && key==='ROUTE'?'TARGET':key);
+    if(JSON.stringify(names.filter(k=>required.includes(k))) !== JSON.stringify(required)) errors.push('HEADER_FIELD_ORDER');
+    const optionals={GOV:['MIN','STD','FULL','MAN'],ST:['OK','PROV','BLK','UNK'],CRC:['N','P','R','OK'],HS:['OFF','OK','PROV','DATA','BLK']};
+    for (const [key,val] of Object.entries(values)) {
+      if(key in wanted || (alternate && key==='TARGET')) continue;
+      if(i!==0 || !optionals[key]?.includes(val) || val!==v.optional_status_fields?.[key]) errors.push('HEADER_UNEXPECTED_OR_UNSUPPORTED_FIELD');
+    }
+  });
+  if(errors.some(x=>x.startsWith('HEADER_'))) errors.push('HEADER_MISSING_OR_STALE');
+  let speaker = rows[2] ?? '';
+  const marker = speaker.match(/^BOS[0-9.]+> (\[[^\]]+\]) /)?.[1];
+  if(marker) {
+    if(v.binding !== 'CURRENT_PROJECT_READBACK' || !v.source_markers?.includes(marker)) errors.push('SPEAKER_ACTIVITY_UNSUPPORTED');
+    speaker = speaker.replace(marker+' ','');
+  }
+  const expectedSpeaker = new RegExp(`^BOS${v.version.replace(/\./g,'\\.')}>(?: BOS-[A-Za-z0-9_-]+>)* ${v.host}> user>(?:$|\\s)`);
+  if(!expectedSpeaker.test(speaker) || /\[[^\]]+\]/.test(speaker)) errors.push('SPEAKER_MISSING_OR_MISPLACED');
+  return [...new Set(errors)];
+}
 
 export function evaluateResponseContinuity(input = {}) {
   if (input.assistance_preference?.local_enabled === false && input.owner_requested !== true)
     return { status: 'ASSISTANCE_PAUSED', capture: false, native_hook: 'NOT_AVAILABLE', grants_authority: false };
-  const errors = validateNextStepResponse(input);
+  const errors = [...validateResponseEnvelope(input), ...validateNextStepResponse(input)];
   const actual = input.actual_settings;
   const context = input.current_context;
   const current = actual?.source === 'NATIVE_HOST_READBACK' && actual?.evidence_ref
