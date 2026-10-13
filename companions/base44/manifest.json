@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.43.24",
+  "workspace_skill_version": "1.43.25",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
       "bytes": 19429,
-      "sha256": "db1f89a9f6758f3990bd9de9071a244bfa3978fe402e7836f97fe6abd8275389"
+      "sha256": "11afffff35c34374db6a747d22fb8f46cf554e5dd2b1d34827c36b4e35e880e0"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -17,8 +17,8 @@
     },
     {
       "path": "contracts/base44-session-memory-activation.json",
-      "bytes": 10980,
-      "sha256": "afec74f7bc8fb859f4f3734c50f18cb1306ee960a9af49fc25ab096fc5599470"
+      "bytes": 11284,
+      "sha256": "18923242354d7ea9402263bbd8266cd89cb70d4cc1326812bd93807ae505b6ec"
     },
     {
       "path": "scripts/base44-governed-app-onboarding.mjs",
@@ -27,8 +27,8 @@
     },
     {
       "path": "scripts/base44-session-memory-activation.mjs",
-      "bytes": 14927,
-      "sha256": "f297040b76b009c472dc370285f6c127c3cdb0c8a5b1e3dad886bece9eedda54"
+      "bytes": 15486,
+      "sha256": "8623f5bdd083d0f6a54cc7db6e5f7085ea20c649aa3fd9074680988871f558ec"
     },
     {
       "path": "scripts/project-baseline.mjs",
@@ -52,8 +52,8 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 68582,
-      "sha256": "ae578cf11a4ab4f8e993c7241bb865844e1b7b4f7d3fa5e401d35d0408f930d0"
+      "bytes": 68781,
+      "sha256": "db633c7f2ad28ff77e308ba42d3b21edf7015191efcf19d74a2599fbedd6976d"
     },
     {
       "path": "scripts/base44-update-request.mjs",
@@ -72,8 +72,8 @@
     },
     {
       "path": "scripts/base44-build-discipline.cjs",
-      "bytes": 71304,
-      "sha256": "f90d1972db0037f803e1f89449063d770a3dc114d197b4bc0753537dfd587656"
+      "bytes": 71863,
+      "sha256": "d8ebbbb4acca9299e3a2267ffbc468fe7050654825386a12eba86b812ff981e0"
     },
     {
       "path": "scripts/provisional_maturation.js",

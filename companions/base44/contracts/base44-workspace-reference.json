@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.43.24",
+  "version": "1.43.25",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -331,7 +331,7 @@
     "header_profile": "Current authenticated continuity profile: preserve native runtime prefix, then two BOS header lines and speaker chain. Canonical status meanings remain; DBPP readiness is separate from PHASE and EVIDENCE. Current task AI_ROLE comes from the existing selected coding position, otherwise UNKNOWN. A role never grants permission or changes model settings.",
     "response_helper": "Optional evaluateResponseContinuity requires current_context and header_evidence bound to the same host/project_ref/chat_ref/request_hash/source_revision/source_hashes, observed_at and independently read value. Freshness, full field comparison, role/source checks, actual settings and complete advice are checked. Missing readback stays CURRENT_HEADER_READBACK_REQUIRED; the helper authenticates no evidence and supplies no native interception.",
     "app_control_update": "PUBLIC_RESPONSE_CONTINUITY_V1 is an opt-in app AI-control revision through the existing exact-plan update lifecycle. Omitted revision preserves installed bytes and all historical plans. Source/package preparation alone does not update live apps or prove a native session loaded it.",
-    "response_readback": "Follow contracts/base44-session-memory-activation.json continuity_and_maturation.response_readback. Use createBase44ResponseReadback in the existing CommonJS helper to assemble the canonical header evidence and complete next-task footer from current exact app/manifest/provider/request readback. Do not manually invent normalized Connect fields, status values, task roles or model advice.",
+    "response_readback": "Follow contracts/base44-session-memory-activation.json continuity_and_maturation.response_readback. Use createBase44ResponseReadback in the existing CommonJS helper to assemble the canonical header evidence and complete next-task footer from current exact app/manifest/provider/request readback. Do not manually invent normalized Connect fields, status values, task roles or model advice. If tool text is truncated, use the complete server-emitted BOS_PUBLIC_CONNECTION_READBACK_V1 frame before the full guidance; preserve its actual provenance and retrieve required guidance separately.",
     "package_status": "PUBLIC_SAFE_CANDIDATE_NOT_INSTALLED describes the distribution artifact, not the selected workspace runtime. Establish installation from native saved/reopened exact skill text and enabled state or a qualified native activation readback. Preserve these separate evidence classes."
   },
   "bos_page_delivery": {

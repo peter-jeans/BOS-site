@@ -390,6 +390,15 @@ function evaluateBase44SessionMemoryActivation({
 } = {}) {
   const projectRef = expectedIdentity.project_ref || null;
   const appId = expectedIdentity.app_id || null;
+  // Only the delivery projection emitted by the actual authenticated Connect
+  // call is accepted. Parsing either representation never authenticates origin.
+  if (bosConnect.schema === 'BOS_PUBLIC_CONNECTION_READBACK_V1') {
+    if (bosConnect.purpose !== 'SESSION_MEMORY_READBACK_ONLY'
+      || bosConnect.grants_authority !== false || bosConnect.guidance_required_separately !== true) {
+      return blocked('BLOCKED_READBACK_UNVERIFIED', ['connection_delivery_scope_invalid'], { projectRef, appId });
+    }
+    bosConnect = bosConnect.readback || {};
+  }
   // Current native MCP supplies the public result envelope, not the earlier
   // host-normalized fixture. Preserve the same exact binding/anchor gates.
   // Parsing this host-supplied result still does not authenticate its origin.
