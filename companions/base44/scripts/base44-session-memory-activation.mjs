@@ -205,7 +205,8 @@ export function buildBase44ResponseReadback(input = {}) {
   const now = input.now ?? Date.now();
   const age = now - Date.parse(request?.observed_at);
   if (!request || request.host !== "BASE44" || request.project_ref !== activation.project_ref
-    || !ID.test(request.chat_ref ?? "") || !HASH.test(request.request_hash ?? "")
+    || !ID.test(request.chat_ref ?? "") || /^(UNKNOWN|NONE|NULL)$/i.test(request.chat_ref)
+    || !HASH.test(request.request_hash ?? "")
     || request.source_revision !== activation.observed_app_revision
     || !(age >= 0 && age <= 300000))
     return { status: "CURRENT_RESPONSE_CONTEXT_REQUIRED", activation, grants_authority: false };

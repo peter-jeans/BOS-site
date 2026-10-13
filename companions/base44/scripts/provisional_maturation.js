@@ -51,6 +51,7 @@ export const CONTINUITY_GUIDANCE = Object.freeze({
   header_profile: RESPONSE_CONTINUITY_PROFILE.header_profile,
   role_policy: RESPONSE_CONTINUITY_PROFILE.role_policy,
   context_refresh: RESPONSE_CONTINUITY_PROFILE.context_refresh,
+  session_isolation: RESPONSE_CONTINUITY_PROFILE.session_isolation,
   role_instruction: 'Resolve the current request coding position using the existing Function Activation Layer, then apply its current task duty. Bind project/session/request/source/policy. Emit AI_ROLE:UNKNOWN for missing, stale or low-confidence evidence. Preserve the native Base44 runtime prefix, then the two BOS header lines and speaker chain. Compare every printed value with current evidence. A role label does not prove behaviour or grant authority.',
   footer: 'End substantive responses with next-task model/reasoning advice; show pending release decisions and waiting install work. Use separate orchestrator/target rows for real handoffs.',
   refresh_triggers: ['EVERY_SUBSTANTIVE_RESPONSE','BEFORE_DEPENDENT_ACTION','NEW_SESSION','RESUME','COMPACTION','PROJECT_SWITCH','SOURCE_CHANGE','SPECIFICATION_CHANGE','INTENTION_CHANGE','DBPP_CHANGE','VERIFIED_CLOSEOUT'],

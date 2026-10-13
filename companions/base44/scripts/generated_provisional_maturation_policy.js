@@ -54,7 +54,7 @@ export const MATURATION_POLICY = {
   "display_rule": "Show assessed phase, verification, pending obligations and owner decision; no maturity percentage."
 };
 export const RESPONSE_CONTINUITY_PROFILE = {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "header_profile": {
     "layout": "TWO_HEADER_LINES_THEN_SPEAKER_CHAIN",
     "host_prefix": {
@@ -217,5 +217,20 @@ export const RESPONSE_CONTINUITY_PROFILE = {
     "large_records": "Index oversized records with exact hashes and explicit on-demand read gaps; never silently truncate or claim they were supplied in full.",
     "verification": "Source readback, guidance delivery, host-reported plan application and observed behaviour are separate. No hidden semantic-attention claim.",
     "boundary": "Reuse existing project memory/state owners and action gates. This derived view neither accepts requirements nor adds permission, a context engine, daemon or automatic source rollback."
+  },
+  "session_isolation": {
+    "scope": "EVERY_BOS_CONNECTED_CHAT_ROUTE",
+    "chat_owned": [
+      "current_request",
+      "task_role_selection",
+      "next_step_advisory",
+      "workflow_readback",
+      "bootstrap_cache"
+    ],
+    "local_private": "Store atomic records under the hash of the actual host session ID. A legacy latest-observed mirror is display only; fallback is allowed only for an exact matching known session ID.",
+    "public_base44_generic": "Keep derived response context call-local and bind it to the actual host, project, chat, request, source revision and hashes. Never persist it over another chat's context or borrow another chat's role, advice or model evidence.",
+    "missing_identity": "UNKNOWN, missing and placeholder chat identities do not establish current chat evidence. Do not create a shared unknown-session authority bucket. Keep ordinary authorized work and read-only project checks available, with role, exact settings and chat verification unverified.",
+    "project_owned": "Specifications, accepted decisions, intentions, project identity, entitlement and lifecycle state retain their existing project-wide owners and action gates. This isolation does not authorize conflicting source edits or create a new project authority.",
+    "verification": "Interleave two chats, resume each, invalidate one request, cross-swap evidence and test missing identity. Installed instructions and helper results remain separate from fresh native host behaviour."
   }
 };

@@ -325,7 +325,8 @@ export function createNextStepResponse({scopes = [], now = Date.now()} = {}) {
     if (!rule) throw Error('NEXT_STEP_POLICY_REQUIRED');
     const catalog=scope.catalog, age=now-Date.parse(catalog?.observed_at);
     const current=catalog?.evidence_ref && age>=0 && age<=3600000
-      && ['host','project_ref','chat_ref','account_ref'].every(k=>catalog[k]===scope[k]);
+      && ['host','project_ref','chat_ref','account_ref'].every(k=>typeof scope[k]==='string'
+        && scope[k].trim() && !/^(UNKNOWN|NONE|NULL)$/i.test(scope[k]) && catalog[k]===scope[k]);
     const row={host:scope.host,project_ref:scope.project_ref,chat_ref:scope.chat_ref,execution_route:scope.execution_route,
       role:roles[i],task:scope.task,task_class:taskClass,capability:rule.capability,requested_effort:rule.reasoning,
       model:rule.capability,reasoning:'UNKNOWN',catalog_status:current?'CURRENT':'UNKNOWN_OR_STALE',
@@ -395,7 +396,8 @@ export function validateNextStepResponse({ message, result, scopes = [], now = D
       const catalog = scope?.catalog;
       const age = now - Date.parse(catalog?.observed_at);
       const current = catalog?.evidence_ref && age >= 0 && age <= 3600000
-        && ['host','project_ref','chat_ref','account_ref'].every(k => scope?.[k] && catalog[k] === scope[k]);
+        && ['host','project_ref','chat_ref','account_ref'].every(k => typeof scope?.[k] === 'string'
+          && scope[k].trim() && !/^(UNKNOWN|NONE|NULL)$/i.test(scope[k]) && catalog[k] === scope[k]);
       const model = current && catalog.models?.find(m => m.id === row.model);
       const effortOK = row.reasoning === 'UNKNOWN' || model?.reasoning_levels?.includes(row.reasoning)
         || model?.reasoning_control === row.reasoning;

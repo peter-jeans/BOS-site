@@ -12,7 +12,9 @@ export function createBase44ResponseReadback(input) {
 export function validateResponseEnvelope(input = {}) {
   const record = input.header_evidence, context = input.current_context;
   const now = input.now ?? Date.now(), age = now - Date.parse(record?.observed_at);
-  if (!record || !context || !['host','project_ref','chat_ref','request_hash','source_revision'].every(k => context[k] && record[k] === context[k])
+  if (!record || !context || typeof context.chat_ref !== 'string' || !context.chat_ref.trim()
+      || /^(UNKNOWN|NONE|NULL)$/i.test(context.chat_ref) || context.chat_ref !== context.chat_ref.trim()
+      || !['host','project_ref','chat_ref','request_hash','source_revision'].every(k => context[k] && record[k] === context[k])
       || !(age >= 0 && age <= 3600000) || !record.source_hashes || !Object.keys(record.source_hashes).length
       || !Object.values(record.source_hashes).every(x => /^[a-f0-9]{64}$/.test(x))
       || !context.source_hashes || Object.keys(context.source_hashes).length !== Object.keys(record.source_hashes).length
@@ -83,7 +85,8 @@ export function evaluateResponseContinuity(input = {}) {
   const context = input.current_context;
   const current = actual?.source === 'NATIVE_HOST_READBACK' && actual?.evidence_ref
     && typeof actual.model === 'string' && actual.model.trim() && typeof actual.reasoning === 'string' && actual.reasoning.trim()
-    && context && ['host','project_ref','chat_ref','account_ref'].every(k => context[k] && actual[k] === context[k])
+    && context && ['host','project_ref','chat_ref','account_ref'].every(k => typeof context[k] === 'string'
+      && context[k].trim() && !/^(UNKNOWN|NONE|NULL)$/i.test(context[k]) && actual[k] === context[k])
     && Date.now() - Date.parse(actual.observed_at) >= 0 && Date.now() - Date.parse(actual.observed_at) <= 3600000;
   const line = `Actual model/reasoning: ${current ? actual.model : 'UNKNOWN'} / ${current ? actual.reasoning : 'UNKNOWN'}`;
   if (!String(input.message ?? '').split('\n').some(row => row.trim().replace(/\.$/, '') === line)) errors.push('ACTUAL_SETTINGS_MISSING_OR_UNSUPPORTED');

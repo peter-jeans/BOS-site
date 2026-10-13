@@ -144,7 +144,8 @@
       ],
       "effects": "READ_ONLY_DERIVED_PROJECTION; no authority, state persistence, acceptance, entitlement or model switching",
       "native_acceptance": "PENDING; component tests and emitted headers do not prove native use"
-    }
+    },
+    "session_isolation": "Response evidence is call-local and actual-chat-bound. Missing or UNKNOWN chat identity cannot attest current chat context. Preserve project-wide accepted decisions and use no shared latest-chat authority record."
   },
   "execution_continuity": {
     "reference": "contracts/base44-workspace-reference.json#build_checks.execution_continuity",
