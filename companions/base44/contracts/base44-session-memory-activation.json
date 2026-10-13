@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_SESSION_MEMORY_ACTIVATION_V1",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "status": "PUBLIC_SAFE_LOCAL_CONTRACT_LIVE_VERIFICATION_PENDING",
   "purpose": "Prevent a new, resumed or context-compacted Base44 BuildAI chat from continuing governed work from chat memory alone.",
   "triggers": [
@@ -129,7 +129,22 @@
       "FINAL"
     ],
     "verification_and_release_separate": true,
-    "hook_enforcement": "NOT_CLAIMED_FOR_NATIVE_BUILDAI"
+    "hook_enforcement": "NOT_CLAIMED_FOR_NATIVE_BUILDAI",
+    "response_readback": {
+      "function": "scripts/base44-build-discipline.cjs:createBase44ResponseReadback",
+      "source": "scripts/base44-session-memory-activation.mjs:buildBase44ResponseReadback",
+      "sequence": [
+        "Obtain current authenticated native bos_connect output for this exact app; use its actual public result envelope, not invented authentication fields.",
+        "Restore the independently approved exact identity, manifest anchor and projection revision; obtain a fresh independent current provider revision and every manifest-owned artifact as exact UTF-8 bytes.",
+        "Supply the existing activation inputs plus request_context:{host:BASE44,project_ref,chat_ref,account_ref,request_hash,source_revision,observed_at}. Keep unknown chat/account controls explicitly UNKNOWN; hash this actual request locally; do not upload its text.",
+        "Call createBase44ResponseReadback. A blocked activation, changed source, stale request, wrong host/app/revision or missing anchor yields no valid header. Do not fabricate a passing result.",
+        "Use its current_context and header_evidence with evaluateResponseContinuity; emit its header before body text. Preserve a real native runtime prefix when present or required; never invent one.",
+        "Supply next_task with the actual task, native mode/route, signals and separately verified catalog/owner choices. Emit next_step_footer verbatim. Actual model/settings still need separate native readback or UNKNOWN.",
+        "Supply position_selection only from the existing verified selector, bound to this project/chat/request/source fingerprint, policy_sha256 and fresh observation. Missing/stale/low-confidence selection emits UNKNOWN; a supplied role is not behaviour evidence."
+      ],
+      "effects": "READ_ONLY_DERIVED_PROJECTION; no authority, state persistence, acceptance, entitlement or model switching",
+      "native_acceptance": "PENDING; component tests and emitted headers do not prove native use"
+    }
   },
   "execution_continuity": {
     "reference": "contracts/base44-workspace-reference.json#build_checks.execution_continuity",

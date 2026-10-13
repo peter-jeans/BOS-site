@@ -304,6 +304,61 @@ function nextTaskClass(signals = {}) {
   if (signals.repetitive && signals.verified_transform) return 'VERIFIED_TRANSFORMATION';
   return 'ROUTINE_IMPLEMENTATION';
 }
+// Render advice from the same generated policy used by the checker. No model
+// setting, entitlement or network action is performed here.
+function renderNextStepRow(row) {
+  let line = `Next ${row.role.toLowerCase()} — ${row.host} (${row.project_ref}/${row.chat_ref}): ${row.model} / ${row.reasoning}`;
+  if (row.reasoning === 'UNKNOWN') line += ` (desired ${row.requested_effort})`;
+  line += ` — ${row.task}.`;
+  if (row.selection_status.startsWith('USER_CHOICE') || row.reason.includes('do not substitute')) line += ` ${row.reason}`;
+  return line + ' Recommendation only.';
+}
+export function createNextStepResponse({scopes = [], now = Date.now()} = {}) {
+  if (!Array.isArray(scopes) || scopes.length > 2) throw Error('NEXT_STEP_SCOPES_INVALID');
+  if (scopes.length === 2 && !['NATIVE_BUILDER','OTHER_CHAT'].includes(scopes[1]?.execution_route))
+    throw Error('NEXT_STEP_HANDOFF_INVALID');
+  const roles = scopes.length === 2 ? ['ORCHESTRATOR','TARGET'] : ['SELF'];
+  const rows = scopes.map((scope,i) => {
+    if (['host','project_ref','chat_ref','account_ref','task','execution_route'].some(k=>typeof scope[k] !== 'string' || !scope[k].trim()))
+      throw Error('NEXT_STEP_SCOPE_REQUIRED');
+    const taskClass=nextTaskClass(scope.signals), rule=NEXT_STEP_TASK_RULES[taskClass];
+    if (!rule) throw Error('NEXT_STEP_POLICY_REQUIRED');
+    const catalog=scope.catalog, age=now-Date.parse(catalog?.observed_at);
+    const current=catalog?.evidence_ref && age>=0 && age<=3600000
+      && ['host','project_ref','chat_ref','account_ref'].every(k=>catalog[k]===scope[k]);
+    const row={host:scope.host,project_ref:scope.project_ref,chat_ref:scope.chat_ref,execution_route:scope.execution_route,
+      role:roles[i],task:scope.task,task_class:taskClass,capability:rule.capability,requested_effort:rule.reasoning,
+      model:rule.capability,reasoning:'UNKNOWN',catalog_status:current?'CURRENT':'UNKNOWN_OR_STALE',
+      selection_status:'CAPABILITY_ONLY',settings_status:'RECOMMENDATION_ONLY',reason:`Next task requires ${rule.capability} capability.`};
+    if(rule.capability==='NO_MODEL')return {...row,model:'NO_MODEL',reasoning:'NOT_APPLICABLE',selection_status:'NOT_REQUIRED'};
+    if(scope.host==='BASE44' && scope.execution_route==='NATIVE_BUILDER' && scope.mode==='DISCUSS')
+      return {...row,model:'PLATFORM_MANAGED',reasoning:'UNKNOWN',selection_status:'HOST_MANAGED',
+        reason:'Discuss uses the platform-managed model; Build selection does not apply.'};
+    const choice=scope.user_choice || {}, models=current ? catalog.models || [] : [];
+    let selected;
+    if(choice.model) {
+      Object.assign(row,{model:choice.model,selection_status:'USER_CHOICE_UNVERIFIED',
+        reason:"Preserve the user's model choice; verify availability in this host."});
+      selected=models.find(m=>m.id===choice.model);
+    } else selected=models.find(m=>m.capabilities?.includes(rule.capability));
+    if(selected) {
+      Object.assign(row,{model:selected.id,selection_status:choice.model?'USER_CHOICE':'SUPPORTED_RECOMMENDATION'});
+      if(choice.model)row.reason="Preserve the user's model choice for the next task.";
+      const effort=choice.reasoning ?? selected.effort_mapping?.[rule.reasoning];
+      if(selected.reasoning_levels?.includes(effort))row.reasoning=effort;
+      else if(['HOST_MANAGED','NOT_SUPPORTED'].includes(selected.reasoning_control))row.reasoning=selected.reasoning_control;
+    }
+    if(choice.reasoning && row.reasoning!==choice.reasoning)
+      row.reason+=` Requested effort ${choice.reasoning} is unverified; do not substitute silently.`;
+    return row;
+  });
+  const result={schema:'BOS_AI_EXECUTION_NEXT_STEP_V1',version:'1.0.0',mode:rows.length===2?'DUPLEX':rows.length?'SINGLE':'NO_NEXT_TASK',
+    automatic_model_switching:false,recommendations:rows};
+  const message=rows.length?rows.map(renderNextStepRow).join('\n'):'Next model/reasoning: not applicable — no next task identified.';
+  const errors=validateNextStepResponse({message,result,scopes,now});
+  if(errors.length)throw Error(errors.join(','));
+  return {result,message};
+}
 // Advisory consistency only. The host must supply actual native/source readback.
 export function validateNextStepResponse({ message, result, scopes = [], now = Date.now() } = {}) {
   const errors = [];
@@ -354,11 +409,7 @@ export function validateNextStepResponse({ message, result, scopes = [], now = D
       if (row.reasoning !== expectedEffort) errors.push('REASONING_POLICY_MISMATCH');
     }
     if (scope?.user_choice?.model && scope.user_choice.model !== row.model) errors.push('USER_CHOICE_NOT_PRESERVED');
-    let line = `Next ${row.role.toLowerCase()} — ${row.host} (${row.project_ref}/${row.chat_ref}): ${row.model} / ${row.reasoning}`;
-    if (row.reasoning === 'UNKNOWN') line += ` (desired ${row.requested_effort})`;
-    line += ` — ${row.task}.`;
-    if (row.selection_status.startsWith('USER_CHOICE') || row.reason.includes('do not substitute')) line += ` ${row.reason}`;
-    footer.push(line + ' Recommendation only.');
+    footer.push(renderNextStepRow(row));
   }
   if (!text.endsWith(footer.join('\n'))) errors.push('NEXT_STEP_RENDER_MISMATCH');
   return [...new Set(errors)];

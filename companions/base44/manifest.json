@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.43.22",
+  "workspace_skill_version": "1.43.23",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 19464,
-      "sha256": "49a532e5cf4ded3bc2ad97746e02ae605da96663829cedcd95b0058e5461138c"
+      "bytes": 19429,
+      "sha256": "4b86030ec031c67229bb346d6eee1171b933d2190739b69e712f16d1b0768aa1"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -17,8 +17,8 @@
     },
     {
       "path": "contracts/base44-session-memory-activation.json",
-      "bytes": 8973,
-      "sha256": "c0c2c7cd6259d28d943cb76eebeb58af703b26d01aadfb4dbc7b2ad4731eced2"
+      "bytes": 10980,
+      "sha256": "afec74f7bc8fb859f4f3734c50f18cb1306ee960a9af49fc25ab096fc5599470"
     },
     {
       "path": "scripts/base44-governed-app-onboarding.mjs",
@@ -27,8 +27,8 @@
     },
     {
       "path": "scripts/base44-session-memory-activation.mjs",
-      "bytes": 8397,
-      "sha256": "f87ef892027bcd211496b8901bff4b4100ea16914aed472bfa562932013bc227"
+      "bytes": 14927,
+      "sha256": "f297040b76b009c472dc370285f6c127c3cdb0c8a5b1e3dad886bece9eedda54"
     },
     {
       "path": "scripts/project-baseline.mjs",
@@ -52,8 +52,8 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 67696,
-      "sha256": "2f89a96981b662b2bdafae3bc27ddc50a8a345d39d388752992535f8bba472b1"
+      "bytes": 68582,
+      "sha256": "1bb8566f14845cd14303798c4263ba97ac1b0030ebdcd19bc008314d1242cacc"
     },
     {
       "path": "scripts/base44-update-request.mjs",
@@ -67,13 +67,13 @@
     },
     {
       "path": "scripts/base44-build-discipline.mjs",
-      "bytes": 35674,
-      "sha256": "7725d0918c52db1380d76366e56621aad59c60b5c21aa414ef96fb57b6d763d4"
+      "bytes": 36188,
+      "sha256": "89ea4347a72771421f89156a665b1b8feb202e070e56ade0f0bb968d2edde246"
     },
     {
       "path": "scripts/base44-build-discipline.cjs",
-      "bytes": 43348,
-      "sha256": "70613dfded526f237b3916c2784df1a38aa1610481e647278926f10993294fcc"
+      "bytes": 71304,
+      "sha256": "f90d1972db0037f803e1f89449063d770a3dc114d197b4bc0753537dfd587656"
     },
     {
       "path": "scripts/provisional_maturation.js",
@@ -117,13 +117,13 @@
     },
     {
       "path": "scripts/generated_ai_execution_footer.mjs",
-      "bytes": 14655,
-      "sha256": "bd8fe65bd2eafd992697f221457eb05abe87e557becc49c6b93b47022905bdd7"
+      "bytes": 18367,
+      "sha256": "6bd5769f6cab50235d52399e591461326d0d96a9990e33201e10410b3fd467bc"
     },
     {
       "path": "scripts/generated_ai_execution_footer.cjs",
-      "bytes": 14739,
-      "sha256": "84e95537d00c39f09fbac5dd9f26969b1767bbe12ebc0a867e8515d441874c8c"
+      "bytes": 18468,
+      "sha256": "457cbf482064880e48a6f7713022979e45dbf4ef9e588abd4a7433b24076b8c7"
     }
   ]
 }

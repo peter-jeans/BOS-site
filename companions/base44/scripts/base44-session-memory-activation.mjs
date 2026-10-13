@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { assessProvisionalMaturation, roleGuidanceForPosition, CONTINUITY_GUIDANCE } from "./provisional_maturation.js";
+import { createNextStepResponse, NEXT_STEP_EXECUTION_ADVISORY } from "./generated_ai_execution_footer.mjs";
 
 const SCHEMA = "BOS_CLOUDBOS_PUBLIC_BASE44_SESSION_ACTIVATION_RESULT_V1";
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
@@ -62,6 +64,27 @@ export function evaluateBase44SessionMemoryActivation({
 } = {}) {
   const projectRef = expectedIdentity.project_ref || null;
   const appId = expectedIdentity.app_id || null;
+  // Current native MCP supplies the public result envelope, not the earlier
+  // host-normalized fixture. Preserve the same exact binding/anchor gates.
+  // Parsing this host-supplied result still does not authenticate its origin.
+  if (bosConnect.schema === "BOS_PUBLIC_LEVEL1_TOOL_RESULT_V1") {
+    const result = bosConnect.result || {}, source = result.installed_plan_source || {};
+    bosConnect = {
+      authenticated: bosConnect.tool === "bos_connect" && bosConnect.status === "READY"
+        && bosConnect.authority?.source === "CLOUD_BOS_PUBLIC_MCP"
+        && bosConnect.entitlement?.source === "CLOUD_BOS_D1_SERVER_RESOLVED"
+        && bosConnect.entitlement?.client_claims_accepted === false
+        && bosConnect.evidence?.includes("authenticated.mcp_request") === true,
+      platform_identity_verified: result.transport_status === "PASS"
+        && result.platform_connection_state === "CONNECTED",
+      project_binding_verified: result.project_governance_state === "GOVERNED_ACTIVE"
+        && result.project_binding_verified === true && source.status === "REFERENCE_AVAILABLE"
+        && source.installed_manifest_sha256 === expectedIdentity.governance_manifest_sha256,
+      service_version: result.service_version, project_ref: source.project_ref,
+      project_binding_id: source.project_binding_id,
+      app_id: source.project_ref === `base44:${appId}` ? appId : null,
+    };
+  }
   if (!TRIGGERS.has(trigger)) return blocked("BLOCKED_READBACK_UNVERIFIED", ["activation_trigger_invalid"], { projectRef, appId });
   if (![projectRef, appId, expectedIdentity.project_binding_id, expectedIdentity.expected_app_revision, expectedIdentity.projection_base_revision].every((value) => typeof value === "string" && ID.test(value))
     || !HASH.test(expectedIdentity.governance_manifest_sha256 ?? "")) {
@@ -161,3 +184,64 @@ export function evaluateBase44SessionMemoryActivation({
 }
 
 export const BASE44_SESSION_MEMORY_REQUIRED_ARTIFACTS = REQUIRED_ARTIFACTS;
+
+// Assemble the response checker's input from the existing validated memory
+// readback. This is a host-side projection, not another authority or writer.
+// The caller still owns authentication and independently anchored identity.
+export function buildBase44ResponseReadback(input = {}) {
+  const activation = evaluateBase44SessionMemoryActivation(input);
+  if (!activation.status.startsWith("ACTIVE_CURRENT_"))
+    return { status: activation.status, activation, grants_authority: false };
+  const request = input.request_context;
+  const now = input.now ?? Date.now();
+  const age = now - Date.parse(request?.observed_at);
+  if (!request || request.host !== "BASE44" || request.project_ref !== activation.project_ref
+    || !ID.test(request.chat_ref ?? "") || !HASH.test(request.request_hash ?? "")
+    || request.source_revision !== activation.observed_app_revision
+    || !(age >= 0 && age <= 300000))
+    return { status: "CURRENT_RESPONSE_CONTEXT_REQUIRED", activation, grants_authority: false };
+  const manifest = JSON.parse(input.artifacts["governance/GOVERNANCE_MANIFEST.json"]);
+  const paths = [...manifest.artifacts.map(item => item.target), "governance/GOVERNANCE_MANIFEST.json"].sort();
+  const source_hashes = Object.fromEntries(paths.map(path => [path, sha256(input.artifacts[path])]));
+  const policyHash = sha256(JSON.stringify({continuity:CONTINUITY_GUIDANCE,advice:NEXT_STEP_EXECUTION_ADVISORY}));
+  const sourceFingerprint = sha256(JSON.stringify({source_hashes,policy_sha256:policyHash}));
+  const context = { host: "BASE44", project_ref: activation.project_ref, chat_ref: request.chat_ref,
+    account_ref: request.account_ref || "UNKNOWN", request_hash: request.request_hash,
+    source_revision: activation.observed_app_revision, source_hashes };
+  // Reuse the shared assessor. Only readback facts are established here; no
+  // workflow, test, acceptance or release fact is inferred from file presence.
+  const assessment = assessProvisionalMaturation({ project_id: activation.project_ref,
+    evidence_hash: sourceFingerprint, evidence_basis: "LOCAL_ARTIFACT_READBACK",
+    facts: { binding_current: true, context_present: true, source_readback: true } }, activation.project_ref);
+  const selection = input.position_selection;
+  const selectionAge = now - Date.parse(selection?.observed_at);
+  const currentSelection = selection?.selector === "EXISTING_MASTER_ENFORCEMENT_LOOP_CODING_POSITION"
+    && ["project_ref", "chat_ref", "request_hash"].every(k => selection[k] === context[k])
+    && selection.source_fingerprint === sourceFingerprint && selection.policy_sha256 === policyHash
+    && selectionAge >= 0 && selectionAge <= 300000;
+  const role = roleGuidanceForPosition(currentSelection ? selection.coding_position : "UNKNOWN",
+    currentSelection ? selection.confidence : "UNKNOWN");
+  const version = activation.speaker.chain.match(/^BOS([0-9.]+)>/)[1];
+  const value = { project_id: activation.project_ref, host: "Base44", version,
+    binding: "CURRENT_PROJECT_READBACK", dbpp_phase: assessment.assessed_phase,
+    assessment_status: assessment.assessment_status, verification_status: "NOT_VERIFIED",
+    header_fields: "LDP:UNKNOWN ACCESS:UNKNOWN CONN:BASE44_DIRECT GOVSRC:DIRECT_HOST",
+    status_fields: { BOS: "✓", AUTH: "!", DEV: "!", DBPP: "!", INT: "✓", SCOPE: "✓",
+      CONF: "[-----]", ROUTE: "BASE44_DIRECT" }, ai_role: role, source_markers: [] };
+  const next = input.next_task;
+  const advice = createNextStepResponse({ now, scopes: next ? [{ host: context.host,
+    project_ref: context.project_ref, chat_ref: context.chat_ref, account_ref: context.account_ref,
+    task: next.task, execution_route: next.execution_route || "NATIVE_BUILDER",
+    mode: next.mode, signals: next.signals || {}, catalog: next.catalog || {}, user_choice: next.user_choice || {} }] : [] });
+  value.fingerprint = sha256(JSON.stringify({ context, sourceFingerprint, policyHash, value, advice:advice.result }));
+  const header = `BOS ✓ VER ${version} AUTH ! DEV ! DBPP ! INT ✓ SCOPE ✓ CONF [-----] ROUTE:BASE44_DIRECT\n`
+    + `BIND:CURRENT_PROJECT_READBACK PHASE:${value.dbpp_phase}/${value.assessment_status} EVIDENCE:NOT_VERIFIED CTX:${value.fingerprint.slice(0,12)} ${value.header_fields} AI_ROLE:${role.role_id}\n`
+    + activation.speaker.chain;
+  return { status: "CURRENT_PROJECT_READBACK", activation, current_context: context,
+    header_evidence: { ...context, observed_at: request.observed_at, value }, header,
+    source_fingerprint: sourceFingerprint, policy_sha256:policyHash, assessment, role_guidance: role.duty,
+    next_step: advice.result, next_step_footer: advice.message,
+    specification_acceptance: "NOT_ATTESTED_BY_THIS_HELPER", state_persistence: "NOT_ATTEMPTED_READ_ONLY",
+    evidence_origin: "HOST_SUPPLIED_ANCHORED_READBACK", authenticates_evidence: false,
+    grants_authority: false, intercepts_native_writes: false };
+}

@@ -1,6 +1,11 @@
 import { createHash } from 'node:crypto';
 import { validateNextStepResponse } from './generated_ai_execution_footer.mjs';
 import { RESPONSE_CONTINUITY_PROFILE } from './generated_provisional_maturation_policy.js';
+import { buildBase44ResponseReadback } from './base44-session-memory-activation.mjs';
+
+export function createBase44ResponseReadback(input) {
+  return buildBase44ResponseReadback(input);
+}
 
 // The existing host supplies independently read app evidence. This checker
 // compares it; it cannot authenticate a caller or create native host hooks.
@@ -25,11 +30,14 @@ export function validateResponseEnvelope(input = {}) {
     ? policy.positions[v.ai_role.coding_position] ?? 'UNKNOWN' : 'UNKNOWN';
   const errors = v.ai_role.role_id === role ? [] : ['ROLE_SELECTION_EVIDENCE_MISMATCH'];
   let rows = String(input.message ?? '').split('\n').map(x => x.trim()).filter(Boolean);
-  if (v.host === 'Base44') {
+  // Preserve a prefix actually present or required by current host evidence.
+  // The canonical public control does not invent a native runtime prefix.
+  if (v.host === 'Base44' && rows[0]?.startsWith('RUNTIME HEADER')) {
     if (rows[0] === 'RUNTIME HEADER' && /^Mode Used: (OFF|ADVISORY|SAFEGUARDED|BUILD)$/.test(rows[1])
         && /^Change Intent: (READ_ONLY|PLAN_ONLY|CHANGES_REQUESTED|CHANGES_APPLIED)$/.test(rows[2]) && /^Reason: .+/.test(rows[3])) rows = rows.slice(4);
     else errors.push('HOST_RUNTIME_HEADER_MISSING_OR_INVALID');
-  }
+  } else if (v.host === 'Base44' && v.host_runtime_header_required === true)
+    errors.push('HOST_RUNTIME_HEADER_MISSING_OR_INVALID');
   const expected = {...v.status_fields,VER:v.version};
   const overlay = {...Object.fromEntries([...v.header_fields.matchAll(/(LDP|ACCESS|CONN|GOVSRC):([^\s]+)/g)].map(m => [m[1],m[2]])),
     BIND:v.binding,PHASE:`${v.dbpp_phase}/${v.assessment_status}`,EVIDENCE:v.verification_status,CTX:v.fingerprint.slice(0,12),AI_ROLE:v.ai_role.role_id};
