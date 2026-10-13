@@ -1,19 +1,19 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.43.23",
+  "workspace_skill_version": "1.43.24",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
       "bytes": 19429,
-      "sha256": "4b86030ec031c67229bb346d6eee1171b933d2190739b69e712f16d1b0768aa1"
+      "sha256": "db1f89a9f6758f3990bd9de9071a244bfa3978fe402e7836f97fe6abd8275389"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
-      "bytes": 16651,
-      "sha256": "4880a1c65df4e235414e4b79f60f2c201255ccfe8b0bae971efc3c981668ed1e"
+      "bytes": 16657,
+      "sha256": "d628f4a54192fd1e45d121ba9a8e351b154ea1f9330727f501ed40b5cd76f6e8"
     },
     {
       "path": "contracts/base44-session-memory-activation.json",
@@ -22,8 +22,8 @@
     },
     {
       "path": "scripts/base44-governed-app-onboarding.mjs",
-      "bytes": 19865,
-      "sha256": "c95b888d214350b65672a591533366ce6e6cd2f3c2dcab664611f329e2ae69e1"
+      "bytes": 19870,
+      "sha256": "5372337285fb6a2e37d0b390aeed2cb642242bdb6fe56263a4c6d673d893c3d2"
     },
     {
       "path": "scripts/base44-session-memory-activation.mjs",
@@ -53,17 +53,17 @@
     {
       "path": "contracts/base44-workspace-reference.json",
       "bytes": 68582,
-      "sha256": "1bb8566f14845cd14303798c4263ba97ac1b0030ebdcd19bc008314d1242cacc"
+      "sha256": "ae578cf11a4ab4f8e993c7241bb865844e1b7b4f7d3fa5e401d35d0408f930d0"
     },
     {
       "path": "scripts/base44-update-request.mjs",
-      "bytes": 23258,
-      "sha256": "69c467ff9de5521c358936ca57e7e634906e7b96ab84a01c8d55cf4ac860584d"
+      "bytes": 23291,
+      "sha256": "3bb5112633d9f8b0522ec0d80faeae82ee3c45a391c5c356ee903ed7af1dcf52"
     },
     {
       "path": "scripts/base44-update-request.cjs",
-      "bytes": 23563,
-      "sha256": "830e070f23f542d9c2b1587c6b84531ca1a545a3d4601afd2dff73573b914d5f"
+      "bytes": 23596,
+      "sha256": "ebfadb8ee5712999ff1620ec7caaeb496c6f005b09b741f4f30e0f65f55009b2"
     },
     {
       "path": "scripts/base44-build-discipline.mjs",

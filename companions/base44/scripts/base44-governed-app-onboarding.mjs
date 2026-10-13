@@ -166,7 +166,7 @@ function selectBase44GovernedAppOnboardingAction(input = {}) {
       category: "platform_control",
       executionSurface: customer ? contract.ai_controls_pointer.customer_route.execution_surface : contract.ai_controls_pointer.execution_surface,
       reason: customer
-        ? "Guide the customer through the exact approved pointer in Models -> AI Controls -> Custom Instructions after AICONTROL and manifest readback; save, reload and reopen. An independent observer must verify exact saved text. Customer assertion alone cannot establish readiness; no hidden external installation counts as customer acceptance."
+        ? "Guide the customer through the exact approved pointer in More options -> Custom Instructions (AI Controls) after AICONTROL and manifest readback; save, reload and reopen. An independent observer must verify exact saved text. Customer assertion alone cannot establish readiness; no hidden external installation counts as customer acceptance."
         : "After Assist selects the bounded action, use Codex or Claude Code computer control to alter only the native AI Controls pointer after exact documents/AICONTROL.md and Governance Manifest readback; save, reopen the UI, and verify the pointer verbatim. Assist is not an app slash command and does not itself grant mutation authority.",
     });
   }
