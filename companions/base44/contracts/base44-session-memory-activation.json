@@ -143,7 +143,8 @@
         "Supply position_selection only from the existing verified selector, bound to this project/chat/request/source fingerprint, policy_sha256 and fresh observation. Missing/stale/low-confidence selection emits UNKNOWN; a supplied role is not behaviour evidence."
       ],
       "effects": "READ_ONLY_DERIVED_PROJECTION; no authority, state persistence, acceptance, entitlement or model switching",
-      "native_acceptance": "PENDING; component tests and emitted headers do not prove native use"
+      "native_acceptance": "PENDING; component tests and emitted headers do not prove native use",
+      "provisional_display": "When actual native chat identity is unavailable but the authenticated app, exact source revision, raw artifact hashes and current request readback pass, createBase44ResponseReadback retains CURRENT_RESPONSE_CONTEXT_REQUIRED and provides provisional_display. Emit its header verbatim, actual_settings_line and complete next_step_footer instead of omitting or inventing an envelope. BIND remains UNVERIFIED, AI_ROLE and actual settings remain UNKNOWN; there is no current_context or header_evidence, no authority, chat identity, state persistence, verification pass or native hook. Invalid app/source/request/freshness evidence receives no provisional display. This rendering does not suspend ordinary authorized work or replace applicable action gates."
     },
     "session_isolation": "Response evidence is call-local and actual-chat-bound. Missing or UNKNOWN chat identity cannot attest current chat context. Preserve project-wide accepted decisions and use no shared latest-chat authority record."
   },

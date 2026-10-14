@@ -205,17 +205,19 @@ export function buildBase44ResponseReadback(input = {}) {
   const now = input.now ?? Date.now();
   const age = now - Date.parse(request?.observed_at);
   if (!request || request.host !== "BASE44" || request.project_ref !== activation.project_ref
-    || !ID.test(request.chat_ref ?? "") || /^(UNKNOWN|NONE|NULL)$/i.test(request.chat_ref)
     || !HASH.test(request.request_hash ?? "")
     || request.source_revision !== activation.observed_app_revision
     || !(age >= 0 && age <= 300000))
     return { status: "CURRENT_RESPONSE_CONTEXT_REQUIRED", activation, grants_authority: false };
+  const currentChat = ID.test(request.chat_ref ?? "")
+    && !/^(UNKNOWN|NONE|NULL)$/i.test(request.chat_ref);
   const manifest = JSON.parse(input.artifacts["governance/GOVERNANCE_MANIFEST.json"]);
   const paths = [...manifest.artifacts.map(item => item.target), "governance/GOVERNANCE_MANIFEST.json"].sort();
   const source_hashes = Object.fromEntries(paths.map(path => [path, sha256(input.artifacts[path])]));
   const policyHash = sha256(JSON.stringify({continuity:CONTINUITY_GUIDANCE,advice:NEXT_STEP_EXECUTION_ADVISORY}));
   const sourceFingerprint = sha256(JSON.stringify({source_hashes,policy_sha256:policyHash}));
-  const context = { host: "BASE44", project_ref: activation.project_ref, chat_ref: request.chat_ref,
+  const context = { host: "BASE44", project_ref: activation.project_ref,
+    chat_ref: currentChat ? request.chat_ref : "UNKNOWN",
     account_ref: request.account_ref || "UNKNOWN", request_hash: request.request_hash,
     source_revision: activation.observed_app_revision, source_hashes };
   // Reuse the shared assessor. Only readback facts are established here; no
@@ -225,7 +227,7 @@ export function buildBase44ResponseReadback(input = {}) {
     facts: { binding_current: true, context_present: true, source_readback: true } }, activation.project_ref);
   const selection = input.position_selection;
   const selectionAge = now - Date.parse(selection?.observed_at);
-  const currentSelection = selection?.selector === "EXISTING_MASTER_ENFORCEMENT_LOOP_CODING_POSITION"
+  const currentSelection = currentChat && selection?.selector === "EXISTING_MASTER_ENFORCEMENT_LOOP_CODING_POSITION"
     && ["project_ref", "chat_ref", "request_hash"].every(k => selection[k] === context[k])
     && selection.source_fingerprint === sourceFingerprint && selection.policy_sha256 === policyHash
     && selectionAge >= 0 && selectionAge <= 300000;
@@ -233,10 +235,10 @@ export function buildBase44ResponseReadback(input = {}) {
     currentSelection ? selection.confidence : "UNKNOWN");
   const version = activation.speaker.chain.match(/^BOS([0-9.]+)>/)[1];
   const value = { project_id: activation.project_ref, host: "Base44", version,
-    binding: "CURRENT_PROJECT_READBACK", dbpp_phase: assessment.assessed_phase,
+    binding: currentChat ? "CURRENT_PROJECT_READBACK" : "UNVERIFIED", dbpp_phase: assessment.assessed_phase,
     assessment_status: assessment.assessment_status, verification_status: "NOT_VERIFIED",
     header_fields: "LDP:UNKNOWN ACCESS:UNKNOWN CONN:BASE44_DIRECT GOVSRC:DIRECT_HOST",
-    status_fields: { BOS: "✓", AUTH: "!", DEV: "!", DBPP: "!", INT: "✓", SCOPE: "✓",
+    status_fields: { BOS: currentChat ? "✓" : "!", AUTH: "!", DEV: "!", DBPP: "!", INT: "✓", SCOPE: currentChat ? "✓" : "!",
       CONF: "[-----]", ROUTE: "BASE44_DIRECT" }, ai_role: role, source_markers: [] };
   const next = input.next_task;
   const advice = createNextStepResponse({ now, scopes: next ? [{ host: context.host,
@@ -244,9 +246,20 @@ export function buildBase44ResponseReadback(input = {}) {
     task: next.task, execution_route: next.execution_route || "NATIVE_BUILDER",
     mode: next.mode, signals: next.signals || {}, catalog: next.catalog || {}, user_choice: next.user_choice || {} }] : [] });
   value.fingerprint = sha256(JSON.stringify({ context, sourceFingerprint, policyHash, value, advice:advice.result }));
-  const header = `BOS ✓ VER ${version} AUTH ! DEV ! DBPP ! INT ✓ SCOPE ✓ CONF [-----] ROUTE:BASE44_DIRECT\n`
-    + `BIND:CURRENT_PROJECT_READBACK PHASE:${value.dbpp_phase}/${value.assessment_status} EVIDENCE:NOT_VERIFIED CTX:${value.fingerprint.slice(0,12)} ${value.header_fields} AI_ROLE:${role.role_id}\n`
+  const header = `BOS ${value.status_fields.BOS} VER ${version} AUTH ! DEV ! DBPP ! INT ✓ SCOPE ${value.status_fields.SCOPE} CONF [-----] ROUTE:BASE44_DIRECT\n`
+    + `BIND:${value.binding} PHASE:${value.dbpp_phase}/${value.assessment_status} EVIDENCE:NOT_VERIFIED CTX:${value.fingerprint.slice(0,12)} ${value.header_fields} AI_ROLE:${role.role_id}\n`
     + activation.speaker.chain;
+  // A missing native chat ID still fails the current-context gate. Give the
+  // host an honest display without a fabricated ID or current-header evidence.
+  // This pure per-call projection is never persisted as an UNKNOWN chat bucket.
+  if (!currentChat) return { status: "CURRENT_RESPONSE_CONTEXT_REQUIRED", activation,
+    context_gap: "CURRENT_CHAT_IDENTITY_UNAVAILABLE", grants_authority: false,
+    provisional_display: { status: "PROVISIONAL_DISPLAY_ONLY", header,
+      actual_settings_line: "Actual model/reasoning: UNKNOWN / UNKNOWN",
+      next_step: advice.result, next_step_footer: advice.message,
+      source_fingerprint: sourceFingerprint, current_chat_verified: false,
+      authenticates_evidence: false, grants_authority: false,
+      intercepts_native_writes: false, state_persistence: "NOT_ATTEMPTED_READ_ONLY" } };
   return { status: "CURRENT_PROJECT_READBACK", activation, current_context: context,
     header_evidence: { ...context, observed_at: request.observed_at, value }, header,
     source_fingerprint: sourceFingerprint, policy_sha256:policyHash, assessment, role_guidance: role.duty,

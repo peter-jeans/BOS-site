@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.43.26",
+  "workspace_skill_version": "1.43.28",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 19418,
-      "sha256": "39a075ad31ba4e5585287980ad9ba5a3a3ce82fecac7caa2c37d672a09b56ad5"
+      "bytes": 19433,
+      "sha256": "fa2d2b68c5f9e9f8fddc2f23c7a9fe2d9f5dc61bbaabdea8e0b24b02f53c0b5b"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -17,8 +17,8 @@
     },
     {
       "path": "contracts/base44-session-memory-activation.json",
-      "bytes": 11525,
-      "sha256": "77e7b4b0c754fdef21bba9f4aa195c07931bbb1245ef4d22fd355eebca7cd75b"
+      "bytes": 12309,
+      "sha256": "2e0f9f8f258e80177a3d332500da273fbc4610ea7f847b484e71fb4ed21f5f21"
     },
     {
       "path": "scripts/base44-governed-app-onboarding.mjs",
@@ -27,8 +27,8 @@
     },
     {
       "path": "scripts/base44-session-memory-activation.mjs",
-      "bytes": 15541,
-      "sha256": "635a48cd7c419cad0d4d595828263c115c78680151e15f46b51fbc111d255071"
+      "bytes": 16554,
+      "sha256": "db1fa7b5d638fc469325f38834817670ac7b6d62211ab7d85177e4af97c30eea"
     },
     {
       "path": "scripts/project-baseline.mjs",
@@ -52,8 +52,8 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 69299,
-      "sha256": "240b75d883f6e61b7f764ddb588089a1fc2cd3de60a63dd1f6a95b61518311c0"
+      "bytes": 70815,
+      "sha256": "6652c0172d946f6fc6994c585226038c42d9948fc85b9bca874e56555b7dc376"
     },
     {
       "path": "scripts/base44-update-request.mjs",
@@ -72,8 +72,8 @@
     },
     {
       "path": "scripts/base44-build-discipline.cjs",
-      "bytes": 73758,
-      "sha256": "a4fe23e3064d066c9532cc2885499204a53c19dca7537bacf0c8c59e1b9f4067"
+      "bytes": 74771,
+      "sha256": "bac896b8f55106d6c041e7de5d97781ea8bb308e1b9d273dbc49d188b51f9093"
     },
     {
       "path": "scripts/provisional_maturation.js",
