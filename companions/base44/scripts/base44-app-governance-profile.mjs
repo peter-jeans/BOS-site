@@ -86,6 +86,21 @@ Before every substantive response and dependent action, reread the exact app's A
 Map the existing current coding position to the current role policy and apply its task duty. Missing, stale, wrong-target/session or low-confidence evidence emits AI_ROLE:UNKNOWN. The role grants no authority, entitlement, professional credentials, model switching or committee activation. Keep duty delivery, source readback, header correctness, plan application and observed behaviour separate. End with complete actual-next-task model/reasoning advice marked Recommendation only, and actual native settings readback or UNKNOWN. Use the optional current response helper when available; it compares host-supplied evidence, never authenticates it or intercepts native writes. Existing assistance preferences and action/installation gates remain in force.
 `;
 
+// A new opt-in slot, rather than edits to released text: historical plans and
+// existing apps retain their exact bytes until an exact new plan is approved.
+export const PUBLIC_RESPONSE_CONTINUITY_V2 = PUBLIC_RESPONSE_CONTINUITY_V1
+  .replaceAll('PUBLIC_RESPONSE_CONTINUITY_V1', 'PUBLIC_RESPONSE_CONTINUITY_V2')
+  .replace('This profile supersedes earlier speaker-first placement only:', 'Use one response order throughout this control:')
+  .replace('Use the optional current response helper when available;', 'Before sending, check that both BOS header lines precede the speaker chain and that actual settings precede the complete next-task footer. An app title, speaker chain or prose status cannot replace either header line. Missing genuine conversation identity or selector evidence requires provisional display with UNVERIFIED binding and UNKNOWN role/settings; never substitute a branch ID for a verified conversation ID or omit the envelope. Use the optional current response helper when available and emit its provisional_display verbatim when supplied;');
+
+function reconcileResponsePlacement(control) {
+  const oldPlacement = PUBLIC_ROUTING_V1.split('## Visible guidance and decisions\n\n')[1].split('\n\n')[0];
+  const currentPlacement = "After verified Cloud BOS consultation, preserve any required native runtime prefix, then emit the two current BOS header lines and BOS<authenticated-major.minor>> Base44> user> speaker chain. Derive the version and field values from current authenticated exact-app evidence. Use the provisional display when current response evidence is unavailable; missing evidence never permits invented identity, green states or an omitted envelope. Before verified consultation use Base44> user> and say the connection is not yet verified. Speaker labels do not prove governance.";
+  if (!control.includes(oldPlacement)) fail('BASE44_PROFILE_RESPONSE_PLACEMENT_SOURCE_MISSING');
+  return control.replace(oldPlacement, currentPlacement)
+    .replace('After the speaker chain show App, Step and observed Status.', 'After the two BOS header lines and speaker chain show App, Step and observed Status.');
+}
+
 function controlVersions(control) {
   const activated = (build, activation) => (control + build).replace("## Activation and scope", activation + "\n## Activation and scope");
   return [control, control + PUBLIC_BUILD_DISCIPLINE_LEGACY, control + PUBLIC_BUILD_DISCIPLINE_V1,
@@ -97,7 +112,8 @@ function controlVersions(control) {
     control + PRE_CONTINUITY_BUILD,
     activated(PRE_CONTINUITY_BUILD, PUBLIC_GUIDANCE_ACTIVATION_V2),
     activated(PUBLIC_BUILD_DISCIPLINE_V1, PUBLIC_OWNER_CONTROL_V1 + PUBLIC_GUIDANCE_ACTIVATION_V2),
-    activated(PUBLIC_BUILD_DISCIPLINE_V1, PUBLIC_OWNER_CONTROL_V1 + PUBLIC_GUIDANCE_ACTIVATION_V2) + PUBLIC_RESPONSE_CONTINUITY_V1];
+    activated(PUBLIC_BUILD_DISCIPLINE_V1, PUBLIC_OWNER_CONTROL_V1 + PUBLIC_GUIDANCE_ACTIVATION_V2) + PUBLIC_RESPONSE_CONTINUITY_V1,
+    reconcileResponsePlacement(activated(PUBLIC_BUILD_DISCIPLINE_V1, PUBLIC_OWNER_CONTROL_V1 + PUBLIC_GUIDANCE_ACTIVATION_V2)) + PUBLIC_RESPONSE_CONTINUITY_V2];
 }
 
 function fail(code, message = code) {
@@ -269,15 +285,15 @@ function forwardUpdate(input, profileId, profileVersion, historicalControlIndex 
   const generated = buildContents({ ...input, maturation_stage: stage }, profileId, profileVersion, definitions, []);
   const next = { ...prior };
   if (input.aicontrol_revision !== undefined) {
-    if (!["PUBLIC_ROUTING_V1", "PUBLIC_BUILD_DISCIPLINE_V1", "PUBLIC_GUIDANCE_ACTIVATION_V2", "PUBLIC_OWNER_CONTROL_V1", "PUBLIC_RESPONSE_CONTINUITY_V1"].includes(input.aicontrol_revision)) fail("BASE44_PROFILE_ROUTING_REVISION_UNSUPPORTED");
+    if (!["PUBLIC_ROUTING_V1", "PUBLIC_BUILD_DISCIPLINE_V1", "PUBLIC_GUIDANCE_ACTIVATION_V2", "PUBLIC_OWNER_CONTROL_V1", "PUBLIC_RESPONSE_CONTINUITY_V1", "PUBLIC_RESPONSE_CONTINUITY_V2"].includes(input.aicontrol_revision)) fail("BASE44_PROFILE_ROUTING_REVISION_UNSUPPORTED");
     const control = generated.get("documents/AICONTROL.md");
     const legacy = control.slice(0, -PUBLIC_ROUTING_V1.length);
     const versions = controlVersions(control);
     const priorIndex = versions.indexOf(prior["documents/AICONTROL.md"]);
     if (priorIndex < 0 && prior["documents/AICONTROL.md"] !== legacy) fail("BASE44_PROFILE_ROUTING_PRIOR_UNRECOGNIZED");
-    const targetIndex = { PUBLIC_ROUTING_V1: 0, PUBLIC_BUILD_DISCIPLINE_V1: 2, PUBLIC_GUIDANCE_ACTIVATION_V2: 3, PUBLIC_OWNER_CONTROL_V1: 10, PUBLIC_RESPONSE_CONTINUITY_V1: 11 }[input.aicontrol_revision];
+    const targetIndex = { PUBLIC_ROUTING_V1: 0, PUBLIC_BUILD_DISCIPLINE_V1: 2, PUBLIC_GUIDANCE_ACTIVATION_V2: 3, PUBLIC_OWNER_CONTROL_V1: 10, PUBLIC_RESPONSE_CONTINUITY_V1: 11, PUBLIC_RESPONSE_CONTINUITY_V2: 12 }[input.aicontrol_revision];
     // Compatibility variants have the same policy level as their historical slot.
-    const priorLevel = [0, 1, 2, 3, 2, 3, 2, 3, 2, 3, 10, 11][priorIndex] ?? -1;
+    const priorLevel = [0, 1, 2, 3, 2, 3, 2, 3, 2, 3, 10, 11, 12][priorIndex] ?? -1;
     if (priorLevel > targetIndex) fail("BASE44_PROFILE_CONTROL_DOWNGRADE_BLOCKED");
     // Only the internal exact-history validator supplies a historical index.
     // Normal UPDATE always emits the current variant at the requested level.
