@@ -442,6 +442,24 @@ export function createBase44AppGovernanceProfilePlan(input = {}) {
   return plan;
 }
 
+// Transport recovery only: reuse the existing deterministic UPDATE generator.
+// The caller must compare the complete original JSON digest and anchored plan
+// hash; this supplies neither approval nor authentication nor an app write.
+export function restoreBase44UpdatePlanContents(metadata, prior, expectedPriorHashes) {
+  if (metadata?.schema !== PROFILE_SCHEMA || metadata.requested_operation !== "UPDATE"
+      || metadata.update_mode?.type !== "FORWARD_SAME_PROFILE_BASELINE_UPDATE"
+      || metadata.resume_mode || metadata.repair_mode || metadata.clone_mode
+      || Object.hasOwn(metadata, "artifacts") || Object.hasOwn(metadata.update_mode, "prior_artifacts")) fail("BASE44_UPDATE_READBACK_FORMAT_INVALID");
+  const manifestPath = "governance/GOVERNANCE_MANIFEST.json";
+  const input = { ...metadata, ...metadata.update_mode.requested_changes,
+    installed_artifacts: prior, installed_manifest_content: prior[manifestPath], installed_manifest: JSON.parse(prior[manifestPath]),
+    expected_prior_sha256: expectedPriorHashes, authority: { source: "BASE44_APP_OWNER", deployment: "OWNER_CONTROLLED" } };
+  const artifacts = forwardUpdate(input, metadata.profile_id, loadBase44AppGovernanceProfiles().version);
+  const plan = { ...metadata, artifacts, update_mode: { ...metadata.update_mode, prior_artifacts: structuredClone(prior) } };
+  validateBase44AppGovernanceProfilePlan(plan);
+  return plan;
+}
+
 export function validateBase44AppGovernanceProfilePlan(plan) {
   if (!validPlanWindow(plan)) fail("BASE44_PROFILE_PLAN_WINDOW_INVALID");
   if (plan?.schema !== PROFILE_SCHEMA || plan.plan_hash !== planHash(plan) || plan.environment !== "BASE44_GOVERNED_APP" || plan.adapter_id !== "base44_app_governance" || !Array.isArray(plan.artifacts) || plan.artifacts.length < 7) fail("BASE44_PROFILE_PLAN_INVALID");

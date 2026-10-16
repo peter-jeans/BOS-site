@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.43.31",
+  "workspace_skill_version": "1.43.33",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 13866,
-      "sha256": "0384dff0e610173577321b7645024dca1a30fc188af625eb6645f535def35dec"
+      "bytes": 14074,
+      "sha256": "9e5c55d93aad61cb0c8ad5bfd233a108040a4a806b63e916a893d92f5800a05a"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -37,8 +37,8 @@
     },
     {
       "path": "scripts/base44-app-governance-profile.mjs",
-      "bytes": 82539,
-      "sha256": "de2f4c642252d290b66755c032b4310b26cf4854013fdee216a0e34d343029c7"
+      "bytes": 83950,
+      "sha256": "9a9e50b44aa3ef0635a20f2f1c8be488b2ce6067de605564c36af10dff2ad253"
     },
     {
       "path": "contracts/base44-app-governance-profiles.json",
@@ -52,8 +52,8 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 71123,
-      "sha256": "a85889e9536e77444f1c52aa580b7c38946d7da7ef6ecc901c10303b83c7f5e5"
+      "bytes": 72006,
+      "sha256": "aa1e6574d7b1bdc859307b7e9c96a64ae4088d1a4159d683da7eec8fb28f2c04"
     },
     {
       "path": "scripts/base44-update-request.mjs",
@@ -124,6 +124,21 @@
       "path": "scripts/generated_ai_execution_footer.cjs",
       "bytes": 18662,
       "sha256": "dcec50333d6c874ca2cc002f8859bfe1f15b892728c098204b0449637c8ab34d"
+    },
+    {
+      "path": "scripts/base44-plan-readback.mjs",
+      "bytes": 6821,
+      "sha256": "f46dd5fb4eca3b699c5e2da6c0b27238bb3b9d15b23c8c408021d57658126d61"
+    },
+    {
+      "path": "scripts/base44-plan-readback.cjs",
+      "bytes": 104221,
+      "sha256": "631a7d1c3be264c3d559c9fe8e7feb3061f3ae75ed475b7a4a8c07b1bdb3c0da"
+    },
+    {
+      "path": "contracts/base44-plan-readback.json",
+      "bytes": 3104,
+      "sha256": "2eae0be4b135b566d5e44d48ea61b20fa11e230f60d3cccdd2aa9f2cc08c48ce"
     }
   ]
 }
