@@ -1,12 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_HOST_COMPATIBILITY_V1",
-  "package_version": "0.1.13+codex.20261017",
-  "package_archive_sha256": "ff55674e41f99156c8efbaff2ca82f37f608d1435bed6952f7a56dce014a1643",
+  "package_version": "0.1.14+codex.20261018",
+  "package_archive_sha256": "e042457c21ef603e8266796ba4c46ccd961041709a2854fd2cde2e389b4a504a",
   "status": "PENDING_NATIVE_QUALIFICATION",
   "record_purpose": "Native installation and project activation evidence, separate from immutable package file integrity.",
   "publication": {
-    "website": "PREPARED_NOT_PUBLISHED",
-    "marketplace": "PREPARED_NOT_PUBLISHED"
+    "website": "DOCUMENTATION_PUBLISHED",
+    "marketplace": "PUBLIC_PRERELEASE_SOURCE_AVAILABLE",
+    "archive_download": "NOT_PUBLISHED",
+    "install_controls": "HELD_PENDING_NATIVE_QUALIFICATION"
   },
   "hosts": [
     {
@@ -53,6 +55,6 @@
     "video_required_for_release": false
   },
   "grants_installation_approval": false,
-  "documentation_publication": "DOCS_ONLY_PREPARED_FOR_REVIEW",
+  "documentation_publication": "STATUS_UPDATE_AFTER_CONFIRMED_PRERELEASE_SOURCE_PUBLICATION",
   "qualification_note": "Documentation publication is independent of marketplace/package release and does not qualify a host."
 }
