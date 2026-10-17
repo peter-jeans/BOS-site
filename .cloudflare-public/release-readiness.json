@@ -1,0 +1,55 @@
+{
+  "schema": "BOS_PUBLIC_WEBSITE_RELEASE_GATE_V1",
+  "publication_allowed": false,
+  "policy_status": "MATCHED_VERIFIED",
+  "policy_version": "SELF_SERVICE_ACCOUNT_FULL_CUSTOMER_V6",
+  "policy_sha256": "6b7ae4de657cc0a8284d1125bb4c0fae5a651192b9d9996f7483a9bbff742193",
+  "policy_documents": {
+    "policies/acceptable-use.html": "62ccf8a91246268ec8d4f043868912ac728d8570066c7c98915e0c4c8e29facf",
+    "policies/ai-caveats.html": "b6dce615a15b7389385a30f93ee930d531948c2c756e7ba878f15cfe50bcae41",
+    "policies/data-processing-summary.html": "76bf655882befbfdc185d0b666f4e591d8bc6146d7985a58c4aae687749b9923",
+    "policies/index.html": "b4812068e243ff99b9d1add6c7114485c8cd6dd4e26e66aa3cbc1dade47da85c",
+    "policies/policy.css": "708b02389d8123380f9d076d0f4c7a6b4b9fc88261d78e9d1ce3ace35bfb924e",
+    "policies/privacy.html": "1186073768c52f37f06049977bed29290a7a91594ceb35f91cad8b01fa4d8971",
+    "policies/refund-cancellation.html": "e09acf6ff08a2e68c1b111cd56dd280afd680b6237293c811748997a7bfa5f2f",
+    "policies/terms.html": "0fe157d29dd3eab89acce64292a2495583c6aede540a52b1a4245027f0524295",
+    "policies/trial-billing.html": "fbb43449c92996c51d3d2f223e502bad798c0c82e29de5c6deb6e220f0424a94"
+  },
+  "distribution": {
+    "status": "APPROVED_IMMUTABLE",
+    "version": "0.1.14+codex.20261018",
+    "publication_status": "PUBLIC_PRERELEASE_SOURCE_AVAILABLE",
+    "source_repository": "https://github.com/peter-jeans/BOS-site",
+    "source_commit": "2b5b9aa98cf9f3ed47e9506fb37222e6c9c2aab4",
+    "manifest_path": "public-plugin-releases/0.1.14+codex.20261018/PUBLIC_PACKAGE_MANIFEST.json",
+    "manifest_sha256": "f672b4bc8bedc3901def891ba120335e86b244fddb94105ddaeb2e211c11449e",
+    "archive_download": "NOT_PUBLISHED"
+  },
+  "control_files": {
+    "status": "MATCHED_VERIFIED",
+    "selected_version": "1.43.33",
+    "manifest_sha256": "07f7124e28f0e2b9aea12674fa27e61dafdb808a7589b09384e7d16da868cce1",
+    "native_acceptance": "PENDING"
+  },
+  "native_qualification": "PENDING",
+  "marketplace": {
+    "status": "PUBLISHED_VERIFIED",
+    "repository": "https://github.com/peter-jeans/BOS-site",
+    "source_manifest_sha256": "0d87db07d36d6e6945da7109030f2474e26d1cec0934dec0009d134a91821e6f",
+    "native_installation_route": "PENDING"
+  },
+  "host_compatibility": {
+    "path": "data/host-compatibility.json",
+    "status": "PENDING_NATIVE_QUALIFICATION",
+    "sha256": "1184e55318016d5514d7397eb4ba73d2d6d30d822929dc0d7a57cef8dc668108"
+  },
+  "public_website_source_commit": "ec51d4f5bdc681a4f53057c269abb477e7fc9a2e",
+  "installation_controls": "13_DISABLED_UNCHANGED",
+  "paid_checkout": "NO_ACTIVATION_IN_THIS_CANDIDATE",
+  "required": [
+    "Native supported-host qualification under existing release gate",
+    "Independent source review and owner Cloudflare publication decision",
+    "Exact provider account, Worker, Git build and domain prerequisite readback"
+  ],
+  "cloudflare_deployment": "NOT_PERFORMED"
+}

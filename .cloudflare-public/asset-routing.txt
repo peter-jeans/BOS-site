@@ -1,0 +1,5 @@
+# Exact human-page paths only; no API/OAuth/artifact catch-all.
+/ /index.html 200
+/policies /policies/index.html 302
+/policies/ /policies/index.html 200
+/BOS-site/ / 302
