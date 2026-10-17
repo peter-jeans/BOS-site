@@ -1,0 +1,58 @@
+{
+  "schema": "CLOUD_BOS_PUBLIC_HOST_COMPATIBILITY_V1",
+  "package_version": "0.1.13+codex.20261017",
+  "package_archive_sha256": "ff55674e41f99156c8efbaff2ca82f37f608d1435bed6952f7a56dce014a1643",
+  "status": "PENDING_NATIVE_QUALIFICATION",
+  "record_purpose": "Native installation and project activation evidence, separate from immutable package file integrity.",
+  "publication": {
+    "website": "PREPARED_NOT_PUBLISHED",
+    "marketplace": "PREPARED_NOT_PUBLISHED"
+  },
+  "hosts": [
+    {
+      "host": "Base44",
+      "qualification": "PENDING",
+      "verified_host_version": null,
+      "verified_installation_route": null,
+      "installed_package_readback": null,
+      "oauth_completion": "PENDING",
+      "exact_project_activation": "PENDING",
+      "saved_operation_and_resume": "PENDING",
+      "second_project_check": "PENDING",
+      "genuine_installation_screenshots": "NOT_INCLUDED"
+    },
+    {
+      "host": "Codex",
+      "qualification": "PENDING",
+      "verified_host_version": null,
+      "verified_installation_route": null,
+      "installed_package_readback": null,
+      "oauth_completion": "PENDING",
+      "exact_project_activation": "PENDING",
+      "saved_operation_and_resume": "PENDING",
+      "second_project_check": "PENDING",
+      "genuine_installation_screenshots": "NOT_INCLUDED"
+    },
+    {
+      "host": "Claude Code",
+      "qualification": "PENDING",
+      "verified_host_version": null,
+      "verified_installation_route": null,
+      "installed_package_readback": null,
+      "oauth_completion": "PENDING",
+      "exact_project_activation": "PENDING",
+      "saved_operation_and_resume": "PENDING",
+      "second_project_check": "PENDING",
+      "genuine_installation_screenshots": "NOT_INCLUDED"
+    }
+  ],
+  "media": {
+    "genuine_installation_screenshots": "NOT_INCLUDED_FOR_THE_THREE_HOST_ROUTES",
+    "existing_canary_controls_image": "ASSISTANCE_SWITCHES_ONLY_NOT_INSTALLATION_PROOF",
+    "installation_video": "NOT_AVAILABLE",
+    "video_required_for_release": false
+  },
+  "grants_installation_approval": false,
+  "documentation_publication": "DOCS_ONLY_PREPARED_FOR_REVIEW",
+  "qualification_note": "Documentation publication is independent of marketplace/package release and does not qualify a host."
+}
