@@ -1,0 +1,20 @@
+{
+  "name": "cloudbos-public",
+  "interface": {
+    "displayName": "Cloud BOS Public"
+  },
+  "plugins": [
+    {
+      "name": "cloudbos-public-plugin",
+      "source": {
+        "source": "local",
+        "path": "./public-plugin-releases/0.1.14+codex.20261018/plugins/cloudbos-public-plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
