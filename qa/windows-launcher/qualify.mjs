@@ -21,7 +21,8 @@ let activeHost = null, activeCommand = null;
 
 async function runShell(exe, args, timeout = 20000, env = process.env) {
   return new Promise(resolve => {
-    const child = spawn(exe, args, {cwd: work, env, shell: false, stdio: ['ignore', 'pipe', 'pipe']});
+    const child = spawn(exe, args, {cwd: work, env, shell: false,
+      windowsVerbatimArguments: path.basename(exe).toLowerCase() === 'cmd.exe', stdio: ['ignore', 'pipe', 'pipe']});
     let stdout = '', stderr = '';
     child.stdout.on('data', b => stdout += b); child.stderr.on('data', b => stderr += b);
     const timer = setTimeout(() => child.kill(), timeout);

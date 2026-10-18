@@ -175,7 +175,8 @@ export function invocation(executable, args, platform = process.platform) {
     // of interpreting a user's folder name or vendor argument as shell code.
     const all = [executable, ...args];
     if (all.some(x => /[%!^&|<>"\r\n()]/.test(x))) fail('WINDOWS_BATCH_ARGUMENT_REQUIRES_NATIVE_EXE');
-    return {executable: 'cmd.exe', args: ['/d', '/s', '/c', `"${all.map(x => `"${x}"`).join(' ')}"`]};
+    return {executable: 'cmd.exe', args: ['/d', '/s', '/c', `"${all.map(x => `"${x}"`).join(' ')}"`],
+      windowsVerbatimArguments: true};
   }
   return {executable, args};
 }
@@ -183,7 +184,10 @@ export function invocation(executable, args, platform = process.platform) {
 export async function runCommand(executable, args, {cwd, interactive = false, timeout = 25000} = {}) {
   const call = invocation(executable, args);
   return new Promise(resolve => {
+    // Batch arguments are already quoted for cmd.exe. Node's default Windows
+    // escaping would quote them again and make even --version fail.
     const child = spawn(call.executable, call.args, {cwd, shell: false, windowsHide: !interactive,
+      windowsVerbatimArguments: call.windowsVerbatimArguments === true,
       stdio: interactive ? 'inherit' : ['ignore', 'pipe', 'pipe']});
     let stdout = '', size = 0, exceeded = false;
     if (!interactive) {
