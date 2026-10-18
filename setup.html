@@ -500,11 +500,11 @@
         <div>
           <p class="eyebrow">BOS works with you</p>
           <h2 id="owner-controls-title">You are always in control</h2>
-          <p>Switch BOS on and off as needed. Choose the help you want from the BOS page in your app.</p>
+          <p>In supported Base44 apps, app administrators can choose Local BOS and Cloud BOS assistance from the BOS page. These saved On/Off controls are not currently available for native Codex or Claude Code projects.</p>
           <dl><dt>Local BOS</dt><dd>Build guidance and stability checks stored in your app.</dd><dt>Cloud BOS</dt><dd>Connected scans, specialist knowledge and build guidance.</dd></dl>
-          <p>Turn either kind of assistance on or off independently. Your builder applies your saved choice on its next request.</p>
+          <p>Where the Base44 assistance rollout is enabled, the builder should apply each saved choice on its next request. Native Codex and Claude Code saved preferences, ongoing automatic help and preference-controlled activity recording have not been verified.</p>
           <p><strong>Your app’s login, permissions and data protection stay in place.</strong></p>
-          <p class="owner-note">Available to app administrators after BOS setup. Pausing assistance does not interrupt work already in progress.</p>
+          <p class="owner-note">Availability is limited to the supported Base44 rollout; BOS setup alone does not enable these controls on every host. For native Codex or Claude Code, request BOS help explicitly for the current task. A one-off request does not enable continuous assistance or prove preference-controlled activity recording.</p>
         </div>
         <figure><div class="owner-controls-shot"><img src="assets/bos-controls/in-app-controls-canary-1.png" alt="Separate Local BOS and Cloud BOS switches on the BOS page, both shown On." loading="lazy" width="607" height="753"></div><figcaption>Actual in-app controls in Canary 1, our Base44 test app.</figcaption></figure>
       </div>
@@ -515,7 +515,7 @@
         <div class="section-intro">
           <h2>Set up BOS in Base44</h2>
           <p>For the Base44 AI app builder. The connection is account-wide; add the skill separately to each workspace where you want it.</p>
-          <p>You need a Base44 Builder plan or higher, room for another MCP connection and room for a skill in the selected workspace. Confirm the app belongs to that workspace before setup.</p>
+          <p>You need a Base44 Builder plan or higher. MCP connections are account-wide, with a limit of 20 per account; reuse your existing Cloud BOS connection when available. Skills belong to individual workspaces, with a limit of 100 per workspace. Confirm the app belongs to the workspace where you add the BOS skill.</p>
           <p><a href="https://docs.base44.com/documentation/account-and-billing/setting-up-a-custom-mcp">Base44 connection guide</a> · <a href="https://docs.base44.com/documentation/using-your-workspaces/adding-workspace-skills">Base44 workspace skills guide</a></p>
         </div>
 
@@ -525,7 +525,7 @@
             <div>
               <h3>Get access and connect Cloud BOS</h3>
               <p>In My BOS, sign in and accept the current terms, select Base44, then choose Prepare secure connection before starting Base44’s OAuth sign-in. The MCP server address shown there is shared; it is not a personalised link or a credential. OAuth browser sign-in connects Base44 to your own BOS account. If preparation is unavailable, stop and use the support contact; do not guess a URL or reuse an old admission/setup code. This self-service flow still needs native verification that Base44 connects to the correct BOS account; an older beta Canary connection does not establish that result.</p>
-              <p>In Base44, click your workspace name at the bottom left, then choose <strong>Account preferences → Builder → MCP Connections → Add MCP</strong>.</p>
+              <p>In Base44, click your workspace name at the bottom left, then choose <strong>Account preferences → Builder → MCP Connections → Add custom MCP</strong>.</p>
               <div class="field-grid" aria-label="MCP connection values">
                 <div class="field"><span class="field-label">Name</span><span class="field-value">Cloud BOS</span></div>
                 <div class="field"><span class="field-label">Authentication</span><span class="field-value">OAuth</span></div>
@@ -623,7 +623,7 @@
               <li>Download the public archive and manifest from <a href="#public-package">the release section</a> once approved. Verify both files against the complete SHA-256 hashes published there before extracting. Stop if either differs. Extract into a new persistent folder, preserving the hidden <code>.agents</code> and <code>.claude-plugin</code> folders and the <code>plugins</code> folder. Do not overwrite your project or an existing installation.</li>
               <li>Use the supported Codex installation route once it is published here. The intended marketplace is <a href="https://github.com/peter-jeans/BOS-site">BOS-site</a>; its prerelease catalogs are available for native qualification, with install controls held. Review the plugin’s skills, connection and hooks before accepting installation. <div class="prompt" id="codex-install-commands">Public prerelease source available; native qualification pending; install controls held.</div><div class="copy-row"><button class="copy-button" type="button" data-copy-target="codex-install-commands" disabled aria-disabled="true" title="Native installation qualification pending; install controls held">Copy Codex install steps</button><span class="copy-state" role="status" aria-live="polite"></span></div></li>
               <li>Complete the Cloud BOS browser sign-in when prompted. Start a new Codex session in the project you want to work on so the installed tools and skill are loaded.</li>
-              <li>Use the check below to verify the first installation. After initial setup and hook trust, BOS should check this project automatically whenever you start or resume a session. Read connection and project readiness separately.</li>
+              <li>Request the check below explicitly in the intended Codex project. A successful connection or resume check does not establish ongoing automatic assistance or saved On/Off support. Read connection and project readiness separately.</li>
             </ol>
             <div class="prompt" id="codex-verify-prompt">Use Cloud BOS for the current local project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
             <div class="copy-row">
@@ -652,7 +652,7 @@
               <li>Download the public archive and manifest from <a href="#public-package">the release section</a> once approved. Verify both files against the complete SHA-256 hashes published there before extracting. Stop if either differs. Extract into a new persistent folder, preserving the hidden <code>.agents</code> and <code>.claude-plugin</code> folders and the <code>plugins</code> folder. Do not overwrite your project or an existing installation.</li>
               <li>Use the supported Claude Code installation route once it is published here. The intended marketplace is <a href="https://github.com/peter-jeans/BOS-site">BOS-site</a>; its prerelease catalogs are available for native qualification, with install controls held. Review the plugin’s skills, connection and hooks before accepting installation. <div class="prompt" id="claude-install-commands">Public prerelease source available; native qualification pending; install controls held.</div><div class="copy-row"><button class="copy-button" type="button" data-copy-target="claude-install-commands" disabled aria-disabled="true" title="Native installation qualification pending; install controls held">Copy Claude Code install steps</button><span class="copy-state" role="status" aria-live="polite"></span></div></li>
               <li>Choose <strong>User scope / Install for you</strong> so the plugin is available across your projects. Review and accept the plugin trust prompt, then follow any reload or restart instruction. Complete the Cloud BOS browser sign-in when requested; use <code>/mcp</code> in Claude Code to check or authenticate its connection.</li>
-              <li>Use the check below to verify the first installation in the intended project. After initial setup and trust, BOS should check the project automatically on new or resumed sessions. Continue with <a href="#project-setup">the separate project setup step</a>.</li>
+              <li>Request the check below explicitly in the intended Claude Code project. A successful connection or resume check does not establish ongoing automatic assistance or saved On/Off support. Continue with <a href="#project-setup">the separate project setup step</a>.</li>
             </ol>
             <div class="prompt" id="claude-verify-prompt">Use Cloud BOS for this Claude Code project. Run bos_connect with the exact current project reference and host, then bos_capabilities. Report platform_connection_state, project_governance_state and project_binding_verified separately. Do not write or change anything.</div>
             <div class="copy-row">
@@ -670,7 +670,7 @@
         <div class="section-intro">
           <h2 id="project-title">Approve and check setup for your app</h2>
           <p>Do this separately for each app or repository, after connecting your development tool. Cloud BOS prepares a plan first; you decide whether to apply it.</p>
-          <p>Once setup is approved, you should not need to remember a rebind command. Each new or resumed session checks your connection, the exact project and its saved working records before continuing.</p>
+          <p>A connection check should verify your connection, the exact project and its saved working records before continuing. In native Codex and Claude Code, request that check explicitly; automatic checks on every new or resumed session are not yet qualified.</p>
           <details><summary>What does a complete connection check restore?</summary><div class="detail-body"><p>The check confirms current access, verifies the installed project setup and reloads the accepted plan, active intention and available project records. Being signed in alone does not prove that all of this is ready.</p><p>A rebind preserves the existing project and connection. It reports missing files, changed records or unresolved memory clearly; it does not invent decisions or silently accept changes. Connection checks run before questions about missing product requirements.</p><p>The customer plugin restores its approved public project records. The original private owner connection, called privatecloudBOS or foundercloudBOS, uses its existing private project framework. Installing the customer plugin does not switch a private project to that route.</p><p>One-time host trust, sign-in and approval of the initial project setup still apply. If automatic checks are unavailable, the host must report that gap. This preview is not evidence that every host has passed live verification.</p></div></details>
         </div>
         <article class="boundary-card">
