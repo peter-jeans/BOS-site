@@ -1,0 +1,35 @@
+name: Cloud BOS Windows launcher qualification
+on:
+  push:
+    branches: [qa-windows-launcher-20261018]
+    paths:
+      - 'qa/windows-launcher/**'
+      - '.github/workflows/cloudbos-windows-qualification.yml'
+permissions:
+  contents: read
+concurrency:
+  group: cloudbos-windows-qualification
+  cancel-in-progress: true
+jobs:
+  native-windows:
+    runs-on: windows-2025
+    timeout-minutes: 15
+    steps:
+      - name: Read the qualification branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Use the supported Node runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Install pinned vendor CLIs in the disposable runner
+        shell: pwsh
+        run: |
+          $vendorPrefix = Join-Path $env:RUNNER_TEMP 'Cloud BOS Vendor Tools'
+          npm install --global --prefix $vendorPrefix --no-audit --no-fund @openai/codex@0.163.0 @anthropic-ai/claude-code@2.1.251
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $vendorPrefix | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Verify real Windows setup without account authentication
+        shell: pwsh
+        run: node qa/windows-launcher/qualify.mjs

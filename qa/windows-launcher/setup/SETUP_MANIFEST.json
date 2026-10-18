@@ -1,0 +1,30 @@
+{
+  "schema": "CLOUDBOS_SETUP_INVENTORY_V1",
+  "setup_version": "0.1.0",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "349142d507d4eef9550bf051a15b6e88c6f176553be9c0e8ac18d9980f821204"
+    },
+    {
+      "path": "Start Cloud BOS.cmd",
+      "sha256": "e5aa2e47c6646a53b59f083ffb97b0e2340ffaff3663124e55dd2fb2e34334ce"
+    },
+    {
+      "path": "Start Cloud BOS.command",
+      "sha256": "d1c384469bb18155c4c6f0c928975966114fd62bc35401778199bcc9fb5e2ec0"
+    },
+    {
+      "path": "Start-CloudBOS.ps1",
+      "sha256": "83e2ab260c49df3027ae072e7af44cde7bc7c09c9812323bce4fbe959c48c850"
+    },
+    {
+      "path": "release.json",
+      "sha256": "ed38721ff5b9449df831b2c90601b2f4784fb1cee6311cc3a3db3b895049c3fb"
+    },
+    {
+      "path": "setup.mjs",
+      "sha256": "d1301bcb54c1ba8a601ba434ba43b9b50d27a50b405fb5bb5fe99499e9d921b6"
+    }
+  ]
+}

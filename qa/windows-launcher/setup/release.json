@@ -1,0 +1,15 @@
+{
+  "schema": "CLOUDBOS_SETUP_RELEASE_V1",
+  "setup_version": "0.1.0",
+  "delivery": "QUALIFICATION_ONLY",
+  "plugin_name": "cloudbos-public-plugin",
+  "plugin_version": "0.1.17+codex.20261018",
+  "marketplace": "cloudbos-public",
+  "repository": "https://github.com/peter-jeans/BOS-site.git",
+  "mcp_endpoint": "https://bos-live03-test.peterjeans2.workers.dev/mcp",
+  "package_digest": "06dc6df8649f4206bbc84ba919309b9b1acdedf94d19d7284e89fb84c0bca569",
+  "package_manifest_sha256": "4bd0811410c46492af29effc70d060f4b283faf5a8b2bc21d96213eab55e9d3c",
+  "public_git_commit": null,
+  "native_acceptance": "NOT_GRANTED_BY_PACKAGING",
+  "release_approval": "NOT_GRANTED_BY_PACKAGING"
+}
