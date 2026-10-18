@@ -295,7 +295,9 @@ export async function setupHost({host, executable, release, mode = 'setup', proj
   if (observed.other_distribution) fail('OTHER_BOS_DISTRIBUTION_REVIEW_REQUIRED');
   if (observed.plugin && (observed.plugin.version !== release.plugin_version || !observed.plugin.enabled)) fail('EXISTING_PLUGIN_VERSION_OR_ENABLEMENT_REVIEW_REQUIRED');
   if (observed.plugin) {
-    const source = observed.market?.source;
+    // Native Windows Codex reports only the registered root. Reuse that exact
+    // path only after the same full inventory check used for local sources.
+    const source = observed.market?.source || observed.market?.root;
     // An official Git URL and matching version are not byte evidence. This
     // first launcher only reuses its independently verified local inventory.
     // Preserve existing Git installs and route their exact-payload review.
