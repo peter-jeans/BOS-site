@@ -25,6 +25,30 @@ function publicPaths(value) {
   if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, publicPaths(v)]));
   return value;
 }
+async function installedPayload(profile, host) {
+  const version = host === 'claude_code' ? release.plugin_version.replace(/\+/g, '-') : release.plugin_version;
+  const installed = path.join(profile, 'plugins', 'cache', 'cloudbos-public', 'cloudbos-public-plugin', version);
+  const prefix = 'plugins/cloudbos-public-plugin/';
+  const expected = pkg.manifest.files.filter(x => x.path.startsWith(prefix));
+  const actual = [];
+  async function walk(folder, relative = '') {
+    for (const entry of await fs.readdir(folder, {withFileTypes: true})) {
+      const name = relative ? relative + '/' + entry.name : entry.name;
+      const file = path.join(folder, entry.name);
+      if (entry.isSymbolicLink()) throw new Error('INSTALLED_PAYLOAD_SYMLINK_REVIEW_REQUIRED');
+      if (entry.isDirectory()) await walk(file, name);
+      else if (entry.isFile()) actual.push(name);
+      else throw new Error('INSTALLED_PAYLOAD_NONREGULAR_FILE');
+    }
+  }
+  await walk(installed);
+  if (JSON.stringify(actual.sort()) !== JSON.stringify(expected.map(x => x.path.slice(prefix.length)).sort())) throw new Error('INSTALLED_PAYLOAD_INVENTORY_CHANGED');
+  for (const entry of expected) {
+    const bytes = await fs.readFile(path.join(installed, entry.path.slice(prefix.length)));
+    if (bytes.length !== entry.size || sha256(bytes) !== entry.sha256) throw new Error('INSTALLED_PAYLOAD_BYTES_CHANGED');
+  }
+  return {files_checked: expected.length, bytes: 'EXACT_SEALED_PAYLOAD', cache_version: version};
+}
 
 async function runShell(exe, args, timeout = 20000, env = process.env) {
   return new Promise(resolve => {
@@ -69,6 +93,7 @@ try {
     const options = {host, executable, release, projectRoot, localPackage: pkg.root, runner, confirm, startLogin: false};
     const first = await setupHost(options);
     if (first.status !== 'NATIVE_PROJECT_HANDOFF_REQUIRED') throw new Error('FIRST_INSTALL_NOT_AT_HANDOFF');
+    const payload = await installedPayload(profile, host);
     const writesAfterFirst = calls.filter(x => x.native_mutation).length;
     const rerun = await setupHost({...options, mode: 'add-project', startLogin: true});
     if (rerun.status !== 'NATIVE_PROJECT_HANDOFF_REQUIRED' || calls.filter(x => x.native_mutation).length !== writesAfterFirst) throw new Error('RERUN_CHANGED_NATIVE_CONFIG');
@@ -86,7 +111,7 @@ try {
       plugin_version: first.plugin_version, first: first.status, rerun: rerun.status, second: second.status,
       check: checked.status, existing_instructions: 'EXACT', second_folder_files: 0,
       native_writes_first: writesAfterFirst, native_writes_rerun_and_second: 0, login_calls: 0,
-      native_loading: 'NOT_OBSERVED', project_binding: 'NOT_INSTALLED', decisions, calls});
+      native_loading: 'NOT_OBSERVED', project_binding: 'NOT_INSTALLED', installed_payload: payload, decisions, calls});
   }
   if (selectedFolder('"' + work + '"') !== work || selectedFolder('~/App', work) !== path.join(work, 'App')) throw new Error('WINDOWS_FOLDER_SELECTION_FAILED');
   for (const arg of ['%PATH%', 'x&whoami', 'x|whoami', 'x!y']) {
