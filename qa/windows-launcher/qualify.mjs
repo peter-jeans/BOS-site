@@ -18,6 +18,13 @@ const report = {schema: 'CLOUDBOS_WINDOWS_NATIVE_QUALIFICATION_V1', commit: proc
   OAuth: 'NOT_RUN_NO_CREDENTIALS', native_model_calls: 'NOT_RUN', browser_and_desktop_prompts: 'NOT_RUN',
   governance: 'NOT_INSTALLED_NO_BASELINE_OR_PLAN_ACCEPTANCE_SYNTHESIZED', hosts: []};
 let activeHost = null, activeCommand = null;
+let nativeMetadata = {};
+function publicPaths(value) {
+  if (typeof value === 'string') return value.split(work).join('<QA_TEMP>').split(root).join('<QA_SOURCE>');
+  if (Array.isArray(value)) return value.map(publicPaths);
+  if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, publicPaths(v)]));
+  return value;
+}
 
 async function runShell(exe, args, timeout = 20000, env = process.env) {
   return new Promise(resolve => {
@@ -34,6 +41,7 @@ async function runShell(exe, args, timeout = 20000, env = process.env) {
 try {
   for (const host of ['codex', 'claude_code']) {
     activeHost = host;
+    nativeMetadata = {};
     const profile = path.join(work, host + ' profile'); await fs.mkdir(profile);
     // Intended vendor profile-directory options, confined to this disposable VM.
     process.env[host === 'codex' ? 'CODEX_HOME' : 'CLAUDE_CONFIG_DIR'] = profile;
@@ -44,6 +52,13 @@ try {
       activeCommand = args;
       const result = await runCommand(exe, args, {...options, interactive: false, timeout: 60000});
       calls.push({args, code: result.code, native_mutation: options.interactive === true});
+      if (result.code === 0 && args.join(' ') === 'plugin marketplace list --json') {
+        const raw = JSON.parse(result.stdout);
+        const rows = Array.isArray(raw) ? raw : raw.marketplaces;
+        nativeMetadata.marketplace = publicPaths(rows.filter(x => x.name === 'cloudbos-public')
+          .map(x => Object.fromEntries(['name', 'marketplaceSource', 'source', 'path', 'root', 'installLocation']
+            .filter(k => k in x).map(k => [k, x[k]]))));
+      }
       return result;
     };
     const projectRoot = path.join(work, 'Projects', 'Nested group', host + ' App');
@@ -90,6 +105,7 @@ try {
   report.status = 'PASS_BOUNDED_NATIVE_WINDOWS_INSTALL_REUSE_AND_ENTRYPOINT_CHECKS';
 } catch (error) {
   report.status = 'FAILED'; report.failed_host = activeHost; report.failed_native_command = activeCommand;
+  report.native_metadata = nativeMetadata;
   report.failure = /^[A-Z0-9_]+$/.test(error.code || error.message || '') ? error.code || error.message : 'QUALIFICATION_FAILED';
   process.exitCode = 1;
 }
