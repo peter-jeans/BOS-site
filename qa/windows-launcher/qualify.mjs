@@ -90,7 +90,7 @@ try {
     const controls = {'AGENTS.md': 'Preserve my project instructions.\r\n', 'CLAUDE.md': '@AGENTS.md\r\nPreserve this import.\r\n'};
     for (const [name, text] of Object.entries(controls)) await fs.writeFile(path.join(projectRoot, name), text);
     const confirm = async action => {decisions.push(action.kind); return ['INSTALL_RELEASE', 'CREATE_EXACT_FOLDER', 'ADD_PUBLIC_MCP'].includes(action.kind);};
-    const options = {host, executable, release, projectRoot, localPackage: pkg.root, runner, confirm, startLogin: false};
+    const options = {host, executable, release, projectRoot, cacheRoot: path.join(work, host + ' package cache'), runner, confirm, startLogin: false};
     const first = await setupHost(options);
     if (first.status !== 'NATIVE_PROJECT_HANDOFF_REQUIRED') throw new Error('FIRST_INSTALL_NOT_AT_HANDOFF');
     const payload = await installedPayload(profile, host);

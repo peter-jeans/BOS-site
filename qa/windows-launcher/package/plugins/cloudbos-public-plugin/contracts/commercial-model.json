@@ -1,7 +1,7 @@
 {
   "schema": "BOS_PUBLIC_COMMERCIAL_MODEL_V1",
-  "version": "2026-10-04.1",
-  "effective_from": "2026-10-04",
+  "version": "2026-10-19.1",
+  "effective_from": "2026-10-19",
   "currency": "AUD",
   "model_status": "OWNER_APPROVED",
   "current_phase": "FREE_INVITED_BETA",
@@ -10,15 +10,15 @@
   "grants_access": false,
   "account_usage_included": false,
   "headline": "Build trust first. Keep your project continuity.",
-  "summary": "BOS starts with a trial of active cloud help within verified capabilities. BOS stabilisation stays with your app afterwards: installed build rules, existing checks and saved project knowledge remain. After active access ends, there are seven days to finish already-started workflows, followed by stabilisation-only access. Fresh cloud reviews, scans, planning and guidance need active access. Check your verified access for dates and allowances; nobody is charged automatically.",
+  "summary": "BOS offers a self-service account trial after verified sign-in and acceptance of current terms. Your first verified project starts one calendar month shared across all projects, with one account expiry and the highest delivered customer tier allowed by current security and access checks. Installed stabilisation and saved records remain afterwards. After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Fresh cloud help needs active access. Check My BOS for authoritative dates and access; no automatic charge.",
   "plans": [
     {
       "id": "BETA",
-      "name": "Invited trial",
+      "name": "Self-service account trial",
       "amount_minor": 0,
       "period": "BETA",
       "availability": "CURRENT",
-      "description": "A trial of active cloud help within enabled capabilities, followed by retained installed stabilisation and saved project records. Access dates and allowances come from your verified account. An invitation and current access checks are still required; no automatic paid conversion."
+      "description": "After verified sign-in and acceptance of current terms, your first verified project starts one calendar month of active cloud help. All projects share one account expiry. The trial provides the highest delivered customer tier within current security, capability and project checks. Reinstallation or another project does not restart the trial. Installed stabilisation and saved records remain; no automatic charge."
     },
     {
       "id": "STARTER",
@@ -34,7 +34,7 @@
       "amount_minor": 0,
       "period": "LIMITED_ONGOING",
       "availability": "PLANNED",
-      "description": "After active access ends, finish already-started workflows during a seven-day wind-down. Then active governance stops. Installed build rules, existing checks, decisions and project memory remain. Start a pass or subscription when you want fresh active help. Cloud retention terms will be published."
+      "description": "After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Without other valid access, fresh cloud help stops after that trial window. Installed build rules, existing checks, decisions and project memory remain. Passes and subscriptions remain planned, not live. Cloud retention terms will be published."
     },
     {
       "id": "BUILD_PASS",
@@ -60,7 +60,7 @@
     "interrupt_started_workflow_for_payment": false,
     "automatic_paid_conversion": false,
     "records_are_payment_leverage": false,
-    "notice": "BOS stabilisation stays with your app. After active access ends, you have seven days to finish already-started workflows. Then active governance stops until you activate a plan. Installed rules, checks and saved records remain. Allowances and options are shown in advance; no automatic paid conversion.",
+    "notice": "BOS stabilisation stays with your app. After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Without other valid access, fresh cloud help stops after that trial window. Installed rules, checks and saved records remain. No automatic paid conversion.",
     "wind_down_duration": "P7D",
     "wind_down_new_workflows": false,
     "after_wind_down": "STABILISATION_ONLY"
@@ -93,6 +93,6 @@
     "unit": "one agreed review or change plan with bounded follow-up; not individual messages"
   },
   "wire_compatibility": {
-    "LIGHT_period": "Legacy wire identifier only; the description and transition define seven-day wind-down then stabilisation only."
+    "LIGHT_period": "Legacy wire identifier only; the description and transition describe the seven-day window for already-started trial workflows, then stabilisation only without other valid access. Other access follows its own verified expiry or revocation."
   }
 }

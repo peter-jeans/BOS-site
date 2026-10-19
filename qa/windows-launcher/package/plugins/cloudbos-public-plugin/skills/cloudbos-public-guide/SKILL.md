@@ -420,7 +420,7 @@ For a separately authorised Base44 onboarding or upgrade, follow the packaged
 `contracts/bos-app-page.json` and workspace reference `bos_page_delivery`. Reuse
 compatible app components. Install the canonical icon/colours, three memory tabs,
 assistance controls, honest connection status, an exact-app activation prompt,
-and the BOS public page and Client Portal links. Use the shared projection; never
+and the BOS public page and My BOS account links. Use the shared projection; never
 copy a private starter's binding or private connection prompt into a public app.
 `bos-page-readback.mjs` checks each part's source and rendered UI observations,
 backend access denial and exact app/revision before full page acceptance. Missing

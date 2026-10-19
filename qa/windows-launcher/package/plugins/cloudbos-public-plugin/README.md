@@ -4,7 +4,7 @@ Status: `SELF_SERVICE_BETA_PACKAGE_PREPARED / CODEX_CLAUDE_BASE44_TARGETS / CURR
 
 ## Prepared self-service beta
 
-Source version: `0.1.17+codex.20261018` for both Codex and Claude manifests.
+Source version: `0.1.19+codex.20261019` for both Codex and Claude manifests.
 This prepares a public-safe self-registration beta distribution. It does not
 publish a download, install a plugin, activate a project, qualify a native host,
 accept terms, grant access or authorize a stable/paid launch.

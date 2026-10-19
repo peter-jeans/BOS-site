@@ -258,19 +258,19 @@
                         "const": "cloudbos-governed-build"
                       },
                       "workspace_skill_version": {
-                        "const": "1.43.33"
+                        "const": "1.43.35"
                       },
                       "manifest_url": {
-                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/manifest.json"
+                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/manifest.json"
                       },
                       "reference_url": {
-                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/contracts/base44-workspace-reference.json"
+                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/contracts/base44-workspace-reference.json"
                       },
                       "reference_sha256": {
-                        "const": "aa1e6574d7b1bdc859307b7e9c96a64ae4088d1a4159d683da7eec8fb28f2c04"
+                        "const": "c3d1fe8a5ce28241716070dd4bb02cbe6faca99ad008654fa155779e01c75dbb"
                       },
                       "helper_url": {
-                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/scripts/base44-build-discipline.cjs"
+                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/scripts/base44-build-discipline.cjs"
                       },
                       "helper_sha256": {
                         "const": "bac896b8f55106d6c041e7de5d97781ea8bb308e1b9d273dbc49d188b51f9093"
@@ -287,13 +287,13 @@
                             "const": "BASE44_UPDATE_PLAN_READBACK_V1"
                           },
                           "contract_url": {
-                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/contracts/base44-plan-readback.json"
+                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/contracts/base44-plan-readback.json"
                           },
                           "contract_sha256": {
                             "const": "2eae0be4b135b566d5e44d48ea61b20fa11e230f60d3cccdd2aa9f2cc08c48ce"
                           },
                           "helper_url": {
-                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/scripts/base44-plan-readback.cjs"
+                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/scripts/base44-plan-readback.cjs"
                           },
                           "helper_sha256": {
                             "const": "631a7d1c3be264c3d559c9fe8e7feb3061f3ae75ed475b7a4a8c07b1bdb3c0da"
@@ -562,10 +562,10 @@
                     "const": "BOS_PUBLIC_COMMERCIAL_MODEL_V1"
                   },
                   "version": {
-                    "const": "2026-10-04.1"
+                    "const": "2026-10-19.1"
                   },
                   "effective_from": {
-                    "const": "2026-10-04"
+                    "const": "2026-10-19"
                   },
                   "currency": {
                     "const": "AUD"
@@ -592,7 +592,7 @@
                     "const": "Build trust first. Keep your project continuity."
                   },
                   "summary": {
-                    "const": "BOS starts with a trial of active cloud help within verified capabilities. BOS stabilisation stays with your app afterwards: installed build rules, existing checks and saved project knowledge remain. After active access ends, there are seven days to finish already-started workflows, followed by stabilisation-only access. Fresh cloud reviews, scans, planning and guidance need active access. Check your verified access for dates and allowances; nobody is charged automatically."
+                    "const": "BOS offers a self-service account trial after verified sign-in and acceptance of current terms. Your first verified project starts one calendar month shared across all projects, with one account expiry and the highest delivered customer tier allowed by current security and access checks. Installed stabilisation and saved records remain afterwards. After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Fresh cloud help needs active access. Check My BOS for authoritative dates and access; no automatic charge."
                   },
                   "plans": {
                     "type": "array",
@@ -609,7 +609,7 @@
                               "const": "BETA"
                             },
                             "name": {
-                              "const": "Invited trial"
+                              "const": "Self-service account trial"
                             },
                             "amount_minor": {
                               "const": 0
@@ -621,7 +621,7 @@
                               "const": "CURRENT"
                             },
                             "description": {
-                              "const": "A trial of active cloud help within enabled capabilities, followed by retained installed stabilisation and saved project records. Access dates and allowances come from your verified account. An invitation and current access checks are still required; no automatic paid conversion."
+                              "const": "After verified sign-in and acceptance of current terms, your first verified project starts one calendar month of active cloud help. All projects share one account expiry. The trial provides the highest delivered customer tier within current security, capability and project checks. Reinstallation or another project does not restart the trial. Installed stabilisation and saved records remain; no automatic charge."
                             }
                           },
                           "required": [
@@ -687,7 +687,7 @@
                               "const": "PLANNED"
                             },
                             "description": {
-                              "const": "After active access ends, finish already-started workflows during a seven-day wind-down. Then active governance stops. Installed build rules, existing checks, decisions and project memory remain. Start a pass or subscription when you want fresh active help. Cloud retention terms will be published."
+                              "const": "After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Without other valid access, fresh cloud help stops after that trial window. Installed build rules, existing checks, decisions and project memory remain. Passes and subscriptions remain planned, not live. Cloud retention terms will be published."
                             }
                           },
                           "required": [
@@ -792,7 +792,7 @@
                         "const": false
                       },
                       "notice": {
-                        "const": "BOS stabilisation stays with your app. After active access ends, you have seven days to finish already-started workflows. Then active governance stops until you activate a plan. Installed rules, checks and saved records remain. Allowances and options are shown in advance; no automatic paid conversion."
+                        "const": "BOS stabilisation stays with your app. After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Without other valid access, fresh cloud help stops after that trial window. Installed rules, checks and saved records remain. No automatic paid conversion."
                       },
                       "wind_down_duration": {
                         "const": "P7D"
@@ -933,7 +933,7 @@
                     "additionalProperties": false,
                     "properties": {
                       "LIGHT_period": {
-                        "const": "Legacy wire identifier only; the description and transition define seven-day wind-down then stabilisation only."
+                        "const": "Legacy wire identifier only; the description and transition describe the seven-day window for already-started trial workflows, then stabilisation only without other valid access. Other access follows its own verified expiry or revocation."
                       }
                     },
                     "required": [
@@ -1150,7 +1150,7 @@
                     "const": "PUBLIC_STATIC_GUIDANCE_ONLY"
                   },
                   "contract_url": {
-                    "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/contracts/base44-governed-app-onboarding.json"
+                    "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/contracts/base44-governed-app-onboarding.json"
                   },
                   "contract_version": {
                     "const": "1.9.1"
@@ -12692,19 +12692,19 @@
                         "const": "cloudbos-governed-build"
                       },
                       "workspace_skill_version": {
-                        "const": "1.43.33"
+                        "const": "1.43.35"
                       },
                       "manifest_url": {
-                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/manifest.json"
+                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/manifest.json"
                       },
                       "reference_url": {
-                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/contracts/base44-workspace-reference.json"
+                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/contracts/base44-workspace-reference.json"
                       },
                       "reference_sha256": {
-                        "const": "aa1e6574d7b1bdc859307b7e9c96a64ae4088d1a4159d683da7eec8fb28f2c04"
+                        "const": "c3d1fe8a5ce28241716070dd4bb02cbe6faca99ad008654fa155779e01c75dbb"
                       },
                       "helper_url": {
-                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/scripts/base44-build-discipline.cjs"
+                        "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/scripts/base44-build-discipline.cjs"
                       },
                       "helper_sha256": {
                         "const": "bac896b8f55106d6c041e7de5d97781ea8bb308e1b9d273dbc49d188b51f9093"
@@ -12721,13 +12721,13 @@
                             "const": "BASE44_UPDATE_PLAN_READBACK_V1"
                           },
                           "contract_url": {
-                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/contracts/base44-plan-readback.json"
+                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/contracts/base44-plan-readback.json"
                           },
                           "contract_sha256": {
                             "const": "2eae0be4b135b566d5e44d48ea61b20fa11e230f60d3cccdd2aa9f2cc08c48ce"
                           },
                           "helper_url": {
-                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.33/scripts/base44-plan-readback.cjs"
+                            "const": "https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.35/scripts/base44-plan-readback.cjs"
                           },
                           "helper_sha256": {
                             "const": "631a7d1c3be264c3d559c9fe8e7feb3061f3ae75ed475b7a4a8c07b1bdb3c0da"
@@ -13349,12 +13349,11 @@
                     "type": "string",
                     "enum": [
                       "NONE",
-                      "REVIEW_PLANS_TERMS_AND_PRICE",
-                      "REVIEW_BETA_ACCESS_IN_CLIENT_PORTAL"
+                      "REVIEW_ACCOUNT_ACCESS"
                     ]
                   },
                   "portal_url": {
-                    "const": "https://bos-client-portal.base44.app/projects?tool=plan-and-access"
+                    "const": "https://my.cloudbos.dev/account"
                   },
                   "presentation_instruction": {
                     "type": [
@@ -13452,10 +13451,10 @@
                     "const": "BOS_PUBLIC_COMMERCIAL_MODEL_V1"
                   },
                   "version": {
-                    "const": "2026-10-04.1"
+                    "const": "2026-10-19.1"
                   },
                   "effective_from": {
-                    "const": "2026-10-04"
+                    "const": "2026-10-19"
                   },
                   "currency": {
                     "const": "AUD"
@@ -13482,7 +13481,7 @@
                     "const": "Build trust first. Keep your project continuity."
                   },
                   "summary": {
-                    "const": "BOS starts with a trial of active cloud help within verified capabilities. BOS stabilisation stays with your app afterwards: installed build rules, existing checks and saved project knowledge remain. After active access ends, there are seven days to finish already-started workflows, followed by stabilisation-only access. Fresh cloud reviews, scans, planning and guidance need active access. Check your verified access for dates and allowances; nobody is charged automatically."
+                    "const": "BOS offers a self-service account trial after verified sign-in and acceptance of current terms. Your first verified project starts one calendar month shared across all projects, with one account expiry and the highest delivered customer tier allowed by current security and access checks. Installed stabilisation and saved records remain afterwards. After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Fresh cloud help needs active access. Check My BOS for authoritative dates and access; no automatic charge."
                   },
                   "plans": {
                     "type": "array",
@@ -13499,7 +13498,7 @@
                               "const": "BETA"
                             },
                             "name": {
-                              "const": "Invited trial"
+                              "const": "Self-service account trial"
                             },
                             "amount_minor": {
                               "const": 0
@@ -13511,7 +13510,7 @@
                               "const": "CURRENT"
                             },
                             "description": {
-                              "const": "A trial of active cloud help within enabled capabilities, followed by retained installed stabilisation and saved project records. Access dates and allowances come from your verified account. An invitation and current access checks are still required; no automatic paid conversion."
+                              "const": "After verified sign-in and acceptance of current terms, your first verified project starts one calendar month of active cloud help. All projects share one account expiry. The trial provides the highest delivered customer tier within current security, capability and project checks. Reinstallation or another project does not restart the trial. Installed stabilisation and saved records remain; no automatic charge."
                             }
                           },
                           "required": [
@@ -13577,7 +13576,7 @@
                               "const": "PLANNED"
                             },
                             "description": {
-                              "const": "After active access ends, finish already-started workflows during a seven-day wind-down. Then active governance stops. Installed build rules, existing checks, decisions and project memory remain. Start a pass or subscription when you want fresh active help. Cloud retention terms will be published."
+                              "const": "After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Without other valid access, fresh cloud help stops after that trial window. Installed build rules, existing checks, decisions and project memory remain. Passes and subscriptions remain planned, not live. Cloud retention terms will be published."
                             }
                           },
                           "required": [
@@ -13682,7 +13681,7 @@
                         "const": false
                       },
                       "notice": {
-                        "const": "BOS stabilisation stays with your app. After active access ends, you have seven days to finish already-started workflows. Then active governance stops until you activate a plan. Installed rules, checks and saved records remain. Allowances and options are shown in advance; no automatic paid conversion."
+                        "const": "BOS stabilisation stays with your app. After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Without other valid access, fresh cloud help stops after that trial window. Installed rules, checks and saved records remain. No automatic paid conversion."
                       },
                       "wind_down_duration": {
                         "const": "P7D"
@@ -13823,7 +13822,7 @@
                     "additionalProperties": false,
                     "properties": {
                       "LIGHT_period": {
-                        "const": "Legacy wire identifier only; the description and transition define seven-day wind-down then stabilisation only."
+                        "const": "Legacy wire identifier only; the description and transition describe the seven-day window for already-started trial workflows, then stabilisation only without other valid access. Other access follows its own verified expiry or revocation."
                       }
                     },
                     "required": [
