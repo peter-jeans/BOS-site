@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.43.33",
+  "version": "1.43.34",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -79,9 +79,9 @@
     "scope": "HOST_EXECUTED_DISPLAY_PROJECTION_NOT_GOVERNANCE_AUTHORITY",
     "optional_installed_path": "base44/functions/bosAppSnapshot/reviewed-snapshot.json",
     "template_bundle": {
-      "url": "https://peter-jeans.github.io/BOS-site/companions/base44/status-surface/v3/bundle.json",
-      "bytes": 221574,
-      "sha256": "0e1c4b57146f7e096d0744d11b6b6db0f2f7320fbf938f983516994870ff1cea",
+      "url": "https://peter-jeans.github.io/BOS-site/companions/base44/status-surface/v4/bundle.json",
+      "bytes": 221551,
+      "sha256": "c7860d0542639e9afb228f84b5f9489170145e2e67051522232de1a7b4acae5e",
       "packaged_path": "templates/base44-status-surface.json"
     },
     "resume_steps": [
@@ -368,7 +368,7 @@
       ],
       "links": {
         "public_page": "https://peter-jeans.github.io/BOS-site/",
-        "client_portal": "https://bos-client-portal.base44.app/"
+        "client_portal": "https://my.cloudbos.dev/account"
       }
     }
   },

@@ -16,40 +16,57 @@
     "policies/trial-billing.html": "fbb43449c92996c51d3d2f223e502bad798c0c82e29de5c6deb6e220f0424a94"
   },
   "distribution": {
-    "status": "APPROVED_IMMUTABLE",
-    "version": "0.1.14+codex.20261018",
-    "publication_status": "PUBLIC_PRERELEASE_SOURCE_AVAILABLE",
+    "status": "PENDING_PUBLICATION_READBACK",
+    "version": "0.1.18+codex.20261019",
+    "publication_status": "PREPARED_NOT_PUBLISHED",
     "source_repository": "https://github.com/peter-jeans/BOS-site",
-    "source_commit": "2b5b9aa98cf9f3ed47e9506fb37222e6c9c2aab4",
-    "manifest_path": "public-plugin-releases/0.1.14+codex.20261018/PUBLIC_PACKAGE_MANIFEST.json",
-    "manifest_sha256": "f672b4bc8bedc3901def891ba120335e86b244fddb94105ddaeb2e211c11449e",
+    "source_commit": "4e6b24735ef2e7f2cf9e20b4d69532782d60be5b",
+    "manifest_path": "public-plugin-releases/0.1.18+codex.20261019/PUBLIC_PACKAGE_MANIFEST.json",
+    "manifest_sha256": "910edcba5cc3598fd1590892d36a87fcee7cf1ec5cfaf08213babadb52c94223",
     "archive_download": "NOT_PUBLISHED"
   },
   "control_files": {
     "status": "MATCHED_VERIFIED",
-    "selected_version": "1.43.33",
-    "manifest_sha256": "07f7124e28f0e2b9aea12674fa27e61dafdb808a7589b09384e7d16da868cce1",
+    "selected_version": "1.43.34",
+    "manifest_sha256": "1be999bcd30ffffa62f7a26803b3688431860736da87ea7e13811094367489af",
     "native_acceptance": "PENDING"
   },
   "native_qualification": "PENDING",
   "marketplace": {
-    "status": "PUBLISHED_VERIFIED",
+    "status": "PENDING_PUBLICATION_READBACK",
     "repository": "https://github.com/peter-jeans/BOS-site",
-    "source_manifest_sha256": "8d1416d2a463c41627462c1f612aeefdaafe9462f659d601d3f6d236d83124f7",
+    "source_manifest_sha256": "eab427ee427ea9f6ab90fc1433a2db6a0a812f0908f6dc293dccaf8bb20165e9",
     "native_installation_route": "PENDING"
   },
   "host_compatibility": {
     "path": "data/host-compatibility.json",
     "status": "PENDING_NATIVE_QUALIFICATION",
-    "sha256": "1184e55318016d5514d7397eb4ba73d2d6d30d822929dc0d7a57cef8dc668108"
+    "sha256": "338e468e2ee80ead01a16be3a805df694dfa6a95e1986b5df83ec9d896b45755"
   },
-  "public_website_source_commit": "ec51d4f5bdc681a4f53057c269abb477e7fc9a2e",
-  "installation_controls": "13_DISABLED_UNCHANGED",
+  "public_website_source_commit": "4e6b24735ef2e7f2cf9e20b4d69532782d60be5b",
+  "installation_controls": "18_DISABLED_UNCHANGED",
   "paid_checkout": "NO_ACTIVATION_IN_THIS_CANDIDATE",
   "required": [
     "Native supported-host qualification under existing release gate",
     "Independent source review and owner Cloudflare publication decision",
     "Exact provider account, Worker, Git build and domain prerequisite readback"
   ],
-  "cloudflare_deployment": "NOT_PERFORMED"
+  "cloudflare_deployment": "NOT_PERFORMED",
+  "launcher_candidate": {
+    "status": "PINNED_ARTIFACT_PREPARED_NATIVE_ACCEPTANCE_PENDING",
+    "setup_version": "0.1.0",
+    "plugin_version": "0.1.18+codex.20261019",
+    "package_source_commit": "4e6b24735ef2e7f2cf9e20b4d69532782d60be5b",
+    "package_manifest_sha256": "910edcba5cc3598fd1590892d36a87fcee7cf1ec5cfaf08213babadb52c94223",
+    "package_digest": "7108fbef7957d15a5632b248ace37a8de348561ce32d383fdbaf9181e4508f54",
+    "archive_path": "downloads/cloudbos-setup/0.1.0/0.1.18+codex.20261019/cloudbos-setup.zip",
+    "archive_sha256": "3a5480ff6bb2d5fe475b47c1876eb5469ca05ef7bca235badadd298b0a7290f6",
+    "archive_bytes": 14001,
+    "inventory_path": "downloads/cloudbos-setup/0.1.0/0.1.18+codex.20261019/SETUP_MANIFEST.json",
+    "inventory_sha256": "6527d07be5dd79024393d29fc8d0547ebee0648312abfc741228e6b678497a08",
+    "native_acceptance": "NOT_GRANTED_BY_PACKAGING",
+    "release_approval": "NOT_GRANTED_BY_PACKAGING",
+    "download_controls": "HELD",
+    "archive_publication_commit": null
+  }
 }

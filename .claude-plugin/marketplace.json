@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "Public-safe Cloud BOS plugins for governed software development.",
-    "version": "0.1.14+codex.20261018"
+    "version": "0.1.18+codex.20261019"
   },
   "plugins": [
     {
       "name": "cloudbos-public-plugin",
-      "source": "./public-plugin-releases/0.1.14+codex.20261018/plugins/cloudbos-public-plugin",
+      "source": "./public-plugin-releases/0.1.18+codex.20261019/plugins/cloudbos-public-plugin",
       "description": "Public Cloud BOS project guidance. Preserve existing private project bindings; public installation does not migrate a project.",
-      "version": "0.1.14+codex.20261018"
+      "version": "0.1.18+codex.20261019"
     }
   ]
 }

@@ -1,14 +1,14 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
   "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
-  "workspace_skill_version": "1.43.33",
+  "workspace_skill_version": "1.43.34",
   "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
   "grants_installation_or_mutation_authority": false,
   "files": [
     {
       "path": "contracts/base44-workspace-skill.json",
-      "bytes": 14074,
-      "sha256": "9e5c55d93aad61cb0c8ad5bfd233a108040a4a806b63e916a893d92f5800a05a"
+      "bytes": 14082,
+      "sha256": "617ab912de824e6a192d9510626187f3a3cdacb61ebfead4713406ffb957800e"
     },
     {
       "path": "contracts/base44-governed-app-onboarding.json",
@@ -52,8 +52,8 @@
     },
     {
       "path": "contracts/base44-workspace-reference.json",
-      "bytes": 72006,
-      "sha256": "aa1e6574d7b1bdc859307b7e9c96a64ae4088d1a4159d683da7eec8fb28f2c04"
+      "bytes": 72000,
+      "sha256": "4e5b3e65228b7a7e6601fdfb18c82e4cf3e7fa36f4e5b5dc994ec0af48902ecc"
     },
     {
       "path": "scripts/base44-update-request.mjs",
@@ -92,8 +92,8 @@
     },
     {
       "path": "contracts/bos-app-page.json",
-      "bytes": 826,
-      "sha256": "75f0d068d0261df2a20108d074539ba5bc08e90ef40b3f0b248092be4fac3933"
+      "bytes": 820,
+      "sha256": "fec0b049f3e7bca2033bab29085143e6fb94ec1e424fc323577d2b768b2a98e9"
     },
     {
       "path": "components/BosBuilderActivation.jsx",
@@ -107,13 +107,13 @@
     },
     {
       "path": "components/builder-activation.mjs",
-      "bytes": 1084,
-      "sha256": "dbdd678073ad09c188ea08ba8af61178e2874f0956077381bba2b0a191e301c7"
+      "bytes": 1078,
+      "sha256": "d49cd6cfb7ae4f7d683224a3cb48751f5ddb63484bfa5a8fef2669a68369cf52"
     },
     {
       "path": "templates/base44-status-surface.json",
-      "bytes": 221574,
-      "sha256": "0e1c4b57146f7e096d0744d11b6b6db0f2f7320fbf938f983516994870ff1cea"
+      "bytes": 221551,
+      "sha256": "c7860d0542639e9afb228f84b5f9489170145e2e67051522232de1a7b4acae5e"
     },
     {
       "path": "scripts/generated_ai_execution_footer.mjs",

@@ -1,12 +1,12 @@
 {
   "schema": "CLOUD_BOS_PUBLIC_HOST_COMPATIBILITY_V1",
-  "package_version": "0.1.14+codex.20261018",
-  "package_archive_sha256": "e042457c21ef603e8266796ba4c46ccd961041709a2854fd2cde2e389b4a504a",
+  "package_version": "0.1.18+codex.20261019",
+  "package_archive_sha256": null,
   "status": "PENDING_NATIVE_QUALIFICATION",
   "record_purpose": "Native installation and project activation evidence, separate from immutable package file integrity.",
   "publication": {
     "website": "DOCUMENTATION_PUBLISHED",
-    "marketplace": "PUBLIC_PRERELEASE_SOURCE_AVAILABLE",
+    "marketplace": "PENDING_PUBLICATION_READBACK",
     "archive_download": "NOT_PUBLISHED",
     "install_controls": "HELD_PENDING_NATIVE_QUALIFICATION"
   },
@@ -56,5 +56,24 @@
   },
   "grants_installation_approval": false,
   "documentation_publication": "STATUS_UPDATE_AFTER_CONFIRMED_PRERELEASE_SOURCE_PUBLICATION",
-  "qualification_note": "Documentation publication is independent of marketplace/package release and does not qualify a host."
+  "qualification_note": "Version18 local package integrity and source-link tests pass; changed-byte native acceptance is pending. Earlier evidence applies only to its exact artifact bytes. No archive hash or public commit is available yet.",
+  "package_manifest_sha256": "910edcba5cc3598fd1590892d36a87fcee7cf1ec5cfaf08213babadb52c94223",
+  "package_digest": "7108fbef7957d15a5632b248ace37a8de348561ce32d383fdbaf9181e4508f54",
+  "launcher_candidate": {
+    "status": "PINNED_ARTIFACT_PREPARED_NATIVE_ACCEPTANCE_PENDING",
+    "setup_version": "0.1.0",
+    "plugin_version": "0.1.18+codex.20261019",
+    "package_source_commit": "4e6b24735ef2e7f2cf9e20b4d69532782d60be5b",
+    "package_manifest_sha256": "910edcba5cc3598fd1590892d36a87fcee7cf1ec5cfaf08213babadb52c94223",
+    "package_digest": "7108fbef7957d15a5632b248ace37a8de348561ce32d383fdbaf9181e4508f54",
+    "archive_path": "downloads/cloudbos-setup/0.1.0/0.1.18+codex.20261019/cloudbos-setup.zip",
+    "archive_sha256": "3a5480ff6bb2d5fe475b47c1876eb5469ca05ef7bca235badadd298b0a7290f6",
+    "archive_bytes": 14001,
+    "inventory_path": "downloads/cloudbos-setup/0.1.0/0.1.18+codex.20261019/SETUP_MANIFEST.json",
+    "inventory_sha256": "6527d07be5dd79024393d29fc8d0547ebee0648312abfc741228e6b678497a08",
+    "native_acceptance": "NOT_GRANTED_BY_PACKAGING",
+    "release_approval": "NOT_GRANTED_BY_PACKAGING",
+    "download_controls": "HELD",
+    "archive_publication_commit": null
+  }
 }

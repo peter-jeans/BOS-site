@@ -1,7 +1,7 @@
 // App-facing resources and one-session prompts. No connection, preference write
 // or installation is performed by copying a prompt.
 export const BOS_PUBLIC_PAGE = 'https://peter-jeans.github.io/BOS-site/';
-export const BOS_CLIENT_PORTAL = 'https://bos-client-portal.base44.app/';
+export const BOS_CLIENT_PORTAL = 'https://my.cloudbos.dev/account';
 export function builderActivationPrompt({ projectRef, connectionRoute }) {
   if (!/^base44:[a-f0-9]{24}$/.test(projectRef ?? '')) throw Error('EXACT_APP_REQUIRED');
   if (!['PUBLIC', 'PRIVATE'].includes(connectionRoute)) throw Error('VERIFIED_CONNECTION_ROUTE_REQUIRED');
