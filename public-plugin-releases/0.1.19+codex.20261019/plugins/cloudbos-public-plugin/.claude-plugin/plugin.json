@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "cloudbos-public-plugin",
+  "displayName": "Cloud BOS Public",
+  "version": "0.1.19+codex.20261019",
+  "description": "Public Cloud BOS project guidance. Preserve existing private project bindings; public installation does not migrate a project.",
+  "author": {
+    "name": "Peter Jeans",
+    "email": "peterjeans2@gmail.com"
+  },
+  "homepage": "https://peter-jeans.github.io/BOS-site/",
+  "repository": "https://github.com/peter-jeans/BOS-site",
+  "license": "Proprietary",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

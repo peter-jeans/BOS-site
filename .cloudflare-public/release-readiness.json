@@ -35,7 +35,7 @@
   "marketplace": {
     "status": "PENDING_PUBLICATION_READBACK",
     "repository": "https://github.com/peter-jeans/BOS-site",
-    "source_manifest_sha256": "eab427ee427ea9f6ab90fc1433a2db6a0a812f0908f6dc293dccaf8bb20165e9",
+    "source_manifest_sha256": "c73e8cb77aa203b44b9d3dd15bd487bd1a2da7237369f93d0bc9a936ba35c823",
     "native_installation_route": "PENDING"
   },
   "host_compatibility": {
