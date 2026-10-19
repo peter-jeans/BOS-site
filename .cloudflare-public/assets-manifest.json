@@ -2084,6 +2084,18 @@
     "companions/base44/versions/1.43.35/templates/base44-status-surface.json": {
       "sha256": "dc705fbb2a0b64e58095cd820486caef6e18da59449b79cf750e17c19ae06588",
       "bytes": 221588
+    },
+    "downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/cloudbos-setup.zip": {
+      "sha256": "db5c7894ab4a148e2ac74b85991e5dfb62510dd4a243f44383753372c1e8ee5d",
+      "bytes": 14003
+    },
+    "downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/cloudbos-setup.zip.sha256": {
+      "sha256": "5a625eafd87ede629c9bfed96d3cd97780783aea8d8bd6661a5521eb7ed5db4b",
+      "bytes": 85
+    },
+    "downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/SETUP_MANIFEST.json": {
+      "sha256": "5667df44cc0d508de9c619a2a7f86bfa63892faba8949119cf6c3b2893d910af",
+      "bytes": 865
     }
   }
 }
