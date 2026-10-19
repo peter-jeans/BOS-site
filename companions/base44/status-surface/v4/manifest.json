@@ -1,0 +1,9 @@
+{
+  "schema": "BOS_BASE44_STATUS_SURFACE_DOWNLOAD_V1",
+  "version": "1.3.1",
+  "path": "bundle.json",
+  "bytes": 221551,
+  "sha256": "c7860d0542639e9afb228f84b5f9489170145e2e67051522232de1a7b4acae5e",
+  "file_count": 36,
+  "requires_separate_exact_app_surface_approval": true
+}

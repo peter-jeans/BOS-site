@@ -1,0 +1,98 @@
+{
+  "schema": "BOS_PUBLIC_COMMERCIAL_MODEL_V1",
+  "version": "2026-10-04.1",
+  "effective_from": "2026-10-04",
+  "currency": "AUD",
+  "model_status": "OWNER_APPROVED",
+  "current_phase": "FREE_INVITED_BETA",
+  "pricing_status": "STANDARD_PRICES_APPROVED_NOT_LIVE",
+  "checkout_live": false,
+  "grants_access": false,
+  "account_usage_included": false,
+  "headline": "Build trust first. Keep your project continuity.",
+  "summary": "BOS starts with a trial of active cloud help within verified capabilities. BOS stabilisation stays with your app afterwards: installed build rules, existing checks and saved project knowledge remain. After active access ends, there are seven days to finish already-started workflows, followed by stabilisation-only access. Fresh cloud reviews, scans, planning and guidance need active access. Check your verified access for dates and allowances; nobody is charged automatically.",
+  "plans": [
+    {
+      "id": "BETA",
+      "name": "Invited trial",
+      "amount_minor": 0,
+      "period": "BETA",
+      "availability": "CURRENT",
+      "description": "A trial of active cloud help within enabled capabilities, followed by retained installed stabilisation and saved project records. Access dates and allowances come from your verified account. An invitation and current access checks are still required; no automatic paid conversion."
+    },
+    {
+      "id": "STARTER",
+      "name": "Generous start",
+      "amount_minor": 0,
+      "period": "BOUNDED_INTRODUCTION",
+      "availability": "PLANNED",
+      "description": "Experience useful help across several sessions, including returning to your project. The exact allowance will be published before launch."
+    },
+    {
+      "id": "LIGHT",
+      "name": "Stabilisation stays",
+      "amount_minor": 0,
+      "period": "LIMITED_ONGOING",
+      "availability": "PLANNED",
+      "description": "After active access ends, finish already-started workflows during a seven-day wind-down. Then active governance stops. Installed build rules, existing checks, decisions and project memory remain. Start a pass or subscription when you want fresh active help. Cloud retention terms will be published."
+    },
+    {
+      "id": "BUILD_PASS",
+      "name": "Standard pass",
+      "amount_minor": 1500,
+      "period": "ONE_OFF",
+      "availability": "PLANNED",
+      "description": "A$15 for seven consecutive days from activation. A one-off purchase with no automatic renewal. The usage allowance and activation terms will be published before sales begin."
+    },
+    {
+      "id": "MEMBERSHIP",
+      "name": "Standard subscription",
+      "amount_minor": 2900,
+      "period": "RECURRING",
+      "availability": "PLANNED",
+      "description": "A$29 per month for regular builders. Renews only with your consent; cancellation stops future renewal. Included usage and full terms will be published before sales begin."
+    }
+  ],
+  "transition": {
+    "advance_notice": true,
+    "bounded_workflow_wrap_up": true,
+    "wrap_up_reserved_within_allowance": true,
+    "interrupt_started_workflow_for_payment": false,
+    "automatic_paid_conversion": false,
+    "records_are_payment_leverage": false,
+    "notice": "BOS stabilisation stays with your app. After active access ends, you have seven days to finish already-started workflows. Then active governance stops until you activate a plan. Installed rules, checks and saved records remain. Allowances and options are shown in advance; no automatic paid conversion.",
+    "wind_down_duration": "P7D",
+    "wind_down_new_workflows": false,
+    "after_wind_down": "STABILISATION_ONLY"
+  },
+  "value_evidence": {
+    "verified_contributions_separate_from_estimates": true,
+    "invented_savings_allowed": false,
+    "trust_score_used_for_billing": false,
+    "repeat_warnings_or_bos_defects_count_as_new_value": false
+  },
+  "support": {
+    "included": "Self-service guidance and a structured channel for plugin-defect reports.",
+    "personal_support_included": false,
+    "guaranteed_response_time": false
+  },
+  "limits": {
+    "status": "NOT_YET_APPROVED",
+    "starter_allowance": null,
+    "ongoing_help_allowance": null,
+    "pass_duration": "P7D",
+    "paid_usage_allowance": null,
+    "enforcement_enabled": false
+  },
+  "access_boundary": "This public programme describes the offer, not your account entitlement. Current authenticated server capability and project checks remain authoritative. Existing account commitments are preserved; a new installation does not create a new free allowance.",
+  "external_costs": "Development-platform subscriptions, hosting, AI usage and credits are separate. Any applicable taxes and payment charges will be disclosed before purchase.",
+  "provisional_test_limits": {
+    "test_only": true,
+    "standard_pass_workflows": 10,
+    "standard_monthly_workflows": 50,
+    "unit": "one agreed review or change plan with bounded follow-up; not individual messages"
+  },
+  "wire_compatibility": {
+    "LIGHT_period": "Legacy wire identifier only; the description and transition define seven-day wind-down then stabilisation only."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloudbos.example/schemas/base44-workspace-discovery.schema.json",
+  "title": "Cloud BOS public Base44 workspace discovery evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "observed_at",
+    "source_surfaces",
+    "app_ref",
+    "account_workspace_count",
+    "app_workspace_ref",
+    "app_workspace_membership_status",
+    "app_workspace_selected",
+    "selected_workspace_refs",
+    "selected_workspace_roles",
+    "raw_identifiers_emitted",
+    "raw_workspace_names_emitted",
+    "project_write_observed",
+    "provider_write_observed",
+    "evidence_hash"
+  ],
+  "properties": {
+    "schema": {"const": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_DISCOVERY_EVIDENCE_V1"},
+    "status": {"const": "COMPLETE_VERIFIED_READ_ONLY"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "source_surfaces": {
+      "const": ["BASE44_CLI_WORKSPACE_LIST", "BASE44_APP_METADATA_READ"]
+    },
+    "app_ref": {"type": "string", "pattern": "^base44-app:[a-f0-9]{64}$"},
+    "account_workspace_count": {"type": "integer", "minimum": 1},
+    "app_workspace_ref": {"type": "string", "pattern": "^base44-workspace:[a-f0-9]{64}$"},
+    "app_workspace_membership_status": {"const": "MATCHED_AUTHENTICATED_ACCOUNT_WORKSPACE_LIST"},
+    "app_workspace_selected": {"const": true},
+    "selected_workspace_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^base44-workspace:[a-f0-9]{64}$"}
+    },
+    "selected_workspace_roles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["workspace_ref", "user_role"],
+        "properties": {
+          "workspace_ref": {"type": "string", "pattern": "^base44-workspace:[a-f0-9]{64}$"},
+          "user_role": {"enum": ["owner", "admin", "editor", "viewer", "member", "unknown"]}
+        }
+      }
+    },
+    "raw_identifiers_emitted": {"const": false},
+    "raw_workspace_names_emitted": {"const": false},
+    "project_write_observed": {"const": false},
+    "provider_write_observed": {"const": false},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

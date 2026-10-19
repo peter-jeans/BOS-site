@@ -1,0 +1,41 @@
+{
+  "name": "cloudbos-public-plugin",
+  "version": "0.1.18+codex.20261019",
+  "description": "Public-safe Cloud BOS plugin under development, isolated from the private owner connector and private BOS internals.",
+  "author": {
+    "name": "Peter Jeans",
+    "email": "peterjeans2@gmail.com",
+    "url": "https://peter-jeans.github.io/BOS-site/"
+  },
+  "homepage": "https://peter-jeans.github.io/BOS-site/",
+  "repository": "https://github.com/peter-jeans/BOS-site",
+  "license": "Proprietary",
+  "keywords": [
+    "bos",
+    "cloudbos",
+    "mcp",
+    "governance",
+    "software-development"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Cloud BOS Public",
+    "shortDescription": "Public product guidance; preserves existing private project bindings.",
+    "longDescription": "Public-safe Cloud BOS connection, project-governance and scan-fix planning plugin. Eight Level-1 tools, project-governance lifecycle and progressive server-entitled scan depth are locally verified; hosted availability remains deployment and live-evidence gated.",
+    "developerName": "Peter Jeans",
+    "category": "Productivity",
+    "capabilities": [],
+    "websiteURL": "https://peter-jeans.github.io/BOS-site/",
+    "privacyPolicyURL": "https://peter-jeans.github.io/BOS-site/policies/privacy.html",
+    "termsOfServiceURL": "https://peter-jeans.github.io/BOS-site/policies/terms.html",
+    "defaultPrompt": [
+      "Check Cloud BOS Public for an explicitly public-bound project.",
+      "Show my authenticated Cloud BOS Public capabilities."
+    ],
+    "brandColor": "#0057FF",
+    "composerIcon": "./assets/bos-icon-64.png",
+    "logo": "./assets/bos-icon-512.png",
+    "logoDark": "./assets/bos-icon-512.png"
+  },
+  "mcpServers": "./.mcp.json"
+}
