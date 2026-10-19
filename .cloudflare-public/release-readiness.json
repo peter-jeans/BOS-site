@@ -16,34 +16,34 @@
     "policies/trial-billing.html": "fbb43449c92996c51d3d2f223e502bad798c0c82e29de5c6deb6e220f0424a94"
   },
   "distribution": {
-    "status": "PENDING_PUBLICATION_READBACK",
-    "version": "0.1.18+codex.20261019",
-    "publication_status": "PREPARED_NOT_PUBLISHED",
+    "status": "PUBLISHED_HTTP_VERIFIED_NATIVE_ACCEPTANCE_PENDING",
+    "version": "0.1.19+codex.20261019",
+    "publication_status": "PUBLISHED_HTTP_VERIFIED",
     "source_repository": "https://github.com/peter-jeans/BOS-site",
-    "source_commit": "4e6b24735ef2e7f2cf9e20b4d69532782d60be5b",
-    "manifest_path": "public-plugin-releases/0.1.18+codex.20261019/PUBLIC_PACKAGE_MANIFEST.json",
-    "manifest_sha256": "910edcba5cc3598fd1590892d36a87fcee7cf1ec5cfaf08213babadb52c94223",
+    "source_commit": "9d377f69670bec87c5192540ca0bb5e566ac1d60",
+    "manifest_path": "public-plugin-releases/0.1.19+codex.20261019/PUBLIC_PACKAGE_MANIFEST.json",
+    "manifest_sha256": "bd1df0ff91b03b38c9cb3e0ee276e7ada77759819e6366fcb87d65bd2418103c",
     "archive_download": "NOT_PUBLISHED"
   },
   "control_files": {
     "status": "MATCHED_VERIFIED",
-    "selected_version": "1.43.34",
-    "manifest_sha256": "1be999bcd30ffffa62f7a26803b3688431860736da87ea7e13811094367489af",
+    "selected_version": "1.43.35",
+    "manifest_sha256": "83343d5391960f7744fa47abcb9a57b2355fbf441dc11832dc5ff8495f8ec9c0",
     "native_acceptance": "PENDING"
   },
   "native_qualification": "PENDING",
   "marketplace": {
     "status": "PENDING_PUBLICATION_READBACK",
     "repository": "https://github.com/peter-jeans/BOS-site",
-    "source_manifest_sha256": "c73e8cb77aa203b44b9d3dd15bd487bd1a2da7237369f93d0bc9a936ba35c823",
+    "source_manifest_sha256": "65aa15c22009eac25a14809418fb26b78640ddee6344602b19d418ac8229701e",
     "native_installation_route": "PENDING"
   },
   "host_compatibility": {
     "path": "data/host-compatibility.json",
     "status": "PENDING_NATIVE_QUALIFICATION",
-    "sha256": "338e468e2ee80ead01a16be3a805df694dfa6a95e1986b5df83ec9d896b45755"
+    "sha256": "ee3e5eb314d4e0056f46125a9496d2732852d977453225d5adafc4c1abe5a3cf"
   },
-  "public_website_source_commit": "4e6b24735ef2e7f2cf9e20b4d69532782d60be5b",
+  "public_website_source_commit": "9d377f69670bec87c5192540ca0bb5e566ac1d60",
   "installation_controls": "18_DISABLED_UNCHANGED",
   "paid_checkout": "NO_ACTIVATION_IN_THIS_CANDIDATE",
   "required": [
@@ -55,15 +55,15 @@
   "launcher_candidate": {
     "status": "PINNED_ARTIFACT_PREPARED_NATIVE_ACCEPTANCE_PENDING",
     "setup_version": "0.1.0",
-    "plugin_version": "0.1.18+codex.20261019",
-    "package_source_commit": "4e6b24735ef2e7f2cf9e20b4d69532782d60be5b",
-    "package_manifest_sha256": "910edcba5cc3598fd1590892d36a87fcee7cf1ec5cfaf08213babadb52c94223",
-    "package_digest": "7108fbef7957d15a5632b248ace37a8de348561ce32d383fdbaf9181e4508f54",
-    "archive_path": "downloads/cloudbos-setup/0.1.0/0.1.18+codex.20261019/cloudbos-setup.zip",
-    "archive_sha256": "3a5480ff6bb2d5fe475b47c1876eb5469ca05ef7bca235badadd298b0a7290f6",
-    "archive_bytes": 14001,
-    "inventory_path": "downloads/cloudbos-setup/0.1.0/0.1.18+codex.20261019/SETUP_MANIFEST.json",
-    "inventory_sha256": "6527d07be5dd79024393d29fc8d0547ebee0648312abfc741228e6b678497a08",
+    "plugin_version": "0.1.19+codex.20261019",
+    "package_source_commit": "9d377f69670bec87c5192540ca0bb5e566ac1d60",
+    "package_manifest_sha256": "bd1df0ff91b03b38c9cb3e0ee276e7ada77759819e6366fcb87d65bd2418103c",
+    "package_digest": "64511b73def37ae4f5793b958c634007bb45e2104df38b2ae89a95f75e2f206b",
+    "archive_path": "downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/cloudbos-setup.zip",
+    "archive_sha256": "db5c7894ab4a148e2ac74b85991e5dfb62510dd4a243f44383753372c1e8ee5d",
+    "archive_bytes": 14003,
+    "inventory_path": "downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/SETUP_MANIFEST.json",
+    "inventory_sha256": "5667df44cc0d508de9c619a2a7f86bfa63892faba8949119cf6c3b2893d910af",
     "native_acceptance": "NOT_GRANTED_BY_PACKAGING",
     "release_approval": "NOT_GRANTED_BY_PACKAGING",
     "download_controls": "HELD",

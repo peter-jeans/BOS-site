@@ -2,16 +2,16 @@
   "schema": "BOS_PUBLIC_MARKETPLACE_SOURCE_MANIFEST_V1",
   "publication_status": "PREPARED_NOT_PUBLISHED",
   "repository": "https://github.com/peter-jeans/BOS-site",
-  "version": "0.1.18+codex.20261019",
+  "version": "0.1.19+codex.20261019",
   "publication_commit": null,
-  "bundle_public_manifest_sha256": "910edcba5cc3598fd1590892d36a87fcee7cf1ec5cfaf08213babadb52c94223",
+  "bundle_public_manifest_sha256": "bd1df0ff91b03b38c9cb3e0ee276e7ada77759819e6366fcb87d65bd2418103c",
   "files": {
     ".agents/plugins/marketplace.json": {
-      "sha256": "5359e6880251251719d9fff8c30e6c925958c401d6e3be38593f36ddfed50b4d",
+      "sha256": "8db403b46dbe8df2599d655cfd6534308fbef678026f68263daa52b515d4ba9b",
       "bytes": 450
     },
     ".claude-plugin/marketplace.json": {
-      "sha256": "fa718e9bef842ccb9ae548509cc46cac8e99cc76c162a88e325d9049d2213019",
+      "sha256": "b26042260b59c6046f3019deace8dc60fbd662aaac4ce34b2b52b203aab48ed2",
       "bytes": 696
     },
     "public-plugin-releases/0.1.14+codex.20261018/.agents/plugins/marketplace.json": {
