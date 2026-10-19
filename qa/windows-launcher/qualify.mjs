@@ -10,7 +10,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const setupRoot = path.join(root, 'setup');
 const release = await verifyDistribution(setupRoot);
 const pkg = await verifyPackage(path.join(root, 'package'), release);
-const work = await fs.mkdtemp(path.join(os.tmpdir(), 'Cloud BOS Windows QA '));
+const work = await fs.realpath(await fs.mkdtemp(path.join(os.tmpdir(), 'Cloud BOS Windows QA ')));
 const report = {schema: 'CLOUDBOS_WINDOWS_NATIVE_QUALIFICATION_V1', commit: process.env.GITHUB_SHA,
   platform: process.platform, architecture: process.arch, os_release: os.release(), node: process.version,
   package_version: release.plugin_version, setup_version: release.setup_version,
