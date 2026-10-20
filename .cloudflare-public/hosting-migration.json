@@ -1,0 +1,31 @@
+{
+  "schema": "BOS_HOSTING_ONLY_APPROVAL_V1",
+  "scope": "HOSTING_MIGRATION_ONLY",
+  "hosting_approved": true,
+  "approval_basis": "Owner directed GitHub-sourced Cloudflare website migration on 2026-10-20; preserve GitHub Pages until independently verified.",
+  "product_release_approved": false,
+  "preserve_github_pages": true,
+  "source_repository": "https://github.com/peter-jeans/BOS-site.git",
+  "source_branch": "main",
+  "reviewed_base_commit": "ac1d9a8ae746d56810f74d364a1983ba3d5cbd29",
+  "target_worker": "bos-public-site",
+  "target_domain": "cloudbos.dev",
+  "preserved_absent_paths": [
+    "CNAME",
+    ".github"
+  ],
+  "pinned_files": {
+    ".cloudflare-public/release-readiness.json": "d00f1038ccc26924d16eab754b90aa7e72f68a28cdb9313a2055f5d74388f373",
+    ".cloudflare-public/marketplace-source-manifest.json": "65aa15c22009eac25a14809418fb26b78640ddee6344602b19d418ac8229701e",
+    ".cloudflare-public/assets-manifest.json": "bdd6d8e6311cdf389a754a012d370d45c2f1881fa643b7f0d0dc2becab4bebd7",
+    ".cloudflare-public/asset-routing.txt": "a1d8dddd72c71933662e65f4604cd741d4a3f388951207193c01ad1015dd6692",
+    ".cloudflare-public/build.mjs": "05de9524b3d60f3ee8763ac6c22712cbdb44bddf70f2fdc63f6a7f66ac042b89",
+    ".cloudflare-public/release-check.mjs": "daef0692c106479cceaef361f6732e8174ee398fc6cbfa870be796fed6b833f3",
+    ".cloudflare-public/wrangler.json": "57382ae0f04438689dc039704f0613b613383643ffaf8e317679ed787f0c6909",
+    ".cloudflare-public/wrangler.production.json": "bd00eb035efd6fd388cfc96b5bbef57959006e2ba1f14788d33c6f7fe89f3317",
+    ".cloudflare-public/package.json": "0c4142a0585552f0f412a6d93c6a2a76f2ee81227e359d00c14a37695ce70521",
+    ".cloudflare-public/package-lock.json": "e93ab991f100f9d1edecd747fc5d6f87aa35348446589d2b724e6ebf8e7a2a18",
+    "data/host-compatibility.json": "ee3e5eb314d4e0056f46125a9496d2732852d977453225d5adafc4c1abe5a3cf",
+    ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  }
+}

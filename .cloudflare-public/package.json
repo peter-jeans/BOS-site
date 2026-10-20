@@ -7,7 +7,10 @@
     "check": "node build.mjs --check",
     "build": "node build.mjs",
     "dry-run": "wrangler deploy --dry-run --config wrangler.json",
-    "deploy": "node release-check.mjs && npm run build && wrangler deploy --config wrangler.production.json"
+    "deploy": "node release-check.mjs && npm run build && wrangler deploy --config wrangler.production.json",
+    "check:hosting": "node hosting-check.mjs && node build.mjs --check",
+    "test:hosting": "node --test hosting-check.test.mjs",
+    "deploy:hosting-only": "node hosting-check.mjs --require-github-main && npm run build && wrangler deploy --config wrangler.production.json"
   },
   "devDependencies": {
     "wrangler": "4.125.0"
