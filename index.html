@@ -684,33 +684,40 @@
     <section id="internal-evidence" aria-labelledby="internal-evidence-title">
       <div class="wrap">
         <div class="section-intro">
-          <span class="section-kicker">Internal evidence · reviewed 20 October 2026</span>
-          <h2 id="internal-evidence-title">What the work has shown.</h2>
-          <p>Our review covers ten apps built by the same owner, plus BOS self-use. These are internal engineering histories, not independent customer studies or proof that every public plugin delivers the same result.</p>
+          <span class="section-kicker">Examples from our own projects · reviewed 20 October 2026</span>
+          <h2 id="internal-evidence-title">Practical checks from real development work</h2>
+          <p>These three examples come from the founder’s own app projects, built with coding AI and BOS. Each shows a problem we worked on, the checks performed and what still needed testing.</p>
         </div>
+        <p>You bring the idea and judgement. Your coding AI helps build it. BOS helps keep agreed decisions, important checks and unfinished work in view as your app grows.</p>
         <div class="steps">
-          <details><summary>5 August 2026 · Assessment workflow — retries without duplicate effects</summary><div class="detail-body">
-            <p><strong>Problem:</strong> an accepted answer and its downstream scoring and evidence records could become inconsistent after an interrupted save.</p>
-            <p><strong>Work:</strong> the owner and coding agent reconciled accepted responses, preserved retry state and tested repeated submissions.</p>
-            <p><strong>Observed:</strong> a deterministic local replay produced one scoring event and one logical evidence signal for one accepted response, including after two retries.</p>
-            <p><strong>Limit:</strong> this used an in-memory adapter. Live submit, close/reload and history acceptance remained pending in that receipt; it does not establish educational or psychometric validity.</p>
+          <details><summary>5 August 2026 · Avoiding double-counting when a save is retried</summary><div class="detail-body">
+            <p><strong>The problem:</strong> An assessment app needed to save an accepted answer, its score and a supporting record consistently—even if saving was interrupted and retried.</p>
+            <p><strong>What we did:</strong> We checked that retrying the same accepted answer would keep those records together without counting it again.</p>
+            <p><strong>What we saw:</strong> In a local simulated test, the accepted answer produced one scoring event and one supporting record, even after two retries.</p>
+            <p><strong>Still to check:</strong> Saving, closing and reopening the running app, and checking its saved history, still needed testing. This test did not assess how accurately the assessment measures student learning.</p>
           </div></details>
-          <details><summary>8 August 2026 · Forecast app — one set of rules across several features</summary><div class="detail-body">
-            <p><strong>Problem:</strong> app forecasts, alerts and an integration needed to use the same calculation rules.</p>
-            <p><strong>Work:</strong> the owner and coding agent consolidated the calculation core, generated matching function copies and added consistency checks.</p>
-            <p><strong>Observed:</strong> dated production readback identified the same engine version in the frontend and function contract. A separate 23 July owner-reported iPhone test observed locked-screen push and tap-to-open behaviour.</p>
-            <p><strong>Limit:</strong> those dated results do not verify later releases, every device or OS, or field accuracy of the forecast. Notification history still needed an app-owned record.</p>
+          <details><summary>8 August 2026 · Keeping forecasts and alerts on the same rules</summary><div class="detail-body">
+            <p><strong>The problem:</strong> A forecasting app needed its forecasts, alerts and connected feature to use the same calculation rules.</p>
+            <p><strong>What we did:</strong> We brought the calculation rules together and added checks for matching versions across those features.</p>
+            <p><strong>What we saw:</strong> Checks of the published app files found matching calculation versions reported for the app and its background functions.</p>
+            <p><strong>Still to check:</strong> Matching versions do not establish forecast accuracy or verify later releases. Device support needs its own checks.</p>
+            <p>A separate owner-reported iPhone test on 23 July observed notifications arriving with the screen locked and opening the app when tapped. That dated observation did not cover every device or OS; an app-owned notification history was still needed.</p>
           </div></details>
-          <details><summary>30 September 2026 · Scheduling app — check before publishing, preserve recovery</summary><div class="detail-body">
-            <p><strong>Problem:</strong> publication needed current approvals, complete source data, protected outputs and a recoverable history.</p>
-            <p><strong>Work:</strong> the owner and coding agent added saved validation, version-specific confirmation, recovery to a new draft and concurrency checks.</p>
-            <p><strong>Observed:</strong> local native Safari checks rejected publication with missing approvals. A separate synthetic fixture published and recovered its schedule; independent CSV readback matched that fixture. Isolated tests covered concurrent publication and protected output.</p>
-            <p><strong>Limit:</strong> this was local and synthetic acceptance, not a completed real-school pilot or proof of hosted deployment.</p>
+          <details><summary>30 September 2026 · Checking a timetable before publishing—and keeping a way back</summary><div class="detail-body">
+            <p><strong>The problem:</strong> A scheduling app needed to check required approvals and information before publishing, while keeping a way to recover earlier work.</p>
+            <p><strong>What we did:</strong> We added pre-publication checks, confirmation for the exact version being published, recovery into a new draft and checks for competing publish attempts.</p>
+            <p><strong>What we saw:</strong> Local Safari checks blocked publishing when approvals were missing. A separate test timetable was published and recovered, and its exported data matched the expected test data. Separate tests checked competing publish attempts and protection of published results.</p>
+            <p><strong>Still to check:</strong> These were local checks using test data. A real-school pilot and hosted-deployment checks were still needed.</p>
           </div></details>
         </div>
-        <p><strong>What we can conclude:</strong> moderate confidence that BOS can add useful structure to longer builds. The owner’s and coding agent’s contributions cannot be separated from BOS in these cases; defects and unfinished checks also occurred under BOS.</p>
-        <p>Net time and cost savings remain unknown. A short advice comparison was near parity with current native agents; there is no equivalent-completion study establishing a general advantage. These cases do not establish certified security, domain validity or universal reliability.</p>
-        <p><a href="setup.html#host-compatibility">Check current public-host qualification</a> before relying on a capability.</p>
+        <p>BOS helps you and your coding AI build with clearer decisions, useful checks and better continuity. Early internal comparisons showed promising time differences. Its value depends on keeping that support proportionate: unnecessary process, setup friction or BOS defects can also slow progress.</p>
+        <details><summary>About these examples and our testing</summary><div class="detail-body">
+          <p>The wider review covers ten app histories from the same owner, plus development of BOS itself. These are internal examples rather than independent customer studies. The builder, coding AI and BOS all contributed.</p>
+          <p>In one July comparison, a simulated beginner workflow used approximately 3.8 times the recorded active build time of a BOS-assisted workflow. Different prompting and incomplete equivalent completion checks make this a preliminary result. These observations do not establish a general speed multiplier or total-project cost saving.</p>
+          <p>Some defects and unfinished checks also occurred while using BOS. A short advice-only comparison produced similar results with BOS enabled, disabled or absent. A matched whole-app comparison measuring the full work and cost to the same finished result has not yet been completed.</p>
+          <p>These cases do not certify an app’s security, prove the accuracy of its forecasts or assessments, or guarantee reliability. Capabilities and verification differ by coding tool and release; check the current setup guide for your environment.</p>
+        </div></details>
+        <p><a href="setup.html#host-compatibility">Check current support for your coding tool</a> before relying on a capability.</p>
       </div>
     </section>
 

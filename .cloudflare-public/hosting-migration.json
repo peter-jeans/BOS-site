@@ -17,7 +17,7 @@
   "pinned_files": {
     ".cloudflare-public/release-readiness.json": "d00f1038ccc26924d16eab754b90aa7e72f68a28cdb9313a2055f5d74388f373",
     ".cloudflare-public/marketplace-source-manifest.json": "65aa15c22009eac25a14809418fb26b78640ddee6344602b19d418ac8229701e",
-    ".cloudflare-public/assets-manifest.json": "bdd6d8e6311cdf389a754a012d370d45c2f1881fa643b7f0d0dc2becab4bebd7",
+    ".cloudflare-public/assets-manifest.json": "eb0bf864fbd1c8b9d61632904f88db02ac35cf3895e8e050693a7946e3dd399e",
     ".cloudflare-public/asset-routing.txt": "a1d8dddd72c71933662e65f4604cd741d4a3f388951207193c01ad1015dd6692",
     ".cloudflare-public/build.mjs": "05de9524b3d60f3ee8763ac6c22712cbdb44bddf70f2fdc63f6a7f66ac042b89",
     ".cloudflare-public/release-check.mjs": "daef0692c106479cceaef361f6732e8174ee398fc6cbfa870be796fed6b833f3",
