@@ -34,6 +34,26 @@ const head='a'.repeat(40);
 const gitAnswers = {'remote get-url origin':'https://github.com/peter-jeans/BOS-site.git','rev-parse HEAD':head,'status --porcelain --untracked-files=all':'','ls-remote origin refs/heads/main':head+'\trefs/heads/main'};
 const fakeGit = overrides => args => ({...gitAnswers,...overrides})[args.join(' ')];
 test('clean exact GitHub main is accepted (synthetic Git responses)', () => assert.equal(verifyGitHubMain(fakeGit({})).commit,head));
+for (const auth of ['synthetic-user@', 'synthetic-user:synthetic-password@']) {
+ test('exact HTTPS destination accepts provider userinfo without retaining it: '+auth.split(':')[0], () => {
+  const result=verifyGitHubMain(fakeGit({'remote get-url origin':'https://'+auth+'github.com/peter-jeans/BOS-site.git'}));
+  assert.deepEqual(result,{repository:'peter-jeans/BOS-site',branch:'main',commit:head});
+ });
+}
+for (const origin of [
+ 'https://github.com@other.example/peter-jeans/BOS-site.git',
+ 'https://other.example@github.com/example/wrong.git',
+ 'http://github.com/peter-jeans/BOS-site.git',
+ 'https://github.com:444/peter-jeans/BOS-site.git',
+ 'https://github.com/peter-jeans/BOS-site.git?other=1',
+ 'https://github.com/peter-jeans/BOS-site.git#other',
+ 'git@github.com:peter-jeans/BOS-site.git',
+]) test('noncanonical destination stays rejected: '+origin, () => {
+ let error;
+ try {verifyGitHubMain(fakeGit({'remote get-url origin':origin}));} catch (caught) {error=caught;}
+ assert(error); assert.match(error.message,/Wrong source repository/);
+ assert(!error.message.includes(origin));
+});
 for (const [label, overrides] of [
  ['wrong origin',{'remote get-url origin':'https://github.com/example/wrong.git'}],
  ['dirty worktree',{'status --porcelain --untracked-files=all':' M setup.html'}],

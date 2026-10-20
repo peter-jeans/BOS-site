@@ -46,7 +46,13 @@ export function verifyHosting(read, exists) {
   return {status:'PASS', scope:'HOSTING_ONLY', native_installation:'HELD', product_release:'NOT_APPROVED'};
 }
 export function verifyGitHubMain(git) {
-  assert.equal(git(['remote','get-url','origin']), 'https://github.com/peter-jeans/BOS-site.git', 'Wrong source repository');
+  // Cloudflare clones with ephemeral HTTPS userinfo. Check the exact destination
+  // without logging, returning or persisting that authentication material.
+  let source;
+  try { source = new URL(git(['remote','get-url','origin'])); } catch {}
+  assert(source && source.protocol === 'https:' && source.host === 'github.com'
+    && source.pathname === '/peter-jeans/BOS-site.git' && source.search === ''
+    && source.hash === '', 'Wrong source repository');
   const head = git(['rev-parse','HEAD']);
   assert.match(head, /^[a-f0-9]{40}$/);
   assert.equal(git(['status','--porcelain','--untracked-files=all']), '', 'Publish from a clean checkout only');
