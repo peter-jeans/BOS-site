@@ -536,6 +536,7 @@
   <link rel="stylesheet" href="assets/portal-style.css">
   <link rel="stylesheet" href="assets/bos-controls/owner-controls.css">
   <link rel="stylesheet" href="assets/bos-controls/capability-highlights.css">
+<link rel="stylesheet" href="assets/clarity.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -545,7 +546,7 @@
         <img class="mark" src="assets/brand/bos-icon-64.png" width="36" height="36" alt="" aria-hidden="true" style="object-fit:cover;border:0">
         <span class="brand-lockup"><span class="brand-name">Cloud BOS</span> <span class="brand-expansion">Build Operating System</span></span>
       </a>
-      <nav class="nav-actions" aria-label="Main navigation"><a href="#benefits">Benefits</a><a href="#tiers">Tiers</a><a href="install-packages.html">Install Packages</a><a href="support.html">Support</a></nav>
+      <nav class="nav-actions clarity-nav" aria-label="Main navigation"><a href="index.html#how-bos-works">How it works</a><a href="install-packages.html">Capabilities</a><a href="setup.html">Get started</a><a href="support.html">Help</a><a href="https://my.cloudbos.dev/account">My BOS</a></nav>
     </div>
   </header>
 
@@ -555,25 +556,25 @@
         <div>
           <span class="eyebrow">BOS for AI-assisted app development</span>
           <h1 style="font-size:clamp(44px,5.5vw,68px)">Keep complex AI-built apps on track.</h1>
-          <p class="lede">BOS helps your coding AI work from agreed decisions, review permissions and data flows, and show what was checked as your app changes.</p>
-          <div class="hero-animation-wrap"><iframe class="hero-animation" src="assets/bos-spaghetti-animation.html" title="BOS turns spaghetti code into organised intentions, decisions, checks and memory" loading="eager"></iframe></div>
+          <p class="lede">BOS helps your coding AI remember your app’s agreed requirements, review risky changes and show what was checked. Use it inside Base44, Codex or Claude Code.</p>
+          <div class="clarity-actions"><a class="button primary" href="setup.html">Check setup availability</a><a href="using-bos.html#first-task">See how you use BOS</a></div><div class="hero-animation-wrap"><iframe class="hero-animation" src="assets/bos-spaghetti-animation.html" title="BOS turns spaghetti code into organised intentions, decisions, checks and memory" loading="eager"></iframe></div>
           <p class="lede"><strong>Tame the AI beast.</strong> With great power comes a greater need for responsibility.</p>
 
         </div>
 
         <aside class="overview" aria-labelledby="onboarding-title">
           <span class="section-kicker">Start with your coding tool</span><h2 id="onboarding-title">Get started<br>with BOS.</h2>
-          <p>Choose your coding tool, follow the setup guide and verify BOS in your project.</p>
+          <p>Connect your tool once, set up each project, then ask for help in its coding chat.</p>
           <nav class="hero-actions" aria-label="Set up BOS">
-            <a class="button primary portal-cta" href="setup.html">Choose your coding tool</a>
+            <a class="button primary portal-cta" href="setup.html">Choose your setup guide</a>
 
           </nav>
-          <p class="beta-note"><strong>Self-service route · Installation preview</strong><br>Prepare your account in My BOS; no invitation is required by this route. Public installation and launcher controls remain held pending qualification. <a href="setup.html#setup-readiness">Check current readiness before installing.</a></p>
+          <p class="beta-note"><strong>Public installation is still being tested.</strong> You can prepare an account in <a href="https://my.cloudbos.dev/account">My BOS</a>. Downloads and new-installation controls remain held. An account does not activate a project. <a href="setup.html#host-compatibility">See the current installation limits</a>.</p>
 
           <details class="capability-highlights" id="practical-capabilities">
             <summary>
               <span class="capability-highlights-title">Help with the tricky parts</span>
-              <span class="capability-highlights-tags"><span>Access Control <small class="capability-tier">Standard</small></span><span>User Notifications <small class="capability-tier">Plus</small></span><span>Safer Redesigns <small class="capability-tier">Standard</small></span><span>Tenant Separation <small class="capability-tier">Standard</small></span><span>Project Memory <small class="capability-tier">Plus</small></span><span>Guided Repairs <small class="capability-tier">Standard</small></span></span>
+              <span class="capability-highlights-tags"><span>Access Control <small class="capability-tier">Standard</small></span><span>User Notifications <small class="capability-tier">Plus</small></span><span>Safer Redesigns <small class="capability-tier">Standard</small></span><span>Tenant Separation <small class="capability-tier">Standard</small></span><span>Project Memory <small class="capability-tier">Standard</small></span><span>Guided Repairs <small class="capability-tier">Standard</small></span></span>
               <span class="capability-highlights-toggle"><span class="when-closed">Show more</span><span class="when-open">Show less</span><span class="capability-highlights-sign" aria-hidden="true"></span></span>
             </summary>
             <div class="capability-highlights-body">
@@ -582,7 +583,7 @@
                 <div><dt>User Notifications <small class="capability-tier">Plus</small></dt><dd>Add useful in-app alerts and mobile notifications, with user preferences and delivery checks for your chosen platform and devices. The notification installation package starts at Plus.</dd></div>
                 <div><dt>Safer Redesigns <small class="capability-tier">Standard</small></dt><dd>Refresh your app’s look while protecting existing workflows. Check navigation, saved data and key actions after a major GUI change. <span class="capability-tier">Plus</span> adds deeper project history and recovery planning.</dd></div>
                 <div><dt>Tenant Separation <small class="capability-tier">Standard</small></dt><dd>Plan the move from one team to multiple organisations, with clear membership, administration and data boundaries. Standard covers architecture and security guidance; a complete migration is scoped separately.</dd></div>
-                <div><dt>Project Memory <small class="capability-tier">Plus</small></dt><dd>Keep important decisions, requirements and unfinished work available when you return—or change AI sessions. Plus adds persistent history and build intentions. Basic setup documents remain available at Standard.</dd></div>
+                <div><dt>Project Memory <small class="capability-tier">Standard</small></dt><dd>Standard retains installed decisions, build intentions and project records for continuity. Plus adds deeper review of those records. Cloud history and restoration across computers need their own verified services.</dd></div>
                 <div><dt>Guided Repairs <small class="capability-tier">Standard</small></dt><dd>Turn scan findings into focused fixes, then ask your builder to show what changed and which checks passed. Standard includes scan-and-fix planning. <span class="capability-tier">Pro</span> adds advanced live-app rescue, subject to availability.</dd></div>
               </dl>
               <p>Badges show the minimum tier for the help described. Higher tiers include lower-tier features; availability depends on your app and setup.</p><p>BOS guides your builder; your builder makes and checks the changes. The approach is tailored to your app and development environment.</p>
@@ -591,7 +592,10 @@
 
         </aside>
       </div>
-    </section>
+    </section><p class="clarity-next"><a href="setup.html#project-checks">What does a checked or “verified” project mean?</a></p><section class="clarity-section" id="how-bos-works" aria-labelledby="how-bos-works-title"><div class="wrap"><h2 id="how-bos-works-title">How you use BOS</h2><p>BOS works through your coding tool. You describe the task in its chat; BOS adds project guidance, and the coding tool carries out approved work and supported checks.</p><div class="clarity-grid">
+<article class="clarity-card"><span class="clarity-step">1</span><h3>Connect your coding tool once</h3><p>Add the BOS connection or plugin to Codex or Claude Code. Base44 uses an account connection and a skill in each workspace you select.</p><p><strong>Expect:</strong> a loaded BOS connection and sign-in. Each project still needs its own setup.</p></article>
+<article class="clarity-card"><span class="clarity-step">2</span><h3>Set up each project</h3><p>Open the app or repository you want help with. BOS identifies it and proposes its project setup. You review the requirements and exact changes.</p><p><strong>Expect:</strong> the correct project name, a plan to review, then a check of the saved result.</p></article>
+<article class="clarity-card"><span class="clarity-step">3</span><h3>Ask for help with a task</h3><p>Ask for a review, a fix or a supported feature. Some capabilities guide the development work; others propose code or settings for your app.</p><p><strong>Expect:</strong> the proposed work, evidence from checks and anything still unverified.</p></article></div><p>You do not need to install these capabilities into a separate BOS application. Your project and chosen coding tool are the working context. <a href="using-bos.html#first-task">See a first conversation</a>.</p></div></section>
 
     <section id="engineering-value" aria-labelledby="engineering-value-title">
       <div class="wrap">
@@ -637,7 +641,7 @@
           <dl><dt>Local BOS</dt><dd>Build guidance and stability checks stored in your app.</dd><dt>Cloud BOS</dt><dd>Connected scans, specialist knowledge and build guidance.</dd></dl>
           <p>Where supported, the builder should apply the two saved choices independently at the next safe action boundary. With both Off, discretionary BOS help and new BOS behavioural capture should stop; ordinary app security remains active.</p>
           <p><strong>Your app’s login, permissions and data protection stay in place.</strong></p>
-          <p class="owner-note">As of 20 October 2026, automatic help and saved On/Off choices across sessions are still being implemented and tested in Codex and Claude Code, including how those choices control activity recording. Existing verified projects can request one-off help; this does not turn on continuous assistance. <a href="setup.html#owner-controls">See host limits.</a></p>
+          <p class="owner-note">As of 20 October 2026, automatic help and saved On/Off choices across sessions are still being implemented and tested in Codex and Claude Code, including how those choices control activity recording. Projects whose BOS setup has already been checked can request one-off help; this does not turn on continuous assistance. <a href="setup.html#owner-controls">See host limits.</a></p>
         </div>
         <figure><div class="owner-controls-shot"><img src="assets/bos-controls/in-app-controls-canary-1.png" alt="Separate Local BOS and Cloud BOS switches on the BOS page, both shown On." loading="lazy" width="607" height="753"></div><figcaption>Actual in-app controls in Canary 1, our Base44 test app.</figcaption></figure>
       </div>
@@ -760,9 +764,12 @@
       </div>
     </section>
 
-    <section id="environments" aria-labelledby="environments-title">
+    <section class="clarity-section" id="environments" aria-labelledby="environments-title"><div class="wrap"><h2 id="environments-title">Choose your coding tool</h2><p>Your coding tool edits your app. Cloud BOS supplies guidance through its verified connection. These are the public setup paths; additional local developer components have separate requirements.</p><div class="clarity-grid">
+<article class="clarity-card"><h3>Base44</h3><p>Connect your account, add the BOS workspace skill, then approve and verify the exact app’s setup.</p><p><strong>Current limit:</strong> complete public native activation is still being qualified.</p><a href="setup.html#setup">Base44 steps and expected results</a></article>
+<article class="clarity-card"><h3>Codex</h3><p>Install the supported plugin and connection once. Open the project folder and approve its own setup.</p><p><strong>Current limit:</strong> new public installation remains held. Projects whose BOS setup has already been checked can request one-off help.</p><a href="setup.html#codex">Codex steps and expected results</a></article>
+<article class="clarity-card"><h3>Claude Code</h3><p>Install the supported plugin and sign in, then open and verify each project separately.</p><p><strong>Current limit:</strong> new public installation and dependable use of saved decisions remain under qualification.</p><a href="setup.html#claude-code">Claude Code steps and expected results</a></article></div><details class="clarity-reference"><summary>Additional local component evidence and advanced limits</summary><div>
       <div class="wrap">
-        <div class="section-intro"><h2 id="environments-title">How will BOS work in your environment?</h2><p>Your coding tool edits the app and runs tests. BOS helps it use the project’s decisions and choose the right checks. Here is what is available, what needs setup and what still needs testing.</p></div>
+        <div class="section-intro"><p>Your coding tool edits the app and runs tests. BOS helps it use the project’s decisions and choose the right checks. Here is what is available, what needs setup and what still needs testing.</p></div>
         <p id="environment-scope"><strong>Local features need local installation.</strong> The Codex and Claude Code columns assume a project with the appropriate BOS Local Development Pack installed and activated. Connecting the public plugin alone does not install these components. Base44 here means its native AI app builder.</p>
         <div class="tier-table-wrap" role="region" aria-label="Development environment comparison" tabindex="0">
           <table class="tier-table environment-table" aria-describedby="environment-scope">
@@ -782,7 +789,7 @@
         <details class="tier-details" id="environment-details"><summary>Why does support differ between coding tools?</summary><div class="detail-body"><p><strong>Guidance:</strong> BOS suggests work and checks; your coding tool carries them out. <strong>Local installation:</strong> additional BOS components in your project can inspect files or run supported checks. <strong>Not yet verified:</strong> we have not established that the particular feature works in that coding tool.</p><p>A Base44 app edited through a linked code repository uses the Codex or Claude Code setup for that work. Changes still need checking in the running Base44 app. Claude Code includes its VS Code extension; ordinary Claude web chat is outside these guides.</p><p>Some security and performance checks have been tested on specific Base44 apps. That does not establish support for all apps or other coding tools. Enterprise team features remain planned.</p></div></details>
         <p><a class="button primary" href="setup.html">Choose your coding tool</a></p>
       </div>
-    </section>
+    </div></details></div></section>
 
     <section id="more-capabilities" aria-labelledby="more-capabilities-title">
       <div class="wrap">

@@ -109,26 +109,29 @@
     }
   </style>
   <link rel="stylesheet" href="assets/branding.css">
+<link rel="stylesheet" href="assets/clarity.css">
 </head>
-<body>
+<body><a class="clarity-skip" href="#main">Skip to content</a>
   <header>
     <div class="wrap nav">
       <a class="brand" href="index.html" aria-label="Cloud BOS — Build Operating System home">
         <img src="assets/brand/bos-icon-64.png" width="36" height="36" alt="" aria-hidden="true">
         <span class="brand-lockup"><span class="brand-name">Cloud BOS Support</span> <span class="brand-expansion">Build Operating System</span></span>
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="setup.html">Set up BOS</a>
-        <a href="#contact">Get help</a>
-      </nav>
+      <nav class="nav-actions clarity-nav" aria-label="Main navigation"><a href="index.html#how-bos-works">How it works</a><a href="install-packages.html">Capabilities</a><a href="setup.html">Get started</a><a href="support.html">Help</a><a href="https://my.cloudbos.dev/account">My BOS</a></nav>
     </div>
   </header>
 
-  <main><section class="hero"><div class="wrap">
+  <main id="main"><section class="hero"><div class="wrap">
 <span class="eyebrow">BOS access and support</span><h1>Get help setting up BOS.</h1>
 <p class="lede">Start with the guide for your coding tool. If setup stops, check the connection and project status before trying again.</p>
 <p><a class="button primary" href="setup.html">Set up BOS</a></p>
-</div></section><section id="contact"><div class="wrap">
+</div></section><p class="clarity-next"><a href="setup.html#project-checks">What does a checked or “verified” project mean?</a></p><section class="clarity-section" id="choose-recovery" aria-labelledby="choose-recovery-title"><div class="wrap"><h2 id="choose-recovery-title">What are you seeing?</h2><p>Choose the situation that matches what you can actually see. A connection and a project check are different checkpoints.</p><div class="clarity-grid">
+<article class="clarity-card" id="installation-held"><h3>The download or install button is disabled</h3><p>The public installation route is still being qualified. Account preparation is possible, but the guide is not an alternative release approval.</p><a href="setup.html#setup-readiness">Check current setup availability</a></article>
+<article class="clarity-card" id="connection-not-ready"><h3>Sign-in or the connection failed</h3><p>Check that the correct BOS plugin or connection is enabled in your coding tool. Follow that tool’s current sign-in steps.</p><p><strong>Expect:</strong> an authenticated connection. Do not paste passwords or tokens into the coding chat.</p><a href="setup.html#quick-start">Find your tool’s route</a></article>
+<article class="clarity-card" id="project-not-ready"><h3>The tool connects but this project is not ready</h3><p>Open the exact project and ask for the read-only status request below.</p><p><strong>Expect:</strong> the project identity and the missing setup or verification step. A second plugin installation is not the first remedy.</p><a href="setup.html#project-setup">Check this project’s setup</a></article>
+<article class="clarity-card"><h3>BOS forgot where you left off</h3><p>Ask it to read the project’s saved decisions and current work before creating new requirements.</p><a href="using-bos.html#returning">Return to an existing project</a></article>
+<article class="clarity-card"><h3>A capability is unavailable</h3><p>Check its stated availability and ask what this tool supports in this project. A tier badge does not make an unfinished package ready.</p><a href="install-packages.html">Read capability limits</a></article></div><h3>A safe status request</h3><div class="clarity-message"><p>“Use BOS to check this exact project without changing it. Show whether the tool is connected, whether this project is set up, and which checkpoint needs attention next.”</p></div></div></section><section id="contact"><div class="wrap">
 <h2>Help during the beta</h2><p>The intended route is self-service through <a href="https://my.cloudbos.dev/account">My BOS</a>; no invitation or manually supplied archive is required. As of 20 October 2026, public installation and launcher controls remain held pending qualification. <a href="setup.html#setup-readiness">Read current setup readiness</a> before installing. Account preparation does not activate a project. Existing account dates and commitments remain as shown in My BOS. Personal development support and guaranteed response times are not included.</p>
 <p>For privacy, policy or billing enquiries, see the contact information on our <a href="policies/index.html">policy pages</a>.</p>
 </div></section><section id="setup-recovery"><div class="wrap"><h2>If setup stops</h2><ol><li>Check that Cloud BOS is installed, enabled and signed in within your coding tool.</li><li>Ask for a read-only connection and project-status check. A working connection does not mean this project is activated.</li><li>Resume the existing setup plan when it is still current. Review any changed plan before approving it; avoid starting a second installation.</li></ol><p>If the same step fails again, stop repeating it. Report a BOS plugin defect to <a href="mailto:peterjeans2@gmail.com">the published BOS owner contact</a>, including your coding tool, plugin version, failed step and safe error code. The same owner contact is listed in the <a href="policies/terms.html">Terms of Use</a>. Do not send passwords, tokens, project source or customer data. Personal app-development support is not included.</p><p><a href="setup.html">Return to the setup guide</a></p></div></section></main>
