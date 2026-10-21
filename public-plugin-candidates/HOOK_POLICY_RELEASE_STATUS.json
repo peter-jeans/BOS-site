@@ -1,19 +1,21 @@
 {
   "schema": "BOS_HOOK_OWNER_CANDIDATE_STATUS_V1",
-  "version": "0.1.20-rc.7+codex.20261021",
-  "package_digest": "d36226700b5c3871b71d56df015a456c3b52828a2f42d2aef639e9387a7fb510",
+  "version": "0.1.20-rc.9+codex.20261021",
+  "package_digest": "dfa8e0b610986df9a0c8a9234c1cf3aa17bbccf561adea1a8b109193604d0177",
   "publication": "REVIEW_CANDIDATE_ONLY",
   "default_marketplace_pointer": "UNCHANGED",
-  "native_acceptance": "PENDING",
-  "codex_owner_activation": "REQUIRES_FRESH_NATIVE_TRUST_READBACK",
-  "claude_owner_activation": "BLOCKED_NATIVE_TRUST_ADAPTER_REQUIRED",
+  "native_acceptance": "PARTIAL_STARTUP_ONLY",
+  "codex_owner_activation": "RC9_INSTALLED_AWAITING_NATIVE_REVIEW",
+  "claude_owner_activation": "ADAPTER_IMPLEMENTED_NATIVE_STARTUP_QUALIFIED_INSTALLED_SELECTION_CONFLICT",
   "legacy_retirement": "WAITS_FOR_TRUSTED_SUCCESSOR",
   "tests": [
-    "17 ownership checks including concurrency, route separation, native-trust gating and legacy retirement",
-    "11 Claude adapter tests",
-    "public hook wiring and bounded input",
-    "public package isolation",
-    "public assistance source matrix; no native claims"
+    "16 ownership checks",
+    "6 Claude readback checks including 8 invalid-evidence cases",
+    "11 existing Claude adapter checks",
+    "public bootstrap and assistance offline matrix",
+    "package isolation",
+    "sealed rc9 bundle verification",
+    "real Claude 2.1.251 rc9 startup-only observation"
   ],
   "stable_launch": false
 }

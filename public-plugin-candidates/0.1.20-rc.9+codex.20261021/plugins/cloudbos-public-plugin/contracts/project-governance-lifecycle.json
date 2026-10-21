@@ -1,0 +1,70 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_LIFECYCLE_V1",
+  "version": "1.3.0",
+  "status": "LOCAL_ENGINE_AND_HOSTED_CONTROL_PLANE_VERIFIED_NOT_DEPLOYED",
+  "platform_lifecycle": {
+    "cardinality": "ONCE_PER_PLATFORM_IDENTITY",
+    "includes": ["PUBLIC_PLUGIN", "PUBLIC_SKILL", "MCP_CONNECTION", "PLATFORM_AUTHENTICATION"],
+    "proves_project_governance": false
+  },
+  "project_states": [
+    "UNBOUND",
+    "DISCOVERY_ONLY",
+    "GOVERNANCE_PLAN_READY",
+    "GOVERNED_ACTIVE",
+    "STALE_OR_DRIFTED",
+    "DETACHED_OR_REMOVED"
+  ],
+  "transitions": [
+    {"from": "UNBOUND", "to": "DISCOVERY_ONLY", "operation": "DISCOVER", "mutation": false},
+    {"from": "DISCOVERY_ONLY", "to": "GOVERNANCE_PLAN_READY", "operation": "PLAN", "mutation": false},
+    {"from": "GOVERNANCE_PLAN_READY", "to": "GOVERNED_ACTIVE", "operation": "ACTIVATE_AND_VERIFY", "mutation": true},
+    {"from": "GOVERNED_ACTIVE", "to": "STALE_OR_DRIFTED", "operation": "DRIFT_DETECTED", "mutation": false},
+    {"from": "STALE_OR_DRIFTED", "to": "GOVERNANCE_PLAN_READY", "operation": "REPAIR_PLAN", "mutation": false},
+    {"from": "GOVERNED_ACTIVE", "to": "DETACHED_OR_REMOVED", "operation": "REMOVE_AND_VERIFY", "mutation": true},
+    {"from": "STALE_OR_DRIFTED", "to": "DETACHED_OR_REMOVED", "operation": "REMOVE_AND_VERIFY", "mutation": true},
+    {"from": "DETACHED_OR_REMOVED", "to": "DISCOVERY_ONLY", "operation": "REDISCOVER", "mutation": false}
+  ],
+  "control_plane_tools": [
+    {"name": "bos_project_governance_decision", "mutation": true, "minimum_state": "GOVERNANCE_PLAN_READY", "scope": "EXACT_PROPOSAL_DECISION_ONLY_NO_APP_WRITES"},
+    {"name": "bos_project_discover", "mutation": false, "minimum_state": "UNBOUND"},
+    {"name": "bos_project_governance_plan", "mutation": false, "minimum_state": "DISCOVERY_ONLY"},
+    {"name": "bos_project_governance_activate", "mutation": true, "minimum_state": "GOVERNANCE_PLAN_READY"},
+    {"name": "bos_project_governance_verify", "mutation": false, "minimum_state": "GOVERNANCE_PLAN_READY"},
+    {"name": "bos_project_governance_remove", "mutation": true, "minimum_state": "GOVERNANCE_PLAN_READY"}
+  ],
+  "mutation_gates": [
+    "FRESH_EXECUTION_EVIDENCE",
+    "ATOMIC_EXECUTION_CLAIM_OR_TERMINAL_CANCELLATION",
+    "ACTIVE_PLATFORM_INSTALLATION",
+    "EXACT_PROJECT_BINDING",
+    "CURRENT_ENVIRONMENT_ADAPTER",
+    "CURRENT_EXACT_PLAN_POLICY_AND_SERVER_RECORDED_DECISION",
+    "EXPLICIT_APPROVAL_BOUND_TO_PLAN_HASH",
+    "CURRENT_SOURCE_AND_DEPLOYMENT_AUTHORITY",
+    "PREWRITE_EXPECTED_STATE_MATCH",
+    "POSTWRITE_READBACK_VERIFICATION",
+    "SERVER_ISSUED_PLAN_ANCHOR_MATCH",
+    "ADAPTER_SPECIFIC_INDEPENDENT_EVIDENCE",
+    "BINDING_PLAN_MANIFEST_READBACK_TUPLE_MATCH"
+    ,"EXACT_BOUND_MANIFEST_DRIFT_REPAIR_REQUIRES_OBSERVED_PRIOR_HASHES_AND_FRESH_PLAN_APPROVAL"
+  ],
+  "claim_invariants": [
+    "PLATFORM_INSTALLATION_NEVER_IMPLIES_PROJECT_GOVERNANCE",
+    "NO_VERIFIED_PROJECTION_NEVER_GOVERNED_ACTIVE",
+    "CROSS_PROJECT_AUTHORITY_AND_EVIDENCE_DENIED",
+    "RUNTIME_APPLICATION_FEATURES_SEPARATE_FROM_BUILD_TIME_GOVERNANCE",
+    "REMOVAL_PRESERVES_APPLICATION_SOURCE_AND_DATA",
+    "SELF_CONSISTENT_UNISSUED_PLAN_DENIED",
+    "REMOTE_BOOLEAN_SELF_ATTESTATION_NEVER_GOVERNS"
+    ,"DRIFT_REPAIR_RESTORES_THE_EXACT_BOUND_MANIFEST_AND_CANNOT_HIDE_AN_UPDATE"
+  ],
+  "approval_lifecycle": {"new_plans": "DURABLE_EXACT_PLAN_V1", "expires_at": "UNTIL_INVALIDATED", "legacy": "ORIGINAL_BOUNDED_WINDOW_RETAINED", "decision_states": ["ready", "approved", "cancelled", "executing", "applied"], "machine_evidence_max_age_seconds": 300, "authentication_lifetime": "UNCHANGED", "changed_scope_requires_new_approval": true},
+  "schema_refs": {
+    "plan": "project-governance-plan.schema.json",
+    "projection": "project-governance-projection.schema.json",
+    "readback": "project-governance-readback.schema.json",
+    "removal": "project-governance-removal.schema.json",
+    "adapters": "project-governance-adapters.json"
+  }
+}
