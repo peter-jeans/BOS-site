@@ -1,0 +1,61 @@
+{
+  "schema": "BOS_NATIVE_ASSISTANCE_CONTROL_CONTRACT_V1",
+  "status": "SUCCESSOR_SOURCE_NATIVE_QUALIFICATION_PENDING",
+  "hosts": [
+    "codex",
+    "claude_code"
+  ],
+  "preference_path": ".cloudbos/assistance-preference.json",
+  "owner": "Exact project owner through ordinary native file/command permissions; choice grants no entitlement or app-write authority",
+  "binding": [
+    "canonical root/device/inode",
+    "host",
+    "project_ref",
+    "project_binding_id",
+    "platform_installation_id"
+  ],
+  "choices": {
+    "local_enabled": "boolean or UNKNOWN on absent/invalid readback",
+    "cloud_enabled": "independent boolean or UNKNOWN",
+    "default": "UNKNOWN; never seed On from plugin installation or baseline approval"
+  },
+  "writes": "Explicit read/set/pause/resume CLI; current revision CAS, atomic save; unqualified pause remembers the actual prior Local/Cloud pair; resume never assumes both On. No global/vendor/shared service setting.",
+  "sessions": {
+    "path": ".cloudbos/assistance-sessions/<host-session-hash>.json",
+    "scope": "Bounded operational latest-request/dedupe/failure control only; no transcript/raw prompt/source/log or append-only history",
+    "both_off": "No automatic assistance/new capture. Bounded cleanup touches only validated owned session records; revision binding makes retained records inert, never a replay backlog.",
+    "one_shot": "Store only context/revision/turn/one-shot and exact READ-protection control, no signal/task hash/time/failure/dedupe data; clear next ordinary prompt/Stop/new session. No saved-choice write or host behavioral recorder/replay. Both Off suppresses service capture; either saved On retains the existing service policy.",
+    "revision_binding": "Every operational record is bound to the current preference revision; any saved choice change invalidates old counters/signals/tokens even if bounded cleanup did not visit that session."
+  },
+  "events": {
+    "common": [
+      "SessionStart",
+      "UserPromptSubmit",
+      "PreToolUse",
+      "PostToolUse",
+      "Stop",
+      "SessionEnd"
+    ],
+    "claude_only": [
+      "PostToolUseFailure"
+    ],
+    "codex_hooks": "Manual desktop distribution and exact hook trust review required; not official-directory hook support"
+  },
+  "meaningful_moments": [
+    "CONSEQUENTIAL_CHANGE",
+    "REPEATED_FAILURE",
+    "RULE_OR_DATA_CONSISTENCY",
+    "VERIFICATION_GAP",
+    "PLATFORM_LIMIT",
+    "CONTINUITY"
+  ],
+  "cosmetic": "No Cloud retrieval solely for a simple reversible label/style/typo task",
+  "delivery": "Hooks emit bounded context, never network calls; native agent retrieves actual applicable guidance through existing authenticated MCP. Source/hook delivery is not observed useful behavior.",
+  "service_sync": "Existing bos_assistance_preference READ then SYNC exact project/app_revision/expected_revision; native compatibility owned separately. Missing sync is not an editor lock.",
+  "native_one_shot_transport": "Current live wire support plus authenticated exact-project preference READ from the separately qualified enrollment-gated service; exact matching saved app_revision/pair with Cloud Off or enrolled NO_SAVED_CHOICE. Schema alone is insufficient. Both Off suppresses new service capture/backlog; Local-On/Cloud-Off retains existing saved-switch capture policy. Optional host recording stays conservative. No automatic SYNC, newer-choice overwrite, Off-to-On or token relay.",
+  "ordinary_security": "Existing identity/entitlement/app security/destructive/publication gates remain; no tool auto-approval or trust bypass",
+  "qualification": "Parent ten-case-per-host matrix OPEN until exact loaded/trusted native source shows retrieval and useful unsolicited suggestions.",
+  "dedupe": "Bounded16-entry cache keyed by normalized current task hash plus source/binding and preference revision. Failure key also includes normalized tool name and bounded tool-input hash, so a different task or command/edit does not inherit suppression. Raw text/output is never retained; paraphrase equivalence needs native judgment.",
+  "intent": "Literal/quoted/pasted examples are not one-shot authorization; keyword categories are candidate relevance only. Native semantic task judgment remains required; cosmetic labels do not become consequential from quoted roles/permissions words.",
+  "service_dependency": "Current production native support is unqualified. READ must be gated on actual native rollout selection by the reviewed service successor. Hook parsing cannot authenticate callbacks or independently attest provider flags; native/service release verification is required before a capture-protection claim."
+}
