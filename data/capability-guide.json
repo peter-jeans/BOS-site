@@ -26,7 +26,8 @@
       "expect": "A proposed check plan, results for checks actually run, and anything still untested.",
       "limits": "A reusable validation installation is being prepared. A check plan is not a completed test.",
       "keywords": "test app check login sign in save testing",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Check how your app handles sign-in, saving and other important actions."
     },
     {
       "id": "design-quality",
@@ -37,18 +38,20 @@
       "expect": "Specific observations, suggested improvements and the checks needed after a change.",
       "limits": "The reusable package is being prepared. This is not an accessibility certification.",
       "keywords": "design ux ui mobile accessible screen usability",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Look for confusing screens, awkward steps and accessibility problems."
     },
     {
       "id": "engineering-correctness",
       "kind": "build-review",
-      "plain_name": "Checks for complicated app rules",
+      "plain_name": "Check tricky app rules",
       "where": "Your project’s code, rules and targeted tests.",
       "request": "Use BOS to review the recurring dates in this project. Identify the boundary cases and supported checks first.",
       "expect": "The rules being checked, edge cases and evidence from supported tests.",
       "limits": "The reusable installation is being prepared; compatible tools and project approval are still required.",
       "keywords": "dates time recurring recurrence rules logic",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Check tricky rules, such as repeating dates, reminders and time zones."
     },
     {
       "id": "launch-readiness",
@@ -59,7 +62,8 @@
       "expect": "Missing checks, practical release risks and a next step.",
       "limits": "A reusable package is being prepared. A review does not approve a release or certify compliance.",
       "keywords": "launch release beta checklist publish",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Find out what still needs checking before people start using your app."
     },
     {
       "id": "security",
@@ -70,7 +74,8 @@
       "expect": "Access risks, evidence and suggested checks of permitted and denied actions.",
       "limits": "The reusable package is being prepared. Guidance does not establish that every security issue was found.",
       "keywords": "security login permissions access auth roles tenant",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Review who can sign in and what each person can see or change."
     },
     {
       "id": "subscriptions",
@@ -81,7 +86,8 @@
       "expect": "A capability and prerequisite check; no promise of an installation.",
       "limits": "Not currently available. The app’s billing model and required approvals must be checked separately.",
       "keywords": "billing paid plans payment subscriptions stripe",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Plan paid features and which customers can use them."
     },
     {
       "id": "build-feedback",
@@ -92,7 +98,8 @@
       "expect": "A readable account of the changes and available evidence.",
       "limits": "A richer reusable package is being prepared. Basic saved test records remain separate.",
       "keywords": "build history receipts evidence progress test results",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "See what changed, which tests ran and what still needs checking."
     },
     {
       "id": "user-onboarding",
@@ -103,18 +110,20 @@
       "expect": "An availability check and, where supported, a plan for the app’s own users.",
       "limits": "Future exploration. This is different from connecting your development project to BOS.",
       "keywords": "new user first time welcome onboarding tutorial",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Help new users understand what to do first in your app."
     },
     {
       "id": "governance",
       "kind": "project-workflow",
-      "plain_name": "Deeper decisions and change review",
+      "plain_name": "Keep changes on track",
       "where": "Saved decisions and development records for this project.",
       "request": "Use BOS to check this proposed change against the project’s saved requirements and accepted decisions.",
       "expect": "The relevant decisions, any mismatch and a suggested next action.",
       "limits": "The optional deeper package is being prepared. Standard already retains installed project decisions and continuity.",
       "keywords": "remember decisions memory history requirements context",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Check new changes against decisions you have already agreed."
     },
     {
       "id": "llm-access",
@@ -125,7 +134,8 @@
       "expect": "An availability check and discussion of requirements, where supported.",
       "limits": "Future exploration. This does not choose or change the coding AI you use to build the app.",
       "keywords": "ai models llm integration chatbot provider",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Plan an AI feature and check what it needs to work."
     },
     {
       "id": "notifications",
@@ -136,18 +146,20 @@
       "expect": "Supported alert types, required services and a plan for device tests before any claim of working delivery.",
       "limits": "Private beta pilot. In-app messaging is proven in the recorded scope; Base44 background and locked-screen phone push remain partly verified.",
       "keywords": "push notifications phone alerts reminders messages",
-      "installation_note": "A project-specific pilot or assessment route must be checked before changes."
+      "installation_note": "A project-specific pilot or assessment route must be checked before changes.",
+      "plain_summary": "Plan alerts and check which kinds of notifications your app can support."
     },
     {
       "id": "pwa",
       "kind": "app-feature",
-      "plain_name": "Installable web app experience",
+      "plain_name": "Use your web app like an installed app",
       "where": "Home-screen installation, offline behaviour and updates for your app.",
       "request": "Check whether BOS can help assess installing this web app on a phone. Explain the supported scope first.",
       "expect": "An availability check and any supported platform assessment.",
       "limits": "Future exploration. This means installing your app on a device, not installing BOS in your coding tool.",
       "keywords": "pwa home screen offline install phone web app",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Explore letting people add your web app to a phone’s home screen or a computer’s desktop."
     },
     {
       "id": "recovery",
@@ -158,7 +170,8 @@
       "expect": "What needs backing up, gaps in recoverability and a proposed restore check.",
       "limits": "The reusable package is being prepared. Connecting BOS does not back up your app database.",
       "keywords": "backup recovery restore rollback undo",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Plan how to get your app and its data back if something goes wrong."
     },
     {
       "id": "analytics",
@@ -169,29 +182,32 @@
       "expect": "An availability check and supported planning, if available.",
       "limits": "Future exploration. This does not enable analytics or start collecting user activity.",
       "keywords": "analytics usage metrics tracking events",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Plan how to learn which parts of your app people use."
     },
     {
       "id": "governed-multi-agent",
       "kind": "project-workflow",
-      "plain_name": "Specialist AI review and teamwork",
+      "plain_name": "Specialist AI help",
       "where": "Supported development tools and project workflow.",
       "request": "Check whether supervised specialist AI review is supported for this project. Show the available scope and limits first.",
       "expect": "A readiness check and proposed roles where supported; a person decides what happens next.",
       "limits": "In active testing, with stale package evidence needing review. This does not enable unattended work or prove support in every tool.",
       "keywords": "multi agent committee experts specialist ai review teamwork",
-      "installation_note": "A project-specific pilot or assessment route must be checked before changes."
+      "installation_note": "A project-specific pilot or assessment route must be checked before changes.",
+      "plain_summary": "Check whether specialist AI reviewers can work together on your task."
     },
     {
       "id": "rescue",
       "kind": "project-workflow",
-      "plain_name": "Diagnosis and repair planning",
+      "plain_name": "Plan a repair",
       "where": "The selected broken app and its approved repair workflow.",
       "request": "Use BOS to investigate this failure. Show the evidence, the smallest supported repair and how to check it.",
       "expect": "Findings, a bounded repair proposal and verification steps.",
       "limits": "The reusable package is being prepared. This is not an emergency response or recovery guarantee.",
       "keywords": "broken app bug fix rescue repair failure",
-      "installation_note": "This entry does not offer a ready-to-install package."
+      "installation_note": "This entry does not offer a ready-to-install package.",
+      "plain_summary": "Find out what went wrong and review a repair plan before changing your app."
     },
     {
       "id": "portability",
@@ -202,7 +218,8 @@
       "expect": "A dependency assessment and supported next steps.",
       "limits": "Assessment guidance exists; the reusable installation and target-specific migration still need preparation and approval.",
       "keywords": "portability migration move platform export self host",
-      "installation_note": "A project-specific pilot or assessment route must be checked before changes."
+      "installation_note": "A project-specific pilot or assessment route must be checked before changes.",
+      "plain_summary": "Explore what it would take to move your app to another platform."
     }
   ]
 }

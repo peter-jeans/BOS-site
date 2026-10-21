@@ -5,8 +5,8 @@ const list=document.querySelector('#packages'), status=document.querySelector('#
 const tier=document.querySelector('#tier-filter'), kind=document.querySelector('#kind-filter'), search=document.querySelector('#package-search'), refreshButton=document.querySelector('#refresh');
 // The complete static explanation remains the fallback if its optional update fails.
 let metadata=new Map([...list.children].map(card=>[card.dataset.id,{
- id:card.dataset.id,kind:card.dataset.kind,plain_name:card.querySelector('h2').textContent,
- where:card.querySelector('.capability-location').textContent.replace(/^Where it belongs:\s*/,''),
+ id:card.dataset.id,kind:card.dataset.kind,plain_name:card.querySelector('h2').textContent,plain_summary:card.querySelector('.description').textContent,
+ where:card.querySelector('.capability-location').textContent.replace(/^(?:Where it belongs|Where you use it):\s*/,''),
  request:card.querySelector('.capability-request').textContent,
  expect:card.querySelector('.capability-result').textContent.replace(/^Expect:\s*/,''),
  limits:card.querySelector('.capability-limit').textContent,
@@ -34,24 +34,25 @@ function validateCatalogue(data){
 function validateGuide(data){
  if(data.schema!=='BOS_PUBLIC_CAPABILITY_GUIDE_V1'||!Array.isArray(data.topics)||data.topics.length>100||new Set(data.topics.map(g=>g.id)).size!==data.topics.length)throw Error('Invalid guide');
  const fields=['id','kind','plain_name','where','request','expect','limits','keywords','installation_note'];
- for(const g of data.topics)if(!fields.every(k=>typeof g[k]==='string'&&g[k].length<5000)||!['build-review','project-workflow','app-feature'].includes(g.kind))throw Error('Invalid guide item');
+ for(const g of data.topics)if((g.plain_summary!==undefined&&(typeof g.plain_summary!=='string'||g.plain_summary.length>=5000))||!fields.every(k=>typeof g[k]==='string'&&g[k].length<5000)||!['build-review','project-workflow','app-feature'].includes(g.kind))throw Error('Invalid guide item');
  return data;
 }
 function render(p,evidenceDate){
  const g=metadata.get(p.id), card=node('article',null,'package-card');
  Object.assign(card.dataset,{id:p.id,tier:p.minimum_tier,maturity:p.maturity,kind:g?.kind||'unclassified',availability:p.availability,keywords:g?.keywords||''});
- card.append(node('p',(g?.kind||'Capability topic').replaceAll('-',' '),'capability-kind'),node('h2',g?.plain_name||p.name),node('p',p.description,'description'));
+ card.append(node('p',({'build-review':'Check your work','project-workflow':'Keep work organised','app-feature':'Add to your app'}[g?.kind]||'BOS help'),'capability-kind'),node('h2',g?.plain_name||p.name),node('p',g?.plain_summary||p.description,'description'));
  const availability=node('p',null,'availability');availability.append(node('strong','Current availability: '),document.createTextNode(p.availability));card.append(availability,node('p',g?.limits||p.maturity_reason,'capability-limit'));
- const where=node('p',null,'capability-location');where.append(node('strong','Where it belongs: '),document.createTextNode(g?.where||'The selected project. Ask BOS to check its supported scope first.'));card.append(where);
- const use=node('details',null,'capability-use');use.append(node('summary','How to ask and what to expect'),node('p','After BOS has checked this project’s connection and approved setup, ask your coding tool:'),node('blockquote',g?.request||'Check whether BOS supports this topic in this exact project before proposing changes.','capability-request'));
+ const where=node('p',null,'capability-location');where.append(node('strong','Where you use it: '),document.createTextNode(g?.where||'The selected project. Ask BOS to check its supported scope first.'));card.append(where);
+ const use=node('details',null,'capability-use');use.append(node('summary','How to ask and what to expect'),node('p','Once your app is set up with BOS, try asking:'),node('blockquote',g?.request||'Check whether BOS supports this topic in this exact project before proposing changes.','capability-request'));
  const expect=node('p',null,'capability-result');expect.append(node('strong','Expect: '),document.createTextNode(g?.expect||'A capability and readiness check, including unavailable steps.'));
  const setup=node('a','Check setup availability for your tool');setup.href='setup.html';use.append(expect,node('p',g?.installation_note||'This catalogue entry does not itself install anything.','capability-installation'),setup);
  card.append(use,node('p','Minimum tier: '+p.minimum_tier,'tier-badge'));
- const detail=node('details',null,'capability-evidence');detail.append(node('summary','Package evidence and technical coverage'));
+ const detail=node('details',null,'capability-evidence');detail.append(node('summary','More detail'));
  const original=node('p',null);original.append(node('strong','Original catalogue name: '),document.createTextNode(p.name));
- const maturity=node('p',null);maturity.append(node('strong','Package maturity: '),document.createTextNode(p.maturity+'. '+p.maturity_reason));
+ const maturity=node('p',null);maturity.append(node('strong','Development stage: '),document.createTextNode(p.maturity+'. '+p.maturity_reason));
  const features=node('ul',null);p.features.forEach(x=>features.append(node('li',x)));
- detail.append(original,maturity,node('p','Evidence catalogue date: '+(typeof evidenceDate==='string'?evidenceDate.slice(0,10):'Not recorded')+'. This is not a fresh verification of your app or every feature.'),features);card.append(detail);return card;
+ const technical=node('p',null);technical.append(node('strong','Technical description: '),document.createTextNode(p.description));
+ detail.append(original,technical,maturity,node('p','Evidence catalogue date: '+(typeof evidenceDate==='string'?evidenceDate.slice(0,10):'Not recorded')+'. This is not a fresh verification of your app or every feature.'),features);card.append(detail);return card;
 }
 async function refresh(){
  if(pending)return;pending=true;refreshButton.disabled=true;
