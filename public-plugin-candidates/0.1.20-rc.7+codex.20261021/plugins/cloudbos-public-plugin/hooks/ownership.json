@@ -1,0 +1,96 @@
+{
+  "schema": "BOS_HOOK_PACKAGE_V1",
+  "protocol": 1,
+  "family": "cloudbos-public-plugin",
+  "route": "public",
+  "version": "0.1.20-rc.7+codex.20261021",
+  "channel": "candidate",
+  "handlers": {
+    "codex": {
+      "SessionStart": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "codex"
+      ],
+      "UserPromptSubmit": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "codex"
+      ],
+      "PreToolUse": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "codex"
+      ],
+      "PostToolUse": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "codex"
+      ],
+      "Stop": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "codex"
+      ],
+      "SessionEnd": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "codex"
+      ]
+    },
+    "claude_code": {
+      "SessionStart": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "claude_code"
+      ],
+      "UserPromptSubmit": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "claude_code"
+      ],
+      "PreToolUse": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "claude_code"
+      ],
+      "PostToolUse": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "claude_code"
+      ],
+      "Stop": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "claude_code"
+      ],
+      "SessionEnd": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "claude_code"
+      ],
+      "PostToolUseFailure": [
+        "node",
+        "${PLUGIN_ROOT}/scripts/session-bootstrap.mjs",
+        "--host",
+        "claude_code"
+      ]
+    }
+  },
+  "timeout_ms": 4000,
+  "approval": "EXACT_OWNER_PLAN_PLUS_SEPARATE_NATIVE_HOOK_TRUST",
+  "legacy_policy": "DISABLE_OR_MIGRATE_OLD_REGISTRATIONS",
+  "unidentified_event_policy": "CONCURRENT_ONLY_DEDUPLICATION_NO_EXACT_ONCE_CLAIM"
+}

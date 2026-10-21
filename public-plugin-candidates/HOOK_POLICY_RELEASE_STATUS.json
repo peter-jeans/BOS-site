@@ -1,0 +1,19 @@
+{
+  "schema": "BOS_HOOK_OWNER_CANDIDATE_STATUS_V1",
+  "version": "0.1.20-rc.7+codex.20261021",
+  "package_digest": "d36226700b5c3871b71d56df015a456c3b52828a2f42d2aef639e9387a7fb510",
+  "publication": "REVIEW_CANDIDATE_ONLY",
+  "default_marketplace_pointer": "UNCHANGED",
+  "native_acceptance": "PENDING",
+  "codex_owner_activation": "REQUIRES_FRESH_NATIVE_TRUST_READBACK",
+  "claude_owner_activation": "BLOCKED_NATIVE_TRUST_ADAPTER_REQUIRED",
+  "legacy_retirement": "WAITS_FOR_TRUSTED_SUCCESSOR",
+  "tests": [
+    "17 ownership checks including concurrency, route separation, native-trust gating and legacy retirement",
+    "11 Claude adapter tests",
+    "public hook wiring and bounded input",
+    "public package isolation",
+    "public assistance source matrix; no native claims"
+  ],
+  "stable_launch": false
+}

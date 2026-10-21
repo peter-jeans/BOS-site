@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloudbos.example/schemas/project-governance-removal-v1.json",
+  "title": "Cloud BOS Public Project Governance Removal V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "removal_id", "approved_plan_hash", "project_ref", "project_binding_id", "adapter_id", "manifest_owned_targets", "removed_targets", "preserved_application_targets", "binding_status", "post_removal_state", "application_preservation_check", "acceptance_status"],
+  "properties": {
+    "verified_at": {"type": "string", "format": "date-time"},
+    "evidence": {"type": "object"},
+    "schema": {"const": "BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_REMOVAL_V1"},
+    "removal_id": {"type": "string", "minLength": 1},
+    "approved_plan_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "project_ref": {"type": "string", "minLength": 1},
+    "project_binding_id": {"type": "string", "minLength": 1},
+    "adapter_id": {"type": "string", "minLength": 1},
+    "manifest_owned_targets": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "removed_targets": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "preserved_application_targets": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "binding_status": {"const": "DETACHED"},
+    "post_removal_state": {"const": "DETACHED_OR_REMOVED"},
+    "application_preservation_check": {"const": "PASS"},
+    "acceptance_status": {"enum": ["COMPLETE_VERIFIED", "PARTIAL_VERIFIED", "FAILED_SYNC_VERIFICATION", "BLOCKED", "FAILED"]}
+  }
+}
