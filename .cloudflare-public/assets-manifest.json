@@ -1770,8 +1770,8 @@
       "bytes": 15086
     },
     "index.html": {
-      "sha256": "3ffe72d509aa6b086165690c04507bc59fda2ca3a2991e84127d637aa3e5a63d",
-      "bytes": 66175
+      "bytes": 67946,
+      "sha256": "018c5c217f28cec9268b1209815faa29d688ea68c3599d9016563cd49644b2dd"
     },
     "install-packages.html": {
       "sha256": "a289378146604f3d8e6d8c1ab035305e800322b19411d530434d9d3e5c82aead",
@@ -1818,8 +1818,8 @@
       "bytes": 23
     },
     "setup.html": {
-      "sha256": "584b179b740e86131cfed9707796df348966f9d599c77fa5d46779f5022049f3",
-      "bytes": 99606
+      "bytes": 97035,
+      "sha256": "04c0407e3f92dd529ef84b27126cbefba5dba3e507b3e7af785053d269f03ca8"
     },
     "site.webmanifest": {
       "sha256": "40bbca4da2b883df7ec6c08804e0a78a1cbcb18cef07c1a73d9eee4523606c53",
@@ -2098,8 +2098,8 @@
       "bytes": 865
     },
     "assets/clarity.css": {
-      "sha256": "5ed821f536b20e7e19fd32e984b89e6099077d26bcfbc4ca909f80eea4fb3335",
-      "bytes": 4415
+      "bytes": 9027,
+      "sha256": "72a647d4c9f7b1c56996b8dd9ac75ae5c67ee6336485cb529a58780294973129"
     },
     "data/capability-guide.json": {
       "sha256": "2d726a5e361f767b906a7848b26e2ca5d1e6f3b8038209fc0080db48299ec66f",

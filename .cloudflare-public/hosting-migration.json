@@ -2,7 +2,7 @@
   "schema": "BOS_HOSTING_ONLY_APPROVAL_V1",
   "scope": "HOSTING_MIGRATION_ONLY",
   "hosting_approved": true,
-  "approval_basis": "Owner requested the three-step onboarding page and all prior website changes be delivered through GitHub to the existing Cloudflare cloudbos.dev endpoint on 2026-10-22. Installation and product-release holds remain unchanged.",
+  "approval_basis": "Owner requested the same setup graphic on the front page and consistent website colours, delivered through GitHub to existing Cloudflare cloudbos.dev on 2026-10-22. Preserve all product-release and native-installation holds.",
   "product_release_approved": false,
   "preserve_github_pages": true,
   "source_repository": "https://github.com/peter-jeans/BOS-site.git",
@@ -17,7 +17,7 @@
   "pinned_files": {
     ".cloudflare-public/release-readiness.json": "d00f1038ccc26924d16eab754b90aa7e72f68a28cdb9313a2055f5d74388f373",
     ".cloudflare-public/marketplace-source-manifest.json": "57701133372b2b53ee47d253dc3f6230c56e8cab81a53d3e5092864dd57471af",
-    ".cloudflare-public/assets-manifest.json": "63f73c1b41a1dcd47d15a1df36841896c0ef7fc72ce4a399d3ed10d2391bb25b",
+    ".cloudflare-public/assets-manifest.json": "c10fdcc0f30e40601ec16878eaa7bbbcbb776061fb40d1aa03576889e39b6c93",
     ".cloudflare-public/asset-routing.txt": "a1d8dddd72c71933662e65f4604cd741d4a3f388951207193c01ad1015dd6692",
     ".cloudflare-public/build.mjs": "c0a1b63812a7147ca59165e0306a80378da3cc827369e456f943e2a4cfba14c9",
     ".cloudflare-public/release-check.mjs": "daef0692c106479cceaef361f6732e8174ee398fc6cbfa870be796fed6b833f3",
