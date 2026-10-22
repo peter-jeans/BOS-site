@@ -2,7 +2,7 @@
   "schema": "BOS_HOSTING_ONLY_APPROVAL_V1",
   "scope": "HOSTING_MIGRATION_ONLY",
   "hosting_approved": true,
-  "approval_basis": "Owner requested the same setup graphic on the front page and consistent website colours, delivered through GitHub to existing Cloudflare cloudbos.dev on 2026-10-22. Preserve all product-release and native-installation holds.",
+  "approval_basis": "Owner explicitly requested functioning Mac and Windows setup-download buttons and concise computer setup cards on 2026-10-22. Only the existing checksum-verified preview archive is authorized for these two download links. Native qualification and general product release remain unapproved.",
   "product_release_approved": false,
   "preserve_github_pages": true,
   "source_repository": "https://github.com/peter-jeans/BOS-site.git",
@@ -15,9 +15,9 @@
     ".github"
   ],
   "pinned_files": {
-    ".cloudflare-public/release-readiness.json": "d00f1038ccc26924d16eab754b90aa7e72f68a28cdb9313a2055f5d74388f373",
+    ".cloudflare-public/release-readiness.json": "8c2ba7d110391e33e8c89b0b198ec0a3ba3ad1bfd9184a10df8e9ddb91a9e82a",
     ".cloudflare-public/marketplace-source-manifest.json": "57701133372b2b53ee47d253dc3f6230c56e8cab81a53d3e5092864dd57471af",
-    ".cloudflare-public/assets-manifest.json": "c10fdcc0f30e40601ec16878eaa7bbbcbb776061fb40d1aa03576889e39b6c93",
+    ".cloudflare-public/assets-manifest.json": "fdd4fc86110e878dab42439aaf6cb7f1b699eefde1fa5c2e248c7ecb958311e9",
     ".cloudflare-public/asset-routing.txt": "a1d8dddd72c71933662e65f4604cd741d4a3f388951207193c01ad1015dd6692",
     ".cloudflare-public/build.mjs": "c0a1b63812a7147ca59165e0306a80378da3cc827369e456f943e2a4cfba14c9",
     ".cloudflare-public/release-check.mjs": "daef0692c106479cceaef361f6732e8174ee398fc6cbfa870be796fed6b833f3",
@@ -25,7 +25,7 @@
     ".cloudflare-public/wrangler.production.json": "bd00eb035efd6fd388cfc96b5bbef57959006e2ba1f14788d33c6f7fe89f3317",
     ".cloudflare-public/package.json": "0c4142a0585552f0f412a6d93c6a2a76f2ee81227e359d00c14a37695ce70521",
     ".cloudflare-public/package-lock.json": "e93ab991f100f9d1edecd747fc5d6f87aa35348446589d2b724e6ebf8e7a2a18",
-    "data/host-compatibility.json": "ee3e5eb314d4e0056f46125a9496d2732852d977453225d5adafc4c1abe5a3cf",
+    "data/host-compatibility.json": "0f1cefbaf5d9d8d9257c55dded55078952dd8157b07062d6105ed623f424fc53",
     ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
   }
 }

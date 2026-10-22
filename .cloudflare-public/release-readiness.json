@@ -44,7 +44,7 @@
     "sha256": "ee3e5eb314d4e0056f46125a9496d2732852d977453225d5adafc4c1abe5a3cf"
   },
   "public_website_source_commit": "9d377f69670bec87c5192540ca0bb5e566ac1d60",
-  "installation_controls": "18_DISABLED_UNCHANGED",
+  "installation_controls": "16_DISABLED_2_PREVIEW_DOWNLOAD_LINKS",
   "paid_checkout": "NO_ACTIVATION_IN_THIS_CANDIDATE",
   "required": [
     "Native supported-host qualification under existing release gate",
@@ -66,7 +66,20 @@
     "inventory_sha256": "5667df44cc0d508de9c619a2a7f86bfa63892faba8949119cf6c3b2893d910af",
     "native_acceptance": "NOT_GRANTED_BY_PACKAGING",
     "release_approval": "NOT_GRANTED_BY_PACKAGING",
-    "download_controls": "HELD",
-    "archive_publication_commit": null
+    "download_controls": "OWNER_AUTHORIZED_PREVIEW_DOWNLOADS",
+    "archive_publication_commit": null,
+    "download_approval": {
+      "schema": "BOS_OWNER_PREVIEW_DOWNLOAD_APPROVAL_V1",
+      "scope": "EXISTING_PREVIEW_ARCHIVE_ONLY",
+      "owner_request_date": "2026-10-22",
+      "archive_path": "downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/cloudbos-setup.zip",
+      "archive_sha256": "db5c7894ab4a148e2ac74b85991e5dfb62510dd4a243f44383753372c1e8ee5d",
+      "platforms": [
+        "macos",
+        "windows"
+      ],
+      "product_release_approved": false,
+      "native_qualification": "PENDING"
+    }
   }
 }

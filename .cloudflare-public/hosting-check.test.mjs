@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {resolve, dirname} from 'node:path';
+import {createHash} from 'node:crypto';
 import {execFileSync, spawnSync} from 'node:child_process';
 import {verifyHosting, verifyGitHubMain} from './hosting-check.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -14,7 +15,23 @@ function changedApproval(change) {
   return name => name === approvalPath ? JSON.stringify(record) : read(name);
 }
 test('hosting approval passes without granting product release or native installation', () => {
-  assert.deepEqual(verifyHosting(read,exists), {status:'PASS',scope:'HOSTING_ONLY',native_installation:'HELD',product_release:'NOT_APPROVED'});
+  assert.deepEqual(verifyHosting(read,exists), {status:'PASS',scope:'HOSTING_ONLY',native_installation:'NOT_QUALIFIED',preview_downloads:'OWNER_AUTHORIZED',product_release:'NOT_APPROVED'});
+});
+for (const [label, change] of [
+ ['missing preview download approval', r => delete r.launcher_candidate.download_approval],
+ ['different preview archive', r => r.launcher_candidate.download_approval.archive_path='downloads/other.zip'],
+ ['changed preview checksum', r => r.launcher_candidate.download_approval.archive_sha256='0'.repeat(64)],
+ ['additional preview platform', r => r.launcher_candidate.download_approval.platforms.push('linux')],
+ ['preview claimed as qualified', r => r.native_qualification='QUALIFIED'],
+]) test(label+' is rejected even with a refreshed metadata pin', () => {
+ const releasePath='.cloudflare-public/release-readiness.json';
+ const release=JSON.parse(read(releasePath));change(release);const bytes=JSON.stringify(release);
+ const approval=JSON.parse(read(approvalPath));approval.pinned_files[releasePath]=createHash('sha256').update(bytes).digest('hex');
+ assert.throws(() => verifyHosting(n => n===releasePath ? bytes : n===approvalPath ? JSON.stringify(approval) : read(n),exists));
+});
+test('changed downloadable archive is rejected', () => {
+ const p=JSON.parse(read('.cloudflare-public/release-readiness.json')).launcher_candidate.archive_path;
+ assert.throws(() => verifyHosting(n => n===p ? Buffer.concat([read(n),Buffer.from('changed')]) : read(n),exists));
 });
 for (const [label, change] of [
  ['missing hosting approval', a => a.hosting_approved=false],

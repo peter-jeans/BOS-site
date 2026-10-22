@@ -31,19 +31,32 @@ export function verifyHosting(read, exists) {
   const release = json('.cloudflare-public/release-readiness.json');
   assert.equal(release.publication_allowed, false);
   assert.equal(release.native_qualification, 'PENDING');
-  assert.equal(release.installation_controls, '18_DISABLED_UNCHANGED');
-  assert.equal(release.launcher_candidate.download_controls, 'HELD');
+  assert.equal(release.installation_controls, '16_DISABLED_2_PREVIEW_DOWNLOAD_LINKS');
+  const launcher = release.launcher_candidate;
+  assert.equal(launcher.download_controls, 'OWNER_AUTHORIZED_PREVIEW_DOWNLOADS');
+  assert.deepEqual(launcher.download_approval, {
+    schema:'BOS_OWNER_PREVIEW_DOWNLOAD_APPROVAL_V1', scope:'EXISTING_PREVIEW_ARCHIVE_ONLY',
+    owner_request_date:'2026-10-22',
+    archive_path:'downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/cloudbos-setup.zip',
+    archive_sha256:'db5c7894ab4a148e2ac74b85991e5dfb62510dd4a243f44383753372c1e8ee5d',
+    platforms:['macos','windows'], product_release_approved:false, native_qualification:'PENDING'
+  });
+  assert.equal(launcher.archive_path, launcher.download_approval.archive_path);
+  assert.equal(launcher.archive_sha256, launcher.download_approval.archive_sha256);
+  assert.equal(hash(read(launcher.archive_path)), launcher.archive_sha256, 'Preview download archive changed');
   const compatibility = json('data/host-compatibility.json');
   assert.equal(compatibility.package_version, '0.1.19+codex.20261019');
   assert.equal(compatibility.grants_installation_approval, false);
   assert.equal(compatibility.publication.install_controls, 'HELD_PENDING_NATIVE_QUALIFICATION');
+  assert.equal(compatibility.launcher_candidate.download_controls, launcher.download_controls);
+  assert.deepEqual(compatibility.launcher_candidate.download_approval, launcher.download_approval);
   const config = json('.cloudflare-public/wrangler.production.json');
   assert.equal(config.name, approval.target_worker);
   assert.equal(config.workers_dev, false);
   assert.equal(config.preview_urls, false);
   assert.deepEqual(config.routes, [{pattern: approval.target_domain, custom_domain: true}]);
   assert.deepEqual(config.assets, {directory:'./dist', html_handling:'none', not_found_handling:'404-page'});
-  return {status:'PASS', scope:'HOSTING_ONLY', native_installation:'HELD', product_release:'NOT_APPROVED'};
+  return {status:'PASS', scope:'HOSTING_ONLY', native_installation:'NOT_QUALIFIED', preview_downloads:'OWNER_AUTHORIZED', product_release:'NOT_APPROVED'};
 }
 export function verifyGitHubMain(git) {
   // Cloudflare clones with ephemeral HTTPS userinfo. Check the exact destination

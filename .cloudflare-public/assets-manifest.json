@@ -114,8 +114,8 @@
       "bytes": 1641
     },
     "beginner-guide.html": {
-      "sha256": "88a5de7db05c9419c46c39d010e7eee692640811967a3f1b1f2a6d543d4b0c59",
-      "bytes": 65426
+      "sha256": "64fd7911dc08a34c413f9807380d586fbea836035af7054ceb2bfaee43dbee66",
+      "bytes": 65100
     },
     "companions/base44/components/BosBuilderActivation.css": {
       "sha256": "2a57c4a59905f480e7008e0c1c3fd6bf3e9bf6d18693db3b4cfb6a63f81980d4",
@@ -1758,8 +1758,8 @@
       "bytes": 1330
     },
     "data/host-compatibility.json": {
-      "sha256": "ee3e5eb314d4e0056f46125a9496d2732852d977453225d5adafc4c1abe5a3cf",
-      "bytes": 3898
+      "sha256": "0f1cefbaf5d9d8d9257c55dded55078952dd8157b07062d6105ed623f424fc53",
+      "bytes": 4445
     },
     "data/install-packages.json": {
       "sha256": "9217a1e80974998494312fe577cb1fdc6549201fb8f704f01746bf48817c1469",
@@ -1770,8 +1770,8 @@
       "bytes": 15086
     },
     "index.html": {
-      "bytes": 67946,
-      "sha256": "018c5c217f28cec9268b1209815faa29d688ea68c3599d9016563cd49644b2dd"
+      "sha256": "8e109fa6d8ec43b532a4567fd4edb3569784daf5e0bb11c2071c0fc5e0f8a1a1",
+      "bytes": 67940
     },
     "install-packages.html": {
       "sha256": "a289378146604f3d8e6d8c1ab035305e800322b19411d530434d9d3e5c82aead",
@@ -1818,8 +1818,8 @@
       "bytes": 23
     },
     "setup.html": {
-      "bytes": 97035,
-      "sha256": "04c0407e3f92dd529ef84b27126cbefba5dba3e507b3e7af785053d269f03ca8"
+      "sha256": "3661b53095ee99295c986bb59c94cb08d8de9c3db3d4f2921671790c2c64bcb2",
+      "bytes": 96262
     },
     "site.webmanifest": {
       "sha256": "40bbca4da2b883df7ec6c08804e0a78a1cbcb18cef07c1a73d9eee4523606c53",
