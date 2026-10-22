@@ -1,8 +1,8 @@
 {
   "schema": "BOS_PUBLIC_STATIC_ASSET_MANIFEST_V1",
   "base_repository": "peter-jeans/BOS-site",
-  "base_commit": "ac1d9a8ae746d56810f74d364a1983ba3d5cbd29",
-  "source": "Reviewed successor of public GitHub main; evidence-aligned five-page copy; no private source overlay",
+  "base_commit": "120bb36c54d5fa302f7f4788eab7eee5af202f8f",
+  "source": "Reviewed public main website copy, registration card and three-step setup journey; no private source overlay",
   "release_status": "HOSTING_ONLY_APPROVED_NATIVE_INSTALLATION_HELD",
   "files": {
     ".nojekyll": {
@@ -86,8 +86,8 @@
       "bytes": 4111
     },
     "assets/packages/packages.js": {
-      "sha256": "0ab00dc57a356de02785d803608a616ffe198dd58b685431c8b9e3813f5aa989",
-      "bytes": 4945
+      "sha256": "ea056fd0b54fb3e991f57bf8db57070f933e76de7e2dcd7e98fd446422afa0db",
+      "bytes": 8420
     },
     "assets/parchment-grain.svg": {
       "sha256": "c0cbb848659df9ab38f47237875c38d23d0cd11e2d9a4df395d8ae52b3f40672",
@@ -114,8 +114,8 @@
       "bytes": 1641
     },
     "beginner-guide.html": {
-      "sha256": "d2935a3e5370c8dd68f7998913ebacd84060900256cf72776847f3dedd9d0c5e",
-      "bytes": 63346
+      "sha256": "88a5de7db05c9419c46c39d010e7eee692640811967a3f1b1f2a6d543d4b0c59",
+      "bytes": 65426
     },
     "companions/base44/components/BosBuilderActivation.css": {
       "sha256": "2a57c4a59905f480e7008e0c1c3fd6bf3e9bf6d18693db3b4cfb6a63f81980d4",
@@ -1770,12 +1770,12 @@
       "bytes": 15086
     },
     "index.html": {
-      "sha256": "dd23a84e04698406447b07ab504cace9dc4dac36ec75dc2927534c4ff3ab0f0e",
-      "bytes": 63077
+      "sha256": "3ffe72d509aa6b086165690c04507bc59fda2ca3a2991e84127d637aa3e5a63d",
+      "bytes": 66175
     },
     "install-packages.html": {
-      "sha256": "1175c479882f6ebd3a937e521f31a1ee22f63b923e452e54f39619a52c3bae96",
-      "bytes": 19794
+      "sha256": "a289378146604f3d8e6d8c1ab035305e800322b19411d530434d9d3e5c82aead",
+      "bytes": 40140
     },
     "policies/acceptable-use.html": {
       "sha256": "62ccf8a91246268ec8d4f043868912ac728d8570066c7c98915e0c4c8e29facf",
@@ -1818,20 +1818,20 @@
       "bytes": 23
     },
     "setup.html": {
-      "sha256": "0e7c3de6e9fa707bdd487bcd2c149225997e5fe65713cefa6b617c04c84f17da",
-      "bytes": 91864
+      "sha256": "584b179b740e86131cfed9707796df348966f9d599c77fa5d46779f5022049f3",
+      "bytes": 99606
     },
     "site.webmanifest": {
       "sha256": "40bbca4da2b883df7ec6c08804e0a78a1cbcb18cef07c1a73d9eee4523606c53",
       "bytes": 445
     },
     "support.html": {
-      "sha256": "2ba71faf637a998abd60c98248eb36bc1d8c92adbcde100197fde3beb6ed1866",
-      "bytes": 8811
+      "sha256": "43688389d0046cb874594c16144297f6b4dbd6fd7060371c5c1765dca24274a4",
+      "bytes": 11292
     },
     "using-bos.html": {
-      "sha256": "89c42794c770f39ec536023d0c776c0c89900cefedf91763a9275c2934d7c96d",
-      "bytes": 29284
+      "sha256": "8d6f458a03ba953d5b34fda455376ef076f7f46072e68bf40e8c0d491d40df0e",
+      "bytes": 31572
     },
     "companions/base44/versions/1.43.34/manifest.json": {
       "sha256": "1be999bcd30ffffa62f7a26803b3688431860736da87ea7e13811094367489af",
@@ -2096,6 +2096,14 @@
     "downloads/cloudbos-setup/0.1.0/0.1.19+codex.20261019/SETUP_MANIFEST.json": {
       "sha256": "5667df44cc0d508de9c619a2a7f86bfa63892faba8949119cf6c3b2893d910af",
       "bytes": 865
+    },
+    "assets/clarity.css": {
+      "sha256": "5ed821f536b20e7e19fd32e984b89e6099077d26bcfbc4ca909f80eea4fb3335",
+      "bytes": 4415
+    },
+    "data/capability-guide.json": {
+      "sha256": "2d726a5e361f767b906a7848b26e2ca5d1e6f3b8038209fc0080db48299ec66f",
+      "bytes": 13914
     }
   }
 }

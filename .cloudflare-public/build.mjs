@@ -14,7 +14,7 @@ const sourceManifest = JSON.parse(readFileSync(resolve(here, 'marketplace-source
 assert.equal(sourceManifest.schema, 'BOS_PUBLIC_MARKETPLACE_SOURCE_MANIFEST_V1');
 const sourceFiles = Object.keys(sourceManifest.files);
 assert(sourceFiles.every(name => !files.includes(name)), 'Source and web asset partitions must be disjoint');
-assert(sourceFiles.every(name => name.startsWith('public-plugin-releases/') || ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json'].includes(name)), 'Unexpected marketplace source path');
+assert(sourceFiles.every(name => name.startsWith('public-plugin-releases/') || name.startsWith('public-plugin-candidates/') || ['.agents/plugins/marketplace.json', '.claude-plugin/marketplace.json'].includes(name)), 'Unexpected marketplace source path');
 const allFiles = [...files, ...sourceFiles].sort();
 const allEntries = { ...manifest.files, ...sourceManifest.files };
 assert.equal(manifest.schema, 'BOS_PUBLIC_STATIC_ASSET_MANIFEST_V1');
