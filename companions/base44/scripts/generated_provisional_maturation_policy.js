@@ -54,8 +54,9 @@ export const MATURATION_POLICY = {
   "display_rule": "Show assessed phase, verification, pending obligations and owner decision; no maturity percentage."
 };
 export const RESPONSE_CONTINUITY_PROFILE = {
-  "version": "1.2.1",
+  "version": "1.2.4",
   "header_profile": {
+    "speaker_activity_validation": "Resolve one exact token from current project/session/request/source-bound activity evidence. Require that token when emission is allowed; reject other states, owners, stale tokens and misplaced markers. OFF, unsupported, unknown or unbound evidence emits none. Activation verification does not establish task completion.",
     "layout": "TWO_HEADER_LINES_THEN_SPEAKER_CHAIN",
     "host_prefix": {
       "Base44": "EXISTING_RUNTIME_HEADER_BEFORE_BOS_ENVELOPE"
@@ -92,7 +93,9 @@ export const RESPONSE_CONTINUITY_PROFILE = {
       "HS"
     ],
     "dbpp_distinction": "DBPP is readiness; PHASE is lifecycle phase/assessment. Neither means implementation verification.",
-    "validation": "Compare current field values, ordering, placement, duplicates and host speaker; CTX alone is insufficient. Quoted examples and code blocks are not the live envelope."
+    "validation": "Compare current field values, ordering, placement, duplicates and host speaker; CTX alone is insufficient. Quoted examples and code blocks are not the live envelope.",
+    "presentation": "MARKDOWN_HARD_BREAKS",
+    "governance_version": "1.8"
   },
   "role_policy": {
     "version": "1.0.0",
@@ -232,5 +235,7 @@ export const RESPONSE_CONTINUITY_PROFILE = {
     "missing_identity": "UNKNOWN, missing and placeholder chat identities do not establish current chat evidence. Do not create a shared unknown-session authority bucket. Keep ordinary authorized work and read-only project checks available, with role, exact settings and chat verification unverified.",
     "project_owned": "Specifications, accepted decisions, intentions, project identity, entitlement and lifecycle state retain their existing project-wide owners and action gates. This isolation does not authorize conflicting source edits or create a new project authority.",
     "verification": "Interleave two chats, resume each, invalidate one request, cross-swap evidence and test missing identity. Installed instructions and helper results remain separate from fresh native host behaviour."
-  }
+  },
+  "correction_scope": "Shared default for all BOS-governed chats, including existing, new and resumed chats; no per-chat opt-in. Effective on each host after its runtime or instruction projection is updated and verified. This does not claim native enforcement on unsupported hosts.",
+  "correction_instruction": "For response metadata corrections, emit only the corrected header/speaker envelope, a brief explanation and required actual model/reasoning and next-task footer, plus any missing owner-decision notice without implying approval. Do not repeat the preceding answer body, receipts or implementation actions. Keep existing validation and correction limits; preserve machine-readable output."
 };

@@ -1,4 +1,5 @@
 import { MATURATION_POLICY, RESPONSE_CONTINUITY_PROFILE } from './generated_provisional_maturation_policy.js';
+import { SPEAKER_ACTIVITY_STATE_MODEL } from './speaker_activity_state_model.js';
 export const MATURATION_FACTS = ['binding_current','context_present','source_readback','workflows_implemented','verification_passed','critical_blockers_clear','release_approved','release_receipt'];
 export const PROVISIONAL_EVIDENCE_SCHEMA = {type:'object',additionalProperties:false,required:['project_id','evidence_hash','facts'],properties:{project_id:{type:'string',pattern:'^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$'},evidence_hash:{type:'string',pattern:'^[a-f0-9]{64}$'},facts:{type:'object',additionalProperties:false,properties:Object.fromEntries(MATURATION_FACTS.map(k=>[k,{type:'boolean'}]))},evidence_basis:{type:'string',enum:['HOST_REPORTED','LOCAL_ARTIFACT_READBACK']}}};
 export function assessProvisionalMaturation(evidence, expectedProject) {
@@ -47,11 +48,17 @@ export async function persistProvisionalAssessment({evidence,projectId,metadataW
 }
 export const CONTINUITY_GUIDANCE = Object.freeze({
   schema: 'BOS_CONTINUITY_GUIDANCE_V1', version: RESPONSE_CONTINUITY_PROFILE.version,
-  header: 'Before substantive governed replies, read current exact project binding, relevant capabilities, source revision and effective provisional DBPP state. Preserve canonical status meanings and emit the current two-line BOS header plus host speaker chain.',
+  header: 'Before substantive governed replies, read current exact project binding, relevant capabilities, source revision and effective provisional DBPP state. Preserve canonical status meanings and emit the current two-line BOS header plus host speaker chain. Use the authenticated header_profile governance_version, never the service health version. Preserve Markdown hard line breaks after each header line so both lines and the speaker chain remain visibly separate.',
   header_profile: RESPONSE_CONTINUITY_PROFILE.header_profile,
+  speaker_activity_state_model: SPEAKER_ACTIVITY_STATE_MODEL,
+  speaker_activity: 'Use the shared current evidence resolver and exact source-owned activity token. Preserve all ten states, require the resolved token when supported, and reject wrong states, owners and stale evidence. Missing or unapproved evidence emits none. Verification of connection or source readback is scoped to that check; it does not establish app health, task completion or rule application.',
   role_policy: RESPONSE_CONTINUITY_PROFILE.role_policy,
   context_refresh: RESPONSE_CONTINUITY_PROFILE.context_refresh,
   session_isolation: RESPONSE_CONTINUITY_PROFILE.session_isolation,
+  response_correction: {
+    scope: RESPONSE_CONTINUITY_PROFILE.correction_scope,
+    instruction: RESPONSE_CONTINUITY_PROFILE.correction_instruction,
+  },
   role_instruction: 'Resolve the current request coding position using the existing Function Activation Layer, then apply its current task duty. Bind project/session/request/source/policy. Emit AI_ROLE:UNKNOWN for missing, stale or low-confidence evidence. Preserve the native Base44 runtime prefix, then the two BOS header lines and speaker chain. Compare every printed value with current evidence. A role label does not prove behaviour or grant authority.',
   footer: 'End substantive responses with next-task model/reasoning advice; show pending release decisions and waiting install work. Use separate orchestrator/target rows for real handoffs.',
   refresh_triggers: ['EVERY_SUBSTANTIVE_RESPONSE','BEFORE_DEPENDENT_ACTION','NEW_SESSION','RESUME','COMPACTION','PROJECT_SWITCH','SOURCE_CHANGE','SPECIFICATION_CHANGE','INTENTION_CHANGE','DBPP_CHANGE','VERIFIED_CLOSEOUT'],

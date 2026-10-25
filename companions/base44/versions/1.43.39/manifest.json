@@ -1,0 +1,149 @@
+{
+  "schema": "CLOUD_BOS_PUBLIC_BASE44_COMPANION_V1",
+  "status": "BETA_CUSTOMER_ACCEPTANCE_PENDING",
+  "workspace_skill_version": "1.43.39",
+  "authority": "PUBLIC_GUIDANCE_AND_ADVISORY_HELPERS_ONLY",
+  "grants_installation_or_mutation_authority": false,
+  "files": [
+    {
+      "path": "contracts/base44-workspace-skill.json",
+      "bytes": 14706,
+      "sha256": "95c02b8e6b68e1045f7ceef569aa0cd7c87e2712cd0178f98bccabe03c229d73"
+    },
+    {
+      "path": "contracts/base44-governed-app-onboarding.json",
+      "bytes": 16657,
+      "sha256": "d628f4a54192fd1e45d121ba9a8e351b154ea1f9330727f501ed40b5cd76f6e8"
+    },
+    {
+      "path": "contracts/base44-session-memory-activation.json",
+      "bytes": 12540,
+      "sha256": "5fba66ff507e590d642809649792539292f05356cfaaaeb212291aebf4dc9242"
+    },
+    {
+      "path": "scripts/base44-governed-app-onboarding.mjs",
+      "bytes": 19870,
+      "sha256": "5372337285fb6a2e37d0b390aeed2cb642242bdb6fe56263a4c6d673d893c3d2"
+    },
+    {
+      "path": "scripts/base44-session-memory-activation.mjs",
+      "bytes": 17435,
+      "sha256": "ca2c6d35e73f723b0c19ae3c8f16b7552bd7198d75524a6d993c64ec387b9369"
+    },
+    {
+      "path": "scripts/project-baseline.mjs",
+      "bytes": 6089,
+      "sha256": "9d5c5fdca7bbab92ee187964dc2c40d742162381fbd8a51826fb845f50bfdec7"
+    },
+    {
+      "path": "scripts/base44-app-governance-profile.mjs",
+      "bytes": 84079,
+      "sha256": "21cc0a12c4cd1cc80c3c10bc14730fae5b9521877d7ea3a7d803e6325f3168ae"
+    },
+    {
+      "path": "contracts/base44-app-governance-profiles.json",
+      "bytes": 5230,
+      "sha256": "50f6b5fedd265985069ed4e316a8c8b188ffbb9227ed95f1afb05c7b4edb60e5"
+    },
+    {
+      "path": "scripts/approval-lifecycle.mjs",
+      "bytes": 1404,
+      "sha256": "b8b285f69ce8c5aa5722623e4e30220c9655d8d48891bfe301343971e8f33e32"
+    },
+    {
+      "path": "contracts/base44-workspace-reference.json",
+      "bytes": 73311,
+      "sha256": "642bd597b0c8a2b052819e29866f0c8b4e72cfd32f5821044a34a50db4729d7c"
+    },
+    {
+      "path": "scripts/base44-update-request.mjs",
+      "bytes": 23324,
+      "sha256": "de35c9fb788ac712ae9c1c9440ead03dba1be8204fcba9368ee0661762ef4cb7"
+    },
+    {
+      "path": "scripts/base44-update-request.cjs",
+      "bytes": 23629,
+      "sha256": "2fe6dc94b28220d16d95ced2bb6f7b26c4ff0b4941ecb5ba6fc7cc1a48d23c52"
+    },
+    {
+      "path": "scripts/base44-build-discipline.mjs",
+      "bytes": 37448,
+      "sha256": "f1eece22ab692bd868dd8427b047905c04ca91e293b574f16c0d091b224437d9"
+    },
+    {
+      "path": "scripts/base44-build-discipline.cjs",
+      "bytes": 82174,
+      "sha256": "9c0a6289424ac42f597514a9f8419a7549073c5d20970d7915af9413f567af50"
+    },
+    {
+      "path": "scripts/provisional_maturation.js",
+      "bytes": 11901,
+      "sha256": "13997586e3633da8e781324ae12d5691ffdc7e395f60623f94449bec394cb9ff"
+    },
+    {
+      "path": "scripts/generated_provisional_maturation_policy.js",
+      "bytes": 11850,
+      "sha256": "656401d7230ab96bd1ce692bedf1ecbc898157803fc72bca235ff32d1406cb96"
+    },
+    {
+      "path": "scripts/bos-page-readback.mjs",
+      "bytes": 1627,
+      "sha256": "28f235062fc12695faa5b34c6dda2a412c3a04a6b6384ff255490e673e2084d3"
+    },
+    {
+      "path": "contracts/bos-app-page.json",
+      "bytes": 820,
+      "sha256": "fec0b049f3e7bca2033bab29085143e6fb94ec1e424fc323577d2b768b2a98e9"
+    },
+    {
+      "path": "components/BosBuilderActivation.jsx",
+      "bytes": 1466,
+      "sha256": "ad90a05027dddb0bb16c6ed1776f6f20730f5f3fc9899766c634bb6c96e85a2c"
+    },
+    {
+      "path": "components/BosBuilderActivation.css",
+      "bytes": 1045,
+      "sha256": "2a57c4a59905f480e7008e0c1c3fd6bf3e9bf6d18693db3b4cfb6a63f81980d4"
+    },
+    {
+      "path": "components/builder-activation.mjs",
+      "bytes": 1078,
+      "sha256": "d49cd6cfb7ae4f7d683224a3cb48751f5ddb63484bfa5a8fef2669a68369cf52"
+    },
+    {
+      "path": "templates/base44-status-surface.json",
+      "bytes": 221588,
+      "sha256": "dc705fbb2a0b64e58095cd820486caef6e18da59449b79cf750e17c19ae06588"
+    },
+    {
+      "path": "scripts/generated_ai_execution_footer.mjs",
+      "bytes": 20611,
+      "sha256": "6185a0e8cf618eb5deb6267f04f01aeea00b322cf7916ea04c6c5164ae433908"
+    },
+    {
+      "path": "scripts/generated_ai_execution_footer.cjs",
+      "bytes": 20712,
+      "sha256": "7812ec68d63e06f73089dae341113a9e36fc029dc603731163b00c3e5c134e91"
+    },
+    {
+      "path": "scripts/base44-plan-readback.mjs",
+      "bytes": 6821,
+      "sha256": "f46dd5fb4eca3b699c5e2da6c0b27238bb3b9d15b23c8c408021d57658126d61"
+    },
+    {
+      "path": "scripts/base44-plan-readback.cjs",
+      "bytes": 104221,
+      "sha256": "631a7d1c3be264c3d559c9fe8e7feb3061f3ae75ed475b7a4a8c07b1bdb3c0da"
+    },
+    {
+      "path": "contracts/base44-plan-readback.json",
+      "bytes": 3104,
+      "sha256": "2eae0be4b135b566d5e44d48ea61b20fa11e230f60d3cccdd2aa9f2cc08c48ce"
+    },
+    {
+      "path": "scripts/speaker_activity_state_model.js",
+      "bytes": 3564,
+      "sha256": "279554d8e35cc07af8f3c15f84fb745dcaf98153a0168d62273bb3e34198ae89"
+    }
+  ]
+}

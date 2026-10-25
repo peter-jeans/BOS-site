@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { assessProvisionalMaturation, roleGuidanceForPosition, CONTINUITY_GUIDANCE } from "./provisional_maturation.js";
 import { createNextStepResponse, NEXT_STEP_EXECUTION_ADVISORY } from "./generated_ai_execution_footer.mjs";
+import { resolveSpeakerActivityState, responseSpeakerChain } from "./speaker_activity_state_model.js";
 
 const SCHEMA = "BOS_CLOUDBOS_PUBLIC_BASE44_SESSION_ACTIVATION_RESULT_V1";
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
@@ -47,8 +48,8 @@ function blocked(status, reasonCodes, { projectRef = null, appId = null } = {}) 
   };
 }
 
-function serviceSpeaker(version) {
-  const match = /^(\d+)\.(\d+)(?:\.\d+)?(?:[-+][A-Za-z0-9.-]+)?$/.exec(String(version || ""));
+function governanceSpeaker(version) {
+  const match = /^(\d+)\.(\d+)$/.exec(String(version || ""));
   return match ? `BOS${match[1]}.${match[2]}> Base44> user>` : null;
 }
 
@@ -89,7 +90,8 @@ export function evaluateBase44SessionMemoryActivation({
       project_binding_verified: result.project_governance_state === "GOVERNED_ACTIVE"
         && result.project_binding_verified === true && source.status === "REFERENCE_AVAILABLE"
         && source.installed_manifest_sha256 === expectedIdentity.governance_manifest_sha256,
-      service_version: result.service_version, project_ref: source.project_ref,
+      service_version: result.service_version,
+      continuity_guidance: bosConnect.continuity_guidance, project_ref: source.project_ref,
       project_binding_id: source.project_binding_id,
       app_id: source.project_ref === `base44:${appId}` ? appId : null,
     };
@@ -100,9 +102,14 @@ export function evaluateBase44SessionMemoryActivation({
     return blocked("BLOCKED_READBACK_UNVERIFIED", ["independently_verified_identity_revision_and_manifest_hash_required"], { projectRef, appId });
   }
 
-  const speaker = serviceSpeaker(bosConnect.service_version);
-  if (bosConnect.authenticated !== true || bosConnect.platform_identity_verified !== true || !speaker) {
+  if (bosConnect.authenticated !== true || bosConnect.platform_identity_verified !== true
+    || !/^(\d+)\.(\d+)(?:\.\d+)?(?:[-+][A-Za-z0-9.-]+)?$/.test(String(bosConnect.service_version || ""))) {
     return blocked("BLOCKED_READBACK_UNVERIFIED", ["authenticated_bos_connect_currentness_required"], { projectRef, appId });
+  }
+  const governanceVersion = bosConnect.continuity_guidance?.header_profile?.governance_version;
+  const speaker = governanceSpeaker(governanceVersion);
+  if (!speaker || governanceVersion !== CONTINUITY_GUIDANCE.header_profile.governance_version) {
+    return blocked("BLOCKED_READBACK_UNVERIFIED", ["authenticated_governance_version_missing_or_conflicting"], { projectRef, appId });
   }
   if (
     bosConnect.project_binding_verified !== true
@@ -183,7 +190,7 @@ export function evaluateBase44SessionMemoryActivation({
     speaker: {
       emitted: true,
       chain: speaker,
-      version_source: "AUTHENTICATED_BOS_CONNECT_RESULT",
+      version_source: "AUTHENTICATED_CONTINUITY_GOVERNANCE_VERSION",
       proves_entitlement: false,
       proves_project_governance: false,
     },
@@ -234,21 +241,24 @@ export function buildBase44ResponseReadback(input = {}) {
   const role = roleGuidanceForPosition(currentSelection ? selection.coding_position : "UNKNOWN",
     currentSelection ? selection.confidence : "UNKNOWN");
   const version = activation.speaker.chain.match(/^BOS([0-9.]+)>/)[1];
+  const activity = {...resolveSpeakerActivityState({mode:'AUTO',state:'VERIFYING',surface:'BASE44_OWNER_ADMIN_CHAT',
+    sourceSpeakerClass:'BOS_SOURCE',evidence:currentChat}),evidence_current:currentChat};
   const value = { project_id: activation.project_ref, host: "Base44", version,
     binding: currentChat ? "CURRENT_PROJECT_READBACK" : "UNVERIFIED", dbpp_phase: assessment.assessed_phase,
     assessment_status: assessment.assessment_status, verification_status: "NOT_VERIFIED",
     header_fields: "LDP:UNKNOWN ACCESS:UNKNOWN CONN:BASE44_DIRECT GOVSRC:DIRECT_HOST",
     status_fields: { BOS: currentChat ? "✓" : "!", AUTH: "!", DEV: "!", DBPP: "!", INT: "✓", SCOPE: currentChat ? "✓" : "!",
-      CONF: "[-----]", ROUTE: "BASE44_DIRECT" }, ai_role: role, source_markers: [] };
+      CONF: "[-----]", ROUTE: "BASE44_DIRECT" }, ai_role: role, speaker_activity:activity,
+    source_markers:activity.display_token?[activity.display_token]:[] };
   const next = input.next_task;
   const advice = createNextStepResponse({ now, scopes: next ? [{ host: context.host,
     project_ref: context.project_ref, chat_ref: context.chat_ref, account_ref: context.account_ref,
     task: next.task, execution_route: next.execution_route || "NATIVE_BUILDER",
     mode: next.mode, signals: next.signals || {}, catalog: next.catalog || {}, user_choice: next.user_choice || {} }] : [] });
   value.fingerprint = sha256(JSON.stringify({ context, sourceFingerprint, policyHash, value, advice:advice.result }));
-  const header = `BOS ${value.status_fields.BOS} VER ${version} AUTH ! DEV ! DBPP ! INT ✓ SCOPE ${value.status_fields.SCOPE} CONF [-----] ROUTE:BASE44_DIRECT\n`
-    + `BIND:${value.binding} PHASE:${value.dbpp_phase}/${value.assessment_status} EVIDENCE:NOT_VERIFIED CTX:${value.fingerprint.slice(0,12)} ${value.header_fields} AI_ROLE:${role.role_id}\n`
-    + activation.speaker.chain;
+  const header = `BOS ${value.status_fields.BOS} VER ${version} AUTH ! DEV ! DBPP ! INT ✓ SCOPE ${value.status_fields.SCOPE} CONF [-----] ROUTE:BASE44_DIRECT  \n`
+    + `BIND:${value.binding} PHASE:${value.dbpp_phase}/${value.assessment_status} EVIDENCE:NOT_VERIFIED CTX:${value.fingerprint.slice(0,12)} ${value.header_fields} AI_ROLE:${role.role_id}  \n`
+    + responseSpeakerChain({version,host:'Base44',activity});
   // A missing native chat ID still fails the current-context gate. Give the
   // host an honest display without a fabricated ID or current-header evidence.
   // This pure per-call projection is never persisted as an UNKNOWN chat bucket.

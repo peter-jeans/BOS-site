@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_SESSION_MEMORY_ACTIVATION_V1",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "status": "PUBLIC_SAFE_LOCAL_CONTRACT_LIVE_VERIFICATION_PENDING",
   "purpose": "Prevent a new, resumed or context-compacted Base44 BuildAI chat from continuing governed work from chat memory alone.",
   "triggers": [
@@ -13,6 +13,7 @@
   ],
   "activation_sequence": [
     "CALL_BOS_CONNECT_AND_VERIFY_SERVICE_VERSION",
+    "VERIFY_AUTHENTICATED_CONTINUITY_GOVERNANCE_VERSION_SEPARATE_FROM_SERVICE_HEALTH",
     "VERIFY_PLATFORM_IDENTITY_AND_EXACT_APP_BINDING",
     "READ_AICONTROL_AND_GOVERNANCE_MANIFEST",
     "VERIFY_MANIFEST_HASHES_CURRENTNESS_AND_DRIFT_STATE",
@@ -138,7 +139,7 @@
         "Restore the independently approved exact identity, manifest anchor and projection revision; obtain a fresh independent current provider revision and every manifest-owned artifact as exact UTF-8 bytes.",
         "Supply the existing activation inputs plus request_context:{host:BASE44,project_ref,chat_ref,account_ref,request_hash,source_revision,observed_at}. Keep unknown chat/account controls explicitly UNKNOWN; hash this actual request locally; do not upload its text.",
         "Call createBase44ResponseReadback. A blocked activation, changed source, stale request, wrong host/app/revision or missing anchor yields no valid header. Do not fabricate a passing result.",
-        "Use its current_context and header_evidence with evaluateResponseContinuity; emit its header before body text. Preserve a real native runtime prefix when present or required; never invent one.",
+        "Use its current_context and header_evidence with evaluateResponseContinuity; emit its header before body text. Preserve a real native runtime prefix when present or required; never invent one. Preserve Markdown hard line breaks after each BOS header line; use only the authenticated governance-version projection, never service_version.",
         "Supply next_task with the actual task, native mode/route, signals and separately verified catalog/owner choices. Emit next_step_footer verbatim. Actual model/settings still need separate native readback or UNKNOWN.",
         "Supply position_selection only from the existing verified selector, bound to this project/chat/request/source fingerprint, policy_sha256 and fresh observation. Missing/stale/low-confidence selection emits UNKNOWN; a supplied role is not behaviour evidence."
       ],

@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { validateNextStepResponse } from './generated_ai_execution_footer.mjs';
 import { RESPONSE_CONTINUITY_PROFILE } from './generated_provisional_maturation_policy.js';
 import { buildBase44ResponseReadback } from './base44-session-memory-activation.mjs';
+import { resolveSpeakerActivityState } from './speaker_activity_state_model.js';
 
 export function createBase44ResponseReadback(input) {
   return buildBase44ResponseReadback(input);
@@ -67,12 +68,24 @@ export function validateResponseEnvelope(input = {}) {
   });
   if(errors.some(x=>x.startsWith('HEADER_'))) errors.push('HEADER_MISSING_OR_STALE');
   let speaker = rows[2] ?? '';
-  const marker = speaker.match(/^BOS[0-9.]+> (\[[^\]]+\]) /)?.[1];
+  const activity = v.speaker_activity;
+  const surface = {CODEX:'CODEX_GOVERNED_CHAT',CLAUDE_CODE:'CLAUDE_CODE_GOVERNED_CHAT',
+    BASE44:'BASE44_OWNER_ADMIN_CHAT'}[context.host] ?? 'UNKNOWN';
+  const activityCurrent = activity?.evidence_current === true && v.binding === 'CURRENT_PROJECT_READBACK'
+    && v.status_fields.SCOPE === '✓' && age <= 300000;
+  const resolved = resolveSpeakerActivityState({mode:activityCurrent ? activity?.mode ?? 'OFF' : 'OFF',state:activity?.state,
+    surface,sourceSpeakerClass:activity?.source_speaker_class,
+    evidence:activityCurrent});
+  if (activity && (activity.display_token !== resolved.display_token
+      || activity.emission_allowed !== resolved.emission_allowed)) errors.push('SPEAKER_ACTIVITY_READBACK_INVALID');
+  const expectedMarker = resolved.display_token;
+  const marker = speaker.match(/^BOS[0-9.]+>\s+(\[[^\]]+\])\s+/)?.[1];
   if(marker) {
-    if(v.binding !== 'CURRENT_PROJECT_READBACK' || !v.source_markers?.includes(marker)) errors.push('SPEAKER_ACTIVITY_UNSUPPORTED');
-    speaker = speaker.replace(marker+' ','');
-  }
-  const expectedSpeaker = new RegExp(`^BOS${v.version.replace(/\./g,'\\.')}>(?: BOS-[A-Za-z0-9_-]+>)* ${v.host}> user>(?:$|\\s)`);
+    if(!expectedMarker) errors.push('SPEAKER_ACTIVITY_UNSUPPORTED');
+    else if(marker !== expectedMarker) errors.push('SPEAKER_ACTIVITY_MISMATCH');
+    speaker = speaker.replace(marker,'').replace(/\s+/g,' ');
+  } else if(expectedMarker) errors.push('SPEAKER_ACTIVITY_REQUIRED');
+  const expectedSpeaker = new RegExp(`^BOS${v.version.replace(/\./g,'\\.')}>(?: BOS-[A-Za-z0-9_-]+>)* ${v.host}> user>$`);
   if(!expectedSpeaker.test(speaker) || /\[[^\]]+\]/.test(speaker)) errors.push('SPEAKER_MISSING_OR_MISPLACED');
   return [...new Set(errors)];
 }
