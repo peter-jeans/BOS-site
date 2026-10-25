@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "cloudbos-public",
+  "owner": {
+    "name": "Peter Jeans",
+    "email": "peterjeans2@gmail.com"
+  },
+  "metadata": {
+    "description": "Public-safe Cloud BOS plugins for governed software development.",
+    "version": "0.1.20-rc.13+envelope.20261025"
+  },
+  "plugins": [
+    {
+      "name": "cloudbos-public-plugin",
+      "source": "./plugins/cloudbos-public-plugin",
+      "description": "Public Cloud BOS project guidance. Preserve existing private project bindings; public installation does not migrate a project.",
+      "version": "0.1.20-rc.13+envelope.20261025"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_BETA_DISTRIBUTION_V1",
+  "version": "1.0.0",
+  "status": "PRIVATE_BETA_PACKAGING_ONLY_LIVE_ACCEPTANCE_REQUIRED",
+  "allowed_mcp_endpoints": [
+    "https://bos-live03-test.peterjeans2.workers.dev/mcp",
+    "https://bos-beta-codex-recovery.peterjeans2.workers.dev/mcp",
+    "https://bos-beta-claude-recovery.peterjeans2.workers.dev/mcp"
+  ],
+  "release_state": "SEALED_PRIVATE_BETA_LIVE_ACCEPTANCE_REQUIRED",
+  "public_release": false,
+  "live_payments": false,
+  "authentication": "HOST_BROWSER_OAUTH_NO_PACKAGED_CREDENTIALS",
+  "project_activation": "EXACT_APPROVED_PLAN_AND_PROVIDER_READBACK_REQUIRED",
+  "source_mcp_companion": "REMAINS_EMPTY",
+  "startup": {
+    "codex_and_claude": "hooks/hooks.json",
+    "base44": "WORKSPACE_SKILL_AND_NATIVE_AI_CONTROLS_AFTER_APP_ACTIVATION",
+    "first_prompt_fallback": true,
+    "hook_invocation_proves_activation": false,
+    "host_hook_trust_required": true
+  }
+}

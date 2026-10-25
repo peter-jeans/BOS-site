@@ -8,7 +8,7 @@
       "name": "cloudbos-public-plugin",
       "source": {
         "source": "local",
-        "path": "./public-plugin-releases/0.1.20-rc.12+envelope.20261025/plugins/cloudbos-public-plugin"
+        "path": "./public-plugin-releases/0.1.20-rc.13+envelope.20261025/plugins/cloudbos-public-plugin"
       },
       "policy": {
         "installation": "AVAILABLE",
