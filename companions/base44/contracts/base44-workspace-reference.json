@@ -1,6 +1,6 @@
 {
   "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_REFERENCE_V1",
-  "version": "1.43.35",
+  "version": "1.43.38",
   "authority": "PUBLIC_GUIDANCE_ONLY",
   "grants_mutation_authority": false,
   "plan_transport_and_recovery": [
@@ -328,7 +328,7 @@
     "runtime": "scripts/provisional_maturation.js",
     "workflow": "Before every substantive response and dependent action reread exact app binding, current build/state, effective DBPP, specification, intentions, exclusions and relevant gates. Use current source/manifest hashes and revision; preserve existing acceptance and decisions. Apply current continuity guidance and role duty; verify complete header and footer values separately from observed behaviour.",
     "response_validator": "scripts/base44-build-discipline.mjs:evaluateResponseContinuity",
-    "model_reasoning": "Check the complete next-task record and visible footer: host, project/chat, role, task, capability/model, current supported reasoning or UNKNOWN plus desired effort and Recommendation only. Preserve user choices, managed Discuss, true handoffs and no-next-task. Actual settings require separate current native readback or UNKNOWN.",
+    "model_reasoning": "Check the complete next-task record and visible footer: host, project/chat, role, task, capability/model, current supported reasoning or UNKNOWN plus desired effort and Recommendation only. Preserve user choices, managed Discuss, true handoffs and no-next-task. Actual settings require separate current native readback or UNKNOWN. Supply the actual next task to the existing response helper. Exact model/effort advice needs current native options scoped to this same account, host, app and chat. If unavailable, retain capability/desired-effort advice and the generated explicit catalogue-gap reason; do not silently repeat UNKNOWN. Keep task text, catalogues and owner choices local; recommendations never apply settings.",
     "enforcement": "HOST_WORKFLOW_ONLY; no native Stop or pre-display guarantee. Format, guidance/readback evidence, settings observation and target persistence remain separate.",
     "rebind": "Resume the existing exact-project lifecycle. For drift, prepare or resume an exact bound-manifest repair plan with current observed hashes and explicit approval. Preserve saved assistance-off choices.",
     "header_profile": "Current authenticated continuity profile: preserve native runtime prefix, then two BOS header lines and speaker chain. Canonical status meanings remain; DBPP readiness is separate from PHASE and EVIDENCE. Current task AI_ROLE comes from the existing selected coding position, otherwise UNKNOWN. A role never grants permission or changes model settings.",
