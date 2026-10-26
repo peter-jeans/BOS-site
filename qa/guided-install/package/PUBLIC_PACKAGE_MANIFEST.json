@@ -1,0 +1,462 @@
+{
+  "schema_version": "BOS_CLOUDBOS_PUBLIC_PACKAGE_MANIFEST_V1",
+  "generated_at": "2026-10-26T11:45:20.938Z",
+  "package_name": "cloudbos-public-plugin",
+  "package_version": "0.1.20-rc.15+install.20261026",
+  "mode": "self-service-beta",
+  "release_state": "SEALED_SELF_SERVICE_BETA_NATIVE_ACCEPTANCE_REQUIRED",
+  "owner_release_approval": "NOT_GRANTED_BY_PACKAGING",
+  "authentication": "HOST_BROWSER_OAUTH_NO_PACKAGED_CREDENTIALS",
+  "native_acceptance": "NOT_GRANTED_BY_PACKAGING",
+  "stable_public_launch": "NOT_GRANTED_BY_PACKAGING",
+  "self_service_beta_contract_sha256": "0ebcb2f1aacf067949cbc1670e8bfa44ecb20c68a3fb90867e97a20f266e9d75",
+  "source_policy": "EXACT_ALLOWLIST_UNEXPECTED_FILES_BLOCKED",
+  "symlinks": "BLOCKED",
+  "private_bos_material": "ABSENT_BY_PATH_AND_CONTENT_CHECK",
+  "mcp_server_count": 1,
+  "sealed_mcp_endpoint_sha256": "513566ba292e4c6563a6fcbebe6b2fa1b2cc0a6a827195b74964056ce1f5ab6d",
+  "package_digest_algorithm": "SHA256_CANONICAL_FILE_INVENTORY_V1",
+  "package_digest": "e97a86afe1037e34c0abf7620a78ab783b83ef3d567ecb5922d53caa0269510c",
+  "files": [
+    {
+      "path": ".agents/plugins/marketplace.json",
+      "size": 401,
+      "sha256": "9ef26305e1882a23607ae8e90a0a29752e90d184218a46d87c88247401555d41"
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "size": 667,
+      "sha256": "0c33206c555e62b2c1957ae4954bdf76ed1f9ca24577900a8b1b54c7c59a8f88"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/.claude-plugin/plugin.json",
+      "size": 664,
+      "sha256": "c06fd7a566ca4543028d7f4e0510b47cd5a0765c8702066a02d12784dc8bc4ec"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/.codex-plugin/plugin.json",
+      "size": 1801,
+      "sha256": "3cfdd23a01be7bcf03ecdab8b759141d53993ad7514fe9bfedcd6114f8daef85"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/.mcp.json",
+      "size": 139,
+      "sha256": "20dd670c0846724c5c55190c534b4211f3d3cb604e3402f3bb19972e7ee393ca"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/assets/bos-icon-512.png",
+      "size": 271889,
+      "sha256": "9ef679581952d6343737d5ea36ba5dc51a25245209bfc976778f31c087e4ca50"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/assets/bos-icon-64.png",
+      "size": 7720,
+      "sha256": "8191490cc290de96f3b8c2f0cc347e9dbcac2b8bab7c3aaf6d9f8078129f7085"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/claude-skills/bos/SKILL.md",
+      "size": 4712,
+      "sha256": "086f5089a306260ca67a75b74bdfdfeaec7a771c93dff7c85481f7b67cc43df8"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/components/BosBuilderActivation.css",
+      "size": 1045,
+      "sha256": "2a57c4a59905f480e7008e0c1c3fd6bf3e9bf6d18693db3b4cfb6a63f81980d4"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/components/BosBuilderActivation.jsx",
+      "size": 1466,
+      "sha256": "ad90a05027dddb0bb16c6ed1776f6f20730f5f3fc9899766c634bb6c96e85a2c"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/components/BosMemoryCard.css",
+      "size": 3737,
+      "sha256": "8ac4fc26477a41602651ed51bfd50ebcc619c2439c6d783f899740fcdbf6930a"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/components/BosMemoryCard.jsx",
+      "size": 5864,
+      "sha256": "579ab8374eb396f69968bdbe58ede95a005a23bc6a4b0382895e49af2e212334"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/components/builder-activation.mjs",
+      "size": 1078,
+      "sha256": "d49cd6cfb7ae4f7d683224a3cb48751f5ddb63484bfa5a8fef2669a68369cf52"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/app-memory-card.md",
+      "size": 4664,
+      "sha256": "b8b26bc762e058a4117d156402c7162dd02fb0d57e0372fcf1a5a81a73c85f99"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-app-governance-profiles.json",
+      "size": 5230,
+      "sha256": "50f6b5fedd265985069ed4e316a8c8b188ffbb9227ed95f1afb05c7b4edb60e5"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-governed-app-onboarding.json",
+      "size": 16657,
+      "sha256": "d628f4a54192fd1e45d121ba9a8e351b154ea1f9330727f501ed40b5cd76f6e8"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-host-preflight.schema.json",
+      "size": 1979,
+      "sha256": "f3b7883ace06f24dcc22ec3e5c584006c46ffb0ad9760e3c4a955a995e6493c0"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-plan-readback.json",
+      "size": 3104,
+      "sha256": "2eae0be4b135b566d5e44d48ea61b20fa11e230f60d3cccdd2aa9f2cc08c48ce"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-session-memory-activation.json",
+      "size": 12540,
+      "sha256": "5fba66ff507e590d642809649792539292f05356cfaaaeb212291aebf4dc9242"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-workspace-discovery.schema.json",
+      "size": 2325,
+      "sha256": "422425dabc684171d04df46bfadb7de155f9e35e9b59701b4e4aa3546d7adf89"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-workspace-reference.json",
+      "size": 73311,
+      "sha256": "642bd597b0c8a2b052819e29866f0c8b4e72cfd32f5821044a34a50db4729d7c"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/base44-workspace-skill.json",
+      "size": 14706,
+      "sha256": "95c02b8e6b68e1045f7ceef569aa0cd7c87e2712cd0178f98bccabe03c229d73"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/beta-distribution.json",
+      "size": 944,
+      "sha256": "e7d2218b233323b11fa9628ccc26b1211f7e3addf00bb0b9a613ea9a94899b9f"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/bos-app-page.json",
+      "size": 820,
+      "sha256": "fec0b049f3e7bca2033bab29085143e6fb94ec1e424fc323577d2b768b2a98e9"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/commercial-model.json",
+      "size": 5728,
+      "sha256": "e3c758f8036554e6968fe8837b09c67f05281f983f9d0c381aa9a59ad09b64bd"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/hook-ownership.md",
+      "size": 5533,
+      "sha256": "df10004b7ab7e179933ffffb8d7c340b1c74ce55d9eaacfbbfa8934007b129e3"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/host-adapters.json",
+      "size": 16322,
+      "sha256": "5c1eba07395b659f630217c27e943fe6cef7f8a25a6bdac770bd4fa0b73c0a09"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/hosted-surface-profile.json",
+      "size": 3002,
+      "sha256": "c16195ad906b503871ae88443a6378af0e60389f5316d3b72e33deed5d808640"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/level1-tools.json",
+      "size": 733896,
+      "sha256": "dd8a7c47c827f38b21feec7f6f7cd4ffd6b5fb9a126af1abc21d01c176a48db8"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/live-acceptance-plan.json",
+      "size": 14865,
+      "sha256": "e356f4459a5b899481001058ab3cff212be1d989cab3b4fb90bc83958e7369a7"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/local-project-bootstrap.md",
+      "size": 15421,
+      "sha256": "51892a9052eccca5c2a0c7285a0b719ee2e16712c5a38c67c1a33b81c408f03d"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/native-assistance.json",
+      "size": 4667,
+      "sha256": "4f925da72f516e147b9d0a4571b53c35bf7103b0d63b8d749354aada16770f56"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/oauth-platform-identity-bridge.json",
+      "size": 2365,
+      "sha256": "af4201746c9ca9699763a5c0989632c84678995d3bc63310dbafaab705a2ffce"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/platform-installation-lifecycle.json",
+      "size": 1134,
+      "sha256": "0ce81f4521dc9e91dfb5215d45d73fe713869c48343e636d82d0888d7c42015d"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/platform-project-binding.json",
+      "size": 5888,
+      "sha256": "990be2160df036c6ec96174181f7d4d353a848fbadd5e9b8b838f720d6c41196"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/project-connection-lifecycle.md",
+      "size": 8040,
+      "sha256": "b375a36d3e0380e8e221e806e0c7d82903c6b55a9dc56cfc9ef32cd1eeca30cf"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/project-governance-adapters.json",
+      "size": 4312,
+      "sha256": "106b27a80eb060f3759e35ee027d4d10f7ac970d9871bd9a103ca5f11f794c29"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/project-governance-lifecycle.json",
+      "size": 3967,
+      "sha256": "4554ed26420cff5d9f9b0cefd8688d55dce1120667b1891dea177843294d7ba5"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/project-governance-plan.schema.json",
+      "size": 5060,
+      "sha256": "bba5d6f8ca9a236f920c983e21dffa9ea6c2fc08accb23a79bab5f5753b9835d"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/project-governance-projection.schema.json",
+      "size": 3845,
+      "sha256": "507b0c7ba489297194c26e46c884018b47e2dd2443599db314672806d081f940"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/project-governance-readback.schema.json",
+      "size": 3092,
+      "sha256": "1bb2f3ee7bf01f0f24ab516e81eddf357e6ef4d53b78369b81b4a9268c4e79ce"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/project-governance-removal.schema.json",
+      "size": 1613,
+      "sha256": "279125a3ab291fabf8ca46cadc5378c6b0b050b3aa0d91937dad62587ef3b139"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/public-package-allowlist.json",
+      "size": 4354,
+      "sha256": "e9656bcfeef8368592ff6ea5f47b031e0c109cd25c15292247fc15ca2302b8f6"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/remote-project-visible-index.schema.json",
+      "size": 2202,
+      "sha256": "66ec31e7a46a68c122cd15125dc9cc73df3fb36d78e1ae15bf54c5a43d69447b"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/self-service-beta-distribution.json",
+      "size": 1532,
+      "sha256": "0ebcb2f1aacf067949cbc1670e8bfa44ecb20c68a3fb90867e97a20f266e9d75"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/support-incident-readiness.json",
+      "size": 5867,
+      "sha256": "5a3ff797f761888751735f246614738768d0ca912e47277217d6522338260679"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/support-route.schema.json",
+      "size": 1600,
+      "sha256": "2ebb5d91872d03b75ed5f397b000cdc84c4610702a67038e29235ff8dd611302"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/contracts/tier-capabilities.json",
+      "size": 1583,
+      "sha256": "9d4289701bb018bf2cea9dcbeb276eb943585a617b29e728f84b6100186b0259"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/hooks/codex-hooks.json",
+      "size": 2591,
+      "sha256": "312c8728cedc2ae65aec08d6e4dc8e29cdc03ae2be9a4412f3c8619d685d586b"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/hooks/hooks.json",
+      "size": 3081,
+      "sha256": "fb154a314332e559e8c054358083ecdfb6509cb5af125c41a08f848794578d11"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/hooks/ownership.json",
+      "size": 2322,
+      "sha256": "e2a28bda77988bc605c3ac39cc31d1f78555c12384000f6f47b701fa89d75e36"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/PUBLIC_BOUNDARY.md",
+      "size": 6306,
+      "sha256": "8ea1859d0e161931daea7be2d75a2869a3b8eda1ce81a57fee978de2a2373e6d"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/README.md",
+      "size": 33759,
+      "sha256": "f665eac4892cce775180e4f7e06f559bb3176513b4de5dcfd071b11a9397e790"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/RELEASE_CHECKLIST.md",
+      "size": 7956,
+      "sha256": "d1d02e943aa0cfaffe1aba28c5c5ecca89877def43b1b852250905a31ab9a374"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/app-memory-summary.mjs",
+      "size": 7191,
+      "sha256": "5fc119ab16c6802b0b2d352b64adee09e92dc6a612123ae758583d428d197afc"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/approval-lifecycle.mjs",
+      "size": 1404,
+      "sha256": "b8b285f69ce8c5aa5722623e4e30220c9655d8d48891bfe301343971e8f33e32"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-app-governance-profile.mjs",
+      "size": 84079,
+      "sha256": "21cc0a12c4cd1cc80c3c10bc14730fae5b9521877d7ea3a7d803e6325f3168ae"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-build-discipline.cjs",
+      "size": 82174,
+      "sha256": "9c0a6289424ac42f597514a9f8419a7549073c5d20970d7915af9413f567af50"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-build-discipline.mjs",
+      "size": 37448,
+      "sha256": "f1eece22ab692bd868dd8427b047905c04ca91e293b574f16c0d091b224437d9"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-governed-app-onboarding.mjs",
+      "size": 19870,
+      "sha256": "5372337285fb6a2e37d0b390aeed2cb642242bdb6fe56263a4c6d673d893c3d2"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-plan-readback.cjs",
+      "size": 104221,
+      "sha256": "631a7d1c3be264c3d559c9fe8e7feb3061f3ae75ed475b7a4a8c07b1bdb3c0da"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-plan-readback.mjs",
+      "size": 6821,
+      "sha256": "f46dd5fb4eca3b699c5e2da6c0b27238bb3b9d15b23c8c408021d57658126d61"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-session-memory-activation.mjs",
+      "size": 17435,
+      "sha256": "ca2c6d35e73f723b0c19ae3c8f16b7552bd7198d75524a6d993c64ec387b9369"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-update-request.cjs",
+      "size": 23629,
+      "sha256": "2fe6dc94b28220d16d95ced2bb6f7b26c4ff0b4941ecb5ba6fc7cc1a48d23c52"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/base44-update-request.mjs",
+      "size": 23324,
+      "sha256": "de35c9fb788ac712ae9c1c9440ead03dba1be8204fcba9368ee0661762ef4cb7"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/bos_claude_hook_readback.mjs",
+      "size": 5460,
+      "sha256": "31b24665365acbee4c2a69a08647bc3e378be66c65b1dad46595f5c6ef0b7998"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/bos_hook_ownership.mjs",
+      "size": 16683,
+      "sha256": "231fa1ea0586f71630e705285d465465155eedae7cfd0513ff39683dada01e22"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/bos-page-readback.mjs",
+      "size": 1627,
+      "sha256": "28f235062fc12695faa5b34c6dda2a412c3a04a6b6384ff255490e673e2084d3"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/generated_ai_execution_footer.cjs",
+      "size": 20712,
+      "sha256": "7812ec68d63e06f73089dae341113a9e36fc029dc603731163b00c3e5c134e91"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/generated_ai_execution_footer.mjs",
+      "size": 20611,
+      "sha256": "6185a0e8cf618eb5deb6267f04f01aeea00b322cf7916ea04c6c5164ae433908"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/generated_provisional_maturation_policy.js",
+      "size": 11850,
+      "sha256": "656401d7230ab96bd1ce692bedf1ecbc898157803fc72bca235ff32d1406cb96"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/github-exact-ref-api.mjs",
+      "size": 12843,
+      "sha256": "61541968720af3305d5ccead47fe5142778b8df80ec2d4bc4718ed215276a881"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/host-adapter.mjs",
+      "size": 46030,
+      "sha256": "7d362c27249f46b3f8092638a127ccbe7b7095f25be713e7df06075e42ec7340"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/local-project-bootstrap.mjs",
+      "size": 18767,
+      "sha256": "297806fe3852d26d7bee2f0560aa22603b3b147ef1313c87ec3e8c76cb15401a"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/native-assistance.mjs",
+      "size": 31987,
+      "sha256": "310ede3cb84f2ae9196c6e5526edfe152209ef4d3c609fb81215a72ca9e019b5"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/native-response-readback.mjs",
+      "size": 18374,
+      "sha256": "817a2a5fb7b1d9be13128e0de1506b87d32c53d9ee6611c1c4ea1929eb2d0dfb"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/project-adapter-discovery.mjs",
+      "size": 7116,
+      "sha256": "80e8d65b5326902dc49f1b5e02c9e0c0e68d40c3a5d325150ba554eaf8532e11"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/project-baseline.mjs",
+      "size": 6089,
+      "sha256": "9d5c5fdca7bbab92ee187964dc2c40d742162381fbd8a51826fb845f50bfdec7"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/project-connection.mjs",
+      "size": 12138,
+      "sha256": "0fc1099c6f5b58b5e291ecc06122dd1c0ea7d9de56df3594f743a403e6615480"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/project-governance-adapters.mjs",
+      "size": 11610,
+      "sha256": "7b28fae3e7e708427bf95b653e82dcfb16a018a6ea56668ac5c23ffd97341d50"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/project-governance.mjs",
+      "size": 40889,
+      "sha256": "4eb530bb0323e8ea800e242a0ef6592134c555b17304376699043f2da95373cc"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/provisional_maturation.js",
+      "size": 11901,
+      "sha256": "13997586e3633da8e781324ae12d5691ffdc7e395f60623f94449bec394cb9ff"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/remote-project-visible-api.mjs",
+      "size": 10455,
+      "sha256": "4ce7563540b2ce239b99bf584ac3a5db2775835cd844d9b84244175455ab6b83"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/session-bootstrap.mjs",
+      "size": 1654,
+      "sha256": "7bb5e26986bff1ea60b4fcc959936858d170fa423fa8b8523a1fcd489ab7c891"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/speaker_activity_state_model.js",
+      "size": 3564,
+      "sha256": "279554d8e35cc07af8f3c15f84fb745dcaf98153a0168d62273bb3e34198ae89"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/skills/cloudbos-public-guide/SKILL.md",
+      "size": 43754,
+      "sha256": "50b9e090d198788c9cea176c06519347bf9839200a574921987195bb4491b4ec"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/templates/base44-status-surface.json",
+      "size": 221588,
+      "sha256": "dc705fbb2a0b64e58095cd820486caef6e18da59449b79cf750e17c19ae06588"
+    },
+    {
+      "path": "README.md",
+      "size": 967,
+      "sha256": "ffdfbf247ab5777e141a0857458a063969869b0b16a0bd6deda36bb9fe9cca68"
+    }
+  ]
+}

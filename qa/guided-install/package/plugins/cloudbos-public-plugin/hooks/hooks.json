@@ -1,0 +1,93 @@
+{
+  "description": "Project-scoped assistance choices and bounded proactive context; no service calls or trust bypass.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host claude_code",
+            "timeout": 5,
+            "statusMessage": "BOS / Public / cloudbos-public-plugin — Read project and assistance settings at startup"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host claude_code",
+            "timeout": 5,
+            "statusMessage": "BOS / Public / cloudbos-public-plugin — Check assistance requests and relevant guidance"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": ".*cloudbos.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host claude_code",
+            "timeout": 5,
+            "statusMessage": "BOS / Public / cloudbos-public-plugin — Check project and assistance settings before Cloud calls"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|apply_patch|exec_command|functions\\.exec_command|functions\\.apply_patch|.*cloudbos.*__bos_assistance_preference",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host claude_code",
+            "timeout": 5,
+            "statusMessage": "BOS / Public / cloudbos-public-plugin — Check tool results and repeated failures"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host claude_code",
+            "timeout": 5,
+            "statusMessage": "BOS / Public / cloudbos-public-plugin — Clear one-request assistance state"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host claude_code",
+            "timeout": 5,
+            "statusMessage": "BOS / Public / cloudbos-public-plugin — Remove temporary session records"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host claude_code",
+            "timeout": 5,
+            "statusMessage": "BOS / Public / cloudbos-public-plugin — Check repeated tool failures"
+          }
+        ]
+      }
+    ]
+  }
+}

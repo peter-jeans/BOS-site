@@ -1,0 +1,44 @@
+name: BOS guided install native qualification
+on:
+  push:
+    branches: [codex/bos-guided-install-20261026]
+    paths:
+      - 'qa/guided-install/**'
+      - '.github/workflows/bos-guided-install-native.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bos-guided-install-native-qualification
+  cancel-in-progress: false
+jobs:
+  native-windows:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - name: Read the exact public qualification commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Use a pinned test runtime
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.22.1'
+      - name: Install the pinned vendor CLI in the disposable runner
+        shell: pwsh
+        run: |
+          $vendorPrefix = Join-Path $env:RUNNER_TEMP 'BOS Vendor Tools'
+          npm install --prefix $vendorPrefix --no-audit --no-fund @openai/codex@0.163.0
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $nativeCandidates = @(Get-ChildItem (Join-Path $vendorPrefix 'node_modules/@openai') -Recurse -Filter codex.exe | Where-Object { $_.FullName -match 'x86_64-pc-windows-msvc' })
+          if ($nativeCandidates.Count -ne 1) { throw 'One exact native Windows x64 Codex executable required' }
+          "BOS_TEST_CODEX=$($nativeCandidates[0].FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Verify fail-closed approval and transport controls
+        shell: pwsh
+        run: |
+          node --test qa/guided-install/scripts/test_cloudbos_setup_codex_native.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Test genuine native installation and untrusted-hook hold
+        shell: pwsh
+        run: |
+          node qa/guided-install/scripts/qualify_cloudbos_guided_native.mjs --codex "$env:BOS_TEST_CODEX" --setup qa/guided-install/installers/cloudbos-setup --bundle qa/guided-install/package --output (Join-Path $env:RUNNER_TEMP 'bos-native-receipt.json')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
