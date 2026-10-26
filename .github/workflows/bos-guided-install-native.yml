@@ -64,6 +64,11 @@ jobs:
         run: |
           node --test qa/runtime-cache/scripts/test_cloudbos_setup_runtime.mjs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify pinned-runtime hook bootstraps without system Node
+        shell: pwsh
+        run: |
+          node --test qa/runtime-cache/scripts/test_cloudbos_setup_bootstrap.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Test genuine native installation and untrusted-hook hold
         shell: pwsh
         run: |
