@@ -77,6 +77,7 @@ if (checkpoint.status !== 'WAITING_NATIVE_HOOK_APPROVAL' || checkpoint.may_start
   // These are only disposable public-package metadata paths/commands. Never
   // log configuration, auth responses, prompts or arbitrary vendor stderr.
   console.log('BOS_NATIVE_METADATA_DIAGNOSTIC ' + JSON.stringify({checkpoint, cwd,
+    first_native_key: group.hooks[0]?.key, first_native_hash: group.hooks[0]?.currentHash,
     hooks: group.hooks.map(hook => ({event: hook.eventName, source: hook.source, sourcePath: hook.sourcePath,
       command: hook.command, matcher: hook.matcher, handlerType: hook.handlerType,
       timeoutSec: hook.timeoutSec, async: hook.async, statusMessage: hook.statusMessage,
