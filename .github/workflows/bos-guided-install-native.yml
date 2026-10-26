@@ -54,6 +54,30 @@ jobs:
           $nativeCandidates = @(Get-ChildItem (Join-Path $vendorPrefix 'node_modules/@openai') -Recurse -Filter codex.exe | Where-Object { $_.FullName -match 'x86_64-pc-windows-msvc' })
           if ($nativeCandidates.Count -ne 1) { throw 'One exact native Windows x64 Codex executable required' }
           "BOS_TEST_CODEX=$($nativeCandidates[0].FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Verify and stage the exact private setup CLI
+        shell: pwsh
+        run: |
+          if ((Get-FileHash $env:BOS_TEST_CODEX -Algorithm SHA256).Hash.ToLowerInvariant() -ne '2692c8c7bb2cf8b0aefe638741fc90236f4b824c59578ce84994f9de58200993') { throw 'CLI executable differs from pinned public package' }
+          $signature = Get-AuthenticodeSignature $env:BOS_TEST_CODEX
+          if ($signature.Status -notin @('Valid','NotSigned')) { throw "Unexpected CLI signature status: $($signature.Status)" }
+          $cliSource = Join-Path $env:RUNNER_TEMP 'BOS Setup CLI Source'
+          New-Item -ItemType Directory -Path $cliSource | Out-Null
+          Copy-Item $env:BOS_TEST_CODEX (Join-Path $cliSource 'codex.exe')
+          Copy-Item qa/runtime-cache/licenses/codex/LICENSE (Join-Path $cliSource 'LICENSE')
+          Copy-Item qa/runtime-cache/licenses/codex/NOTICE (Join-Path $cliSource 'NOTICE')
+          "BOS_SETUP_CLI_TEST_VENDOR_ROOT=$cliSource" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          'BOS_SETUP_CLI_TEST_PROFILE=win32-x64' | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Output ('BOS_VENDOR_CLI_RESULT ' + (@{platform='win32';architecture='x64';version='0.163.0';binary_sha256='2692c8c7bb2cf8b0aefe638741fc90236f4b824c59578ce84994f9de58200993';signature_status=$signature.Status.ToString();signer_subject=$signature.SignerCertificate.Subject;installed_systemwide=$false} | ConvertTo-Json -Compress))
+      - name: Verify the private CLI cache with the real vendor payload
+        shell: pwsh
+        run: |
+          node --test qa/runtime-cache/scripts/test_cloudbos_setup_cli.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Install with private dependencies and no system CLI on PATH
+        shell: pwsh
+        run: |
+          node qa/runtime-cache/scripts/qualify_cloudbos_setup_dependencies.mjs --runtime-source "$env:BOS_RUNTIME_TEST_VENDOR_ROOT" --cli-source "$env:BOS_SETUP_CLI_TEST_VENDOR_ROOT" --qualifier qa/guided-install/scripts/qualify_cloudbos_guided_native.mjs --setup qa/guided-install/installers/cloudbos-setup --bundle qa/guided-install/package --output (Join-Path $env:RUNNER_TEMP 'bos-private-dependency-receipt.json')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Verify fail-closed approval and transport controls
         shell: pwsh
         run: |
