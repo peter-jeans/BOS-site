@@ -1,6 +1,6 @@
 {
   "name": "cloudbos-public-plugin",
-  "version": "0.1.20-rc.16+setup.20261027",
+  "version": "0.1.20-rc.17+runtime.20261027",
   "description": "Public-safe Cloud BOS plugin under development, isolated from the private owner connector and private BOS internals.",
   "author": {
     "name": "Peter Jeans",

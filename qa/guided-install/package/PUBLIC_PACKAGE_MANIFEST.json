@@ -1,8 +1,8 @@
 {
   "schema_version": "BOS_CLOUDBOS_PUBLIC_PACKAGE_MANIFEST_V1",
-  "generated_at": "2026-10-26T20:38:02.739Z",
+  "generated_at": "2026-10-26T21:21:18.729Z",
   "package_name": "cloudbos-public-plugin",
-  "package_version": "0.1.20-rc.16+setup.20261027",
+  "package_version": "0.1.20-rc.17+runtime.20261027",
   "mode": "self-service-beta",
   "release_state": "SEALED_SELF_SERVICE_BETA_NATIVE_ACCEPTANCE_REQUIRED",
   "owner_release_approval": "NOT_GRANTED_BY_PACKAGING",
@@ -16,7 +16,7 @@
   "mcp_server_count": 1,
   "sealed_mcp_endpoint_sha256": "513566ba292e4c6563a6fcbebe6b2fa1b2cc0a6a827195b74964056ce1f5ab6d",
   "package_digest_algorithm": "SHA256_CANONICAL_FILE_INVENTORY_V1",
-  "package_digest": "ab8b50c2b6ccaa8066e3a5901d26d36cb002543c966c56c32a7fa4267a7233f5",
+  "package_digest": "e41a579f97f4fb788f210b9100d36b55b07d81de94d31ccf3253a1bddb51f612",
   "files": [
     {
       "path": ".agents/plugins/marketplace.json",
@@ -25,18 +25,18 @@
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "size": 663,
-      "sha256": "cc31375daa24f5c053f826e536f98e50e96fa61418b648a4f6a36ef5eb75f06d"
+      "size": 667,
+      "sha256": "d142a370bccf5b2f0122fa0c2129b597fc18bb9d37cffb0fae4ba35bdbe59f34"
     },
     {
       "path": "plugins/cloudbos-public-plugin/.claude-plugin/plugin.json",
-      "size": 662,
-      "sha256": "a9bf91e1d8348af61c493e56787467a626c68dd7801b098cf2fa9696e66d152a"
+      "size": 664,
+      "sha256": "472b80820125e6a31011410fc71f48de774f4ef3a6bdf3b455e216a8b20103b1"
     },
     {
       "path": "plugins/cloudbos-public-plugin/.codex-plugin/plugin.json",
-      "size": 1915,
-      "sha256": "13ec7f444a6096f2df8cd9066ff50b6f231fc41c5d5570ab094f690398243e29"
+      "size": 1917,
+      "sha256": "d686e3c0d71a2ca2c10d7912c92ae9d70cc9a6fdf031c5ecf5869dd49cd57780"
     },
     {
       "path": "plugins/cloudbos-public-plugin/.mcp.json",
@@ -230,8 +230,8 @@
     },
     {
       "path": "plugins/cloudbos-public-plugin/contracts/public-package-allowlist.json",
-      "size": 4354,
-      "sha256": "e9656bcfeef8368592ff6ea5f47b031e0c109cd25c15292247fc15ca2302b8f6"
+      "size": 4423,
+      "sha256": "29f913e2e9e3e235c5309afa830a18ca24b6d00c9a6927ed6778158e356354e8"
     },
     {
       "path": "plugins/cloudbos-public-plugin/contracts/remote-project-visible-index.schema.json",
@@ -260,8 +260,8 @@
     },
     {
       "path": "plugins/cloudbos-public-plugin/hooks/codex-hooks.json",
-      "size": 2591,
-      "sha256": "312c8728cedc2ae65aec08d6e4dc8e29cdc03ae2be9a4412f3c8619d685d586b"
+      "size": 3221,
+      "sha256": "6c026949d989e6ca1327f8eeac30be45754868f0121c299be438be8f2cbec5a5"
     },
     {
       "path": "plugins/cloudbos-public-plugin/hooks/hooks.json",
@@ -270,8 +270,8 @@
     },
     {
       "path": "plugins/cloudbos-public-plugin/hooks/ownership.json",
-      "size": 2320,
-      "sha256": "555fd829a800aacc31aed85eeee35331a10c835113d10bc682bc9ba223dd77dc"
+      "size": 2322,
+      "sha256": "7c2bee19223ed3671f1d67a11eda34ad3aa2a0e971f0384d2b3667bad8cbb965"
     },
     {
       "path": "plugins/cloudbos-public-plugin/PUBLIC_BOUNDARY.md",
@@ -280,8 +280,8 @@
     },
     {
       "path": "plugins/cloudbos-public-plugin/README.md",
-      "size": 34037,
-      "sha256": "82ea546905af19d24143395a3f14e30c388c4db1ada198573962b893fc88ef31"
+      "size": 34461,
+      "sha256": "bb8912b95b31727bedfbcbc36b8c045ec704c4b64fb02b964f98591b323e00fc"
     },
     {
       "path": "plugins/cloudbos-public-plugin/RELEASE_CHECKLIST.md",
@@ -342,6 +342,16 @@
       "path": "plugins/cloudbos-public-plugin/scripts/base44-update-request.mjs",
       "size": 23324,
       "sha256": "de35c9fb788ac712ae9c1c9440ead03dba1be8204fcba9368ee0661762ef4cb7"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/bootstrap-codex.cmd",
+      "size": 2160,
+      "sha256": "f458c9ee8274f7a2484f574f8f4c7e5b84d2b0746a6ecb5094b1730d5af08872"
+    },
+    {
+      "path": "plugins/cloudbos-public-plugin/scripts/bootstrap-codex.sh",
+      "size": 1987,
+      "sha256": "4f5766316e6bba2d8e07b4904893a18992ec8bf6007d790dc48a268fd9732aeb"
     },
     {
       "path": "plugins/cloudbos-public-plugin/scripts/bos_claude_hook_readback.mjs",

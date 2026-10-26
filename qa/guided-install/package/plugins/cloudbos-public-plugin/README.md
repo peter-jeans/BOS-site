@@ -4,7 +4,7 @@ Status: `SELF_SERVICE_BETA_PACKAGE_PREPARED / CODEX_CLAUDE_BASE44_TARGETS / CURR
 
 ## Prepared self-service beta
 
-Source version: `0.1.20-rc.16+setup.20261027` for both Codex and Claude manifests.
+Source version: `0.1.20-rc.17+runtime.20261027` for both Codex and Claude manifests.
 This prepares a public-safe self-registration beta distribution. It does not
 publish a download, install a plugin, activate a project, qualify a native host,
 accept terms, grant access or authorize a stable/paid launch.
@@ -27,6 +27,12 @@ sign in through My BOS and native browser OAuth, then guided project setup.
 New Codex marketplace packages defer authentication until use; the guided setup
 checks exact native hook approval before offering sign-in. Desktop-only runtime,
 native trust, owner registration and actual behaviour still require qualification.
+This candidate requires the pinned private Node runtime supplied by the guided
+installer. Codex hooks use small Mac/Windows bootstraps; they do not select an
+arbitrary system Node. A missing or changed runtime pauses dependent Cloud calls
+and provides a repair notice. Existing private/local project markers refuse the
+public route. Older sealed candidates remain unchanged; this candidate is not
+yet a customer download.
 Other hosts retain their separately qualified connection flow.
 The Codex manifest now declares the existing public guide as its native setup
 skill. This is a packaged entry point; an actual desktop Setup invocation still

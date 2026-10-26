@@ -7,9 +7,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host codex",
+            "command": "sh \"${PLUGIN_ROOT}/scripts/bootstrap-codex.sh\" SessionStart",
             "timeout": 5,
-            "statusMessage": "BOS / Public / cloudbos-public-plugin — Read project and assistance settings at startup"
+            "statusMessage": "BOS / Public / cloudbos-public-plugin \u2014 Read project and assistance settings at startup",
+            "commandWindows": "cmd.exe /d /s /c call \"${PLUGIN_ROOT}/scripts/bootstrap-codex.cmd\" SessionStart"
           }
         ]
       }
@@ -19,9 +20,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host codex",
+            "command": "sh \"${PLUGIN_ROOT}/scripts/bootstrap-codex.sh\" UserPromptSubmit",
             "timeout": 5,
-            "statusMessage": "BOS / Public / cloudbos-public-plugin — Check assistance requests and relevant guidance"
+            "statusMessage": "BOS / Public / cloudbos-public-plugin \u2014 Check assistance requests and relevant guidance",
+            "commandWindows": "cmd.exe /d /s /c call \"${PLUGIN_ROOT}/scripts/bootstrap-codex.cmd\" UserPromptSubmit"
           }
         ]
       }
@@ -32,9 +34,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host codex",
+            "command": "sh \"${PLUGIN_ROOT}/scripts/bootstrap-codex.sh\" PreToolUse",
             "timeout": 5,
-            "statusMessage": "BOS / Public / cloudbos-public-plugin — Check project and assistance settings before Cloud calls"
+            "statusMessage": "BOS / Public / cloudbos-public-plugin \u2014 Check project and assistance settings before Cloud calls",
+            "commandWindows": "cmd.exe /d /s /c call \"${PLUGIN_ROOT}/scripts/bootstrap-codex.cmd\" PreToolUse"
           }
         ]
       }
@@ -45,9 +48,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host codex",
+            "command": "sh \"${PLUGIN_ROOT}/scripts/bootstrap-codex.sh\" PostToolUse",
             "timeout": 5,
-            "statusMessage": "BOS / Public / cloudbos-public-plugin — Check tool results and repeated failures"
+            "statusMessage": "BOS / Public / cloudbos-public-plugin \u2014 Check tool results and repeated failures",
+            "commandWindows": "cmd.exe /d /s /c call \"${PLUGIN_ROOT}/scripts/bootstrap-codex.cmd\" PostToolUse"
           }
         ]
       }
@@ -57,9 +61,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host codex",
+            "command": "sh \"${PLUGIN_ROOT}/scripts/bootstrap-codex.sh\" Stop",
             "timeout": 5,
-            "statusMessage": "BOS / Public / cloudbos-public-plugin — Clear one-request assistance state"
+            "statusMessage": "BOS / Public / cloudbos-public-plugin \u2014 Clear one-request assistance state",
+            "commandWindows": "cmd.exe /d /s /c call \"${PLUGIN_ROOT}/scripts/bootstrap-codex.cmd\" Stop"
           }
         ]
       }
@@ -69,9 +74,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${PLUGIN_ROOT}/scripts/bos_hook_ownership.mjs\" run --host codex",
+            "command": "sh \"${PLUGIN_ROOT}/scripts/bootstrap-codex.sh\" SessionEnd",
             "timeout": 3,
-            "statusMessage": "BOS / Public / cloudbos-public-plugin — Remove temporary session records"
+            "statusMessage": "BOS / Public / cloudbos-public-plugin \u2014 Remove temporary session records",
+            "commandWindows": "cmd.exe /d /s /c call \"${PLUGIN_ROOT}/scripts/bootstrap-codex.cmd\" SessionEnd"
           }
         ]
       }

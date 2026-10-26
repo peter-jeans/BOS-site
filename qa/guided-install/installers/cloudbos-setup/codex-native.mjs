@@ -25,7 +25,7 @@ async function regularFile(filename, limit = 262144) {
 
 // The caller must first verify the complete immutable public package inventory.
 // This readback binds its hook definitions to the independently verified root.
-export async function expectedCodexHooks({pluginRoot, pluginId, pluginVersion, hookSourceSha256}) {
+export async function expectedCodexHooks({pluginRoot, pluginId, pluginVersion, hookSourceSha256, platform = process.platform}) {
   pluginRoot = localPath(pluginRoot);
   if (await fs.realpath(pluginRoot) !== pluginRoot || !pluginId?.startsWith(NAME + '@')
     || !/^[a-zA-Z0-9._-]+$/.test(pluginId.slice(NAME.length + 1))) fail('EXACT_PUBLIC_PLUGIN_REQUIRED');
@@ -44,9 +44,12 @@ export async function expectedCodexHooks({pluginRoot, pluginId, pluginVersion, h
       for (const hook of group.hooks) {
         if (hook.type !== 'command' || typeof hook.command !== 'string'
           || !hook.command.includes('${PLUGIN_ROOT}')) fail('PUBLIC_HOOK_PROFILE_CHANGED');
+        if (hook.commandWindows !== undefined && (typeof hook.commandWindows !== 'string'
+          || !hook.commandWindows.includes('${PLUGIN_ROOT}'))) fail('PUBLIC_HOOK_PROFILE_CHANGED');
         if (event === 'SessionEnd' && (!Number.isInteger(hook.timeout) || hook.timeout < 1 || hook.timeout > 3)) fail('PUBLIC_HOOK_TIMEOUT_UNSUPPORTED');
+        const command = platform === 'win32' ? hook.commandWindows ?? hook.command : hook.command;
         definitions.push({eventName: eventName(event), matcher: group.matcher ?? null,
-          command: hook.command.replaceAll('${PLUGIN_ROOT}', pluginRoot),
+          command: command.replaceAll('${PLUGIN_ROOT}', pluginRoot),
           timeoutSec: hook.timeout ?? 600, async: hook.async ?? false,
           statusMessage: hook.statusMessage ?? null, additionalContextLimit: hook.additionalContextLimit ?? null});
       }

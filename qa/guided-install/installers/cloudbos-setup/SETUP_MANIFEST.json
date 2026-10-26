@@ -20,11 +20,11 @@
     },
     {
       "path": "codex-native.mjs",
-      "sha256": "7fa383d9048ad1ea0fa07b671c9f70ec41375dc51f7c873960945f53ff7052e0"
+      "sha256": "7a5a5f01438a6b7b1a478b1ad64d7d9d4e190cb134ab25cf1356af0a5f27b042"
     },
     {
       "path": "release.json",
-      "sha256": "fba60d9e7523332e413e9410672d35ab5d47022bac2babe47d8610d6b9f0389a"
+      "sha256": "a393e220423fac1b54dd2e4d9f1f89e87b1d72ccd96abc4eef50f4a25cee8af0"
     },
     {
       "path": "setup.mjs",

@@ -3,7 +3,7 @@
   "protocol": 1,
   "family": "cloudbos-public-plugin",
   "route": "public",
-  "version": "0.1.20-rc.16+setup.20261027",
+  "version": "0.1.20-rc.17+runtime.20261027",
   "channel": "candidate",
   "handlers": {
     "codex": {

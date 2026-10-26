@@ -91,6 +91,29 @@ test('missing or extra lifecycle event cannot be certified as the full public ho
   } finally {await fs.writeFile(filename, original);}
 });
 
+test('native Windows command override is bound to its source and never used for Mac', async () => {
+  const filename = path.join(root, 'hooks', 'codex-hooks.json'), original = await fs.readFile(filename);
+  try {
+    const config = JSON.parse(original);
+    for (const groups of Object.values(config.hooks)) groups[0].hooks[0].commandWindows =
+      'cmd.exe /d /s /c call "${PLUGIN_ROOT}/scripts/bootstrap-codex.cmd" SessionStart';
+    const bytes = JSON.stringify(config); await fs.writeFile(filename, bytes);
+    const input = {...options, hookSourceSha256: digest(bytes)};
+    const windows = await expectedCodexHooks({...input, platform: 'win32'});
+    const mac = await expectedCodexHooks({...input, platform: 'darwin'});
+    assert.ok(windows.definitions.every(d => d.command.startsWith('cmd.exe ')));
+    assert.ok(mac.definitions.every(d => d.command.startsWith('node ')));
+    const native = readback();
+    for (let i = 0; i < native.data[0].hooks.length; i++) Object.assign(native.data[0].hooks[i], windows.definitions[i]);
+    assert.equal(assessCodexHooks(native, {cwd, expected: windows}).may_start_sign_in, true);
+    assert.equal(assessCodexHooks(native, {cwd, expected: mac}).may_start_sign_in, false);
+    config.hooks.Stop[0].hooks[0].commandWindows = 'arbitrary executable';
+    const changed = JSON.stringify(config); await fs.writeFile(filename, changed);
+    await assert.rejects(expectedCodexHooks({...options, hookSourceSha256: digest(changed), platform: 'darwin'}),
+      codeIs('PUBLIC_HOOK_PROFILE_CHANGED'));
+  } finally {await fs.writeFile(filename, original);}
+});
+
 const rowCases = [
   ['disabled', {enabled: false}, 'WAITING_NATIVE_HOOK_ENABLEMENT'],
   ['untrusted', {trustStatus: 'untrusted'}, 'WAITING_NATIVE_HOOK_APPROVAL'],
