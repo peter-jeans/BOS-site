@@ -1,0 +1,2 @@
+# Sealed qualification payloads must retain the exact publisher bytes.
+* -text
