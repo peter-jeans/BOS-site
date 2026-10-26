@@ -4,6 +4,7 @@ on:
     branches: [codex/bos-guided-install-20261026]
     paths:
       - 'qa/guided-install/**'
+      - 'qa/runtime-cache/**'
       - '.github/workflows/bos-guided-install-native.yml'
 permissions:
   contents: read
@@ -35,6 +36,12 @@ jobs:
           if ((Get-FileHash $node -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'd702daa815eabbff763c7d3808e235cf031cf2ca70211b56847bc72f51e240e5') { throw 'Node executable differs from pinned payload' }
           $signature = Get-AuthenticodeSignature $node
           if ($signature.Status -ne 'Valid') { throw "Node publisher signature status: $($signature.Status)" }
+          $sourceSubset = Join-Path $env:RUNNER_TEMP 'BOS Runtime Source'
+          New-Item -ItemType Directory -Path $sourceSubset | Out-Null
+          Copy-Item $node (Join-Path $sourceSubset 'node.exe')
+          Copy-Item (Join-Path $runtimeRoot 'node-v24.22.1-win-x64/LICENSE') (Join-Path $sourceSubset 'LICENSE')
+          "BOS_RUNTIME_TEST_VENDOR_ROOT=$sourceSubset" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          'BOS_RUNTIME_TEST_PROFILE=win32-x64' | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           $version = & $node --version
           if ($LASTEXITCODE -ne 0 -or $version -ne 'v24.22.1') { throw 'Pinned runtime version probe failed' }
           Write-Output ('BOS_VENDOR_RUNTIME_RESULT ' + (@{platform='win32';architecture='x64';version=$version;archive_sha256='d2046d28c2c3dcd211ac5145c0bf30e2047ef9dfb306693c8c6e2eccd8b95fa5';binary_sha256='d702daa815eabbff763c7d3808e235cf031cf2ca70211b56847bc72f51e240e5';signature_status=$signature.Status.ToString();signer_subject=$signature.SignerCertificate.Subject;installed_systemwide=$false} | ConvertTo-Json -Compress))
@@ -51,6 +58,11 @@ jobs:
         shell: pwsh
         run: |
           node --test qa/guided-install/scripts/test_cloudbos_setup_codex_native.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify the private runtime cache with the real signed vendor payload
+        shell: pwsh
+        run: |
+          node --test qa/runtime-cache/scripts/test_cloudbos_setup_runtime.mjs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Test genuine native installation and untrusted-hook hold
         shell: pwsh
