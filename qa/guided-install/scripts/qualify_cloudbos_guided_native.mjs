@@ -73,7 +73,16 @@ if (!group || group.errors?.length || group.warnings?.length || group.hooks?.len
   || group.hooks.some(hook => hook.enabled !== true || hook.trustStatus !== 'untrusted')) throw Error('CLEAN_NATIVE_HOOK_REVIEW_REQUIRED');
 const checkpoint = await installedSignInCheckpoint({executable: args['--codex'], cwd, verifiedPackage: pkg,
   pluginId: installed.pluginId, pluginVersion: release.plugin_version, nativeRead});
-if (checkpoint.status !== 'WAITING_NATIVE_HOOK_APPROVAL' || checkpoint.may_start_sign_in !== false) throw Error('UNTRUSTED_HOOKS_DID_NOT_HOLD_SIGN_IN');
+if (checkpoint.status !== 'WAITING_NATIVE_HOOK_APPROVAL' || checkpoint.may_start_sign_in !== false) {
+  // These are only disposable public-package metadata paths/commands. Never
+  // log configuration, auth responses, prompts or arbitrary vendor stderr.
+  console.log('BOS_NATIVE_METADATA_DIAGNOSTIC ' + JSON.stringify({checkpoint, cwd,
+    hooks: group.hooks.map(hook => ({event: hook.eventName, source: hook.source, sourcePath: hook.sourcePath,
+      command: hook.command, matcher: hook.matcher, handlerType: hook.handlerType,
+      timeoutSec: hook.timeoutSec, async: hook.async, statusMessage: hook.statusMessage,
+      additionalContextLimit: hook.additionalContextLimit, trustStatus: hook.trustStatus, isManaged: hook.isManaged}))}));
+  throw Error('NATIVE_HOOK_CHECKPOINT_UNEXPECTED');
+}
 const after = await guardReadback();
 if (JSON.stringify(before) !== JSON.stringify(after)) throw Error('OWNER_SETTINGS_CHANGED_DURING_TEST');
 const evidence = {schema: 'BOS_GUIDED_ISOLATED_NATIVE_INSTALL_V2', at: new Date().toISOString(),
