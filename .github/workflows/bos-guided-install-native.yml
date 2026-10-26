@@ -103,3 +103,25 @@ jobs:
         run: |
           node qa/guided-install/scripts/qualify_cloudbos_guided_native.mjs --codex "$env:BOS_TEST_CODEX" --setup qa/guided-install/installers/cloudbos-setup --bundle qa/guided-install/package --output (Join-Path $env:RUNNER_TEMP 'bos-native-receipt.json')
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Compile and verify the native Windows qualification window
+        shell: pwsh
+        run: |
+          $app = Join-Path $env:RUNNER_TEMP 'BOS Native Setup Qualification'
+          node qa/runtime-cache/scripts/package_cloudbos_desktop_qualification.mjs --runtime-source "$env:BOS_RUNTIME_TEST_VENDOR_ROOT" --cli-source "$env:BOS_SETUP_CLI_TEST_VENDOR_ROOT" --setup qa/guided-install/installers/cloudbos-setup --plugin-bundle qa/guided-install/package --output $app
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $verifyLog = Join-Path $env:RUNNER_TEMP 'bos-window-verify.json'
+          $verify = Start-Process -FilePath (Join-Path $app 'BOSSetup.exe') -ArgumentList '--verify-only' -Wait -PassThru -RedirectStandardOutput $verifyLog
+          if ($verify.ExitCode -ne 0) { throw 'Native resource inventory failed' }
+          Write-Output ('BOS_WINDOWS_NATIVE_WINDOW_RESULT ' + (Get-Content $verifyLog -Raw).Trim())
+          $resources = Join-Path $app 'Resources'
+          $node = Join-Path $resources 'vendor/node/node.exe'
+          $bridge = Join-Path $resources 'engine/desktop-entry.mjs'
+          $preflight = & $node $bridge --resources $resources --action preflight
+          if ($LASTEXITCODE -ne 0) { throw 'Native bridge preflight failed' }
+          $checked = $preflight | ConvertFrom-Json
+          if ($checked.status -ne 'READY_TO_TEST_INSTALL' -or $checked.public_release -ne $false) { throw 'Qualification preflight did not preserve release gate' }
+          $install = & $node $bridge --resources $resources --action install
+          if ($LASTEXITCODE -ne 0) { throw 'Native bridge test install failed' }
+          $installed = $install | ConvertFrom-Json
+          if ($installed.status -ne 'WAITING_NATIVE_HOOK_APPROVAL' -or $installed.exact_native_definition_count -ne 6 -or $installed.test_profile_only -ne $true -or $installed.public_release -ne $false) { throw 'Native bridge did not preserve trust and profile gates' }
+          Write-Output ('BOS_WINDOWS_NATIVE_BRIDGE_RESULT ' + $install)
