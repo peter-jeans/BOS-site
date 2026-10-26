@@ -78,6 +78,11 @@ jobs:
         run: |
           node qa/runtime-cache/scripts/qualify_cloudbos_setup_dependencies.mjs --runtime-source "$env:BOS_RUNTIME_TEST_VENDOR_ROOT" --cli-source "$env:BOS_SETUP_CLI_TEST_VENDOR_ROOT" --qualifier qa/guided-install/scripts/qualify_cloudbos_guided_native.mjs --setup qa/guided-install/installers/cloudbos-setup --bundle qa/guided-install/package --output (Join-Path $env:RUNNER_TEMP 'bos-private-dependency-receipt.json')
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify user-level installation without a customer project
+        shell: pwsh
+        run: |
+          node qa/runtime-cache/scripts/qualify_cloudbos_desktop_install.mjs --runtime-source "$env:BOS_RUNTIME_TEST_VENDOR_ROOT" --cli-source "$env:BOS_SETUP_CLI_TEST_VENDOR_ROOT" --setup qa/guided-install/installers/cloudbos-setup --bundle qa/guided-install/package --output (Join-Path $env:RUNNER_TEMP 'bos-desktop-host-stage-receipt.json')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Verify fail-closed approval and transport controls
         shell: pwsh
         run: |

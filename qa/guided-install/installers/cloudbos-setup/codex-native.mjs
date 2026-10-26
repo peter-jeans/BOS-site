@@ -76,6 +76,7 @@ export function assessCodexHooks(readback, {cwd, expected}) {
       && hook.pluginId !== expected.pluginId && hook.enabled === true)) return verdict('PUBLIC_HOOK_REGISTRATION_CONFLICT');
   if (own.length !== expected.definitions.length) return verdict('PUBLIC_HOOK_DEFINITION_MISMATCH');
   const remaining = [...own];
+  let waiting = null;
   for (const definition of expected.definitions) {
     const index = remaining.findIndex(hook => hook.eventName === definition.eventName
       && hook.matcher === definition.matcher && hook.command === definition.command
@@ -90,9 +91,13 @@ export function assessCodexHooks(readback, {cwd, expected}) {
       // Both remain native-owned trust identifiers. Full package bytes and
       // the explicit native trusted state are checked independently.
       || !/^sha256:[a-f0-9]{64}(?:\/sha256:[a-f0-9]{64})?$/.test(hook.currentHash ?? '')) return verdict('PUBLIC_HOOK_SOURCE_MISMATCH');
-    if (hook.enabled !== true) return verdict('WAITING_NATIVE_HOOK_ENABLEMENT');
-    if (hook.trustStatus !== 'trusted') return verdict('WAITING_NATIVE_HOOK_APPROVAL');
+    if (hook.enabled !== true) waiting = 'WAITING_NATIVE_HOOK_ENABLEMENT';
+    else if (hook.trustStatus !== 'trusted' && !waiting) waiting = 'WAITING_NATIVE_HOOK_APPROVAL';
   }
+  // Validate every definition even while trust is pending. A first untrusted
+  // row must not hide a wrong command/source later in the same native set.
+  if (waiting) return verdict(waiting, {native_definitions_loaded: true,
+    exact_native_definition_count: own.length});
   return verdict('NATIVE_HOOKS_APPROVED', {may_start_sign_in: true,
     native_definitions_loaded: true, approved_hook_count: own.length,
     plugin_id: expected.pluginId, plugin_version: expected.pluginVersion,

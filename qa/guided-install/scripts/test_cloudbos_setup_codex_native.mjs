@@ -64,6 +64,16 @@ test('native 0.163 single-digest identifiers retain the same explicit trust and 
   }
 });
 
+test('a first untrusted hook cannot hide a later wrong native command or source', () => {
+  const value = readback(); value.data[0].hooks[0].trustStatus = 'untrusted';
+  assert.equal(assess(value).exact_native_definition_count, 6);
+  value.data[0].hooks[5].command = 'different-platform-command';
+  assert.equal(assess(value).status, 'PUBLIC_HOOK_DEFINITION_MISMATCH');
+  Object.assign(value.data[0].hooks[5], readback().data[0].hooks[5]);
+  value.data[0].hooks[5].sourcePath = '/other/hooks.json';
+  assert.equal(assess(value).status, 'PUBLIC_HOOK_SOURCE_MISMATCH');
+});
+
 test('expected definitions bind exact canonical root, public family, version and independently pinned source hash', async () => {
   for (const [patch, code] of [
     [{pluginRoot: 'relative'}, 'EXACT_NATIVE_PATH_REQUIRED'],
