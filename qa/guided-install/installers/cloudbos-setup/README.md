@@ -1,6 +1,6 @@
 # Cloud BOS setup launcher
 
-Version 0.1.2, implementation candidate. Native acceptance and publication are verified separately.
+Version 0.1.3, implementation candidate. Native acceptance and publication are verified separately.
 
 The Codex sign-in step now requires fresh native readback of the exact installed
 public plugin inventory and its enabled, trusted automatic checks. Review these

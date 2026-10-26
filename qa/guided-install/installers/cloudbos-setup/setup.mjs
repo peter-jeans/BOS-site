@@ -13,7 +13,7 @@ const PLUGIN = 'cloudbos-public-plugin', MARKET = 'cloudbos-public';
 const REPO = 'https://github.com/peter-jeans/BOS-site.git';
 const RESOURCE = 'https://bos-live03-test.peterjeans2.workers.dev/mcp';
 const ownFiles = ['README.md', 'Start Cloud BOS.command', 'Start Cloud BOS.cmd', 'Start-CloudBOS.ps1', 'release.json', 'setup.mjs'];
-const distributionFiles = version => version === '0.1.2' ? [...ownFiles, 'codex-native.mjs'] : ownFiles;
+const distributionFiles = version => ['0.1.2', '0.1.3'].includes(version) ? [...ownFiles, 'codex-native.mjs'] : ownFiles;
 const canonical = v => Array.isArray(v) ? `[${v.map(canonical).join(',')}]` : v && typeof v === 'object'
   ? `{${Object.keys(v).sort().map(k => `${JSON.stringify(k)}:${canonical(v[k])}`).join(',')}}` : JSON.stringify(v);
 export const sha256 = v => createHash('sha256').update(v).digest('hex');
@@ -40,7 +40,7 @@ export function selectedFolder(input, home = os.homedir()) {
 }
 
 export function validateRelease(r) {
-  if (r?.schema !== 'CLOUDBOS_SETUP_RELEASE_V1' || !['0.1.0', '0.1.1', '0.1.2'].includes(r.setup_version)
+  if (r?.schema !== 'CLOUDBOS_SETUP_RELEASE_V1' || !['0.1.0', '0.1.1', '0.1.2', '0.1.3'].includes(r.setup_version)
     || r.plugin_name !== PLUGIN || r.marketplace !== MARKET || r.repository !== REPO
     || r.mcp_endpoint !== RESOURCE || !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-(?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*))*)?(?:\+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)?$/.test(r.plugin_version || '')
     || !/^[a-f0-9]{64}$/.test(r.package_digest || '') || !/^[a-f0-9]{64}$/.test(r.package_manifest_sha256 || '')
@@ -77,7 +77,7 @@ async function boundedFile(filename, limit = 2 * 1024 * 1024) {
 
 export async function verifyDistribution(root) {
   const m = JSON.parse(await boundedFile(path.join(root, 'SETUP_MANIFEST.json')));
-  if (m.schema !== 'CLOUDBOS_SETUP_INVENTORY_V1' || !['0.1.0', '0.1.1', '0.1.2'].includes(m.setup_version) || !Array.isArray(m.files)
+  if (m.schema !== 'CLOUDBOS_SETUP_INVENTORY_V1' || !['0.1.0', '0.1.1', '0.1.2', '0.1.3'].includes(m.setup_version) || !Array.isArray(m.files)
     || canonical(m.files.map(x => x.path).sort()) !== canonical([...distributionFiles(m.setup_version)].sort())) fail('SETUP_INVENTORY_INVALID');
   if (canonical(await filesBelow(root)) !== canonical([...distributionFiles(m.setup_version), 'SETUP_MANIFEST.json'].sort())) fail('SETUP_INVENTORY_CHANGED');
   for (const item of m.files) if (sha256(await boundedFile(path.join(root, safeRelative(item.path)))) !== item.sha256) fail('SETUP_FILE_HASH_MISMATCH');
@@ -113,7 +113,7 @@ export async function verifyPackage(root, r) {
     if (bytes.length !== x.size || sha256(bytes) !== x.sha256) fail('PACKAGE_FILE_HASH_MISMATCH');
   }
   const pluginRoot = path.join(root, 'plugins', PLUGIN);
-  if (r.setup_version === '0.1.2') {
+  if (['0.1.2', '0.1.3'].includes(r.setup_version)) {
     const market = JSON.parse(await boundedFile(path.join(root, '.agents', 'plugins', 'marketplace.json')));
     const entry = market.plugins?.find(item => item.name === PLUGIN);
     if (market.name !== MARKET || market.plugins?.length !== 1

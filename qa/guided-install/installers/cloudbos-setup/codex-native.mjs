@@ -83,7 +83,10 @@ export function assessCodexHooks(readback, {cwd, expected}) {
     if (hook.source !== 'plugin' || hook.sourcePath !== expected.sourcePath
       || hook.handlerType !== 'command' || hook.isManaged !== false
       || typeof hook.key !== 'string' || !hook.key
-      || !/^sha256:[a-f0-9]{64}\/sha256:[a-f0-9]{64}$/.test(hook.currentHash ?? '')) return verdict('PUBLIC_HOOK_SOURCE_MISMATCH');
+      // Native 0.163 emits one digest; 0.164 also binds a source-file digest.
+      // Both remain native-owned trust identifiers. Full package bytes and
+      // the explicit native trusted state are checked independently.
+      || !/^sha256:[a-f0-9]{64}(?:\/sha256:[a-f0-9]{64})?$/.test(hook.currentHash ?? '')) return verdict('PUBLIC_HOOK_SOURCE_MISMATCH');
     if (hook.enabled !== true) return verdict('WAITING_NATIVE_HOOK_ENABLEMENT');
     if (hook.trustStatus !== 'trusted') return verdict('WAITING_NATIVE_HOOK_APPROVAL');
   }

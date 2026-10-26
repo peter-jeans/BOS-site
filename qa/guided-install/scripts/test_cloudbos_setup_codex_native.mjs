@@ -52,6 +52,18 @@ test('exact trusted public definitions allow sign-in, without claiming hook exec
   assert.equal(result.owner_registration, 'SEPARATE_READBACK_REQUIRED');
 });
 
+test('native 0.163 single-digest identifiers retain the same explicit trust and complete-definition checks', () => {
+  const value = readback();
+  for (const hook of value.data[0].hooks) hook.currentHash = `sha256:${'c'.repeat(64)}`;
+  assert.equal(assess(value).may_start_sign_in, true);
+  value.data[0].hooks[0].trustStatus = 'untrusted';
+  assert.equal(assess(value).status, 'WAITING_NATIVE_HOOK_APPROVAL');
+  value.data[0].hooks[0].trustStatus = 'trusted';
+  for (const hash of ['sha256:short', `sha256:${'g'.repeat(64)}`, `sha256:${'c'.repeat(64)}/sha256:${'d'.repeat(64)}/sha256:${'e'.repeat(64)}`]) {
+    value.data[0].hooks[0].currentHash = hash; assert.equal(assess(value).may_start_sign_in, false);
+  }
+});
+
 test('expected definitions bind exact canonical root, public family, version and independently pinned source hash', async () => {
   for (const [patch, code] of [
     [{pluginRoot: 'relative'}, 'EXACT_NATIVE_PATH_REQUIRED'],
