@@ -1,6 +1,6 @@
 {
   "name": "cloudbos-public-plugin",
-  "version": "0.1.20-rc.15+install.20261026",
+  "version": "0.1.20-rc.16+setup.20261027",
   "description": "Public-safe Cloud BOS plugin under development, isolated from the private owner connector and private BOS internals.",
   "author": {
     "name": "Peter Jeans",
@@ -38,5 +38,10 @@
     "logoDark": "./assets/bos-icon-512.png"
   },
   "mcpServers": "./.mcp.json",
-  "hooks": "./hooks/codex-hooks.json"
+  "hooks": "./hooks/codex-hooks.json",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/cloudbos-public-guide/SKILL.md"
+    }
+  }
 }

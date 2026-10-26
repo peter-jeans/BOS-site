@@ -1,8 +1,8 @@
 {
   "schema_version": "BOS_CLOUDBOS_PUBLIC_PACKAGE_MANIFEST_V1",
-  "generated_at": "2026-10-26T11:45:20.938Z",
+  "generated_at": "2026-10-26T20:38:02.739Z",
   "package_name": "cloudbos-public-plugin",
-  "package_version": "0.1.20-rc.15+install.20261026",
+  "package_version": "0.1.20-rc.16+setup.20261027",
   "mode": "self-service-beta",
   "release_state": "SEALED_SELF_SERVICE_BETA_NATIVE_ACCEPTANCE_REQUIRED",
   "owner_release_approval": "NOT_GRANTED_BY_PACKAGING",
@@ -16,7 +16,7 @@
   "mcp_server_count": 1,
   "sealed_mcp_endpoint_sha256": "513566ba292e4c6563a6fcbebe6b2fa1b2cc0a6a827195b74964056ce1f5ab6d",
   "package_digest_algorithm": "SHA256_CANONICAL_FILE_INVENTORY_V1",
-  "package_digest": "e97a86afe1037e34c0abf7620a78ab783b83ef3d567ecb5922d53caa0269510c",
+  "package_digest": "ab8b50c2b6ccaa8066e3a5901d26d36cb002543c966c56c32a7fa4267a7233f5",
   "files": [
     {
       "path": ".agents/plugins/marketplace.json",
@@ -25,18 +25,18 @@
     },
     {
       "path": ".claude-plugin/marketplace.json",
-      "size": 667,
-      "sha256": "0c33206c555e62b2c1957ae4954bdf76ed1f9ca24577900a8b1b54c7c59a8f88"
+      "size": 663,
+      "sha256": "cc31375daa24f5c053f826e536f98e50e96fa61418b648a4f6a36ef5eb75f06d"
     },
     {
       "path": "plugins/cloudbos-public-plugin/.claude-plugin/plugin.json",
-      "size": 664,
-      "sha256": "c06fd7a566ca4543028d7f4e0510b47cd5a0765c8702066a02d12784dc8bc4ec"
+      "size": 662,
+      "sha256": "a9bf91e1d8348af61c493e56787467a626c68dd7801b098cf2fa9696e66d152a"
     },
     {
       "path": "plugins/cloudbos-public-plugin/.codex-plugin/plugin.json",
-      "size": 1801,
-      "sha256": "3cfdd23a01be7bcf03ecdab8b759141d53993ad7514fe9bfedcd6114f8daef85"
+      "size": 1915,
+      "sha256": "13ec7f444a6096f2df8cd9066ff50b6f231fc41c5d5570ab094f690398243e29"
     },
     {
       "path": "plugins/cloudbos-public-plugin/.mcp.json",
@@ -270,8 +270,8 @@
     },
     {
       "path": "plugins/cloudbos-public-plugin/hooks/ownership.json",
-      "size": 2322,
-      "sha256": "e2a28bda77988bc605c3ac39cc31d1f78555c12384000f6f47b701fa89d75e36"
+      "size": 2320,
+      "sha256": "555fd829a800aacc31aed85eeee35331a10c835113d10bc682bc9ba223dd77dc"
     },
     {
       "path": "plugins/cloudbos-public-plugin/PUBLIC_BOUNDARY.md",
@@ -280,8 +280,8 @@
     },
     {
       "path": "plugins/cloudbos-public-plugin/README.md",
-      "size": 33759,
-      "sha256": "f665eac4892cce775180e4f7e06f559bb3176513b4de5dcfd071b11a9397e790"
+      "size": 34037,
+      "sha256": "82ea546905af19d24143395a3f14e30c388c4db1ada198573962b893fc88ef31"
     },
     {
       "path": "plugins/cloudbos-public-plugin/RELEASE_CHECKLIST.md",

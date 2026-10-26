@@ -24,7 +24,7 @@
     },
     {
       "path": "release.json",
-      "sha256": "41891bbb74853af3fece75fafb8be871f3b03150490e67be7d0ea857b04ee176"
+      "sha256": "fba60d9e7523332e413e9410672d35ab5d47022bac2babe47d8610d6b9f0389a"
     },
     {
       "path": "setup.mjs",

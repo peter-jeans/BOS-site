@@ -23,6 +23,21 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.22.1'
+      - name: Verify the distributable Windows runtime before executing it
+        shell: pwsh
+        run: |
+          $zip = Join-Path $env:RUNNER_TEMP 'bos-node-v24.22.1-win-x64.zip'
+          Invoke-WebRequest 'https://nodejs.org/download/release/v24.22.1/node-v24.22.1-win-x64.zip' -OutFile $zip
+          if ((Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'd2046d28c2c3dcd211ac5145c0bf30e2047ef9dfb306693c8c6e2eccd8b95fa5') { throw 'Official Node archive differs from pinned checksum' }
+          $runtimeRoot = Join-Path $env:RUNNER_TEMP 'BOS Verified Runtime'
+          Expand-Archive $zip -DestinationPath $runtimeRoot
+          $node = Join-Path $runtimeRoot 'node-v24.22.1-win-x64/node.exe'
+          if ((Get-FileHash $node -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'd702daa815eabbff763c7d3808e235cf031cf2ca70211b56847bc72f51e240e5') { throw 'Node executable differs from pinned payload' }
+          $signature = Get-AuthenticodeSignature $node
+          if ($signature.Status -ne 'Valid') { throw "Node publisher signature status: $($signature.Status)" }
+          $version = & $node --version
+          if ($LASTEXITCODE -ne 0 -or $version -ne 'v24.22.1') { throw 'Pinned runtime version probe failed' }
+          Write-Output ('BOS_VENDOR_RUNTIME_RESULT ' + (@{platform='win32';architecture='x64';version=$version;archive_sha256='d2046d28c2c3dcd211ac5145c0bf30e2047ef9dfb306693c8c6e2eccd8b95fa5';binary_sha256='d702daa815eabbff763c7d3808e235cf031cf2ca70211b56847bc72f51e240e5';signature_status=$signature.Status.ToString();signer_subject=$signature.SignerCertificate.Subject;installed_systemwide=$false} | ConvertTo-Json -Compress))
       - name: Install the pinned vendor CLI in the disposable runner
         shell: pwsh
         run: |

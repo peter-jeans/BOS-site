@@ -4,7 +4,7 @@ Status: `SELF_SERVICE_BETA_PACKAGE_PREPARED / CODEX_CLAUDE_BASE44_TARGETS / CURR
 
 ## Prepared self-service beta
 
-Source version: `0.1.20-rc.15+install.20261026` for both Codex and Claude manifests.
+Source version: `0.1.20-rc.16+setup.20261027` for both Codex and Claude manifests.
 This prepares a public-safe self-registration beta distribution. It does not
 publish a download, install a plugin, activate a project, qualify a native host,
 accept terms, grant access or authorize a stable/paid launch.
@@ -28,6 +28,10 @@ New Codex marketplace packages defer authentication until use; the guided setup
 checks exact native hook approval before offering sign-in. Desktop-only runtime,
 native trust, owner registration and actual behaviour still require qualification.
 Other hosts retain their separately qualified connection flow.
+The Codex manifest now declares the existing public guide as its native setup
+skill. This is a packaged entry point; an actual desktop Setup invocation still
+needs acceptance testing. It grants no hook trust, account access, assistance
+choice or project-write approval by itself.
 No private invitation or founder token
 is packaged or required by this distribution contract. Actual account, trial
 and project eligibility come from the authenticated service. Installation and
