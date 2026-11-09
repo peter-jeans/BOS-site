@@ -19,3 +19,21 @@ Build command: `npm ci --ignore-scripts && npm run test:hosting && npm run check
 Deploy command: `npm run deploy:hosting-only`.
 
 `SKIP_DEPENDENCY_INSTALL=1` leaves dependency installation to the explicit, lockfile-based build command. A saved connection is not proof of a successful provider build: verify the GitHub commit, Cloudflare build result, deployed version and live asset hashes after a push. Keep GitHub Pages live during this verification.
+
+## Preserving approved live assets while candidates remain in GitHub
+
+The asset manifest alone defines the Cloudflare output. The marketplace
+source manifest inventories plugin source, including candidates already in GitHub.
+The hosting input isolation manifest inventories other reviewed source that is
+excluded from the output. Where the latter overlaps the approved setup page or a
+Base44 companion, the build publishes the existing live bytes from
+`approved-assets/`, verified against the original asset manifest entry, and
+verifies the root file separately as source. The approved download archive
+cannot use an override. An unlisted, changed, or symlinked input fails the build.
+
+The 2026-11-09 homepage release was based on public GitHub main
+`ac4254e7530f1ac4a174e27f321a69abe2736c32`. All 13 preserved copies were
+read from production and matched the pre-existing approved asset fingerprints.
+Only the homepage's public asset fingerprint changed. This partition leaves
+the root candidate files in place and does not change product-release approval
+or the approved preview ZIP.

@@ -20,7 +20,7 @@ export function verifyHosting(read, exists) {
   assert.equal(approval.source_branch, 'main');
   assert.equal(approval.target_worker, 'bos-public-site');
   assert.equal(approval.target_domain, 'cloudbos.dev');
-  const requiredPins = ['release-readiness.json', 'marketplace-source-manifest.json', 'assets-manifest.json', 'asset-routing.txt', 'build.mjs', 'release-check.mjs', 'wrangler.json', 'wrangler.production.json', 'package.json', 'package-lock.json'].map(n => '.cloudflare-public/' + n).concat(['data/host-compatibility.json', '.nojekyll']);
+  const requiredPins = ['release-readiness.json', 'marketplace-source-manifest.json', 'hosting-input-isolation.json', 'assets-manifest.json', 'asset-routing.txt', 'build.mjs', 'release-check.mjs', 'wrangler.json', 'wrangler.production.json', 'package.json', 'package-lock.json'].map(n => '.cloudflare-public/' + n).concat(['data/host-compatibility.json', '.nojekyll']);
   assert.deepEqual(Object.keys(approval.pinned_files).sort(), requiredPins.sort());
   for (const [name, expected] of Object.entries(approval.pinned_files)) {
     assert.match(expected, /^[a-f0-9]{64}$/);

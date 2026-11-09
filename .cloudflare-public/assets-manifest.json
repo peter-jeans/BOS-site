@@ -2,7 +2,7 @@
   "schema": "BOS_PUBLIC_STATIC_ASSET_MANIFEST_V1",
   "base_repository": "peter-jeans/BOS-site",
   "base_commit": "120bb36c54d5fa302f7f4788eab7eee5af202f8f",
-  "source": "Reviewed public main website copy, registration card and three-step setup journey; no private source overlay",
+  "source": "Approved live static inventory with the reviewed My BOS homepage; existing asset fingerprints preserved.",
   "release_status": "HOSTING_ONLY_APPROVED_NATIVE_INSTALLATION_HELD",
   "files": {
     ".nojekyll": {
@@ -1770,8 +1770,8 @@
       "bytes": 15086
     },
     "index.html": {
-      "sha256": "8e109fa6d8ec43b532a4567fd4edb3569784daf5e0bb11c2071c0fc5e0f8a1a1",
-      "bytes": 67940
+      "sha256": "605421bf765ed20a3b7cb03029d7bb5ed0c6fe19e924d2d2f9e658e09de8db52",
+      "bytes": 6225
     },
     "install-packages.html": {
       "sha256": "a289378146604f3d8e6d8c1ab035305e800322b19411d530434d9d3e5c82aead",

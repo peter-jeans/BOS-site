@@ -3,845 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cloud BOS — Keep complex AI-built apps on track — Build Operating System</title>
-  <meta name="description" content="BOS — Build Operating System — helps your coding AI work from agreed decisions, review permissions and data flows, and show what was checked as complex apps change.">
-  <meta name="robots" content="index,follow">
+  <meta name="description" content="Cloud BOS helps your coding AI keep track of app decisions, review changes and show what was checked. Get started in My BOS.">
+  <title>Cloud BOS — Keep AI-built apps on track</title>
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/bos-icon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <style>
-    :root {
-      --ink: #38291d;
-      --muted: #665340;
-      --paper: #e9d7b4;
-      --card: #f4e7cc;
-      --line: #cbb48b;
-      --green: #76512c;
-      --green-dark: #52391f;
-      --green-soft: #e4cfaa;
-      --amber: #78501f;
-      --amber-soft: #f0dfbd;
-      --shadow: 0 20px 60px rgba(75, 48, 21, .13);
-      color-scheme: light;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background-color: var(--paper);
-      background-image:
-        url("assets/parchment-grain.svg"),
-        radial-gradient(ellipse at 12% 8%, rgba(255, 242, 213, .40), transparent 42rem),
-        radial-gradient(ellipse at 88% 22%, rgba(141, 84, 28, .18), transparent 48rem);
-      background-size: 180px 180px, 100% 100%, 100% 100%;
-      background-repeat: repeat, no-repeat, no-repeat;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.55;
-    }
-
-    a { color: var(--green); }
-    a:hover { color: var(--green-dark); }
-    button, a { -webkit-tap-highlight-color: transparent; }
-
-    .wrap {
-      width: min(1040px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid rgba(75, 48, 21, .13);
-      background: rgba(233, 215, 180, .95);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--ink);
-      font-weight: 850;
-      text-decoration: none;
-    }
-
-    .mark {
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      border: 2px solid var(--ink);
-      border-radius: 9px;
-      background: var(--card);
-      font-size: 12px;
-      letter-spacing: -.04em;
-    }
-
-    .nav-actions { display: flex; align-items: center; gap: 18px; font-size: 14px; font-weight: 700; }
-    .nav-actions a { color: var(--green-dark); text-decoration: none; font-weight: 800; }
-    .nav-context { color: var(--muted); }
-
-    main { overflow: hidden; }
-
-    .hero {
-      padding: clamp(68px, 10vw, 112px) 0 58px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.22fr) minmax(300px, .78fr);
-      gap: clamp(32px, 7vw, 72px);
-      align-items: start;
-    }
-
-    .eyebrow, .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .eyebrow {
-      padding: 7px 11px;
-      color: var(--green-dark);
-      background: var(--green-soft);
-      border: 1px solid rgba(117, 78, 35, .25);
-    }
-
-    h1, h2, h3 {
-      margin-top: 0;
-      line-height: 1.05;
-      letter-spacing: -.035em;
-    }
-
-    h1 {
-      max-width: 760px;
-      margin-bottom: 20px;
-      font-size: clamp(45px, 7.5vw, 78px);
-    }
-
-    h2 {
-      margin-bottom: 14px;
-      font-size: clamp(30px, 4.8vw, 48px);
-    }
-
-    h3 {
-      margin-bottom: 10px;
-      font-size: 22px;
-    }
-
-    .hero-animation-wrap { position: relative; aspect-ratio: 900 / 470; padding-bottom: 54px; box-sizing: content-box; margin: 4px 0 22px; }
-    .hero-animation { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; }
-
-    .lede {
-      max-width: 720px;
-      margin: 0;
-      color: #59432e;
-      font-size: clamp(18px, 2.4vw, 23px);
-    }
-
-    .ai-issues {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px 24px;
-      margin: 24px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .ai-issues li { border-top: 1px solid var(--line); padding-top: 12px; }
-    .problem-art { display: block; width: 100%; height: 142px; object-fit: contain; margin: 0 auto 12px; }
-    .problem-copy { min-width: 0; }
-    .ai-issues strong { display: block; margin-bottom: 6px; color: var(--ink); }
-    .ai-issues span { display: block; color: var(--muted); font-size: 16px; }
-
-    .hero-actions, .copy-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .button, .copy-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--ink);
-      border-radius: 9px;
-      color: var(--ink);
-      background: var(--card);
-      font: inherit;
-      font-weight: 820;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .button {
-      min-height: 46px;
-      padding: 11px 16px;
-    }
-
-    .button.primary {
-      color: #fff;
-      background: var(--ink);
-    }
-
-    .button:hover {
-      color: var(--ink);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
-
-    .button.primary:hover { color: #fff; background: #52391f; }
-
-    .overview {
-      padding: 25px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(246, 230, 198, .91);
-      box-shadow: var(--shadow);
-    }
-
-    .overview ol {
-      display: grid;
-      gap: 18px;
-      margin: 22px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .overview li {
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 12px;
-      align-items: start;
-    }
-
-    .number {
-      width: 32px;
-      height: 32px;
-      display: grid;
-      place-items: center;
-      border-radius: 9px;
-      color: #fff;
-      background: var(--green);
-      font-size: 13px;
-      font-weight: 850;
-    }
-
-    .overview strong { display: block; }
-    .overview span:last-child { color: var(--muted); font-size: 14px; }
-
-    .status {
-      padding: 6px 10px;
-      color: var(--amber);
-      border: 1px solid rgba(135, 93, 26, .22);
-      background: var(--amber-soft);
-    }
-
-    section {
-      padding: 64px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-intro {
-      max-width: 760px;
-      margin-bottom: 28px;
-    }
-
-    .section-intro p, .step p, .boundary-card p {
-      color: var(--muted);
-    }
-
-    .section-intro p { margin: 0; font-size: 18px; }
-    .steps { display: grid; gap: 18px; }
-
-    .step {
-      display: grid;
-      grid-template-columns: 64px minmax(0, 1fr);
-      gap: 20px;
-      padding: clamp(22px, 4vw, 34px);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--card);
-    }
-
-    .step-number {
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border-radius: 15px;
-      color: #fff;
-      background: var(--ink);
-      font-size: 18px;
-      font-weight: 880;
-    }
-
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .field {
-      min-width: 0;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: #efdfbf;
-    }
-
-    .field-label {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 820;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-
-    .field-value {
-      display: block;
-      overflow-wrap: anywhere;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 14px;
-      font-weight: 720;
-    }
-
-    .pending { color: var(--amber); }
-
-    .copy-button {
-      min-height: 40px;
-      padding: 8px 12px;
-      border-color: var(--line);
-      font-size: 14px;
-    }
-
-    .copy-button:hover { border-color: var(--green); }
-
-    .copy-state {
-      align-self: center;
-      min-height: 22px;
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 760;
-    }
-
-    details {
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: #efdfbf;
-    }
-
-    summary {
-      padding: 14px 16px;
-      font-weight: 820;
-      cursor: pointer;
-    }
-
-    .skill-copy { padding: 0 16px 18px; }
-    .skill-copy ol { color: var(--muted); font-size: 14px; }
-
-    .prompt {
-      margin-top: 18px;
-      padding: 16px;
-      overflow-wrap: anywhere;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      color: #483623;
-      background: #f2e4c8;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 14px;
-    }
-
-    .boundary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .boundary-card {
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--card);
-    }
-
-    .boundary-card p { margin-bottom: 0; }
-
-    .static-note {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      margin-top: 22px;
-      padding: 18px;
-      border: 1px solid rgba(117, 78, 35, .25);
-      border-radius: 12px;
-      background: var(--green-soft);
-    }
-
-    .static-note strong { color: var(--green-dark); }
-
-    section[id] { scroll-margin-top: 90px; }
-    .bos-levels { list-style: none; padding: 0; margin: 24px 0; }
-    .bos-levels li { padding: 12px 0; border-bottom: 1px solid var(--line); }
-    .setup-nav { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-    .setup-nav .button { flex: 1 1 180px; }
-    .release-note { padding: 16px 20px; border-radius: 12px; background: var(--amber-soft); color: var(--amber); }
-    .step-list { padding-left: 22px; }
-    .step-list li + li { margin-top: 12px; }
-    code { overflow-wrap: anywhere; }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
-    .tier-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
-    .tier-table { width: 100%; border-collapse: collapse; text-align: left; }
-    .tier-table caption { padding: 20px; text-align: left; font-weight: 700; }
-    .tier-table th, .tier-table td { padding: 18px 20px; vertical-align: top; border-top: 1px solid var(--line); }
-    .tier-table thead th { background: var(--green-soft); }
-    .tier-table tbody th { min-width: 110px; color: var(--green-dark); }
-    .tier-table td { min-width: 220px; }
-    .tier-table p { margin: 0 0 10px; }
-    .tier-table p:last-child { margin-bottom: 0; }
-    .tier-details { margin-top: 22px; }
-    .tier-details dl { margin-bottom: 0; }
-    .tier-details dt { margin-top: 18px; font-weight: 750; }
-    .tier-details dd { margin: 5px 0 0; color: var(--muted); }
-    .tier-details > p, .tier-details > dl { margin-left: 18px; margin-right: 18px; }
-    .benefit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
-    .benefit { margin: 0; background: var(--card); }
-    .benefit summary { padding: 22px; list-style: none; }
-    .benefit summary::-webkit-details-marker { display: none; }
-    .capability-art { display: block; width: 100%; height: 172px; object-fit: contain; margin: -2px auto 18px; }
-    .benefit .detail-hint::after { content: " +"; float: right; font-size: 18px; line-height: 1; }
-    .benefit[open] .detail-hint::after { content: " −"; }
-    @media (max-width: 540px) { .capability-art { height: 152px; } }
-    .benefit-title { font-size: 21px; letter-spacing: -.025em; }
-    .benefit-lede { display: block; margin-top: 10px; color: var(--muted); font-weight: 450; }
-    .detail-hint { display: block; margin-top: 14px; color: var(--green); font-size: 13px; }
-    .detail-body { padding: 0 22px 22px; }
-    .detail-body p:last-child { margin-bottom: 0; }
-    .example { padding: 16px; border-left: 3px solid var(--green); background: var(--green-soft); }
-    .availability { color: var(--muted); font-size: 14px; }
-    .compare-links { display: flex; gap: 12px 22px; flex-wrap: wrap; margin-top: 24px; }
-    .table-help { color: var(--muted); font-size: 14px; }
-    .tier-label { display: block; margin-top: 8px; font-weight: 500; color: var(--muted); font-size: 13px; }
-    .environment-table td { min-width: 245px; }
-    .environment-table tbody th { min-width: 160px; }
-    details[id] { scroll-margin-top: 90px; }
-    .tier-table-wrap:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
-
-    footer {
-      padding: 34px 0 46px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .footer-row, .footer-links {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .footer-row {
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    @media (max-width: 820px) {
-      .hero-grid, .boundary-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 58px; }
-    }
-
-    @media (max-width: 620px) {
-      .wrap { width: min(100% - 24px, 1040px); }
-      .nav-context { display: none; }
-      .step, .field-grid { grid-template-columns: 1fr; }
-      .hero-actions .button { width: 100%; }
-      .benefit-grid, .ai-issues { grid-template-columns: 1fr; }
-      .ai-issues li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: center; padding: 18px 0 0; }
-      .problem-art { height: auto; margin: 0; }
-      .nav-actions { gap: 10px; font-size: 13px; }
-      .brand { font-size: 14px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html, *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
-    }
-
-    /* BOS DGS: focused entry, grouped problems, clear actions and reachable navigation. */
-    .hero { padding: clamp(36px, 5vw, 64px) 0 42px; }
-    .hero-grid { grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr); gap: clamp(28px, 4vw, 52px); }
-    h1 { font-size: clamp(44px, 5.5vw, 68px); margin: 18px 0 24px; }
-    .hero .lede { max-width: 34em; font-size: clamp(18px, 2vw, 21px); }
-    .overview { padding: 28px; border-radius: 14px; box-shadow: 0 12px 32px rgba(75,48,21,.08); }
-    .overview h2 { font-size: 32px; margin: 12px 0 16px; }
-    .overview p { font-size: 16px; line-height: 1.6; }
-    .overview .hero-actions { display: grid; gap: 14px; }
-    .onboarding-help { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-underline-offset: 4px; }
-    .overview .beta-note { margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
-    .section-kicker { display: block; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green-dark); }
-    .section-intro .section-kicker { margin-bottom: 12px; }
-    .section-intro h2 { font-size: clamp(28px, 3.5vw, 40px); line-height: 1.15; max-width: 24ch; }
-    .section-intro p { font-size: 17px; max-width: 65ch; color: var(--muted); }
-    section { padding: clamp(40px, 6vw, 64px) 0; }
-    .problems-section { background: rgba(244,231,204,.3); }
-    .ai-issues { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 0; }
-    .ai-issues li { padding-top: 16px; }
-    .ai-issues strong { font-size: 19px; }
-    .problem-art { height: 140px; margin-bottom: 18px; }
-    .section-links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 24px; }
-    .section-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 700; text-underline-offset: 5px; }
-    .nav-actions a { display: inline-flex; align-items: center; min-height: 44px; }
-    .skip-link { position: fixed; left: 16px; top: -100px; z-index: 30; padding: 12px 18px; background: var(--card); color: var(--ink); border: 2px solid var(--ink); }
-    .skip-link:focus { top: 12px; }
-    #main-content { scroll-margin-top: 90px; }
-    @media (max-width: 820px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
-      .ai-issues { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .overview { max-width: none; }
-    }
-    @media (max-width: 620px) {
-      .hero { padding-top: 28px; }
-      .overview { padding: 22px; }
-      .overview h2 { font-size: 28px; }
-      .ai-issues { grid-template-columns: 1fr; gap: 18px; }
-      .ai-issues li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; align-items: center; }
-      .problem-art { height: auto; margin: 0; }
-      .section-intro { margin-bottom: 22px; }
-    }
+    :root { color-scheme:light; --paper:#e9d7b4; --ink:#38291d; --muted:#5c4936; --card:#f4e7cc; --line:#bca478; --accent:#56391e; }
+    *, *::before, *::after { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:1rem/1.6 system-ui,sans-serif; }
+    a { color:inherit; text-underline-offset:.22em; }
+    a:focus-visible { outline:3px solid var(--accent); outline-offset:5px; }
+    p, h1, h2, h3, a, li { overflow-wrap:anywhere; }
+    h1, h2, h3, p { margin:0; }
+    .wrap { width:100%; padding-inline:clamp(1rem,5vw,6rem); }
+    .skip { position:absolute; left:1rem; top:1rem; padding:.5rem 1rem; background:var(--card); transform:translateY(-200%); }
+    .skip:focus { transform:none; }
+    header, footer { border-block-end:1px solid var(--line); }
+    .top, nav, .actions { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem 1.5rem; }
+    .top { justify-content:space-between; padding-block:1rem; }
+    .brand { display:inline-flex; align-items:center; gap:.7rem; font-weight:900; text-decoration:none; font-size:1.28rem; line-height:1.15; }
+    .brand img { border-radius:.6rem; }
+    .brand small { display:block; margin-top:.15rem; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; }
+    nav { font-weight:650; }
+    .button { display:inline-block; padding:.62rem 1rem; border:1px solid var(--accent); border-radius:.5rem; color:#fff7e9; background:var(--accent); font-weight:760; text-decoration:none; }
+    .button:hover { background:#3e2817; }
+    section { padding-block:clamp(2.5rem,6vw,6rem); }
+    h1, h2 { line-height:1.08; letter-spacing:-.035em; }
+    h1 { font-size:clamp(2.65rem,6.4vw,6rem); }
+    h2 { font-size:clamp(1.8rem,3.8vw,3.5rem); }
+    h3 { font-size:1.25rem; line-height:1.2; }
+    .kicker { color:var(--muted); text-transform:uppercase; letter-spacing:.1em; font-size:.81rem; font-weight:800; margin-bottom:.75rem; }
+    .intro { margin-block:1.15rem 1.55rem; font-size:clamp(1.06rem,2vw,1.35rem); color:var(--muted); }
+    .panel { background:var(--card); border-block:1px solid var(--line); }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr)); gap:1rem; padding:0; margin:1.5rem 0 0; list-style:none; }
+    .cards li { min-width:0; background:#fff7e9; border:1px solid var(--line); border-radius:.8rem; padding:clamp(1rem,2vw,1.8rem); }
+    .cards p { margin-top:.6rem; color:var(--muted); }
+    .steps { margin-block:1.1rem 1.5rem; padding-left:1.35rem; }
+    .steps li+li { margin-top:.55rem; }
+    footer { padding-block:1.5rem; border-block-start:1px solid var(--line); border-block-end:0; }
+    footer nav { font-weight:500; }
   </style>
-  <link rel="stylesheet" href="assets/branding.css">
-  <link rel="stylesheet" href="assets/portal-style.css">
-  <link rel="stylesheet" href="assets/bos-controls/owner-controls.css">
-  <link rel="stylesheet" href="assets/bos-controls/capability-highlights.css">
-<link rel="stylesheet" href="assets/clarity.css">
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip" href="#main-content">Skip to content</a>
   <header>
-    <div class="wrap nav">
-      <a class="brand" href="#top" aria-label="Cloud BOS — Build Operating System home">
-        <img class="mark" src="assets/brand/bos-icon-64.png" width="36" height="36" alt="" aria-hidden="true" style="object-fit:cover;border:0">
-        <span class="brand-lockup"><span class="brand-name">Cloud BOS</span> <span class="brand-expansion">Build Operating System</span></span>
+    <div class="wrap top">
+      <a class="brand" href="/" aria-label="Cloud BOS home">
+        <img src="assets/brand/bos-icon-64.png" alt="" width="48" height="48">
+        <span>Cloud BOS<small>Build Operating System</small></span>
       </a>
-      <nav class="nav-actions clarity-nav" aria-label="Main navigation"><a href="index.html#how-bos-works">How it works</a><a href="install-packages.html">Capabilities</a><a href="setup.html">Get started</a><a href="support.html">Help</a><a href="https://my.cloudbos.dev/account">My BOS</a></nav>
+      <nav aria-label="Main navigation">
+        <a href="#how-bos-works">How it works</a>
+        <a href="support.html">Help</a>
+        <a class="button" href="https://my.cloudbos.dev/account">My BOS</a>
+      </nav>
     </div>
   </header>
-
-  <main id="top"><div id="main-content" tabindex="-1"></div>
-    <section class="hero">
-      <div class="wrap hero-grid"><div class="homepage-intro">
-          <span class="eyebrow">BOS for AI-assisted app development</span>
-          <h1 style="font-size:clamp(44px,5.5vw,68px)">Keep complex AI-built apps on track.</h1>
-          <p class="lede">BOS helps your coding AI remember your app’s agreed requirements, review risky changes and show what was checked. Use it inside Base44, Codex or Claude Code.</p><nav class="setup-journey" id="setup-checkpoints" aria-label="Your three steps to BOS"><span class="visually-hidden" id="setup-checkpoints-title">Your three steps to BOS</span><ol><li><a href="setup.html#where-to-agree"><span class="journey-symbol"><span class="setup-number" aria-hidden="true">1</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3M19 5h4m-2-2v4"/></svg></span><strong><span class="visually-hidden">Step 1: </span>Register</strong><span class="journey-caption">Create your BOS account in My BOS.</span></a></li><li><a href="setup.html#device-setup"><span class="journey-symbol"><span class="setup-number" aria-hidden="true">2</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8m-4-5v5m-5-11 3 3 6-6"/></svg></span><strong><span class="visually-hidden">Step 2: </span>Set up computer</strong><span class="journey-caption">Get your Mac or Windows computer ready.</span></a></li><li><a href="setup.html#quick-start"><span class="journey-symbol"><span class="setup-number" aria-hidden="true">3</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg></span><strong><span class="visually-hidden">Step 3: </span>Install BOS</strong><span class="journey-caption">Add BOS to your coding tool and app.</span></a></li></ol></nav></div>
-        <div>
-          <div class="clarity-actions"><a class="button primary" href="setup.html">See setup steps</a><a href="using-bos.html#first-task">See how you use BOS</a></div><div class="hero-animation-wrap"><iframe class="hero-animation" src="assets/bos-spaghetti-animation.html" title="BOS turns spaghetti code into organised intentions, decisions, checks and memory" loading="eager"></iframe></div>
-          <p class="lede"><strong>Tame the AI beast.</strong> With great power comes a greater need for responsibility.</p>
-
-        </div>
-
-        <aside class="overview" aria-labelledby="onboarding-title">
-          <span class="section-kicker">Start with your coding tool</span><h2 id="onboarding-title">Get started<br>with BOS.</h2>
-          <p>Connect your tool once, set up each project, then ask for help in its coding chat.</p>
-          <nav class="hero-actions" aria-label="Set up BOS">
-            <a class="button primary portal-cta" href="setup.html">Choose your setup guide</a>
-
-          </nav>
-          <p class="beta-note"><strong>Try the setup preview.</strong> <a href="setup.html#device-setup">Download for Mac or Windows</a>, or <a href="beginner-guide.html#base44-first">set up Base44 in your browser</a>. Complete installation is still being tested.</p>
-
-          <details class="capability-highlights" id="practical-capabilities">
-            <summary>
-              <span class="capability-highlights-title">Help with the tricky parts</span>
-              <span class="capability-highlights-tags"><span>Access Control <small class="capability-tier">Standard</small></span><span>User Notifications <small class="capability-tier">Plus</small></span><span>Safer Redesigns <small class="capability-tier">Standard</small></span><span>Tenant Separation <small class="capability-tier">Standard</small></span><span>Project Memory <small class="capability-tier">Standard</small></span><span>Guided Repairs <small class="capability-tier">Standard</small></span></span>
-              <span class="capability-highlights-toggle"><span class="when-closed">Show more</span><span class="when-open">Show less</span><span class="capability-highlights-sign" aria-hidden="true"></span></span>
-            </summary>
-            <div class="capability-highlights-body">
-              <dl>
-                <div><dt>Access Control <small class="capability-tier">Standard</small></dt><dd>Untangle permissions, roles and feature access. Guide your builder toward consistent rules and checks for who can do what. Basic permission and access guidance is Standard. <span class="capability-tier">Plus</span> adds the separate paid-feature wiring package when available.</dd></div>
-                <div><dt>User Notifications <small class="capability-tier">Plus</small></dt><dd>Add useful in-app alerts and mobile notifications, with user preferences and delivery checks for your chosen platform and devices. The notification installation package starts at Plus.</dd></div>
-                <div><dt>Safer Redesigns <small class="capability-tier">Standard</small></dt><dd>Refresh your app’s look while protecting existing workflows. Check navigation, saved data and key actions after a major GUI change. <span class="capability-tier">Plus</span> adds deeper project history and recovery planning.</dd></div>
-                <div><dt>Tenant Separation <small class="capability-tier">Standard</small></dt><dd>Plan the move from one team to multiple organisations, with clear membership, administration and data boundaries. Standard covers architecture and security guidance; a complete migration is scoped separately.</dd></div>
-                <div><dt>Project Memory <small class="capability-tier">Standard</small></dt><dd>Standard retains installed decisions, build intentions and project records for continuity. Plus adds deeper review of those records. Cloud history and restoration across computers need their own verified services.</dd></div>
-                <div><dt>Guided Repairs <small class="capability-tier">Standard</small></dt><dd>Turn scan findings into focused fixes, then ask your builder to show what changed and which checks passed. Standard includes scan-and-fix planning. <span class="capability-tier">Pro</span> adds advanced live-app rescue, subject to availability.</dd></div>
-              </dl>
-              <p>Badges show the minimum tier for the help described. Higher tiers include lower-tier features; availability depends on your app and setup.</p><p>BOS guides your builder; your builder makes and checks the changes. The approach is tailored to your app and development environment.</p>
-            </div>
-          </details>
-
-        </aside>
-      </div>
-    </section><p class="clarity-next"><a href="setup.html#project-checks">How do I know my app is connected?</a></p><section class="clarity-section" id="how-bos-works" aria-labelledby="how-bos-works-title"><div class="wrap"><h2 id="how-bos-works-title">Get started in three steps</h2><p>Sign in to BOS, connect it to your coding tool, then choose the app you want help with.</p><ol class="clarity-journey" aria-label="Three steps to using BOS">
-<li><span class="clarity-step" aria-hidden="true">1</span><h3>My BOS account</h3><p>Sign in to your <a href="https://my.cloudbos.dev/account">BOS account in My BOS</a>.</p><p><strong>Look for:</strong> your account and connection options.</p></li>
-<li><span class="clarity-arrow" aria-hidden="true">→</span><span class="clarity-step" aria-hidden="true">2</span><h3>Your coding tool</h3><p>Follow the BOS setup for Codex, Claude Code or Base44.</p><p><strong>Look for:</strong> BOS available and signed in inside that tool.</p></li>
-<li><span class="clarity-arrow" aria-hidden="true">→</span><span class="clarity-step" aria-hidden="true">3</span><h3>Your app</h3><p>Open your app and ask BOS to connect it.</p><p><strong>Look for:</strong> your app’s name and its setup steps.</p></li></ol><p>Then ask for help in your usual coding chat. <a href="using-bos.html#first-task">See an example</a>.</p></div></section>
-
-    <section id="engineering-value" aria-labelledby="engineering-value-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <span class="section-kicker">For apps that keep evolving</span>
-          <h2 id="engineering-value-title">Built for longer, changing apps.</h2>
-        </div>
-        <p>For builders dealing with recurring breakages, important data, multiple user roles or organisations, and workflows that need to survive change. A small early prototype may need less of this support.</p>
-        <details><summary>Where the extra structure can help</summary><div class="detail-body">
-          <ul>
-            <li><strong>Permissions and boundaries:</strong> identify who can see or change each record, including across organisations, and plan checks under different user identities.</li>
-            <li><strong>Correct rules and data flows:</strong> trace inputs through business logic to outputs; compare the rules used by screens, backend functions, scheduled jobs and integrations.</li>
-            <li><strong>Saves that survive retries:</strong> check duplicate prevention, interruptions, retained history and recovery before relying on a workflow.</li>
-            <li><strong>Continuity through change:</strong> recover available accepted decisions and unfinished checks from saved project records when work resumes.</li>
-            <li><strong>Inspectable repairs:</strong> keep the changed artifacts, actual test results and remaining acceptance steps visible.</li>
-            <li><strong>Platform fit:</strong> separate code checks from dated observations on the actual device, operating system and browser.</li>
-          </ul>
-          <p>Your coding tool performs the work. Available BOS help depends on the <a href="#tiers">tier</a>, <a href="setup.html#host-compatibility">host and verified setup</a>; these benefits do not make unfinished installation packages ready.</p>
-        </div></details>
-        <div class="section-links"><a href="#internal-evidence">See dated internal examples ↓</a></div>
-      </div>
+  <main id="main-content" tabindex="-1">
+    <section class="wrap" aria-labelledby="home-title">
+      <p class="kicker">For AI-assisted app development</p>
+      <h1 id="home-title">Keep AI-built apps on track.</h1>
+      <p class="intro">Cloud BOS helps your coding AI remember what you agreed, flag risky changes, and show what it checked. Use it with Base44, Codex, or Claude Code.</p>
+      <div class="actions"><a class="button" href="https://my.cloudbos.dev/account">Get started in My BOS</a><a href="#how-bos-works">How BOS helps</a></div>
     </section>
-
-    <section class="problems-section" id="problems" aria-labelledby="problems-title">
-      <div class="wrap">
-        <div class="section-intro"><span class="section-kicker">The problems</span><h2 id="problems-title">Four ways AI builds go off track.</h2><p>BOS helps keep AI responsible as it builds.</p></div>
-        <ul class="ai-issues" role="list" aria-label="Four AI development problems BOS helps tackle">
-            <li><img class="problem-art" src="assets/problems/drift.svg" alt="A steam train leaves the planned railway and veers toward a field" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Drift</strong><span>Going off-plan. BOS checks changes against your agreed intentions.</span></div></li>
-            <li><img class="problem-art" src="assets/problems/amnesia.svg" alt="An anatomical brain loses its archive cards into the breeze" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Amnesia</strong><span>Forgetting decisions. BOS helps preserve project context between sessions.</span></div></li>
-            <li><img class="problem-art" src="assets/problems/hallucination.svg" alt="A confident engineer imagines a finished bridge across a real gap" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Hallucination</strong><span>Making things up—or saying “done” too soon. BOS asks for evidence.</span></div></li>
-            <li><img class="problem-art" src="assets/problems/breakage.svg" alt="A cracked cog and snapped drive belt stop a once-working mechanism" width="300" height="190" loading="lazy"><div class="problem-copy"><strong>Breakage</strong><span>Breaking what already worked. BOS helps check for regressions as your app changes.</span></div></li>
-          </ul>
-        <nav class="section-links" aria-label="Explore BOS"><a href="#benefits">See how BOS helps <span aria-hidden="true">↓</span></a><a href="#environments">Find your coding tool</a></nav>
-      </div>
+    <section class="panel wrap" id="how-bos-works" aria-labelledby="how-title">
+      <h2 id="how-title">Give your coding AI a better starting point.</h2>
+      <ul class="cards">
+        <li><h3>Keep decisions handy</h3><p>Give your AI the project rules and decisions it should follow when you start a new chat.</p></li>
+        <li><h3>Review changes before they happen</h3><p>Ask for a plan and check what could affect your data, permissions, or existing workflows.</p></li>
+        <li><h3>See what was checked</h3><p>Ask for evidence of what changed and what still needs your review.</p></li>
+      </ul>
     </section>
-
-    <section class="owner-controls" id="owner-controls" aria-labelledby="owner-controls-title">
-      <div class="wrap owner-controls-grid">
-        <div>
-          <p class="eyebrow">BOS works with you</p>
-          <h2 id="owner-controls-title">You are always in control</h2>
-          <p>In the supported Base44 rollout, app administrators can choose Local BOS and Cloud BOS assistance from the BOS page. These switches are not yet qualified for native Codex or Claude Code projects.</p>
-          <dl><dt>Local BOS</dt><dd>Build guidance and stability checks stored in your app.</dd><dt>Cloud BOS</dt><dd>Connected scans, specialist knowledge and build guidance.</dd></dl>
-          <p>Where supported, the builder should apply the two saved choices independently at the next safe action boundary. With both Off, discretionary BOS help and new BOS behavioural capture should stop; ordinary app security remains active.</p>
-          <p><strong>Your app’s login, permissions and data protection stay in place.</strong></p>
-          <p class="owner-note">As of 20 October 2026, automatic help and saved On/Off choices across sessions are still being implemented and tested in Codex and Claude Code, including how those choices control activity recording. Projects whose BOS setup has already been checked can request one-off help; this does not turn on continuous assistance. <a href="setup.html#owner-controls">See host limits.</a></p>
-        </div>
-        <figure><div class="owner-controls-shot"><img src="assets/bos-controls/in-app-controls-canary-1.png" alt="Separate Local BOS and Cloud BOS switches on the BOS page, both shown On." loading="lazy" width="607" height="753"></div><figcaption>Actual in-app controls in Canary 1, our Base44 test app.</figcaption></figure>
-      </div>
-    </section>
-
-    <section id="benefits" aria-labelledby="benefits-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <h2 id="benefits-title">What changes when you build with BOS?</h2>
-          <p>Keep available project decisions in view, review risky changes and ask “did the fix work?” Open a capability for an example and its current availability.</p>
-        </div>
-        <div class="benefit-grid">
-          <details class="benefit" id="benefit-drift" data-benefit="drift-protection">
-            <summary><img class="capability-art" src="assets/capabilities/on-track.svg" alt="A vintage locomotive following railway tracks" width="300" height="190" loading="lazy"><span class="benefit-title">Keep Your Build on Track</span><span class="benefit-lede">A small request can accidentally turn into a bigger change. BOS helps check that the AI stays within what you agreed.</span><span class="detail-hint">See an example and availability</span></summary>
-            <div class="detail-body"><p>BOS compares proposed changes with your app’s purpose, requirements and previous decisions. It can flag changes to rules or data that you did not ask for.</p><p class="example"><strong>For example:</strong> You ask for a simpler booking screen. The AI also proposes changing cancellation rules. BOS can flag that extra change before you proceed.</p><p><strong>You receive:</strong> The mismatch, why it matters and a suggested next step.</p><p class="availability">Standard: basic review and safety checks. Plus: saved history and deeper checks against earlier decisions. What can run depends on your coding tool and setup.</p></div>
-          </details>
-          <details class="benefit" id="benefit-memory" data-benefit="project-memory">
-            <summary><img class="capability-art" src="assets/capabilities/memory.svg" alt="An old anatomical line drawing of a brain, with a bookmarked archive card" width="300" height="190" loading="lazy"><span class="benefit-title">Project Memory</span><span class="benefit-lede">Return to a project without explaining everything again. Keep important decisions, unfinished work and previous test results in view.</span><span class="detail-hint">See an example and availability</span></summary>
-            <div class="detail-body"><p>BOS uses saved project records to help your coding AI pick up the work. It checks what those records actually say instead of relying on the previous conversation.</p><p class="example"><strong>For example:</strong> Come back next week and see why a particular save method was chosen, what passed testing and what still needs doing.</p><p><strong>You receive:</strong> A clear starting point, relevant decisions and the next unfinished task.</p><p class="availability">Plus: lasting project history. Basic project documents are part of setup. Pro’s planned ability to sync and restore across computers still needs verification.</p></div>
-          </details>
-          <details class="benefit" id="benefit-warnings" data-benefit="early-warnings">
-            <summary><img class="capability-art" src="assets/capabilities/early-warning.svg" alt="A mid-century radar screen detecting a signal before trouble arrives" width="300" height="190" loading="lazy"><span class="benefit-title">Early Warning System</span><span class="benefit-lede">Spot signs that your AI build is going off track, such as conflicting changes, forgotten requirements or fixes that haven’t been tested.</span><span class="detail-hint">See an example and availability</span></summary>
-            <div class="detail-body"><p>BOS helps identify problems while you build and explains why they matter. A warning may suggest checking a result, investigating a conflict or pausing a risky change.</p><p class="example"><strong>For example:</strong> The AI says saving is fixed, but nobody has checked whether the information survives reopening the app. BOS keeps that missing check visible.</p><p><strong>You receive:</strong> A clear warning, what prompted it and a suggested next step.</p><p class="availability">All tiers: basic safety warnings. Pro: advanced warnings and checks have passed local tests; delivery in each coding tool and effectiveness in real builds are still being tested. BOS cannot predict every failure.</p></div>
-          </details>
-          <details class="benefit" id="benefit-proof" data-benefit="verified-repairs">
-            <summary><img class="capability-art" src="assets/capabilities/check-the-fix.svg" alt="A magnifying glass inspecting a repaired mechanism and a ticked test sheet" width="300" height="190" loading="lazy"><span class="benefit-title">Check That the Fix Worked</span><span class="benefit-lede">An AI saying “fixed” is only a starting point. Define what needs testing and see which checks actually passed.</span><span class="detail-hint">See an example and availability</span></summary>
-            <div class="detail-body"><p>BOS helps turn a reported problem into a focused repair and test plan. Your coding tool runs the checks it supports; BOS helps keep the results and remaining gaps clear.</p><p class="example"><strong>For example:</strong> After repairing saving, test reopening the app, invalid entries and a related screen to check that the change did not break something else.</p><p><strong>You receive:</strong> What changed, what passed, what failed and what still needs checking in the running app.</p><p class="availability">Standard: basic test guidance and checks where the required tools are installed. Plus: retained test history. Pro: help coordinating more complex checks.</p></div>
-          </details>
-          <details class="benefit" id="benefit-platform" data-benefit="platform-feasibility">
-            <summary><img class="capability-art" src="assets/capabilities/platform-fit.svg" alt="A vintage vernier caliper checking whether a plug fits its socket" width="300" height="190" loading="lazy"><span class="benefit-title">Check Platform Fit</span><span class="benefit-lede">Find features that may need a different approach on your chosen platform before spending time building them.</span><span class="detail-hint">See an example and availability</span></summary>
-            <div class="detail-body"><p>BOS helps identify platform limits and the device tests needed to confirm support. It can suggest a different design or a fallback when the original approach is unsuitable.</p><p class="example"><strong>For example:</strong> Before building phone notifications, check whether they can work when the screen is locked—and test that behaviour on an actual phone.</p><p><strong>You receive:</strong> The relevant limitation, what needs testing and a practical next step.</p><p class="availability">Standard: basic platform guidance. Pro: deeper planning across coding tools and assessment of a move to another platform. Support must be checked for your actual app and devices.</p></div>
-          </details>
-          <details class="benefit" id="benefit-learning" data-benefit="cross-app-learning">
-            <summary><img class="capability-art" src="assets/capabilities/proven-fixes.svg" alt="An open workshop handbook with a spanner and saved lessons" width="300" height="190" loading="lazy"><span class="benefit-title">Learn from Proven Fixes</span><span class="benefit-lede">Use reviewed lessons from successful repairs to help with similar problems in another app.</span><span class="detail-hint">See an example and availability</span></summary>
-            <div class="detail-body"><p>A reviewer checks whether a lesson is suitable to share without private project material. Another app receives it only when relevant and must still test its own result.</p><p class="example"><strong>For example:</strong> A retry caused duplicate actions in another app. A reviewed lesson can help you check whether your app has the same risk.</p><p><strong>You receive:</strong> A relevant lesson, when it applies and the checks needed before relying on it.</p><p class="availability">Pro: in active testing; each app needs the appropriate setup. Shared lessons exclude raw source code, private conversations and customer data.</p></div>
-          </details>
-          <details class="benefit" id="benefit-specialists" data-benefit="expert-review"><summary><img class="capability-art" src="assets/capabilities/expert-review.svg" alt="Three mid-century specialists around a round table comparing a plan" width="300" height="190" loading="lazy"><span class="benefit-title">Expert AI Review</span><span class="benefit-lede">Bring specialist AI perspectives to a difficult change, helping you consider risks and options before proceeding.</span><span class="detail-hint">See an example and availability</span></summary><div class="detail-body"><p>A person supervises the review and decides what happens next. The aim is to surface concerns that one perspective might miss.</p><p class="example"><strong>For example:</strong> review a complex change from security, usability and testing perspectives before building it.</p><p><strong>You receive:</strong> additional perspectives, concerns and suggested checks.</p><p class="availability">Pro: being tested in Codex with human supervision. Equivalent specialist workflows have not yet been verified in Base44 or Claude Code.</p></div></details>
-        </div>
-        <p class="availability">Examples illustrate how BOS is intended to help; they are not claims that those particular apps have been tested. Feature delivery depends on your tier, installed components and development environment.</p>
-        <div class="compare-links"><a href="#tiers">Compare tiers</a><a href="#environments">Compare development environments</a><a href="#capability-families">Explore all capabilities</a></div>
-      </div>
-    </section>
-
-    <section id="internal-evidence" aria-labelledby="internal-evidence-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <span class="section-kicker">Examples from our own projects · reviewed 20 October 2026</span>
-          <h2 id="internal-evidence-title">Practical checks from real development work</h2>
-          <p>These three examples come from the founder’s own app projects, built with coding AI and BOS. Each shows a problem we worked on, the checks performed and what still needed testing.</p>
-        </div>
-        <p>You bring the idea and judgement. Your coding AI helps build it. BOS helps keep agreed decisions, important checks and unfinished work in view as your app grows.</p>
-        <div class="steps">
-          <details><summary>5 August 2026 · Avoiding double-counting when a save is retried</summary><div class="detail-body">
-            <p><strong>The problem:</strong> An assessment app needed to save an accepted answer, its score and a supporting record consistently—even if saving was interrupted and retried.</p>
-            <p><strong>What we did:</strong> We checked that retrying the same accepted answer would keep those records together without counting it again.</p>
-            <p><strong>What we saw:</strong> In a local simulated test, the accepted answer produced one scoring event and one supporting record, even after two retries.</p>
-            <p><strong>Still to check:</strong> Saving, closing and reopening the running app, and checking its saved history, still needed testing. This test did not assess how accurately the assessment measures student learning.</p>
-          </div></details>
-          <details><summary>8 August 2026 · Keeping forecasts and alerts on the same rules</summary><div class="detail-body">
-            <p><strong>The problem:</strong> A forecasting app needed its forecasts, alerts and connected feature to use the same calculation rules.</p>
-            <p><strong>What we did:</strong> We brought the calculation rules together and added checks for matching versions across those features.</p>
-            <p><strong>What we saw:</strong> Checks of the published app files found matching calculation versions reported for the app and its background functions.</p>
-            <p><strong>Still to check:</strong> Matching versions do not establish forecast accuracy or verify later releases. Device support needs its own checks.</p>
-            <p>A separate owner-reported iPhone test on 23 July observed notifications arriving with the screen locked and opening the app when tapped. That dated observation did not cover every device or OS; an app-owned notification history was still needed.</p>
-          </div></details>
-          <details><summary>30 September 2026 · Checking a timetable before publishing—and keeping a way back</summary><div class="detail-body">
-            <p><strong>The problem:</strong> A scheduling app needed to check required approvals and information before publishing, while keeping a way to recover earlier work.</p>
-            <p><strong>What we did:</strong> We added pre-publication checks, confirmation for the exact version being published, recovery into a new draft and checks for competing publish attempts.</p>
-            <p><strong>What we saw:</strong> Local Safari checks blocked publishing when approvals were missing. A separate test timetable was published and recovered, and its exported data matched the expected test data. Separate tests checked competing publish attempts and protection of published results.</p>
-            <p><strong>Still to check:</strong> These were local checks using test data. A real-school pilot and hosted-deployment checks were still needed.</p>
-          </div></details>
-        </div>
-        <p>BOS helps you and your coding AI build with clearer decisions, useful checks and better continuity. Early internal comparisons showed promising time differences. Its value depends on keeping that support proportionate: unnecessary process, setup friction or BOS defects can also slow progress.</p>
-        <details><summary>About these examples and our testing</summary><div class="detail-body">
-          <p>The wider review covers ten app histories from the same owner, plus development of BOS itself. These are internal examples rather than independent customer studies. The builder, coding AI and BOS all contributed.</p>
-          <p>In one July comparison, a simulated beginner workflow used approximately 3.8 times the recorded active build time of a BOS-assisted workflow. Different prompting and incomplete equivalent completion checks make this a preliminary result. These observations do not establish a general speed multiplier or total-project cost saving.</p>
-          <p>Some defects and unfinished checks also occurred while using BOS. A short advice-only comparison produced similar results with BOS enabled, disabled or absent. A matched whole-app comparison measuring the full work and cost to the same finished result has not yet been completed.</p>
-          <p>These cases do not certify an app’s security, prove the accuracy of its forecasts or assessments, or guarantee reliability. Capabilities and verification differ by coding tool and release; check the current setup guide for your environment.</p>
-        </div></details>
-        <p><a href="setup.html#host-compatibility">Check current support for your coding tool</a> before relying on a capability.</p>
-      </div>
-    </section>
-
-    <section id="access-model" aria-labelledby="access-model-title">
-      <div class="wrap">
-        <div class="section-intro"><h2 id="access-model-title">Build trust first. Keep your continuity.</h2>
-          <p><strong>Self-service account trial.</strong> After verified sign-in and acceptance of current terms, your first verified project starts one calendar month shared across all your projects. You receive the highest delivered customer tier within current security, capability and project checks. No automatic charge. Your coding platform, hosting and AI usage remain separate.</p>
-          <p>After the trial expires, already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Without other valid access, fresh cloud help stops after that trial window. Standard passes and subscriptions remain planned, not live; their prices are shown below.</p>
-        </div>
-        <aside class="release-note" aria-labelledby="stabilisation-title"><h3 id="stabilisation-title">BOS stabilisation stays with your app.</h3><p>Your installed build rules, existing checks, decisions and project memory remain in place. A pass or subscription funds additional active governance—new reviews, scans, planning and guidance.</p><p>Existing checks depend on your development tools. Cloud-powered help uses your service allowance; platform, hosting and AI costs remain separate.</p></aside>
-        <div class="tier-table-wrap" role="region" aria-label="Planned BOS access options" tabindex="0"><table class="tier-table">
-          <caption>After beta — planned access model, not yet for sale</caption>
-          <thead><tr><th scope="col">Stage</th><th scope="col">What it means</th><th scope="col">Price and availability</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Generous start</th><td>Useful help across several sessions, including returning to your project. See the allowance and next options from the beginning.</td><td>Included introduction · allowance to be confirmed</td></tr>
-            <tr><th scope="row">Keep your continuity</th><td>After the trial wind-down, fresh cloud help stops unless you have other valid access. Installed stabilisation and readable/exportable decisions, intentions and completed reviews remain.</td><td>Stabilisation stays · cloud retention terms to be confirmed</td></tr>
-            <tr><th scope="row">Standard pass</th><td>A bounded stretch of active help when you are building. A one-off purchase with no automatic renewal.</td><td>A$15 · 7 days from activation · usage allowance to be confirmed</td></tr>
-            <tr><th scope="row">Standard subscription</th><td>An optional recurring allowance for regular builders across supported environments, with terms shown before purchase.</td><td>A$29/month · usage allowance to be confirmed</td></tr>
-          </tbody></table></div>
-        <p><strong>A gradual handover.</strong> Check My BOS for your account dates and access. After trial expiry, only already-started trial workflows may finish within seven days; this starts no new workflows. Other access follows its own verified expiry or revocation. Existing project records remain readable and exportable under the published retention terms.</p>
-        <p>BOS will show verified contributions separately from estimates. Payment will not depend on an invented savings figure or a trust score. Self-service guidance and structured plugin-defect reporting are included; personal support is not.</p>
-        <p class="release-note">Post-beta transitions and usage meters are not active. No automatic paid conversion or checkout is enabled. Current server access checks and existing account commitments remain in place. <a href="policies/trial-billing.html">Read the access and billing policy</a>.</p>
-      </div>
-    </section>
-
-    <section id="tiers" aria-labelledby="tiers-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <h2 id="tiers-title">Cloud BOS has levels.</h2>
-          <p>From everyday build guidance to deeper project support.</p>
-        </div>
-        <ul class="bos-levels">
-          <li><strong>Standard</strong> — everyday guidance and project continuity.</li>
-          <li><strong>Plus</strong> — deeper project checks and recovery planning.</li>
-          <li><strong>Pro</strong> — help with more complex development.</li>
-          <li><strong>Enterprise</strong> — planned support across teams.</li>
-        </ul>
-        <p class="availability">Standard and Plus are in private beta. Pro is in testing; Enterprise is planned.</p>
-        <p><a class="button primary" href="setup.html">Choose your coding tool</a></p>
-      </div>
-    </section>
-
-    <section class="clarity-section" id="environments" aria-labelledby="environments-title"><div class="wrap"><h2 id="environments-title">Choose your coding tool</h2><p>Your coding tool edits your app. Cloud BOS supplies guidance through its verified connection. These are the public setup paths; additional local developer components have separate requirements.</p><div class="clarity-grid">
-<article class="clarity-card"><h3>Base44</h3><p>Connect your account, add the BOS workspace skill, then approve and verify the exact app’s setup.</p><p><strong>Current limit:</strong> complete public native activation is still being qualified.</p><a href="setup.html#setup">Base44 steps and expected results</a></article>
-<article class="clarity-card"><h3>Codex</h3><p>Install the supported plugin and connection once. Open the project folder and approve its own setup.</p><p><strong>Current limit:</strong> new public installation remains held. Projects whose BOS setup has already been checked can request one-off help.</p><a href="setup.html#codex">Codex steps and expected results</a></article>
-<article class="clarity-card"><h3>Claude Code</h3><p>Install the supported plugin and sign in, then open and verify each project separately.</p><p><strong>Current limit:</strong> new public installation and dependable use of saved decisions remain under qualification.</p><a href="setup.html#claude-code">Claude Code steps and expected results</a></article></div><details class="clarity-reference"><summary>Additional local component evidence and advanced limits</summary><div>
-      <div class="wrap">
-        <div class="section-intro"><p>Your coding tool edits the app and runs tests. BOS helps it use the project’s decisions and choose the right checks. Here is what is available, what needs setup and what still needs testing.</p></div>
-        <p id="environment-scope"><strong>Local features need local installation.</strong> The Codex and Claude Code columns assume a project with the appropriate BOS Local Development Pack installed and activated. Connecting the public plugin alone does not install these components. Base44 here means its native AI app builder.</p>
-        <div class="tier-table-wrap" role="region" aria-label="Development environment comparison" tabindex="0">
-          <table class="tier-table environment-table" aria-describedby="environment-scope">
-            <caption>What can I use, and what still needs testing?</caption>
-            <thead><tr><th scope="col">What you want to do</th><th scope="col" data-environment="BASE44">Base44 BuildAI</th><th scope="col" data-environment="CODEX">Codex + Cloud BOS</th><th scope="col" data-environment="CLAUDE_CODE">Claude Code + Cloud BOS</th></tr></thead>
-            <tbody>
-<tr><th scope="row">Connect BOS</th><td>Needs an account connection and a skill in the selected workspace. Complete setup in the native Base44 builder is still being verified in the beta.</td><td>The plugin connection has been tested in a separate beta setup. Public installation is not open yet.</td><td>The plugin connection has been tested in a separate beta setup. Public installation is not open yet.</td></tr>
-<tr><th scope="row">Keep the build on track</th><td>Uses the app’s requirements, planned work and saved BOS documents. Setup must be checked for each app.</td><td>Uses local project records and code inspection to check work against agreed decisions.</td><td>Uses local project records and shared BOS components. Each workflow still needs its own Claude Code test.</td></tr>
-<tr><th scope="row">Pick up previous work</th><td>Existing app documents help preserve context. The newer feature for rebuilding project memory is not yet built for native Base44.</td><td>Rebuilding memory from saved records has been tested in fresh sessions and another app. Restoring across coding tools is not yet verified.</td><td>The shared memory component is implemented. Its use in a real Claude Code session has not yet been verified.</td></tr>
-<tr><th scope="row">Check the fix</th><td>BuildAI and approved app connections carry out supported checks. The running app and phone behaviour still need testing.</td><td>Installed test tools can check app logic and user journeys. Advanced warning and verification features have passed local tests.</td><td>Claude Code can use its installed test tools. Not every BOS checking workflow has been verified here.</td></tr>
-<tr><th scope="row">Get expert AI review</th><td>BOS can help plan a review. It does not yet organise the local specialist AI workflow inside BuildAI.</td><td>Being tested with a person supervising. Specialist AI reviewers contribute perspectives; the person decides what happens next.</td><td>Equivalent specialist AI workflows have not yet been verified in Claude Code.</td></tr>
-<tr><th scope="row">Learn from proven fixes</th><td>Needs additional setup for each app and verified results that are safe to share.</td><td>Local tools can collect and review lessons. Sharing and successfully using them must still be verified for each connected app.</td><td>Collecting, reviewing, finding and successfully using lessons still need to be verified in Claude Code.</td></tr>
-</tbody>
-          </table>
-        </div>
-        <p class="table-help">Scroll sideways to compare all three environments on a smaller screen. “Tested” applies to the named setup or component, not every feature or app.</p>
-        <details class="tier-details" id="environment-details"><summary>Why does support differ between coding tools?</summary><div class="detail-body"><p><strong>Guidance:</strong> BOS suggests work and checks; your coding tool carries them out. <strong>Local installation:</strong> additional BOS components in your project can inspect files or run supported checks. <strong>Not yet verified:</strong> we have not established that the particular feature works in that coding tool.</p><p>A Base44 app edited through a linked code repository uses the Codex or Claude Code setup for that work. Changes still need checking in the running Base44 app. Claude Code includes its VS Code extension; ordinary Claude web chat is outside these guides.</p><p>Some security and performance checks have been tested on specific Base44 apps. That does not establish support for all apps or other coding tools. Enterprise team features remain planned.</p></div></details>
-        <p><a class="button primary" href="setup.html">Choose your coding tool</a></p>
-      </div>
-    </div></details></div></section>
-
-    <section id="more-capabilities" aria-labelledby="more-capabilities-title">
-      <div class="wrap">
-        <div class="section-intro"><h2 id="more-capabilities-title">Explore the capabilities</h2><p>Find help for the build itself, or features BOS can help you add to an app. Minimum tier and availability are shown separately; inclusion is not a promise of immediate delivery.</p></div>
-        <details class="tier-details" id="capability-families"><summary>Explore all 17 capabilities and their availability</summary><div class="detail-body"><p><strong>Read the status before planning a build.</strong> Some guidance can be used before a complete, reusable installation is ready. A minimum tier describes access, not readiness in your app.</p><p><strong>Available in private beta:</strong> invited testers only, with the stated limits. <strong>In active testing:</strong> still being proven. <strong>Being prepared:</strong> the reusable installation is not ready. <strong>Future exploration:</strong> an idea to investigate, with no delivery promise. <strong>Not currently available:</strong> cannot be installed now.</p><h3>Help with your AI build</h3><div class="tier-table-wrap" role="region" aria-label="Help with your AI build" tabindex="0"><table class="tier-table"><caption>Help with your AI build</caption><thead><tr><th scope="col">Capability</th><th scope="col">How it helps</th><th scope="col">Minimum tier</th><th scope="col">Availability</th></tr></thead><tbody><tr data-pack="engineering-correctness"><th scope="row">Reliable App Logic</th><td>Check complicated rules, such as recurring dates, timing and redirects, to help prevent unexpected behaviour.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="validation"><th scope="row">App and User Journey Checks</th><td>Plan checks of important tasks, such as signing in, saving and completing a booking, and record what actually passed.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="design-quality"><th scope="row">Clear, Consistent App Design</th><td>Help make screens easier to understand, navigation more predictable and mobile layouts easier to use.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="security"><th scope="row">Security and Access Checks</th><td>Identify where information or actions need protection, and define tests showing that access restrictions work.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="launch-readiness"><th scope="row">Ready-to-Launch Review</th><td>Find missing checks, support arrangements, privacy information and recovery plans before release.</td><td>Standard</td><td>Being prepared</td></tr><tr data-pack="governance"><th scope="row">Project Decisions and Change Control</th><td>Keep agreed requirements and decisions visible so later AI changes can be checked against them.</td><td>Plus</td><td>Being prepared</td></tr><tr data-pack="recovery"><th scope="row">Backup and Recovery Planning</th><td>Identify what needs backing up and how you would test recovery before relying on it.</td><td>Plus</td><td>Being prepared</td></tr><tr data-pack="build-feedback"><th scope="row">Build Progress and Test History</th><td>Keep a clear record of what changed, what was checked and what the next developer or AI session needs to know.</td><td>Plus</td><td>Being prepared</td></tr><tr data-pack="governed-multi-agent"><th scope="row">Expert AI Review and Teamwork</th><td>Organise specialist AI contributions to a difficult task, with clear responsibilities and human oversight.</td><td>Pro</td><td>In active testing</td></tr><tr data-pack="portability"><th scope="row">Moving to Another Platform</th><td>Identify what ties your app to its current platform and plan a staged move.</td><td>Pro</td><td>Being prepared<br>Assessment guidance exists; a complete installation is still being prepared.</td></tr><tr data-pack="rescue"><th scope="row">Broken App Diagnosis and Repair Planning</th><td>Work through what failed, identify a focused repair and define how to check the result.</td><td>Pro</td><td>Being prepared</td></tr></tbody></table></div><h3>Features BOS can help you add to your app</h3><div class="tier-table-wrap" role="region" aria-label="Features BOS can help you add to your app" tabindex="0"><table class="tier-table"><caption>Features BOS can help you add to your app</caption><thead><tr><th scope="col">Capability</th><th scope="col">How it helps</th><th scope="col">Minimum tier</th><th scope="col">Availability</th></tr></thead><tbody><tr data-pack="notifications"><th scope="row">Alerts and Notifications</th><td>Help plan and add useful alerts, including checks of what phone notifications can actually do.</td><td>Plus</td><td>Available in private beta<br>Phone behaviour in the background and with a locked screen has only been partly verified.</td></tr><tr data-pack="pwa"><th scope="row">Installable Web Apps</th><td>Plan home-screen installation, offline behaviour and updates for a web app.</td><td>Plus</td><td>Future exploration</td></tr><tr data-pack="llm-access"><th scope="row">AI Features for Your App</th><td>Help plan how your app connects to AI models and how that choice could change later.</td><td>Plus</td><td>Future exploration</td></tr><tr data-pack="subscriptions"><th scope="row">Paid Plans and Feature Access</th><td>Help connect your app’s billing arrangements to the features each customer can use.</td><td>Plus</td><td>Not currently available</td></tr><tr data-pack="user-onboarding"><th scope="row">First-Time User Setup</th><td>Help new users understand the app, complete setup and make informed permission choices.</td><td>Plus</td><td>Future exploration</td></tr><tr data-pack="analytics"><th scope="row">Understand How Your App Is Used</th><td>Plan useful measurements of app activity while limiting the collection of private information.</td><td>Pro</td><td>Future exploration</td></tr></tbody></table></div></div></details>
-
-      </div>
-    </section>
-
-    <section aria-labelledby="portal-start-title"><div class="wrap"><h2 id="portal-start-title">Set up BOS in your coding tool.</h2><p>Choose Base44, Codex or Claude Code, then follow the guide for that tool.</p><p>Start with the readiness notice in the setup guide. The intended route uses your self-service My BOS account, current terms and separate approval for each project. Installation controls remain held; account preparation is not project activation.</p><a class="button primary" href="setup.html">Choose your coding tool</a></div></section>
-    <section aria-labelledby="boundary-title">
-      <div class="wrap">
-        <div class="section-intro">
-          <h2 id="boundary-title">BOS helps during the build</h2>
-          <p>Cloud BOS works with your coding tool while you build. Your published app should keep working when Cloud BOS is disconnected.</p>
-        </div>
-        <div class="boundary-grid">
-          <article class="boundary-card">
-            <h3>Available while building</h3>
-            <p>Your coding tool can ask BOS to review the project, plan tests and check that the app’s BOS setup is still correct.</p>
-          </article>
-          <article class="boundary-card">
-            <h3>Set up for each project</h3>
-            <p>Base44 uses an account connection and a skill per selected workspace. Codex and Claude Code use a plugin. Each project has its own approved setup.</p>
-          </article>
-          <article class="boundary-card">
-            <h3>Keep private material private</h3>
-            <p>The public connection does not install private BOS source, secrets or full private project memory. <a href="policies/data-processing-summary.html">Read the data-sharing summary</a>.</p>
-          </article>
-        </div>
-        <div class="static-note">
-          <span aria-hidden="true">✓</span>
-          <div><strong>This website explains BOS.</strong> It has no chat, analytics, account form or project-data upload. For installation and activation, follow the setup guide for your coding tool.</div>
-        </div>
-      </div>
+    <section class="wrap" aria-labelledby="start-title">
+      <h2 id="start-title">Set up your tool once. Connect each project.</h2>
+      <ol class="steps">
+        <li><strong>Install BOS in your coding tool or workspace.</strong> Sign in to My BOS and choose your guide. It has the screenshots and any available downloads.</li>
+        <li><strong>Connect the app or project you want BOS to help with.</strong> Open it in your coding tool, review its setup, and verify it in My BOS. Repeat this for each project.</li>
+      </ol>
+      <div class="actions"><a class="button" href="https://my.cloudbos.dev/account">Open My BOS</a><a href="using-bos.html">See a working example</a></div>
     </section>
   </main>
-
-  <footer>
-    <div class="wrap footer-row">
-      <span>Cloud BOS — Build Operating System · Base44, Codex and Claude Code · AI development with responsibility</span>
-      <span class="footer-links">
-        <a href="beginner-guide.html">Getting started</a>
-        <a href="using-bos.html">Working with BOS</a>
-        <a href="support.html">Support</a>
-        <a href="policies/privacy.html">Privacy</a>
-        <a href="policies/terms.html">Terms</a>
-        <a href="policies/acceptable-use.html">Acceptable use</a>
-        <a href="policies/data-processing-summary.html">Data sharing</a><a href="policies/index.html">All policies</a>
-      </span>
-    </div>
+  <footer class="wrap">
+    <nav aria-label="Footer navigation">
+      <a href="support.html">Support</a>
+      <a href="policies/privacy.html">Privacy</a>
+      <a href="policies/terms.html">Terms</a>
+      <a href="policies/acceptable-use.html">Acceptable use</a>
+      <a href="policies/data-processing-summary.html">Data sharing</a>
+      <a href="policies/index.html">All policies</a>
+    </nav>
   </footer>
-
 </body>
 </html>

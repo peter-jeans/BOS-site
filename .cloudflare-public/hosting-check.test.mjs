@@ -1,6 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync, existsSync} from 'node:fs';
+import {readFileSync, existsSync, mkdtempSync, mkdirSync, writeFileSync, rmSync, symlinkSync} from 'node:fs';
+import {tmpdir} from 'node:os';
 import {fileURLToPath} from 'node:url';
 import {resolve, dirname} from 'node:path';
 import {createHash} from 'node:crypto';
@@ -43,7 +44,7 @@ for (const [label, change] of [
  ['missing pin', a => delete a.pinned_files['.cloudflare-public/release-readiness.json']],
  ['invented pin', a => a.pinned_files['private.json']='0'.repeat(64)],
 ]) test(label+' is rejected', () => assert.throws(() => verifyHosting(changedApproval(change),exists)));
-for (const name of ['.cloudflare-public/release-readiness.json','data/host-compatibility.json','.cloudflare-public/assets-manifest.json','.cloudflare-public/marketplace-source-manifest.json','.cloudflare-public/asset-routing.txt','.cloudflare-public/wrangler.production.json']) {
+for (const name of ['.cloudflare-public/release-readiness.json','data/host-compatibility.json','.cloudflare-public/assets-manifest.json','.cloudflare-public/marketplace-source-manifest.json','.cloudflare-public/hosting-input-isolation.json','.cloudflare-public/asset-routing.txt','.cloudflare-public/wrangler.production.json']) {
  test('modified '+name+' is rejected', () => assert.throws(() => verifyHosting(n => n===name ? Buffer.concat([read(n),Buffer.from(' ')]) : read(n),exists)));
 }
 test('Pages configuration change needs review', () => assert.throws(() => verifyHosting(read,n => n==='CNAME' || exists(n))));
@@ -85,4 +86,45 @@ test('default product release remains held', () => {
 test('unknown hosting mode is rejected', () => {
  const result=spawnSync(process.execPath,['.cloudflare-public/hosting-check.mjs','--skip-holds'],{cwd:root,encoding:'utf8'});
  assert.equal(result.status,1); assert.match(result.stderr,/Unknown hosting-check argument/);
+});
+
+function isolatedHosting(t) {
+ const directory=mkdtempSync(resolve(tmpdir(),'bos-hosting-test-'));
+ t.after(() => rmSync(directory,{recursive:true,force:true}));
+ const write=(name,bytes)=>{const p=resolve(directory,name);mkdirSync(dirname(p),{recursive:true});writeFileSync(p,bytes);};
+ const entry=value=>({bytes:Buffer.byteLength(value),sha256:createHash('sha256').update(value).digest('hex')});
+ const setup='setup.html', candidate='downloads/cloudbos-setup/candidate.zip', packageFile='public-plugin-releases/candidate/plugin.json';
+ const current={ 'index.html':'new home', [setup]:'candidate setup', [candidate]:'candidate zip', [packageFile]:'candidate plugin' };
+ for (const [path,bytes] of Object.entries(current)) write(path,bytes);
+ write('.cloudflare-public/approved-assets/'+setup,'existing live setup');
+ write('.cloudflare-public/build.mjs',read('.cloudflare-public/build.mjs'));
+ write('.cloudflare-public/asset-routing.txt','/ /index.html 200\n');
+ const manifest=(name,schema,files)=>write('.cloudflare-public/'+name,JSON.stringify({schema,files}));
+ manifest('assets-manifest.json','BOS_PUBLIC_STATIC_ASSET_MANIFEST_V1',{'index.html':entry(current['index.html']),[setup]:entry('existing live setup')});
+ manifest('marketplace-source-manifest.json','BOS_PUBLIC_MARKETPLACE_SOURCE_MANIFEST_V1',{[packageFile]:entry(current[packageFile])});
+ manifest('hosting-input-isolation.json','BOS_PUBLIC_HOSTING_INPUT_ISOLATION_V1',{[setup]:entry(current[setup]),[candidate]:entry(current[candidate])});
+ const run=(...args)=>spawnSync(process.execPath,['.cloudflare-public/build.mjs',...args],{cwd:directory,encoding:'utf8'});
+ return { directory, write, run, candidate, packageFile, setup };
+}
+test('hosting emits approved bytes at original routes and excludes every candidate input',t=>{
+ const f=isolatedHosting(t), r=f.run();
+ assert.equal(r.status,0,r.stderr);
+ const dist=resolve(f.directory,'.cloudflare-public/dist');
+ assert.equal(readFileSync(resolve(dist,'index.html'),'utf8'),'new home');
+ assert.equal(readFileSync(resolve(dist,f.setup),'utf8'),'existing live setup');
+ assert(!existsSync(resolve(dist,f.candidate)));
+ assert(!existsSync(resolve(dist,f.packageFile)));
+});
+for (const [label, change, message] of [
+ ['unreviewed public file', f=>f.write('downloads/cloudbos-setup/unreviewed.zip','unreviewed'),/Unreviewed or missing public input/],
+ ['changed isolated file', f=>f.write(f.candidate,'different ZIP'),/Input (size mismatch|mismatch)/],
+ ['changed approved copy', f=>f.write('.cloudflare-public/approved-assets/setup.html','candidate'),/Input size mismatch/],
+ ['extra approved copy', f=>f.write('.cloudflare-public/approved-assets/extra.html','candidate'),/Unreviewed or missing preserved live copy/],
+ ['symlinked approved copy', f=>{const p=resolve(f.directory,'.cloudflare-public/approved-assets/setup.html');rmSync(p);symlinkSync(resolve(f.directory,'setup.html'),p);},/Symlink rejected/],
+]) test(label+' blocks hosting',t=>{
+ const f=isolatedHosting(t);
+ change(f);
+ const r=f.run('--check');
+ assert.equal(r.status,1,r.stdout);
+ assert.match(r.stderr,message);
 });
