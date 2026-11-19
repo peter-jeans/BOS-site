@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloudbos.example/schemas/project-governance-plan-v1.json",
+  "title": "Cloud BOS Public Project Governance Plan V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "plan_id", "plan_hash", "platform_installation_id", "project_ref", "project_binding_id", "environment", "adapter_id", "adapter_context", "requested_operation", "created_at", "expires_at", "zero_write", "requires_approval", "artifacts", "artifact_manifest_hash", "installed_manifest_sha256", "prior_manifest_sha256", "readback_evidence_requirement", "permissions", "forbidden_content_check", "preconditions"],
+  "properties": {
+    "schema": {"const": "BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_PLAN_V1"},
+    "plan_id": {"type": "string", "minLength": 1},
+    "plan_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "platform_installation_id": {"type": "string", "minLength": 1},
+    "project_ref": {"type": "string", "minLength": 1},
+    "project_binding_id": {"type": "string", "minLength": 1},
+    "environment": {"enum": ["LOCAL_REPOSITORY", "GITHUB_REPOSITORY", "BASE44_GOVERNED_APP", "BASE44_DIRECT_APP", "REMOTE_NO_WRITE"]},
+    "adapter_id": {"type": "string", "minLength": 1},
+    "adapter_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repository_ref": {"type": "string", "minLength": 3},
+        "target_branch": {"type": "string", "minLength": 1},
+        "expected_head_sha": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+        "app_id": {"type": "string", "minLength": 1},
+        "expected_app_revision": {"type": "string", "minLength": 1},
+        "project_visible_remote_evidence": {"const": true},
+        "remote_evidence_provider_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "requested_operation": {"enum": ["ACTIVATE", "UPDATE", "ROLLBACK", "REMOVE"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"anyOf": [{"type": "string", "format": "date-time"}, {"const": "UNTIL_INVALIDATED"}]},
+    "approval_lifecycle": {"const": "DURABLE_EXACT_PLAN_V1"},
+    "zero_write": {"const": true},
+    "requires_approval": {"const": true},
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["artifact_id", "target", "role", "operation", "media_type", "proposed_sha256", "proposed_bytes", "proposed_content", "expected_prior_sha256"],
+        "properties": {
+          "artifact_id": {"type": "string", "minLength": 1},
+          "target": {"type": "string", "minLength": 1},
+          "role": {"enum": ["PROJECT_IDENTITY", "GOVERNANCE_PROJECTION", "MANIFEST", "AICONTROL_BINDING", "REMOTE_EVIDENCE"]},
+          "operation": {"enum": ["CREATE", "REPLACE", "DELETE", "REMOTE_REGISTER", "REMOTE_DETACH"]},
+          "media_type": {"type": "string", "minLength": 1},
+          "proposed_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+          "proposed_bytes": {"type": "integer", "minimum": 0},
+          "proposed_content": {"type": ["string", "null"]},
+          "expected_prior_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "artifact_manifest_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "installed_manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "prior_manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "repair_mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "canonical_installed_manifest_sha256", "drifted_targets", "restores_exact_bound_manifest", "current_state_must_match_expected_prior"],
+      "properties": {
+        "type": {"const": "EXACT_BOUND_MANIFEST_DRIFT_REPAIR"},
+        "canonical_installed_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "drifted_targets": {"type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "restores_exact_bound_manifest": {"const": true},
+        "current_state_must_match_expected_prior": {"const": true}
+      }
+    },
+    "readback_evidence_requirement": {"enum": ["LOCAL_FILESYSTEM_EXACT_READBACK", "GITHUB_COMMIT_API_READBACK", "BASE44_AICONTROL_API_READBACK", "REMOTE_PROJECT_VISIBLE_INDEPENDENT_READBACK"]},
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action", "resource", "reason"],
+        "properties": {
+          "action": {"enum": ["READ", "CREATE", "REPLACE", "DELETE", "BIND", "DETACH", "COMMIT"]},
+          "resource": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "forbidden_content_check": {"const": "PASS"},
+    "preconditions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

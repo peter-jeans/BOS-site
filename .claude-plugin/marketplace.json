@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "Public-safe Cloud BOS plugins for governed software development.",
-    "version": "0.2.0-ldp.3+runtime.20261119"
+    "version": "0.2.0-ldp.4+runtime.20261119"
   },
   "plugins": [
     {
       "name": "cloudbos-public-plugin",
-      "source": "./public-plugin-releases/0.2.0-ldp.3+runtime.20261119/plugins/cloudbos-public-plugin",
+      "source": "./public-plugin-releases/0.2.0-ldp.4+runtime.20261119/plugins/cloudbos-public-plugin",
       "description": "Public Cloud BOS project guidance. Preserve existing private project bindings; public installation does not migrate a project.",
-      "version": "0.2.0-ldp.3+runtime.20261119"
+      "version": "0.2.0-ldp.4+runtime.20261119"
     }
   ]
 }

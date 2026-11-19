@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloudbos.example/schemas/project-governance-readback-v1.json",
+  "title": "Cloud BOS Public Project Governance Readback V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "readback_id", "readback_hash", "approved_plan_hash", "project_ref", "project_binding_id", "adapter_id", "verified_at", "projection_hash", "artifact_manifest_hash", "installed_manifest_sha256", "artifact_count", "evidence", "manifest_checks", "binding_check", "forbidden_content_check", "application_preservation_check", "governance_state", "acceptance_status"],
+  "properties": {
+    "schema": {"const": "BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_READBACK_V1"},
+    "readback_id": {"type": "string", "minLength": 1},
+    "readback_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "approved_plan_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "project_ref": {"type": "string", "minLength": 1},
+    "project_binding_id": {"type": "string", "minLength": 1},
+    "adapter_id": {"type": "string", "minLength": 1},
+    "verified_at": {"type": "string", "format": "date-time"},
+    "projection_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "artifact_manifest_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "installed_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "artifact_count": {"type": "integer", "minimum": 1},
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_class", "verifier", "evidence_ref", "version_ref", "independent"],
+      "properties": {
+        "evidence_class": {"enum": ["LOCAL_FILESYSTEM_EXACT_READBACK", "GITHUB_COMMIT_API_READBACK", "BASE44_AICONTROL_API_READBACK", "REMOTE_PROJECT_VISIBLE_INDEPENDENT_READBACK"]},
+        "verifier": {"type": "string", "minLength": 1},
+        "evidence_ref": {"type": "string", "minLength": 1},
+        "version_ref": {"type": "string", "minLength": 1},
+        "independent": {"type": "boolean"}
+      }
+    },
+    "manifest_checks": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["target", "expected_sha256", "actual_sha256", "status"],
+        "properties": {
+          "target": {"type": "string", "minLength": 1},
+          "expected_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "actual_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+          "status": {"enum": ["MATCH", "MISSING", "DRIFTED", "UNREADABLE"]}
+        }
+      }
+    },
+    "binding_check": {"enum": ["VERIFIED", "MISSING", "MISMATCH", "REVOKED"]},
+    "forbidden_content_check": {"enum": ["PASS", "FAIL"]},
+    "application_preservation_check": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE"]},
+    "governance_state": {"enum": ["GOVERNED_ACTIVE", "STALE_OR_DRIFTED", "DETACHED_OR_REMOVED"]},
+    "acceptance_status": {"enum": ["COMPLETE_VERIFIED", "PARTIAL_VERIFIED", "FAILED_SYNC_VERIFICATION", "BLOCKED", "FAILED"]}
+  }
+}
