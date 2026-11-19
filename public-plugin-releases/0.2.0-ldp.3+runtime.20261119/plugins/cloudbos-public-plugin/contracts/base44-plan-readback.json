@@ -1,0 +1,15 @@
+{
+  "schema": "BOS_BASE44_UPDATE_PLAN_READBACK_CONTRACT_V1",
+  "format": "BASE44_UPDATE_PLAN_READBACK_V1",
+  "scope": "CURRENT_SERVER_ANCHORED_UPDATE_RECOVERY_ONLY",
+  "source": "Existing authenticated bos_project_governance_plan recovery and current D1 anchor; no new endpoint, permission, credential, identity or plan.",
+  "helper": "scripts/base44-plan-readback.cjs:restoreBase44UpdatePlanReadback",
+  "host_route": "Recover the current original UPDATE using project_ref, project_binding_id, recover_plan:{plan_hash}, response_format:BASE44_UPDATE_PLAN_READBACK_V1. Pass its one complete credential-free frame into checksum-verified native code. No authenticated code-level callTool callback is required. Direct assistant MCP invocation is separate from code-bridge execution; never claim the latter occurred.",
+  "readback": "The helper decompresses only bounded metadata, reads every allowlisted original governance artifact from the exact current app, and uses the existing deterministic UPDATE generator. Require the original complete canonical JSON SHA-256, exact byte count and server-anchored plan hash. It restores the same original bytes; it cannot issue, shorten, rewrite or approve a different proposal. Transcription damage, helper-version mismatch, wrong app/binding/platform/manifest/revision, changed source or invalid hashes fail closed with zero app writes.",
+  "provider_checks": "Fresh authenticated binding input; clean provider revision before and after; all exact prior artifacts read and hashed twice. The caller retains responsibility for authenticating inputs and original source provenance. Helper consistency is not independent authentication or editor interception.",
+  "limits": {"max_plan_bytes":262144,"max_recipe_bytes":20000,"max_base64_characters":6144,"max_binding_age_ms":300000},
+  "approval": "The existing exact new plan-hash owner decision remains required after original-byte readback and independent review. Immediately before any app write refresh the decision, current provider revision and prior hashes. Recovery grants no approval or action authority.",
+  "preservation": "No app file, preference, data, security permission, accepted baseline, decision or active intention is changed by transport recovery. Recovered plan bytes remain in native code or an authorized scratch location outside the app repository.",
+  "fallback": "Use the existing PLAN_DOWNLOAD_V1 route on hosts with a supported credential-safe code bridge. Do not copy download credentials into chat/code arguments. Legacy manual chunk transcription remains unqualified. ACTIVATE, clone, rollback, remove and oversized UPDATE frames retain their existing supported routes; do not pretend this UPDATE recovery supports new onboarding.",
+  "acceptance": "Component tests, published helper hashes, native helper invocation, independent readback and observed user workflow are separate evidence. Do not infer a working native route from publication. Unavailable transport stops only dependent governance installation; ordinary authorized product work continues under its applicable gates."
+}

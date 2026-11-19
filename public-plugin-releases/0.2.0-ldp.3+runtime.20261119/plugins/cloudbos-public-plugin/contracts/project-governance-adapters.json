@@ -1,0 +1,72 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_PROJECT_GOVERNANCE_ADAPTERS_V1",
+  "version": "1.4.0",
+  "status": "BASE44_CANONICAL_IDENTITY_CALIBRATION_PROFILES_AND_APP_NATIVE_PROFILE_ENGINE_LOCAL_VERIFIED_HOST_LIVE_PENDING",
+  "compatibility_aliases": {
+    "environments": {"BASE44_DIRECT_APP": "BASE44_GOVERNED_APP"},
+    "adapter_ids": {"base44_direct_app": "base44_app_governance"},
+    "policy": "READ_EXISTING_LEGACY_PLANS_WITHOUT_REWRITING_IMMUTABLE_EVIDENCE; EMIT_CANONICAL_IDENTIFIERS_FOR_NEW_PLANS"
+  },
+  "adapters": {
+    "local_repository": {
+      "environment": "LOCAL_REPOSITORY",
+      "projection_root": ".cloudbos/governance",
+      "project_write_capability": true,
+      "approval_required": true,
+      "project_visible_readback": "FILESYSTEM_MANIFEST_AND_CHECKSUM",
+      "forbidden_targets": [".bos", ".git", "application_source", "application_data"]
+    },
+    "github_repository": {
+      "environment": "GITHUB_REPOSITORY",
+      "projection_root": ".cloudbos/governance",
+      "project_write_capability": true,
+      "approval_required": true,
+      "additional_gates": ["REPOSITORY_IDENTITY", "SOURCE_AUTHORITY", "EXACT_TARGET_BRANCH", "EXACT_EXPECTED_HEAD_SHA", "COMMIT_SCOPE", "NON_FORCE_REF_UPDATE", "APPLICATION_TREE_PRESERVATION", "EXACT_COMMIT_READBACK"],
+      "exact_targets": [".cloudbos/governance/binding.json", ".cloudbos/governance/project-governance.json", ".cloudbos/governance/manifest.json"],
+      "live_controller": "scripts/run_cloudbos_public_github_exact_ref_controller.mjs",
+      "controller_status": "COMPLETE_LOCAL_VERIFIED_TARGET_SELECTION_AND_EXACT_OWNER_APPROVAL_PENDING",
+      "branch_creation_or_deletion": false,
+      "force_push": false,
+      "merge_pull_request_deployment_or_publication_authority": false,
+      "project_visible_readback": "COMMITTED_MANIFEST_AND_CHECKSUM",
+      "forbidden_targets": [".bos", "application_source", "application_data"]
+    },
+    "base44_app_governance": {
+      "environment": "BASE44_GOVERNED_APP",
+      "projection_root": "AICONTROL/CLOUDBOS_PROJECT_GOVERNANCE",
+      "projection_profiles_ref": "base44-app-governance-profiles.json",
+      "current_engine_projection": "THREE_ARTIFACT_BINDING_ENVELOPE_COMPATIBILITY_PROFILE",
+      "preferred_profile_engine_ref": "scripts/base44-app-governance-profile.mjs",
+      "preferred_profile_engine_integration": "COMPLETE_LOCAL_VERIFIED_ACTIVATION_DRIFT_AND_REMOVAL_LIVE_PENDING",
+      "project_write_capability": true,
+      "approval_required": true,
+      "additional_gates": ["APP_IDENTITY", "APP_NATIVE_READBACK", "NO_LOCAL_BOS_ASSUMPTION"],
+      "project_visible_readback": "APP_NATIVE_AICONTROL_ARTIFACT",
+      "forbidden_targets": [".bos", "application_source", "application_data"]
+    },
+    "remote_no_write": {
+      "environment": "REMOTE_NO_WRITE",
+      "projection_root": "CLOUD_BOS_PROJECT_VISIBLE_REMOTE_PROJECTION",
+      "project_write_capability": false,
+      "approval_required": true,
+      "additional_gates": ["PROJECT_VISIBLE_EVIDENCE", "REMOTE_BINDING_ISOLATION", "SEPARATE_AUTHORITY_AND_PROJECT_VIEW_CHANNELS", "EXACT_PROJECT_REVISION_PLAN_AND_MANIFEST_BINDING", "CRYPTOGRAPHIC_OR_PROVIDER_NATIVE_ATTESTATION", "BOUNDED_EVIDENCE_FRESHNESS", "EXACT_PROJECT_VISIBLE_CONTENT_READBACK"],
+      "exact_targets": ["CLOUD_BOS_PROJECT_VISIBLE_REMOTE_PROJECTION/binding.json", "CLOUD_BOS_PROJECT_VISIBLE_REMOTE_PROJECTION/project-governance.json", "CLOUD_BOS_PROJECT_VISIBLE_REMOTE_PROJECTION/manifest.json"],
+      "verifier": "scripts/remote-project-visible-api.mjs",
+      "index_schema": "contracts/remote-project-visible-index.schema.json",
+      "verifier_status": "COMPLETE_LOCAL_VERIFIED_LIVE_PROVIDER_SELECTION_PENDING",
+      "project_visible_readback": "REMOTE_PROJECTION_PROOF_OR_LIMITED_BLOCKED",
+      "self_attested_boolean_is_adequate_evidence": false,
+      "project_file_write": false,
+      "forbidden_targets": ["project_files", "application_source", "application_data"]
+    }
+  },
+  "common_invariants": [
+    "EXACT_ZERO_WRITE_DRY_RUN_FIRST",
+    "MUTATION_REQUIRES_APPROVED_PLAN_HASH",
+    "GOVERNED_ACTIVE_REQUIRES_READBACK",
+    "MANIFEST_OWNED_ARTIFACTS_ONLY",
+    "NO_LDP_FULL_OR_PRIVATE_BOS_DISTRIBUTION",
+    "REMOVAL_PRESERVES_APPLICATION_SOURCE_AND_DATA",
+    "PLATFORM_PLUGIN_REMOVAL_DOES_NOT_BREAK_APPLICATION"
+  ]
+}

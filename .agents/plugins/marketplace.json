@@ -8,11 +8,11 @@
       "name": "cloudbos-public-plugin",
       "source": {
         "source": "local",
-        "path": "./public-plugin-releases/0.1.20-rc.13+envelope.20261025/plugins/cloudbos-public-plugin"
+        "path": "./public-plugin-releases/0.2.0-ldp.3+runtime.20261119/plugins/cloudbos-public-plugin"
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
+        "authentication": "ON_USE"
       },
       "category": "Productivity"
     }

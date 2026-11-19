@@ -1,0 +1,39 @@
+{
+  "schema": "BOS_CLOUD_BOS_PUBLIC_TIER_CAPABILITIES_V1",
+  "version": "1.0.0",
+  "status": "LOCAL_VERIFIED_NOT_LIVE",
+  "authority": "CLOUD_BOS_D1_SERVER_RESOLVED_ENTITLEMENT_AND_TIER_CONTROLS",
+  "rules": {
+    "one_plugin_product": true,
+    "tier_change_requires_plugin_reinstall": false,
+    "client_claimed_tier_accepted": false,
+    "complexity_recommendation_grants_access": false,
+    "project_governance_required_for_project_capabilities": true,
+    "private_bos_material_allowed": false,
+    "standard_retains_seven_level1_tools": true
+  },
+  "profiles": [
+    {
+      "tier": "STANDARD",
+      "value": "Seven Level-1 BOS tools plus the bounded project-governance lifecycle.",
+      "scan_depth": "Baseline evidence, health, governance, security and release planning."
+    },
+    {
+      "tier": "PLUS",
+      "value": "Adds lifecycle, authority and governance-drift scan planning.",
+      "capability_id": "bos_scan_depth_plus"
+    },
+    {
+      "tier": "PRO",
+      "value": "Adds environment-orchestration and sanitized cross-project-pattern scan planning.",
+      "capability_id": "bos_scan_depth_pro"
+    },
+    {
+      "tier": "ENTERPRISE",
+      "value": "Adds organisation-policy, compliance-pack and portfolio-audit scan planning.",
+      "capability_id": "bos_scan_depth_enterprise"
+    }
+  ],
+  "rollback": "Disable the affected server-side tier control; adapters and project governance remain installed and Standard remains usable.",
+  "release_boundary": "Local contract and runtime only until remote D1 entitlement, host and public-release gates pass."
+}

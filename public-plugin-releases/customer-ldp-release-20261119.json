@@ -1,0 +1,16 @@
+{
+  "schema": "BOS_OWNER_PUBLIC_BETA_RELEASE_V1",
+  "date": "2026-11-19",
+  "owner_request": "Finish the remaining checks and publish the updated plugins and My BOS downloads so that self-update works in Claude and Codex.",
+  "version": "0.2.0-ldp.3+runtime.20261119",
+  "package_digest": "fc4a1c79bd85ad1b448c2dd64757ece15cf4bd7db75ebc26b99272b6e8da327e",
+  "approval": "OWNER_AUTHORIZED_SELF_SERVICE_BETA_PUBLICATION",
+  "native_macos": {
+    "claude": "REAL_INSTALL_AND_OLD_VERSION_UPGRADE_VERIFIED",
+    "codex": "REAL_INSTALL_UPGRADE_AND_EXACT_UNTRUSTED_HOOK_READBACK_VERIFIED"
+  },
+  "native_windows": "SOURCE_AND_WRAPPER_TESTS_NATIVE_UI_NOT_OBSERVED",
+  "account_sign_in": "EXISTING_HOST_BROWSER_OAUTH_USER_ACTION",
+  "folder_support": "ONE_HOST_PER_PHYSICAL_PROJECT_FOLDER",
+  "stable_paid_launch": false
+}
