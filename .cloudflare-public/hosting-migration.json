@@ -2,7 +2,7 @@
   "schema": "BOS_HOSTING_ONLY_APPROVAL_V1",
   "scope": "HOSTING_MIGRATION_ONLY",
   "hosting_approved": true,
-  "approval_basis": "Owner explicitly requested functioning Mac and Windows setup-download buttons and concise computer setup cards on 2026-10-22. Only the existing checksum-verified preview archive is authorized for these two download links. Native qualification and general product release remain unapproved. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints.",
+  "approval_basis": "Owner explicitly requested functioning Mac and Windows setup-download buttons and concise computer setup cards on 2026-10-22. Only the existing checksum-verified preview archive is authorized for these two download links. Native qualification and general product release remain unapproved. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner requested public check/update/repair prompt links and a guided download on 2026-11-19; links target the current My BOS account help cards.",
   "product_release_approved": false,
   "preserve_github_pages": true,
   "source_repository": "https://github.com/peter-jeans/BOS-site.git",
@@ -17,7 +17,7 @@
   "pinned_files": {
     ".cloudflare-public/release-readiness.json": "8c2ba7d110391e33e8c89b0b198ec0a3ba3ad1bfd9184a10df8e9ddb91a9e82a",
     ".cloudflare-public/marketplace-source-manifest.json": "65945f99e4a5cfee8e6bf8fcdae68faf47d9bf2bb018465784084425f22eaecc",
-    ".cloudflare-public/assets-manifest.json": "d5c861b6cac2542f2e6721801ceb11fd931c237cc919499df3b7d5776ba09248",
+    ".cloudflare-public/assets-manifest.json": "e81ffc3ad3bd6ea716b5dee558df518a32abd6aea6b329eb3bcef08b61bc0234",
     ".cloudflare-public/asset-routing.txt": "a1d8dddd72c71933662e65f4604cd741d4a3f388951207193c01ad1015dd6692",
     ".cloudflare-public/build.mjs": "52f93b42be69f9f8896cde891b8bf2308a3916cdf44e8ba321a51f259c540636",
     ".cloudflare-public/release-check.mjs": "daef0692c106479cceaef361f6732e8174ee398fc6cbfa870be796fed6b833f3",
@@ -27,6 +27,6 @@
     ".cloudflare-public/package-lock.json": "e93ab991f100f9d1edecd747fc5d6f87aa35348446589d2b724e6ebf8e7a2a18",
     "data/host-compatibility.json": "0f1cefbaf5d9d8d9257c55dded55078952dd8157b07062d6105ed623f424fc53",
     ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    ".cloudflare-public/hosting-input-isolation.json": "a727bbc1809b40e90d954dfa4207b08b3223a5e150ad0878ce7fea06a89f54e9"
+    ".cloudflare-public/hosting-input-isolation.json": "c94a8782bcb71b56cd3443d40b541755d392b36a201806b8fdbee6f33f8d547b"
   }
 }
