@@ -2,16 +2,16 @@
   "schema": "BOS_PUBLIC_MARKETPLACE_SOURCE_MANIFEST_V1",
   "publication_status": "OWNER_APPROVED_SELF_SERVICE_BETA",
   "repository": "https://github.com/peter-jeans/BOS-site",
-  "version": "0.2.1+runtime.20261120",
+  "version": "0.2.2+runtime.20261120",
   "publication_commit": null,
-  "bundle_public_manifest_sha256": "c116f94f5ab12d33c4889213c72a45945f7c32d8d8cd48e9fc40464bf947ecae",
+  "bundle_public_manifest_sha256": "78612abc4ffa43bcebb614a12ae7ef1212ccf50c4c901fe18c6f33a75fac9194",
   "files": {
     ".agents/plugins/marketplace.json": {
-      "sha256": "e892479375e5799e9f9a1102c138db0b52216f3649544261a4a210b955574cf4",
+      "sha256": "4de3a25563f6d29412d06ed4d69374dd8db8cee9ad2b4481d36c5d77340033dd",
       "bytes": 447
     },
     ".claude-plugin/marketplace.json": {
-      "sha256": "4a0e1b5a0f45f43b5c77556053731e9b0ad0993171a679620379a65d677703ba",
+      "sha256": "90ce5af2ac145227bac22bd4c02681f466800ed3fcc3d7b516ee7490e2d4ad97",
       "bytes": 699
     },
     "public-plugin-releases/0.1.14+codex.20261018/.agents/plugins/marketplace.json": {
@@ -4189,6 +4189,10 @@
     "public-plugin-releases/0.2.2+runtime.20261120/plugins/cloudbos-public-plugin/claude-skills/bos/SKILL.md": {
       "sha256": "92370a097e1e0f68a8fbd04b683fbe1049f0085f9a9076a2d97b13cfa3729abd",
       "bytes": 8651
+    },
+    "public-plugin-releases/folder-welcome-release-20261120.json": {
+      "sha256": "5ff487f25a68a170d9b9b0746185204134ac1988089fe7f4f4e42c5c92b46def",
+      "bytes": 3473
     }
   },
   "source_inventory_reviewed_at": "2026-10-22",

@@ -1,0 +1,81 @@
+{
+  "schema": "BOS_OWNER_PUBLIC_BETA_RELEASE_V1",
+  "date": "2026-11-20",
+  "version": "0.2.2+runtime.20261120",
+  "scope": "Explicit drive-folder and desktop-session steps in both downloads; short conditional setup welcome; local BOS help.",
+  "package_digest": "7711eb1bcaaad3d4b6fd107a04272f023f671b1314e17b5cba864db95368297b",
+  "immutable_payload_commit": "c1598cb1455f47375339ae7f9e27f2bf5084cea2",
+  "qualified_source": "8fb04e14055779ad0282d570cb07773c8424ccf7",
+  "native_check_run": "https://github.com/peter-jeans/BOS/actions/runs/44724634211",
+  "native_results": [
+    {
+      "platform": "win32",
+      "host": "codex",
+      "host_version": "codex-cli 0.170.0",
+      "status": "PASS",
+      "checks": [
+        "REAL_PUBLIC_PLUGIN_INSTALL_FROM_PINNED_SOURCE",
+        "NEW_SETUP_SESSION_REUSES_SAVED_NATIVE_STATE_AFTER_INTERRUPTION",
+        "EMPTY_PROJECT_CHECK_OFFERS_INCLUDED_LOCAL_SETUP_WITHOUT_WRITES",
+        "LOCAL_WELCOME_HELP_CONTEXT_WITHOUT_FILE_WRITES_OR_ACCOUNT_CALLS",
+        "EXACT_INSTALLED_PACKAGE_REUSED_WITHOUT_REINSTALL",
+        "READ_ONLY_COMPUTER_CHECK",
+        "EXISTING_PRIVATE_LOCAL_BOS_PRESERVED",
+        "NATIVE_WINDOWS_SESSION_QUOTING_AND_EXACT_WORKING_FOLDER_RESTRICTED_POLICY"
+      ]
+    },
+    {
+      "platform": "win32",
+      "host": "claude_code",
+      "host_version": "2.1.328 (Claude Code)",
+      "status": "PASS",
+      "checks": [
+        "REAL_PUBLIC_PLUGIN_INSTALL_FROM_PINNED_SOURCE",
+        "NEW_SETUP_SESSION_REUSES_SAVED_NATIVE_STATE_AFTER_INTERRUPTION",
+        "EMPTY_PROJECT_CHECK_OFFERS_INCLUDED_LOCAL_SETUP_WITHOUT_WRITES",
+        "LOCAL_WELCOME_HELP_CONTEXT_WITHOUT_FILE_WRITES_OR_ACCOUNT_CALLS",
+        "EXACT_INSTALLED_PACKAGE_REUSED_WITHOUT_REINSTALL",
+        "READ_ONLY_COMPUTER_CHECK",
+        "EXISTING_PRIVATE_LOCAL_BOS_PRESERVED",
+        "NATIVE_WINDOWS_SESSION_QUOTING_AND_EXACT_WORKING_FOLDER_RESTRICTED_POLICY"
+      ]
+    },
+    {
+      "platform": "darwin",
+      "host": "codex",
+      "host_version": "codex-cli 0.170.0",
+      "status": "PASS",
+      "checks": [
+        "REAL_PUBLIC_PLUGIN_INSTALL_FROM_PINNED_SOURCE",
+        "NEW_SETUP_SESSION_REUSES_SAVED_NATIVE_STATE_AFTER_INTERRUPTION",
+        "EMPTY_PROJECT_CHECK_OFFERS_INCLUDED_LOCAL_SETUP_WITHOUT_WRITES",
+        "LOCAL_WELCOME_HELP_CONTEXT_WITHOUT_FILE_WRITES_OR_ACCOUNT_CALLS",
+        "EXACT_INSTALLED_PACKAGE_REUSED_WITHOUT_REINSTALL",
+        "READ_ONLY_COMPUTER_CHECK",
+        "EXISTING_PRIVATE_LOCAL_BOS_PRESERVED"
+      ]
+    },
+    {
+      "platform": "darwin",
+      "host": "claude_code",
+      "host_version": "2.1.328 (Claude Code)",
+      "status": "PASS",
+      "checks": [
+        "REAL_PUBLIC_PLUGIN_INSTALL_FROM_PINNED_SOURCE",
+        "NEW_SETUP_SESSION_REUSES_SAVED_NATIVE_STATE_AFTER_INTERRUPTION",
+        "EMPTY_PROJECT_CHECK_OFFERS_INCLUDED_LOCAL_SETUP_WITHOUT_WRITES",
+        "LOCAL_WELCOME_HELP_CONTEXT_WITHOUT_FILE_WRITES_OR_ACCOUNT_CALLS",
+        "EXACT_INSTALLED_PACKAGE_REUSED_WITHOUT_REINSTALL",
+        "READ_ONLY_COMPUTER_CHECK",
+        "EXISTING_PRIVATE_LOCAL_BOS_PRESERVED"
+      ]
+    }
+  ],
+  "approval": "OWNER_AUTHORIZED_SELF_SERVICE_BETA_PUBLICATION",
+  "welcome_delivery": "EXACT_LOCAL_HELP_CONTEXT_AND_CONDITIONAL_BOOTSTRAP_PAYLOAD_VERIFIED",
+  "native_model_rendered_welcome": "NOT_OBSERVED",
+  "native_sign_in_and_trust": "PER_PROJECT_USER_FLOW",
+  "interactive_desktop_dialogs": "NOT_VISUALLY_OBSERVED",
+  "complete_setup_files": 13,
+  "stable_paid_launch": false
+}

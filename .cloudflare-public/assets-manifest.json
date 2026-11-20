@@ -1770,8 +1770,8 @@
       "bytes": 15086
     },
     "index.html": {
-      "sha256": "9193801a71cd2e201ad55806d141d7a5b997228beecb30910a4691ec68a020a2",
-      "bytes": 6844
+      "sha256": "9a80d6e6e8a597ec8de2629e5dae9123201d3f385f6fe23232f0c58b84a7ef59",
+      "bytes": 6889
     },
     "install-packages.html": {
       "sha256": "a289378146604f3d8e6d8c1ab035305e800322b19411d530434d9d3e5c82aead",
@@ -1818,16 +1818,16 @@
       "bytes": 23
     },
     "setup.html": {
-      "sha256": "2af94d31dde644f27c37af6749aca50edec448a98f27a5b3f1dbc83a5e1cf76c",
-      "bytes": 96766
+      "sha256": "2375fc6d4b7f16fd8df76355dd1a9e9f2e3bce69a7b2dd9a04d9cb84af055dd7",
+      "bytes": 96901
     },
     "site.webmanifest": {
       "sha256": "40bbca4da2b883df7ec6c08804e0a78a1cbcb18cef07c1a73d9eee4523606c53",
       "bytes": 445
     },
     "support.html": {
-      "sha256": "c12e84c32c3c9854c758cfc39c419e32710c2df99403f0beb4521b98b66587a2",
-      "bytes": 11811
+      "sha256": "7dbd2f4c117291e48a89ee9df90bd1cd1fab78612e1c95c8a9293a4309da6f01",
+      "bytes": 12010
     },
     "using-bos.html": {
       "sha256": "8d6f458a03ba953d5b34fda455376ef076f7f46072e68bf40e8c0d491d40df0e",
