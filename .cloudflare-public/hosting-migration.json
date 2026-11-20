@@ -2,7 +2,7 @@
   "schema": "BOS_HOSTING_ONLY_APPROVAL_V1",
   "scope": "HOSTING_MIGRATION_ONLY",
   "hosting_approved": true,
-  "approval_basis": "Owner explicitly requested functioning Mac and Windows setup-download buttons and concise computer setup cards on 2026-10-22. Only the existing checksum-verified preview archive is authorized for these two download links. Native qualification and general product release remain unapproved. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner requested public check/update/repair prompt links and a guided download on 2026-11-19; links target the current My BOS account help cards.",
+  "approval_basis": "Owner explicitly requested functioning Mac and Windows setup-download buttons and concise computer setup cards on 2026-10-22. Only the existing checksum-verified preview archive is authorized for these two download links. Native qualification and general product release remain unapproved. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner requested public check/update/repair prompt links and a guided download on 2026-11-19; links target the current My BOS account help cards. Owner requested the shared prompt library and complete, restartable setup checks on 2026-11-20. Candidate payload is published for native qualification before marketplace selection.",
   "product_release_approved": false,
   "preserve_github_pages": true,
   "source_repository": "https://github.com/peter-jeans/BOS-site.git",
@@ -16,7 +16,7 @@
   ],
   "pinned_files": {
     ".cloudflare-public/release-readiness.json": "8c2ba7d110391e33e8c89b0b198ec0a3ba3ad1bfd9184a10df8e9ddb91a9e82a",
-    ".cloudflare-public/marketplace-source-manifest.json": "65945f99e4a5cfee8e6bf8fcdae68faf47d9bf2bb018465784084425f22eaecc",
+    ".cloudflare-public/marketplace-source-manifest.json": "fd39a221a75568c6779e94170670e22fdd74542ee17d77d7e7248dcd94f5b6a2",
     ".cloudflare-public/assets-manifest.json": "e81ffc3ad3bd6ea716b5dee558df518a32abd6aea6b329eb3bcef08b61bc0234",
     ".cloudflare-public/asset-routing.txt": "a1d8dddd72c71933662e65f4604cd741d4a3f388951207193c01ad1015dd6692",
     ".cloudflare-public/build.mjs": "52f93b42be69f9f8896cde891b8bf2308a3916cdf44e8ba321a51f259c540636",

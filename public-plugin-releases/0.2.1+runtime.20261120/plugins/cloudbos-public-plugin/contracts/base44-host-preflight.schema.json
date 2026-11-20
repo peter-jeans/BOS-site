@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloudbos.example/schemas/base44-host-preflight.schema.json",
+  "title": "Cloud BOS public Base44 host plan and capacity preflight evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "observed_at",
+    "source_surfaces",
+    "minimum_plan_observed",
+    "plan_eligible",
+    "account_mcp_connection_count",
+    "account_mcp_capacity",
+    "selected_workspace_skill_counts",
+    "raw_account_or_workspace_identifiers_emitted",
+    "raw_workspace_names_emitted",
+    "provider_write_observed",
+    "evidence_hash"
+  ],
+  "properties": {
+    "schema": {"const": "BOS_CLOUDBOS_PUBLIC_BASE44_HOST_PREFLIGHT_EVIDENCE_V1"},
+    "status": {"const": "COMPLETE_VERIFIED_READ_ONLY"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "source_surfaces": {
+      "const": ["BASE44_ACCOUNT_MCP_SETTINGS", "BASE44_WORKSPACE_SKILLS_SETTINGS"]
+    },
+    "minimum_plan_observed": {"const": "BUILDER_OR_HIGHER"},
+    "plan_eligible": {"const": true},
+    "account_mcp_connection_count": {"type": "integer", "minimum": 0, "maximum": 19},
+    "account_mcp_capacity": {"const": 20},
+    "selected_workspace_skill_counts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["workspace_ref", "skill_count", "capacity"],
+        "properties": {
+          "workspace_ref": {"type": "string", "pattern": "^base44-workspace:[a-f0-9]{64}$"},
+          "skill_count": {"type": "integer", "minimum": 0, "maximum": 99},
+          "capacity": {"const": 100}
+        }
+      }
+    },
+    "raw_account_or_workspace_identifiers_emitted": {"const": false},
+    "raw_workspace_names_emitted": {"const": false},
+    "provider_write_observed": {"const": false},
+    "evidence_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

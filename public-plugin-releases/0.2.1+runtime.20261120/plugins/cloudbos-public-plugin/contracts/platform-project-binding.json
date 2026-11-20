@@ -1,0 +1,181 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_PLATFORM_PROJECT_BINDING_V1",
+  "version": "1.2.0",
+  "status": "LOCAL_IMPLEMENTATION_VERIFIED",
+  "platform_token_scopes": [
+    "read:advisory",
+    "write:project_governance"
+  ],
+  "tables": {
+    "platform_installations": {
+      "primary_key": "platform_installation_id",
+      "required_columns": [
+        "platform_installation_id",
+        "account_id",
+        "platform_type",
+        "platform_identity_ref",
+        "status",
+        "installed_plugin_version",
+        "authenticated_at",
+        "created_at",
+        "updated_at"
+      ],
+      "unique_constraints": [
+        "account_id+platform_type+platform_identity_ref"
+      ]
+    },
+    "project_governance_bindings": {
+      "primary_key": "project_binding_id",
+      "required_columns": [
+        "project_binding_id",
+        "platform_installation_id",
+        "project_ref",
+        "target_environment",
+        "source_authority",
+        "deployment_authority",
+        "status",
+        "governance_state",
+        "governance_profile",
+        "projection_version",
+        "projection_hash",
+        "adapter_id",
+        "approved_plan_hash",
+        "artifact_manifest_hash",
+        "installed_manifest_sha256",
+        "artifact_count",
+        "evidence_class",
+        "readback_hash",
+        "last_verified_at",
+        "created_at",
+        "updated_at"
+      ],
+      "foreign_keys": [
+        "platform_installation_id->platform_installations.platform_installation_id"
+      ],
+      "unique_constraints": [
+        "platform_installation_id+project_ref"
+      ]
+    },
+    "project_governance_events": {
+      "primary_key": "event_id",
+      "required_columns": [
+        "event_id",
+        "platform_installation_id",
+        "project_binding_id",
+        "event_type",
+        "plan_hash",
+        "projection_hash",
+        "result_state",
+        "adapter_id",
+        "artifact_manifest_hash",
+        "installed_manifest_sha256",
+        "readback_hash",
+        "created_at"
+      ],
+      "content_policy": "COMPACT_IDENTIFIERS_HASHES_AND_STATUS_ONLY_NO_RAW_PROJECT_FILES_OR_RECEIPTS"
+    },
+    "project_governance_plan_anchors": {
+      "primary_key": "plan_id",
+      "required_columns": [
+        "plan_id",
+        "plan_hash",
+        "platform_installation_id",
+        "project_ref",
+        "project_binding_id",
+        "requested_operation",
+        "adapter_id",
+        "target_environment",
+        "artifact_manifest_hash",
+        "installed_manifest_sha256",
+        "prior_manifest_sha256",
+        "artifact_count",
+        "evidence_requirement",
+        "status",
+        "expires_at",
+        "applied_at",
+        "created_at",
+        "updated_at",
+        "plan_json",
+        "plan_json_sha256",
+        "plan_json_bytes"
+      ],
+      "unique_constraints": [
+        "plan_hash",
+        "platform_installation_id+project_ref+plan_hash"
+      ],
+      "content_policy": "EXACT_PUBLIC_GOVERNANCE_PLAN_CONTENTS_AND_HASHES_NO_APPLICATION_SOURCE_CUSTOMER_DATA_OR_CREDENTIALS",
+      "plan_storage": {
+        "max_canonical_utf8_bytes": 262144,
+        "write_semantics": "ATOMIC_WITH_ANCHOR_IMMUTABLE_EXACT_READBACK_BEFORE_ACK",
+        "recovery_scope": [
+          "authenticated_platform_installation_id",
+          "project_ref",
+          "project_binding_id",
+          "plan_hash"
+        ],
+        "recovery_window": "ORIGINAL_30_MINUTE_ISSUANCE_WINDOW_READY_ANCHORS_ONLY",
+        "legacy_hash_only_anchors": "UNRECOVERABLE_NO_RECONSTRUCTION_OR_BACKFILL",
+        "retention": "ALONGSIDE_ISSUANCE_ANCHOR_UNTIL_CONTROL_PLANE_RECORD_REMOVAL_NO_AUTOMATIC_PAYLOAD_PURGE",
+        "expiry_semantics": "RECOVERY_AND_EXECUTION_DENIED_NOT_A_STORAGE_DELETION_DEADLINE"
+      }
+    },
+    "oauth_platform_subject_bindings": {
+      "primary_key": "oauth_binding_id",
+      "required_columns": [
+        "oauth_binding_id",
+        "platform_installation_id",
+        "account_id",
+        "issuer",
+        "subject_hash",
+        "client_id_hash",
+        "status",
+        "last_verified_at",
+        "created_at",
+        "updated_at"
+      ],
+      "foreign_keys": [
+        "platform_installation_id->platform_installations.platform_installation_id",
+        "account_id->accounts.account_id"
+      ],
+      "unique_constraints": [
+        "issuer+subject_hash+client_id_hash"
+      ],
+      "content_policy": "NO_RAW_ACCESS_TOKEN_SUBJECT_CLIENT_SECRET_OR_ENTITLEMENT_CLAIM"
+    },
+    "token_hashes": {
+      "required_binding": "platform_installation_id",
+      "resource_audience": "EXACT_CLOUDBOS_MCP_RESOURCE_URI",
+      "project_wildcard_allowed": false
+    }
+  },
+  "request_resolution": [
+    "VERIFY_OPAQUE_PLATFORM_TOKEN_OR_EXTERNAL_OAUTH_JWT_AND_RESOURCE_AUDIENCE",
+    "RESOLVE_PREAUTHORISED_HASHED_OAUTH_SUBJECT_BINDING_WHEN_APPLICABLE",
+    "RESOLVE_ACTIVE_PLATFORM_INSTALLATION",
+    "RESOLVE_SERVER_SIDE_ACCOUNT_ENTITLEMENT",
+    "RESOLVE_EXACT_PROJECT_REF_UNDER_PLATFORM_INSTALLATION",
+    "VERIFY_PROJECT_BINDING_STATE_AND_PERMISSION",
+    "VERIFY_SERVER_ISSUED_PLAN_AND_BINDING_MANIFEST_READBACK_ANCHORS",
+    "VERIFY_TOOL_CAPABILITY_AND_ENTITLEMENT",
+    "ALLOW_OR_FAIL_CLOSED"
+  ],
+  "unbound_access": {
+    "project_state": "UNBOUND",
+    "allowed_read_operations": [
+      "bos_connect",
+      "bos_project_discover",
+      "bos_project_governance_plan",
+    "bos_project_governance_decision"
+    ],
+    "binding_creation_operation": "bos_project_governance_activate with write:project_governance, exact approval, host readback and D1 persistence",
+    "governed_claim_allowed": false
+  },
+  "isolation_invariants": [
+    "NO_PLATFORM_TOKEN_PROJECT_WILDCARD",
+    "NO_PROJECT_REF_FALLBACK",
+    "NO_CROSS_PLATFORM_INSTALLATION_BINDING_LOOKUP",
+    "NO_CROSS_PROJECT_EVIDENCE_LOOKUP",
+    "ENTITLEMENT_NEVER_SUBSTITUTES_FOR_PROJECT_BINDING",
+    "STALE_OR_DRIFTED_MUTATION_FAILS_CLOSED"
+  ]
+}

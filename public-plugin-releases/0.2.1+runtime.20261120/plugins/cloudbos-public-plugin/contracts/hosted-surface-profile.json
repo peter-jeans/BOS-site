@@ -1,0 +1,80 @@
+{
+  "schema_version": "BOS_CLOUDBOS_PUBLIC_PLUGIN_HOSTED_SURFACE_PROFILE_V1",
+  "status": "LIVE_COMPLETE_VERIFIED_ISOLATED_TEST_WORKER",
+  "mode": "PUBLIC_PLUGIN_ONLY",
+  "environment_flag": "CLOUDBOS_PUBLIC_PLUGIN_ONLY",
+  "enabled_values": [
+    "1",
+    "true"
+  ],
+  "default_enabled": false,
+  "allowed_paths": [
+    "/.well-known/oauth-protected-resource",
+    "/.well-known/oauth-protected-resource/mcp",
+    "/health",
+    "/mcp",
+    "/version"
+  ],
+  "denied_route_response": {
+    "http_status": 404,
+    "status": "PUBLIC_PLUGIN_SURFACE_ROUTE_NOT_EXPOSED",
+    "header": "X-Cloud-BOS-Surface-Profile",
+    "header_value": "PUBLIC_PLUGIN_ONLY"
+  },
+  "security_boundary": {
+    "compiled_worker_source_separation": false,
+    "runtime_route_reduction": true,
+    "full_published_worker_route_count": 114,
+    "public_plugin_route_count": 5,
+    "non_plugin_routes_denied": 109,
+    "profile_does_not_grant_authentication": true,
+    "profile_does_not_bypass_scope_or_entitlement": true
+  },
+  "live_evidence": {
+    "environment": "NON_PUBLIC_TEST_ONLY",
+    "resource_worker": "bos-live03-test",
+    "live04g_resource_version": "bba86d2c-6a74-4bcb-a559-1c435ac1bac3",
+    "current_resource_version": "7fe79ac1-59ea-4d03-ab93-f705b09e0750",
+    "primary_worker_version_pre_and_post": "a1c1ea21-315e-47d3-8f2d-3a2ab73451fb",
+    "five_allowed_paths": "COMPLETE_VERIFIED",
+    "non_plugin_routes": "HTTP_404_PROFILE_HEADER_AND_STATUS_VERIFIED",
+    "oauth_mcp": "PKCE_JWKS_INITIALIZE_12_TOOLS_bos_connect_CONNECTED_UNBOUND_VERIFIED",
+    "test_identity_end_state": "REVOKED_REMOVED_INACTIVE_STALE_TOKEN_DENIED",
+    "public_release": false,
+    "receipt_refs": [
+      "OS/RECEIPTS/CLOUD_BOS_PUBLIC_PLUGIN_LIVE04G_FIVE_PATH_REVALIDATION_20260830.md",
+      "OS/RECEIPTS/CLOUD_BOS_PUBLIC_PLUGIN_LIVE05_CLAUDE_HOST_E2E_20260830.md"
+    ]
+  },
+  "conditional_extensions": [
+    {
+      "path": "/mcp/plan-download",
+      "method": "POST",
+      "environment_flag": "CLOUDBOS_PUBLIC_PLAN_DOWNLOAD_ENABLED",
+      "enabled_value": "1",
+      "requires_public_plugin_only": true,
+      "default_enabled": false,
+      "authentication": "SINGLE_USE_PLAN_READ_CREDENTIAL_120_SECONDS_MAX",
+      "project_mutation_authority": false,
+      "public_anonymous_content": false,
+      "status": "LOCAL_TESTED_LIVE_PENDING"
+    },
+    {
+      "path": "/mcp/request-upload",
+      "method": "POST",
+      "environment_flag": "CLOUDBOS_PUBLIC_REQUEST_UPLOAD_ENABLED",
+      "enabled_value": "1",
+      "requires_public_plugin_only": true,
+      "default_enabled": false,
+      "authentication": "APP_BOUND_UPLOAD_ONLY_TICKET_300_SECONDS",
+      "max_bytes": 65536,
+      "immutable_payload": true,
+      "authenticated_reference_processing_required": true,
+      "project_mutation_authority": false,
+      "grants_approval": false,
+      "public_anonymous_content": false,
+      "status": "LOCAL_TESTED_LIVE_PENDING",
+      "required_app_allowlist": "CLOUDBOS_PUBLIC_REQUEST_UPLOAD_APP_ALLOWLIST"
+    }
+  ]
+}

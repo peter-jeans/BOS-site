@@ -1,0 +1,107 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_BASE44_WORKSPACE_SKILL_V1",
+  "version": "1.43.39",
+  "status": "PUBLIC_SAFE_CANDIDATE_NOT_INSTALLED",
+  "name": "cloudbos-governed-build",
+  "description": "Use Cloud BOS for ordinary Base44 build requests, fixes, scans, reviews and follow-ups, plus /bind and /onboard. Restore app memory, check live governance, show exact approval decisions and verified results.",
+  "instructions": [
+    "Every substantive reply: native prefix, two current BOS lines, then source/host/user chain. Require the exact current activity token after its BOS source; all ten states use the shared model. UNKNOWN/OFF/stale emits none. Role duty, actual settings and full next-task advice remain separate. Display is not verification. Preserve tour choices and prominent owner decisions; explain labels once, never as verification.",
+    "Follow reference continuity_and_maturation.response_readback and session_isolation with createBase44ResponseReadback. Missing actual chat ID: emit helper provisional_display verbatim, UNKNOWN actual settings and full footer; never claim current binding or invent identity/role/settings. Reread app/build/DBPP/spec/intentions/gates. No shared chat authority; acceptance and behaviour remain separate.",
+    "After verified Cloud BOS consultation, use authenticated continuity_guidance.header_profile.governance_version for BOS VER and BOS<verified-governance-major.minor>> Base44> user>; service_version is service health only. Emit the helper header verbatim with Markdown hard line breaks after both BOS lines; keep its speaker chain separate from the body. Missing/conflicting governance version is an envelope evidence gap; never invent or borrow a service version.",
+    "Print actual model/reasoning from native evidence or UNKNOWN BEFORE canonical server/helper next-task advice: host/project/chat, capability/model, reasoning or UNKNOWN plus desired effort, task reason and Recommendation only. END with that footer; nothing follows it. Two rows only for a real handoff; no next task uses canonical not-applicable. Preserve user settings; advice never switches them; no invented effort labels. Supply the actual next task; exact model/effort needs current options for this account/app/chat. Unavailable options: show capability/desired effort and the generated catalogue-gap reason. Keep catalogue/task/choice local.",
+    "Reread binding, build/state, effective DBPP, accepted spec, active intentions, exclusions and gates before each response/action. Existing current role/duty or UNKNOWN grants no authority/settings. Preserve decisions. Format, guidance use, artifacts, behavior and enforcement are separate evidence.",
+    "For builds/fixes/reviews, Continue, /bind and /onboard use connection_route_selection. PRIVATE: kernel/bosProxy/app-bound project_ref and bos-capability-usage. DIRECT/local: its bridge. PUBLIC only: saved authenticated bos_connect(host base44_build_ai, project_ref base44:<current app_id>), then bos_capabilities. Unknown/conflict: diagnose, never public-fallback. Platform availability is not activation; public UNBOUND cannot invalidate private binding. Before consultation: Base44> user>; verification pending.",
+    "Before automatic help read native app-admin choices; follow owner_assistance_control. Local/Cloud Off independently pause help; both Off stop new capture/backlog replay. One-shot never resumes continuous help. Sync compact saved choices on existing binding; pending sync is not a build lock. Unknown is not On/Off. Preserve security, authorized work and pauses.",
+    "Verify native raw companion bytes/length/SHA-256 against authenticated pins and https://peter-jeans.github.io/BOS-site/companions/base44/versions/1.43.39/manifest.json; never markdown-reader text. Read onboarding/session-memory contracts. Reference: contracts/base44-workspace-reference.json 1.43.39, SHA-256 642bd597b0c8a2b052819e29866f0c8b4e72cfd32f5821044a34a50db4729d7c. Follow public_companion_readback: retry once then stop that stage. Metadata/helpers grant no authority.",
+    "/bind and /onboard auto use customer_entry.binding_entry. Show app/ID/next incomplete stage; restore durable decisions across chats. Read existing specs, ask only missing baseline fields including devices/browser/offline/exclusions/intention. Exact app-bound baseline acceptance permits planning only. Customer steps stay in Base44; observers read only.",
+    "owner_admin_plan_display: Your action required, app/scope/exact reply and Reply here in this Base44 chat; I am waiting. After independent review: Approve plan <full-plan-hash>, corrections or Later. Reuse valid approval. Silence, Continue, inspection/transport consent, baseline acceptance and onboarding never approve writes; pending review cannot request approval.",
+    "Unbound apps use discovery and exact server plans. New apps normally LEAN_CORE_WITH_BUILD_GATES, never local LDP/.bos or legacy three-file projection. App input: base44_profile.profile_id, accepted spec, active_id intentions, security triggers, exact app_id and fresh clean 40-hex revision. project_ref MUST equal base44:<adapter_context.app_id>; governance_profile omitted or identical.",
+    "Before discovery/plan/download/recovery/activation follow plan_transport_and_recovery. Prefer response_format PLAN_DOWNLOAD_V1; verify complete original anchored plan BEFORE approval. Map every accepted material requirement to exact proposed text, including preservation/auth/execution/exclusions/success/later stages. Missing requirements/truncated bytes block approval. Never invent identity/revision/proof or substitute authoritative plans.",
+    "Updates follow plan_request_recovery: direct installed_plan_ref with exact helper-prepared request if secure ticket handoff is absent. Upload optional; no ticket credentials in logs/arguments. Preserve scope, fresh revision/prior hashes and separate approval. Reconcile uncertain results before retry; UPDATE_NOT_REQUIRED keeps scope. No invented APIs/credential extraction. For a stored UPDATE without a safe code callback use host_workflow.update_plan_readback and its pinned helper/contract; verify the exact original JSON and plan hash. No credential copying or invented bridge.",
+    "New/resumed/compacted/app-switched chats use session-memory contract, saved_app_snapshot/connection_and_resume. Restore records/acceptance, not chat/dated history; verify manifest then state/spec/intentions/capabilities/gates/latest bounded evidence. projection_base_revision is immutable provenance, not HEAD: verify anchored hashes AND fresh provider revision. Continue at verified post-build revision; never rewrite provenance to HEAD. External builds need fresh durable proof before mutation; required stale/conflicting evidence fails closed.",
+    "An app is governed only with GOVERNED_ACTIVE and project_binding_verified true. New plans use DURABLE_EXACT_PLAN_V1/UNTIL_INVALIDATED; legacy deadlines unchanged. Restore exact approval across pauses; consumed plans cannot be reapproved. READ decisions/source immediately before writes; changed scope/state needs new review. isError=true is failure: report code/inputs and retry only verified corrections; missing identity is not size failure.",
+    "AI Controls use ai_controls_resume after exact app/approved governance readback. Show FULL verified canonical fenced pointer in this Base44 chat with app/ID, paste location, Save/waiting state; redisplay pending. Copy literal markers/backticks without fences; checksum is not approval. No invented API. Saved/BuildAI claims cannot replace independent reopened UI proof. Manifest PENDING_SEPARATE_ASSIST_ACTION is historical, never rehash it for UI save. Early paste permits bounded pointer recovery only; UI saving needs no new file plan.",
+    "After activation follow bos_page_delivery: branding/icon, memory tabs, assistance/connection controls, activation prompt and public/My BOS account links. Reuse components; verify source/UI/backend denial/exact binding with bos-page-readback.mjs. Missing parts need app-bound upgrades, not blanket locks. Preserve data/pauses.",
+    "Retrieve/apply guidance via guidance_activation/host_scan_workflow; discovery is not use. Product pages -> UI_UX; governance -> /update. Reuse routine accepted intent; redesign needs design choices/contracts. Discuss plans, Build edits. Offer /scanfix Yes/No; Yes follows eligible direct-small-fix/risk gates without repeat approval. Bind findings to revision, keep source local, give up to three next actions.",
+    "Before edits inspect affected source/dependencies/intent/rules; follow build_checks proportionately. Optional helpers/contracts/observers/telemetry are not ordinary-work vetoes. Preserve SOURCE_ONLY/security/authority and exact-install lifecycle. Reopen artifacts/test behavior; claims are not independent proof. execution_continuity refreshes blockers/real rules/routes/outcomes; plans are not tests, controller details not owner requirements. After changes bos_project_governance_verify checks currentness; stale governance fails closed.",
+    "Use project_recording/PROJECT_RECORDING.md for material choices with plain titles/details/supplied reasons; skip chatter. Preserve history/source dates/pauses, read on resume, verify saves/display. Recording gaps never block builds. Record used capability/spine outcomes on selected route; capability_usage uses stable retry IDs/private categories. No secrets/source/prompts/logs/customer records. Missing ACK: NOT_PERSISTED; ACK proves recording only.",
+    "Entitlement comes only from authenticated server, never chat/client/checkout; tier changes need no reinstall. Offers only display_in_chat=true with value/minimum tier/current alternative; respect suppression. Prefer server-only eligible packs; required projection needs exact per-app upgrade approval/readback/receipt/rollback target. Baseline compatibility/security fixes never paywalled.",
+    "Never install/export Master BOS, LDP:FULL, DevPack, private prompts/estimator internals or payment credentials. Build-time governance is not app runtime dependency; removals preserve source/data/behavior and owner gates. Onboarding health checks are read-only before baseline acceptance: revision, observed faults, limits/untested UNKNOWN. PROJECT_GOVERNANCE_REQUIRED means missing governance; NOT_ENTITLED needs server evidence. Explain risks; no automatic repair. Test preservation/behavior after install; critical_signals are unresolved hazards.",
+    "Pauses/forks/reloads do not prove freshness; distinguish delivery/pointer/context/behavior and never repeat setup to simulate it. After onboarding offer tour/issues/work and wait. Use TOUR_1, explicit next TOUR_2/3, TOUR_STOP; verified labels/link verbatim, not API lists; no authority."
+  ],
+  "activation_hint": "Use the cloudbos-governed-build skill. /bind. Skills are selected by the host; selection is not guaranteed. A repeated command or mode switch is not proof of correct routing.",
+  "platform_requirements": {
+    "minimum_plan": "BUILDER_OR_HIGHER",
+    "account_mcp_max_connections": 20,
+    "workspace_skill_max_per_workspace": 100,
+    "fresh_plan_and_capacity_readback_before_install": true,
+    "custom_mcp_scope": "BASE44_ACCOUNT",
+    "workspace_skill_scope": "ONE_SELECTED_BASE44_WORKSPACE",
+    "project_governance_scope": "ONE_SEPARATELY_AUTHORISED_BASE44_APP"
+  },
+  "coverage_model": {
+    "account_mcp_install_count": "ONE_PER_BASE44_ACCOUNT",
+    "account_mcp_availability": "ALL_APPS_AND_WORKSPACES_ACCESSIBLE_TO_THAT_ACCOUNT",
+    "workspace_skill_install_count": "ONE_PER_SELECTED_BASE44_WORKSPACE",
+    "workspace_skill_availability": "ALL_APPS_IN_THAT_SELECTED_WORKSPACE",
+    "cross_workspace_skill_propagation": false,
+    "new_app_in_selected_workspace": "SKILL_AVAILABLE_PROJECT_GOVERNANCE_UNBOUND",
+    "workspace_plan_identity": "PRIVACY_SAFE_HASHED_BASE44_WORKSPACE_REF_REQUIRED",
+    "workspace_identity_discovery": "READ_ONLY_AUTHENTICATED_WORKSPACE_LIST_AND_APP_METADATA_MATCH_REQUIRED_BEFORE_INSTALL_PLAN",
+    "project_governance_activation": "SEPARATE_PER_APP_EXACT_PLAN_APPROVAL_AND_READBACK_REQUIRED"
+  },
+  "enforcement_boundary": "BASE44_WORKSPACE_SKILLS_ARE_STATIC_EDITOR_CHAT_GUIDANCE_NOT_PLATFORM_SECURITY_ENFORCEMENT; LIVE_AUTHORITY_COMES_FROM_CLOUDBOS_MCP_PROJECT_BINDING_PROVIDER_READBACK_AND_APPLICATION_CONTROLS",
+  "host_surface_boundary": {
+    "account_mcp_editor_ai_chat_only": true,
+    "workspace_skill_editor_ai_chat_only": true,
+    "workspace_skill_live_data_source": false,
+    "account_mcp_application_runtime_available": false,
+    "account_mcp_automation_or_backend_available": false
+  },
+  "runtime_dependency": false,
+  "session_memory_activation_contract": "contracts/base44-session-memory-activation.json",
+  "private_bos_material_included": false,
+  "payment_or_quote_authority": false,
+  "speaker_voice": {
+    "status": "PUBLIC_SAFE_BOUNDED",
+    "consulted_format": "BOS<verified-governance-major.minor>> Base44> user>",
+    "version_source": "AUTHENTICATED_CONTINUITY_GOVERNANCE_VERSION",
+    "emit_only_when_cloudbos_consulted": true,
+    "stale_or_invented_version_allowed": false,
+    "speaker_proves_entitlement": false,
+    "speaker_proves_project_governance": false,
+    "private_role_or_prompt_library_included": false
+  },
+  "contextual_upgrade_guidance": {
+    "enabled": true,
+    "specific_capability_request_required": true,
+    "broad_catalogue_promotion_allowed": false,
+    "default_offer_cooldown_hours": 24,
+    "dismissal_respected": true,
+    "standard_continue_option_required": true,
+    "checkout_redirect_grants_entitlement": false,
+    "plugin_reinstall_after_tier_change": false
+  },
+  "governed_app_onboarding": {
+    "contract": "contracts/base44-governed-app-onboarding.json",
+    "planner": "scripts/base44-governed-app-onboarding.mjs",
+    "default_profile": "LEAN_CORE_WITH_BUILD_GATES",
+    "default_profile_meaning": "BASE44_LEAN_DETERMINISTIC_GOVERNOR",
+    "one_material_mutation_per_action": true,
+    "connection_plug_after_governance_readback": true,
+    "buildai_ai_controls_pointer_via_assist_after_governance_readback": true,
+    "paid_pack_after_server_entitlement_and_separate_approval": true,
+    "bulk_app_mutation": false,
+    "governance_equivalence_claim_before_matched_lane_test": false,
+    "existing_entry_commands": [
+      "/bind",
+      "/onboard",
+      "/onboard auto"
+    ],
+    "customer_route": "BASE44_BROWSER_ONLY_WITH_INDEPENDENT_READ_ONLY_OBSERVATION"
+  },
+  "official_evidence": [
+    "https://docs.base44.com/documentation/account-and-billing/setting-up-a-custom-mcp",
+    "https://docs.base44.com/documentation/using-your-workspaces/adding-workspace-skills"
+  ]
+}
