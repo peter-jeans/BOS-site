@@ -1,0 +1,58 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_OAUTH_PLATFORM_IDENTITY_BRIDGE_V1",
+  "version": "1.1.0",
+  "status": "LIVE04_ISOLATED_TEST_VERIFIED_PRODUCTION_PROVIDER_AND_HOST_E2E_PENDING",
+  "authorization_server": {
+    "ownership": "EXTERNAL_PROVIDER_NEUTRAL",
+    "required_metadata": "RFC8414_HTTPS",
+    "protected_resource_metadata": "RFC9728",
+    "dynamic_client_registration": "RECOMMENDED_OR_PRECONFIGURED_CLIENT_REQUIRED",
+    "cloud_bos_issues_tokens": false
+  },
+  "resource_server": {
+    "resource": "EXACT_CURRENT_ORIGIN_MCP_PATH",
+    "bridge_mode": "JWT_JWKS",
+    "accepted_algorithms": ["RS256"],
+    "required_claims": ["iss", "sub", "aud", "exp", "client_id_or_azp", "read:advisory_scope"],
+    "optional_checked_claims": ["nbf", "iat", "resource"],
+    "token_passthrough": false,
+    "raw_token_persistence": false,
+    "live04_test_only_pinned_public_material": {
+      "mode": "LIVE04_PUBLIC_MATERIAL",
+      "purpose": "AVOID_SAME_ZONE_WORKERS_DEV_SUBREQUEST_ONLY",
+      "content": ["RFC8414_METADATA", "PUBLIC_RS256_JWKS"],
+      "private_key_allowed": false,
+      "production_default": false,
+      "external_https_readback_required": true
+    }
+  },
+  "platform_mapping": {
+    "mode": "PREAUTHORISED_FAIL_CLOSED",
+    "key": ["issuer", "sha256(subject)", "sha256(client_id_or_azp)"],
+    "target": "ONE_ACTIVE_PLATFORM_INSTALLATION_AND_ACCOUNT",
+    "automatic_account_creation": false,
+    "automatic_platform_installation_creation": false,
+    "raw_subject_persistence": false
+  },
+  "authority_sequence": [
+    "VALIDATE_CONFIGURED_ISSUER_AND_METADATA",
+    "VALIDATE_JWKS_SIGNATURE_AND_KEY_USE",
+    "VALIDATE_TIME_AUDIENCE_RESOURCE_AND_SCOPE",
+    "HASH_SUBJECT_AND_CLIENT_ID",
+    "RESOLVE_EXACT_ACTIVE_OAUTH_PLATFORM_BINDING",
+    "RESOLVE_ACTIVE_PLATFORM_INSTALLATION_AND_ACCOUNT",
+    "RESOLVE_SERVER_SIDE_ENTITLEMENT_AND_TIER_CONTROL",
+    "RESOLVE_SEPARATE_PROJECT_BINDING",
+    "ALLOW_OR_FAIL_CLOSED"
+  ],
+  "failure_invariants": [
+    "NO_ISSUER_FROM_TOKEN_WITHOUT_CONFIGURED_ALLOWLIST",
+    "NO_UNSIGNED_OR_SYMMETRIC_TOKEN",
+    "NO_WRONG_AUDIENCE_OR_TOKEN_PASSTHROUGH",
+    "NO_UNKNOWN_SUBJECT_JIT_PROVISIONING",
+    "NO_ENTITLEMENT_FROM_TOKEN_CLAIMS",
+    "NO_PROJECT_WILDCARD_FROM_PLATFORM_IDENTITY",
+    "JWKS_UNKNOWN_KID_REFRESH_IS_COOLDOWN_BOUNDED",
+    "NO_RAW_TOKEN_SUBJECT_OR_CLIENT_SECRET_IN_D1_AUDIT_OR_PLUGIN"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "BOS_CLOUDBOS_SELF_SERVICE_BETA_DISTRIBUTION_V1",
+  "version": "1.0.0",
+  "mode": "self-service-beta",
+  "status": "PREPARED_SELF_REGISTRATION_BETA_NOT_PUBLISHED_OR_NATIVE_QUALIFIED",
+  "allowed_mcp_endpoints": [
+    "https://bos-live03-test.peterjeans2.workers.dev/mcp"
+  ],
+  "release_state": "SEALED_SELF_SERVICE_BETA_NATIVE_ACCEPTANCE_REQUIRED",
+  "authentication": "HOST_BROWSER_OAUTH_NO_PACKAGED_CREDENTIALS",
+  "source_mcp_companion": "REMAINS_EMPTY",
+  "admission": "Browser account sign-in and current terms through the published BOS account journey; no private invitation or personal token is supplied by this package.",
+  "entitlements": "Authenticated server-owned account and project access only; installing, signing in, changing hosts or reinstalling cannot grant access or reset a trial.",
+  "project_activation": "EXACT_APPROVED_PLAN_AND_PROVIDER_READBACK_REQUIRED",
+  "local_folder_binding": "ONE_HOST_AND_AUTHENTICATED_PLATFORM_BINDING_PER_SELECTED_FOLDER",
+  "native_acceptance": "NOT_GRANTED_BY_PACKAGING",
+  "owner_release_approval": "NOT_GRANTED_BY_PACKAGING",
+  "stable_public_launch": false,
+  "live_payments": false,
+  "historical_private_beta": "Separate unchanged beta mode and beta-distribution.json contract. This mode does not reinterpret or replace archived packages.",
+  "endpoint_identity": "Existing shared MCP resource identity retained despite its historical test hostname; this exact exception applies only to self-service-beta. Stable release keeps its production-host checks."
+}

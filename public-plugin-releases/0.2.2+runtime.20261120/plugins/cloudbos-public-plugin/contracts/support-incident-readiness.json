@@ -1,0 +1,101 @@
+{
+  "schema": "BOS_CLOUDBOS_PUBLIC_SUPPORT_INCIDENT_READINESS_V1",
+  "version": "1.4.0",
+  "status": "LOCAL_CLAIM_BOUND_PROCEDURE_AND_LIVE08A_CONTROLLER_VERIFIED_OWNER_ROUTE_AND_LIVE_DRILLS_PENDING",
+  "support_route": {
+    "status": "OWNER_CONFIGURATION_REQUIRED",
+    "public_url": null,
+    "public_email": null,
+    "semantic_readback": "PENDING",
+    "owner": null,
+    "may_claim_available": false
+  },
+  "support_route_configuration": {
+    "schema_ref": "contracts/support-route.schema.json",
+    "controller_ref": "scripts/run_cloudbos_public_live08a_support_route.mjs",
+    "approval_packet_ref": "OS/RELEASE/CLOUD_BOS_PUBLIC_PLUGIN_LIVE08A_SUPPORT_ROUTE_APPROVAL_PACKET_20260831.json",
+    "selection_rule": "EXACT_OWNER_SELECTED_HTTPS_URL_OR_EMAIL_NEVER_INFER_FROM_MANIFEST_METADATA",
+    "semantic_readback_rule": "SAME_ORIGIN_HTTPS_CONTENT_OR_CHALLENGE_BOUND_CURRENT_EMAIL_DELIVERY_RECEIPT",
+    "integration_boundary": "PASSIVE_EXTERNAL_LINK_OR_EMAIL_ONLY_NO_SITE_HOSTING_AUTH_DATA_OR_API_INTEGRATION",
+    "website_host_discovery_creation_deployment_or_management": false,
+    "route_configuration_alone_passes_incident_release_gate": false
+  },
+  "ownership": {
+    "incident_commander": "CLOUD_BOS_SERVICE_OWNER",
+    "support_escalation": "CLOUD_BOS_SUPPORT_OWNER",
+    "security_privacy": "INDEPENDENT_SECURITY_PRIVACY_REVIEWER",
+    "billing": "CLOUD_BOS_COMMERCIAL_OWNER"
+  },
+  "severity": [
+    {"id": "SEV1", "meaning": "Cross-tenant exposure, credential exposure, destructive project mutation, or widespread entitlement failure", "response": "CONTAIN_IMMEDIATELY_AND_DISABLE_AFFECTED_MUTATION"},
+    {"id": "SEV2", "meaning": "Material authentication, governance, billing, or availability failure without confirmed exposure", "response": "FAIL_CLOSED_TRIAGE_AND_BOUNDED_RECOVERY"},
+    {"id": "SEV3", "meaning": "Degraded advisory capability or isolated recoverable host failure", "response": "RECORD_SUPPORT_AND_RETRY_WITHIN_POLICY"}
+  ],
+  "signals": [
+    "MCP_TRANSPORT_AND_PROTOCOL_STATUS",
+    "OAUTH_ISSUER_AUDIENCE_AND_PLATFORM_BINDING_STATUS",
+    "D1_ENTITLEMENT_AND_RATE_LIMIT_STATUS",
+    "PROJECT_GOVERNANCE_BINDING_PLAN_READBACK_AND_DRIFT_STATE",
+    "STRIPE_WEBHOOK_DELIVERY_AND_ENTITLEMENT_RECONCILIATION_STATUS"
+  ],
+  "privacy": {
+    "allowed": ["event_type", "capability_id", "issue_category", "severity", "status", "anonymized_runtime_class", "receipt_ref", "version_ref", "profile_id"],
+    "prohibited": ["source_code", "raw_prompts", "raw_logs", "secrets", "credentials", "user_content", "customer_data", "private_governance_material"]
+  },
+  "retry_policy": [
+    {"response_class": "400", "action": "STOP_AND_CORRECT_VALIDATION_INPUT", "automatic_retry": false},
+    {"response_class": "401_403", "action": "STOP_AND_RECONCILE_IDENTITY_OR_AUTHORITY", "automatic_retry": false},
+    {"response_class": "409", "action": "READ_BACK_CURRENT_STATE_AND_REPLAN", "automatic_retry": false},
+    {"response_class": "429", "action": "HONOUR_RETRY_AFTER_WITH_BOUNDED_BACKOFF", "automatic_retry": true},
+    {"response_class": "5XX", "action": "RETAIN_IDEMPOTENCY_KEY_AND_RETRY_BOUNDEDLY", "automatic_retry": true}
+  ],
+  "downtime": {
+    "application_runtime_dependency": false,
+    "governed_mutation": "FAIL_CLOSED",
+    "read_only_discovery": "MAY_REPORT_UNAVAILABLE_WITHOUT_GOVERNED_CLAIM",
+    "platform_removal": "PRESERVE_APPLICATION_FUNCTIONALITY",
+    "project_governance_removal": "REQUIRE_SEPARATE_APPROVED_READBACK_BACKED_PLAN"
+  },
+  "rollback": {
+    "worker": "RESTORE_LAST_VERIFIED_PROVIDER_VERSION",
+    "database": "USE_PREWRITE_RECOVERY_EVIDENCE_AND_ADDITIVE_MIGRATION_RECONCILIATION",
+    "platform": "REMOVE_ONLY_EXACT_CLOUDBOS_HOST_ENTRY",
+    "project": "REMOVE_ONLY_MANIFEST_OWNED_GOVERNANCE_ARTIFACTS",
+    "application_source_and_data": "PRESERVE"
+  },
+  "required_evidence": [
+    "INCIDENT_ID_AND_TIMELINE",
+    "AFFECTED_PLATFORM_AND_PROJECT_BINDING_SCOPE",
+    "PRIVACY_SAFE_SIGNAL_AND_RECEIPT_REFERENCES",
+    "CONTAINMENT_ACTION_AND_AUTHORITY",
+    "RECOVERY_OR_ROLLBACK_READBACK",
+    "APPLICATION_PRESERVATION_READBACK",
+    "CLOSURE_OWNER_AND_FOLLOW_UP"
+  ],
+  "required_live_drills": [
+    "OAUTH_AUTHORITY_FAILURE",
+    "D1_WRITE_FAILURE_AND_IDEMPOTENT_RETRY",
+    "PROJECT_GOVERNANCE_DRIFT",
+    "STRIPE_DUPLICATE_AND_OUT_OF_ORDER_DELIVERY",
+    "WORKER_DOWNTIME_WITH_APPLICATION_CONTINUITY",
+    "PLATFORM_AND_PROJECT_REMOVAL_SEPARATION"
+  ],
+  "live_drill_evidence_model": {
+    "topology": "AGGREGATE_EXISTING_GOVERNED_LIVE_GATES",
+    "dedicated_incident_test_service_required": false,
+    "aggregation_mutates_provider_state": false,
+    "underlying_mutations_keep_separate_owner_approval": true,
+    "support_route_configuration_is_separate_mutation": true,
+    "evidence_contract": "OS/OPERATIONS/CLOUD_BOS_PUBLIC_INCIDENT_DRILL_EVIDENCE_20260830.json",
+    "mappings": [
+      {"drill": "OAUTH_AUTHORITY_FAILURE", "source_gates": ["LIVE04G_DEPLOY_PUBLIC_PLUGIN_SURFACE_PROFILE", "LIVE05_HOST_E2E"]},
+      {"drill": "D1_WRITE_FAILURE_AND_IDEMPOTENT_RETRY", "source_gates": ["LIVE06B_D1_FAILURE_AND_IDEMPOTENT_RETRY"]},
+      {"drill": "PROJECT_GOVERNANCE_DRIFT", "source_gates": ["LIVE07_BASE44_PROJECT_E2E"]},
+      {"drill": "STRIPE_DUPLICATE_AND_OUT_OF_ORDER_DELIVERY", "source_gates": ["LIVE06_STRIPE_TEST"]},
+      {"drill": "WORKER_DOWNTIME_WITH_APPLICATION_CONTINUITY", "source_gates": ["LIVE04G_DEPLOY_PUBLIC_PLUGIN_SURFACE_PROFILE", "LIVE05_HOST_E2E"]},
+      {"drill": "PLATFORM_AND_PROJECT_REMOVAL_SEPARATION", "source_gates": ["LIVE05_HOST_E2E", "LIVE07_BASE44_PROJECT_E2E"]}
+    ],
+    "evidence_binding": "ONE_HASHED_RECEIPT_ONE_ALLOWED_SOURCE_GATE_EXACT_REQUIRED_DRILL_CLAIMS_NO_CROSS_DRILL_REUSE",
+    "acceptance": "VERIFIED_SUPPORT_ROUTE_PLUS_SIX_COMPLETE_CLAIM_BOUND_HASHED_PRIVACY_SAFE_DRILL_RECEIPTS_ROLLBACK_APPLICATION_CONTINUITY_AND_OWNER_SIGNOFF"
+  }
+}

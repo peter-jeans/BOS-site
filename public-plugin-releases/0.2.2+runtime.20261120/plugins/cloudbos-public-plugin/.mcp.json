@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cloudbos": {
+      "type": "http",
+      "url": "https://bos-live03-test.peterjeans2.workers.dev/mcp"
+    }
+  }
+}
