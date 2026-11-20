@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloudbos.example/schemas/cloudbos-public-support-route-v1.json",
+  "title": "Cloud BOS Public Support Route V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "public_url", "public_email", "semantic_readback", "owner", "may_claim_available"],
+  "properties": {
+    "status": {"enum": ["OWNER_CONFIGURATION_REQUIRED", "COMPLETE_VERIFIED"]},
+    "public_url": {"type": ["string", "null"], "format": "uri", "pattern": "^https://"},
+    "public_email": {"type": ["string", "null"], "format": "email"},
+    "semantic_readback": {"enum": ["PENDING", "COMPLETE_VERIFIED"]},
+    "owner": {"type": ["string", "null"]},
+    "may_claim_available": {"type": "boolean"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "COMPLETE_VERIFIED"}}},
+      "then": {
+        "properties": {
+          "semantic_readback": {"const": "COMPLETE_VERIFIED"},
+          "owner": {"const": "CLOUD_BOS_SUPPORT_OWNER"},
+          "may_claim_available": {"const": true}
+        },
+        "anyOf": [
+          {"required": ["public_url"], "properties": {"public_url": {"type": "string"}}},
+          {"required": ["public_email"], "properties": {"public_email": {"type": "string"}}}
+        ]
+      },
+      "else": {
+        "properties": {
+          "public_url": {"const": null},
+          "public_email": {"const": null},
+          "semantic_readback": {"const": "PENDING"},
+          "owner": {"const": null},
+          "may_claim_available": {"const": false}
+        }
+      }
+    }
+  ]
+}

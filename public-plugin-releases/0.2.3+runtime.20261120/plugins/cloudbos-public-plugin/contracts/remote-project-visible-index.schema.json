@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloudbos.example/schemas/remote-project-visible-index-v1.json",
+  "title": "Cloud BOS public project-visible remote projection index V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "provider_id", "project_ref", "projection_revision", "plan_hash", "artifact_manifest_hash", "authority_channel_id", "project_view_channel_id", "visibility_scope", "visibility_url", "governance_state", "observed_at", "expires_at", "artifacts", "index_sha256"],
+  "properties": {
+    "schema": {"const": "BOS_CLOUDBOS_PUBLIC_PROJECT_VISIBLE_REMOTE_INDEX_V1"},
+    "provider_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/-]{0,255}$"},
+    "project_ref": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/-]{0,255}$"},
+    "projection_revision": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/-]{0,255}$"},
+    "plan_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "artifact_manifest_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "authority_channel_id": {"type": "string"},
+    "project_view_channel_id": {"type": "string"},
+    "visibility_scope": {"const": "PROJECT_CONTEXT"},
+    "visibility_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "governance_state": {"enum": ["GOVERNED_ACTIVE", "DETACHED_OR_REMOVED"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "artifacts": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "sha256", "bytes"],
+        "properties": {
+          "target": {"enum": ["CLOUD_BOS_PROJECT_VISIBLE_REMOTE_PROJECTION/binding.json", "CLOUD_BOS_PROJECT_VISIBLE_REMOTE_PROJECTION/project-governance.json", "CLOUD_BOS_PROJECT_VISIBLE_REMOTE_PROJECTION/manifest.json"]},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "bytes": {"type": "integer", "minimum": 1, "maximum": 262144}
+        }
+      }
+    },
+    "index_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
