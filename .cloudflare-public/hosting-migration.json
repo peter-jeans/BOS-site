@@ -2,12 +2,12 @@
   "schema": "BOS_HOSTING_ONLY_APPROVAL_V1",
   "scope": "HOSTING_MIGRATION_ONLY",
   "hosting_approved": true,
-  "approval_basis": "Owner explicitly requested functioning Mac and Windows setup-download buttons and concise computer setup cards on 2026-10-22. Only the existing checksum-verified preview archive is authorized for these two download links. Native qualification and general product release remain unapproved. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner requested public check/update/repair prompt links and a guided download on 2026-11-19; links target the current My BOS account help cards. Owner requested the shared prompt library and complete, restartable setup checks on 2026-11-20. Candidate payload is published for native qualification before marketplace selection. Shared prompt library and crash-resume help link to the current My BOS page; native acceptance is retained in the bounded release receipt. Owner requested clear drive-folder/session instructions for both tools and a post-install welcome on 2026-11-20. Candidate payload is staged for exact native qualification. Exact 0.2.2 native qualification passed in both tools on Mac and Windows; public setup/help copy describes the welcome and local help. Owner requested one BOS interface, minimal Local/Cloud explanation and Ask BOS/Use BOS phrases on 2026-11-20. Immutable candidate is prepared for exact native qualification. Exact 0.2.3 native qualification passed in both tools on Mac and Windows; public setup/help copy describes the welcome and local help.",
+  "approval_basis": "Owner explicitly requested functioning Mac and Windows setup-download buttons and concise computer setup cards on 2026-10-22. Only the existing checksum-verified preview archive is authorized for these two download links. Native qualification and general product release remain unapproved. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner authorized the scoped customer LDP plugin and My BOS download publication on 2026-11-19. Setup buttons now target the current My BOS ZIP; legacy archives retain their existing fingerprints. Owner requested public check/update/repair prompt links and a guided download on 2026-11-19; links target the current My BOS account help cards. Owner requested the shared prompt library and complete, restartable setup checks on 2026-11-20. Candidate payload is published for native qualification before marketplace selection. Shared prompt library and crash-resume help link to the current My BOS page; native acceptance is retained in the bounded release receipt. Owner requested clear drive-folder/session instructions for both tools and a post-install welcome on 2026-11-20. Candidate payload is staged for exact native qualification. Exact 0.2.2 native qualification passed in both tools on Mac and Windows; public setup/help copy describes the welcome and local help. Owner requested one BOS interface, minimal Local/Cloud explanation and Ask BOS/Use BOS phrases on 2026-11-20. Immutable candidate is prepared for exact native qualification. Exact 0.2.3 native qualification passed in both tools on Mac and Windows; public setup/help copy describes the welcome and local help. Owner on2026-11-23 authorized clear account/tool-first guidance, signed-in operational prompts and later app onboarding, then push to main and publish. Scope is setup guidance and matching launcher0.1.5 only; plugin0.2.3 and all product-release/native qualification holds remain separate.",
   "product_release_approved": false,
   "preserve_github_pages": true,
   "source_repository": "https://github.com/peter-jeans/BOS-site.git",
   "source_branch": "main",
-  "reviewed_base_commit": "120bb36c54d5fa302f7f4788eab7eee5af202f8f",
+  "reviewed_base_commit": "8c92a3cbaeb7ce87644d6b4ce5f975d502a3b0bf",
   "target_worker": "bos-public-site",
   "target_domain": "cloudbos.dev",
   "preserved_absent_paths": [
@@ -17,7 +17,7 @@
   "pinned_files": {
     ".cloudflare-public/release-readiness.json": "8c2ba7d110391e33e8c89b0b198ec0a3ba3ad1bfd9184a10df8e9ddb91a9e82a",
     ".cloudflare-public/marketplace-source-manifest.json": "20e2ac18b0693e30abe668f5eaee8ba66ef1c80ccbbe25ff9989ed82baddc614",
-    ".cloudflare-public/assets-manifest.json": "94e2e544a3a3e233c486bb4ea105d777201cf14180d7275a5363a5ce589858a7",
+    ".cloudflare-public/assets-manifest.json": "d8fded6a17f94069c70717dc8f0ba163cf02cec23424804cf343aa4cc36bc8d8",
     ".cloudflare-public/asset-routing.txt": "a1d8dddd72c71933662e65f4604cd741d4a3f388951207193c01ad1015dd6692",
     ".cloudflare-public/build.mjs": "52f93b42be69f9f8896cde891b8bf2308a3916cdf44e8ba321a51f259c540636",
     ".cloudflare-public/release-check.mjs": "daef0692c106479cceaef361f6732e8174ee398fc6cbfa870be796fed6b833f3",
@@ -27,6 +27,6 @@
     ".cloudflare-public/package-lock.json": "e93ab991f100f9d1edecd747fc5d6f87aa35348446589d2b724e6ebf8e7a2a18",
     "data/host-compatibility.json": "0f1cefbaf5d9d8d9257c55dded55078952dd8157b07062d6105ed623f424fc53",
     ".nojekyll": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    ".cloudflare-public/hosting-input-isolation.json": "322b11fcbe65380007cb743554c3970bd102ae1af37381156a30ab3f81b6053f"
+    ".cloudflare-public/hosting-input-isolation.json": "6c0575b2e0763adea619c76794a0fdca8165bdd6da4e003f0174393a029fc834"
   }
 }

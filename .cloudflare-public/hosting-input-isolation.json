@@ -318,8 +318,8 @@
       "bytes": 85
     },
     "setup.html": {
-      "sha256": "b6732f9a546ad9dcd05aebd9bcd208b4100af7f8566d49ec0480ea489d8f36d1",
-      "bytes": 98452
+      "bytes": 59621,
+      "sha256": "056085069cec0db2e3bd36c5492b926f81963e2af48b45e5c618ddd693efae38"
     }
   }
 }
